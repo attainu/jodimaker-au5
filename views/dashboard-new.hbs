@@ -63,7 +63,12 @@
                     <div class="card">
                         <div class="img-holder px-2 p-2">
                             <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                class="card-img-top rounded-circle" alt="Profile Page">
+                                class="card-img-top rounded-circle image" alt="Profile Page">
+                            <div class="middle">
+                                <input type="file" name="" id="">
+                                <button><i class="fa fa-camera"></i></button>
+                                <div>Upload image</div>
+                            </div>
                         </div>
                         <div class="card-body">
                             <hr>
@@ -72,9 +77,9 @@
                                     %</mark>
                             </p>
                             <hr>
-                            <div class="row ">
+                            {{!-- <div class="row ">
                                 <a href="#" class="btn btn-info mx-auto">Upload More Photos</a>
-                            </div>
+                            </div> --}}
 
                         </div>
                     </div>
@@ -265,7 +270,9 @@
                 </div>
                 <div class="col-md-3 bg-white border rounded">
                     <div class="row p-3">
-                        <h6 class="text-danger">Notifications<span class="badge badge-pill badge-danger">3</span></h6>
+                        <h6 class="text-danger">Notifications
+                            <span class="badge badge-pill badge-danger">3</span>
+                        </h6>
                         <div class="alert alert-success alert-dismissable">
                             <a class="panel-close close" data-dismiss="alert">×</a><strong>FirstName LastName</strong>
                             Accepted your request
