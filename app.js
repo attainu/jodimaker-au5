@@ -58,9 +58,9 @@ mongoose.connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
 //Routes
 //root and loginsignup 
 app.use('/', require('./routes/loginsignup'))
-//profilesetup
+    //profilesetup
 app.use('/', require('./routes/profilesetup'))
-//homepage
+    //homepage
 app.use('/', require('./routes/website'))
 app.use('/', require('./routes/settings'))
 
@@ -69,4 +69,4 @@ app.use('/', require('./routes/settings'))
 //activating server at PORT address 
 app.listen(PORT, () => {
     console.log("Server is active at port address" + PORT);
-});
+})
