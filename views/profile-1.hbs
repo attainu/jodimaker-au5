@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/profile-1.css">
+    <title>Setup Profile</title>
+</head>
+
+<body class="bg-light">
+    <div class="container-fluid ">
+        <section>
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
+                <div class="container">
+                    <a class="navbar-brand text-white" href="#">Jodi Maker</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarText">
+                        <ul class="navbar-nav mr-auto text-white">
+                            <li class="nav-item active">
+                                <a class="nav-link text-white" href="">Profile Setup</a>
+                            </li>
+                            {{!-- <li class="nav-item">
+                                <a class="nav-link text-white" href="">Step-2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="">Step-3</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="">Step-4</a>
+                            </li> --}}
+                        </ul>
+                        <span class="navbar-text">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="">Contact Us</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </div>
+                </div>
+            </nav>
+        </section>
+        <section>
+            <div class="col-md-6 mx-auto mt-5  ">
+                <div class="container my-5 bg-white border rounded pt-1 position-absolute card-3">
+                    {{!-- progress bar --}}
+                    <div class="row mt-4">
+                        <div class="col-md-12 text-center mt-4">
+                            <div class="progress">
+                                <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated"
+                                    role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"
+                                    style="width: 10%"></div>
+                            </div>
+                            <p class="text-center mt-2">10% Completed</p>
+                            <h6 class="mt-4">Basic Details</h6>
+                            <hr>
+                        </div>
+                    </div>
+                    <form class="needs-validation" novalidate method="POST" enctype="multipart/form-data"
+                        action="/profile/1">
+                        <div class="form-row mx-5">
+                            <div class="col-md-4 mb-3">
+                                <label for="firstName">First Name</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="firstName" placeholder="First Name"
+                                    name="firstname" pattern="[a-zA-Z]{3,}" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row mx-5">
+                            <div class="col-md-4 mb-3">
+                                <label for="middleName">Middle Name</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="middleName" placeholder="Middle Name"
+                                    pattern="[a-zA-Z]{3,}" name="middlename">
+                                <small class="text-muted">Optional</small>
+                                {{!-- <div class="valid-feedback">
+                                    Looks good!
+                                </div> --}}
+                            </div>
+                        </div>
+                        <div class="form-row mx-5">
+                            <div class="col-md-4 mb-3">
+                                <label for="lastName">Last Name</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" id="lastName" placeholder="Last Name"
+                                    name="lastname" pattern="[a-zA-Z]{3,}" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row mx-5">
+                            <div class="col-md-12 mb-3">
+                                <label for="image">Image</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="image" name="image"
+                                        accept="image/png, image/jpeg">
+                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row mx-5">
+                            <div class="col-md-4 mb-3">
+                                <label for="address">Address</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="Address" id="address"
+                                    name="address" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row mx-5">
+                            <label for="firstname">Currently living in:</label>
+                        </div>
+                        <div class="form-row mx-5">
+                            <div class="col-md-4 mb-3">
+                                <label for="countryId">Country</label>
+                                <select name="country" class="countries custom-select" id="countryId" required>
+                                    <option value="">Select Country</option>
+                                    <option class="country" value="India">India</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3 location">
+                                <label for="stateId">State</label>
+                                <select name="state" class="states custom-select" id="stateId" required>
+                                    <option value="">Select State</option>
+                                </select>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label for="cityId">City</label>
+                                <select name="city" class="cities custom-select" id="cityId" required>
+                                    <option value="">Select City</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row mx-5">
+                            <div class="col-12  text-center">
+                                <button class="btn btn-outline-danger mb-4 slide" type="submit">Proceed</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+</body>
+
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+{{!-- bootstrap scripts --}}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src="../js/profile-1.js"></script>
+
+</html>
