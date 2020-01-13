@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/dashboard-new.css">
+    <title>Dashboard</title>
+
+</head>
+
+<body class="bg-light">
+    <section>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
+            <div class="container">
+                <a class="navbar-brand text-white" href="#">Jodi Maker</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto text-white">
+                        <li class="nav-item active">
+                            <a class="nav-link text-white" href="dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="">My Matches</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="">Search</a>
+                        </li>
+                    </ul>
+                    <span class="navbar-text">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="profile">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="setting">Settings</a>
+                            </li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+
+
+
+    <section>
+        <div class="container mt-5">
+            <div class="row">
+                {{!-- profile column --}}
+                <div class="d-flex col-md-3">
+                    <div class="card">
+                        <div class="img-holder px-2 p-2">
+                            <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
+                                class="card-img-top rounded-circle" alt="Profile Page">
+                        </div>
+                        <div class="card-body">
+                            <hr>
+                            <h5 class="card-title">FirstName LastName</h5>
+                            <p class="card-text text-center">Profile completion: <mark>80
+                                    %</mark>
+                            </p>
+                            <hr>
+                            <div class="row ">
+                                <a href="#" class="btn btn-primary mx-auto">Upload More Photos</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {{!-- requests row --}}
+                <div class="col-md-9">
+                    <div class="row">
+                        <h6>Your Activity</h6>
+                    </div>
+                    <div class="row d-flex justify-content-between">
+                        <div class="col-md-4">
+                            <div class="card text-white bg-success mb-2">
+                                <div class="card-header">Accepted Requests</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-white bg-primary mb-2">
+                                <div class="card-header">Recieved Requests</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card text-white bg-secondary mb-2">
+                                <div class="card-header">Pending Requests</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h6>
+                                Accepted Requests
+                            </h6>
+                            <div class="card">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-md-2">
+                                        <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
+                                            class="card-img-top rounded-circle p-3" alt="Profile Page">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="card-body">
+                                            <h6 class="card-title">FirstName lastname</h6>
+                                            <p class="card-text">Age, height,mother tongue, location</p>
+                                            {{!-- <p class="card-text">
+                                                <small class="text-muted">Last updated 3 mins ago</small>
+                                            </p> --}}
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
+                                            class="card-img-top rounded-circle p-3" alt="Profile Page">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="card-body">
+                                            <h6 class="card-title">FirstName lastname</h6>
+                                            <p class="card-text">Age, height,mother tongue, location</p>
+                                            {{!-- <p class="card-text">
+                                                <small class="text-muted">Last updated 3 mins ago</small>
+                                            </p> --}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="col-md-2">
+                                        <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
+                                            class="card-img-top rounded-circle p-3" alt="Profile Page">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="card-body">
+                                            <h6 class="card-title">FirstName lastname</h6>
+                                            <p class="card-text">Age, height,mother tongue, location</p>
+                                            {{!-- <p class="card-text">
+                                                <small class="text-muted">Last updated 3 mins ago</small>
+                                            </p> --}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h6>Notifications <span class="bg-danger rounded text-white">11</span></h6>
+                            <div class="row">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="..." class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text">Some quick example text to build on the card title and make
+                                            up
+                                            the bulk of the card's content.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                {{!-- </div> --}}
+            </div>
+
+    </section>
+</body>
+
+
+
+{{!-- bootstrap scripts --}}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src="../js/dashboard-new.js"></script>
+
+</html>
