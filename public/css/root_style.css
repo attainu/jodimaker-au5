@@ -1,0 +1,94 @@
+body{
+  overflow-x: hidden;
+}
+
+ h4{
+    font-size: 15px;
+ }
+ footer{
+    background-color: #202020;
+    color: #fff;
+ }
+
+ ul{
+   list-style-type: none;
+   margin: 0px;
+   padding: 0px;
+   
+ }
+ 
+ a{
+  text-decoration: none;
+  color: #8e8e8e;
+  font-size: 13px;
+}
+
+
+a:hover{
+  text-decoration: none;
+  color: #D79922;
+  font-size: 13px;
+}
+
+.social-media a{
+  
+  text-decoration: none;
+  color: white;
+  
+
+}
+
+.navbar{
+   max-height: 100px;
+}
+
+.logo{
+  height:90px;
+  width: 100px;
+}
+
+
+.banner{
+   background: url("/img/Lovevivah-banner.jpg") no-repeat center ;
+   min-height:620px;
+   background-size: cover;
+   
+}
+ .btn-wine{
+   color: #fff;
+   background-color: #78244C;
+   border-color: #78244C;
+ }
+
+ .btn-wine:hover {
+  background-color: #D79922;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  border-color: #D79922;
+}
+
+ .btn-infor{
+   color: #fff;
+   background-color: #D79922;
+   border-color: #D79922;
+ }
+
+ .btn-infor:hover {
+  background-color: #78244C;
+  border-color: #78244C;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+ .bg-wine{
+   color: #fff;
+   background-color: #78244C;
+ }
+
+ .card-img-top{
+   height:280px;
+ }
+
+ 

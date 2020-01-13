@@ -1,0 +1,775 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/profile.css">
+    <title>Profile</title>
+</head>
+
+<body class="bg-light">
+    <div class="container-fluid">
+        <section>
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
+                <div class="container">
+                    <a class="navbar-brand text-white" href="#">Jodi Maker</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarText">
+                        <ul class="navbar-nav mr-auto text-white">
+                            <li class="nav-item active">
+                                <a class="nav-link text-white" href="dashboard">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="dashboard">My Matches</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="search">Search</a>
+                            </li>
+                        </ul>
+                        <span class="navbar-text">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="profile">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="setting">Settings</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+
+        <div class="container">
+            <div class="row my-4 rounded border bg-white">
+                <div class="col-md-4 profileimage rounded-circle m-4">
+                </div>
+                <div class="col-md-5 ml-5">
+                    <div class="row">
+                        <h5 class="mt-5">firstName lastName
+                            <hr>
+                        </h5>
+                    </div>
+                    <div class="row">
+                        <label>About me:</label>
+                        <p>
+                            I have always been an achiever; be it academics or professional life or sports or any other
+                            field in
+                            my life. I believe in success through hard work &amp; dedication. My motto in life is to ‘If
+                            you
+                            want something, work hard &amp; you will achieve it; there are no shot cuts’. I enjoy life
+                            to
+                            the
+                            fullest &amp; love humour. I am a progressive thinker &amp; respect each person’s space
+                            &amp;
+                            values.
+                        </p>
+                    </div>
+                    <div class="row">
+                        <a href="#" class="fa fa-facebook social"></a>
+                        <a href="#" class="fa fa-twitter social"></a>
+                        <a href="#" class="fa fa-google social"></a>
+                    </div>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 order-lg-2">
+                            <ul class="nav nav-tabs mb-2">
+                                <li class="nav-item ">
+                                    <a href="" data-target="#profile" data-toggle="tab"
+                                        class="nav-link active">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="" data-target="#partnerPreference" data-toggle="tab" class="nav-link">
+                                        Partner
+                                        Preference</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-content py-4 bg-white border">
+                {{!-- profile --}}
+                <i style="font-size:24px" class="fa float-right mr-5">&#xf044;</i>
+                <div class="tab-pane active " id="profile">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <h6 class="mt-2">Personal Information
+                                <hr>
+                            </h6>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 flex-nowrap">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Age:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="text-nowrap">56</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Height:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="text-nowrap">5ft 6in</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Maritial Status:</label>
+                                    </div>
+                                    <div class="col-md-4 ">
+                                        <div class="text-nowrap">Never Married</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Posted by:</label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="text-nowrap">Self</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 flex-nowrap">
+                                <div class="row ">
+                                    <div class="col-md-5">
+                                        <label>Religion/Community:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="text-nowrap">Hindu</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="text-nowrap">Location:</label>
+                                    </div>
+                                    <div class="col-md-4 ">
+                                        <div class="text-nowrap">India</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="text-nowrap">Mother Tongue:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="text-nowrap">Hindi</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- basic Information --}}
+                    <div class="col-md-12">
+                        <i style="font-size:24px" class="fa float-right mr-5">&#xf044;</i>
+                        <div class="row">
+                            <h6 class="mt-2"> Basics &amp; Lifestyle
+                                <hr>
+                            </h6>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 flex-nowrap">
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <label>Age:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="text-nowrap">56</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Date of Birth:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="text-nowrap">01/08/89</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Height:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="text-nowrap">7'&#40;213cms&#41;</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Body Weight:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div><a href="">Update</a></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Disability:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div><a href="">Update</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 flex-nowrap">
+                                <div class="row ">
+                                    <div class="col-md-5">
+                                        <label>Diet:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="text-nowrap">Jain</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="text-nowrap">Personal Values:</label>
+                                    </div>
+                                    <div class="col-md-7 ">
+                                        <div class="text-nowrap">Will tell you later</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="text-nowrap">Sun Sign:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="text-nowrap">Leo</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="text-nowrap">Blood Group:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="text-nowrap">Update</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="text-nowrap">Health Information:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="text-nowrap">Update</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="text-nowrap">Fluent in:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div><a href="">Update</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- Religion Background --}}
+                    <div class="col-md-12">
+                        <i style="font-size:24px" class="fa float-right mr-5">&#xf044;</i>
+                        <div class=" row ">
+                            <h6 class="mt-2"> Religious Background
+                                <hr>
+                            </h6>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 flex-nowrap">
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <label>Religion:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="text-nowrap">Hindu</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Community:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="text-nowrap">Brahmin - Saraswat</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Sub community:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="text-nowrap">Not Specified</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Gothra:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="text-nowrap">Not Specified</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Mother Tongue:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div><a href="">Update</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 flex-nowrap">
+                                <div class="row ">
+                                    <div class="col-md-5">
+                                        <label>Rashi:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="text-nowrap">Not Specified</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="text-nowrap">Manglik :</label>
+                                    </div>
+                                    <div class="col-md-7 ">
+                                        <div class="text-nowrap">Will tell you later</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="text-nowrap">City of Birth:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="text-nowrap">Haridwar</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- family-details  --}}
+                    <div class="col-md-12">
+                        <i style="font-size:24px" class="fa float-right mr-5">&#xf044;</i>
+                        <div class=" row ">
+                            <h6 class="mt-2"> Family details
+                                <hr>
+                            </h6>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 flex-nowrap">
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Father's Status:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div><a href="">Update</a></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Mother's Status:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div><a href="">Update</a></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Family Location:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="text-nowrap">Not Specified</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Native Place:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="text-nowrap">Not Specified</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">No. of Siblings:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div><a href="">Update</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 flex-nowrap">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label>Family Affluence:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="text-nowrap">Not Specified</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="text-nowrap">Family Type:</label>
+                                    </div>
+                                    <div class="col-md-7 ">
+                                        <div class="text-nowrap">Will tell you later</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="text-nowrap">Family Values:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div><a href="">Update</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- Education-details  --}}
+                    <div class="col-md-12">
+                        <i style="font-size:24px" class="fa float-right mr-5">&#xf044;</i>
+                        <div class=" row ">
+                            <h6 class="mt-2 ">Education &amp; Career
+                                <hr>
+                            </h6>
+                        </div>
+                        <div class="row ">
+                            <div class="col-md-6 flex-nowrap">
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Education:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="text-nowrap">Masters</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">College Attended:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div><a href="">Update</a></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Annual Income:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="text-nowrap">Not Specified</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 flex-nowrap">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="text-nowrap">Working Sector:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="text-nowrap">Not Specified</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="text-nowrap">Profession:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div><a href="">Update</a></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="text-nowrap">Employer:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div><a href="">Update</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- Hobbies --}}
+                    <div class="col-md-12">
+                        <i style="font-size:24px" class="fa float-right mr-5">&#xf044;</i>
+                        <div class=" row ">
+                            <h6 class="mt-2 ">Hobbies, Interests &amp; More
+                                <hr>
+                            </h6>
+                        </div>
+                        <div class="row ">
+                            <div class="col-md-6 flex-nowrap">
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Hobbies:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div><a href="">Update</a></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Interests:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div><a href="">Update</a></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Favourite Music:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="text-nowrap">Not Specified</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Favourite Reads:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="text-nowrap">Not Specified</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Honeymoon Destinations:</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="text-nowrap">Not Specified</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 flex-nowrap">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="text-nowrap">Preferred Movies:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="text-nowrap">Not Specified</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label>Sports/Fitness Activities:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div><a href="">Update</a></div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="text-nowrap">Favourite Cuisines:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="text-nowrap">Not Specified</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="text-nowrap">Preferred Dress Style:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="text-nowrap">Not Specified</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{!-- partner preferences --}}
+                <div class="tab-pane" id="partnerPreference">
+                    <div class="col-md-12">
+                        <div class=" row">
+                            <h6 class="mt-2 ">Basic Information
+                                <hr>
+                            </h6>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 flex-nowrap mt-4">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Age:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="text-nowrap">56</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Height:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="text-nowrap">5ft 6in</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Maritial Status:</label>
+                                    </div>
+                                    <div class="col-md-4 ">
+                                        <div class="text-nowrap">Never Married</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="text-nowrap">Diet:</label>
+                                    </div>
+                                    <div class="col-md-4 ">
+                                        <div class="text-nowrap">Doesn't Matter</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 flex-nowrap mt-4">
+                                <div class="row ">
+                                    <div class="col-md-5">
+                                        <label>Religion/Community:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="text-nowrap">Hindu</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="text-nowrap">Mother Tongue:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="text-nowrap">Hindi</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <label class="text-nowrap">Children:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="text-nowrap">Doesn't Matter</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- location details --}}
+                    <div class="col-md-12">
+                        <div class=" row px-3">
+                            <h6 class="mt-2 ">Location details
+                                <hr>
+                            </h6>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 flex-nowrap mt-4">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Country living in:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="text-nowrap">Doesn't Matter</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>State living in:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="text-nowrap">Doesn't Matter</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 flex-nowrap mt-4">
+                                <div class="row ">
+                                    <div class="col-md-5">
+                                        <label>City / District:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="text-nowrap">Doesn't Matter</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {{!-- Education --}}
+                    <div class="col-md-12">
+                        <div class=" row px-3">
+                            <h6 class="mt-2 ">Education &amp; Career
+                                <hr>
+                            </h6>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 flex-nowrap mt-4">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Education:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="text-nowrap">Doesn't Matter</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Working with:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="text-nowrap">Doesn't Matter</div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Profession area:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="text-nowrap">Doesn't Matter</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 flex-nowrap mt-4">
+                                <div class="row ">
+                                    <div class="col-md-5">
+                                        <label>Working as:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="text-nowrap">Doesn't Matter</div>
+                                    </div>
+                                </div>
+                                <div class="row ">
+                                    <div class="col-md-5">
+                                        <label>Annual income:</label>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="text-nowrap">Doesn't Matter</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{!-- </div> --}}
+                </div>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</body>
+
+
+{{!-- bootstrap scripts --}}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src="../js/profile.js"></script>
+
+</html>

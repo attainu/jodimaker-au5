@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/search_style.css">
+    <title>Settings</title>
+</head>
+
+<body>
+    
+    <nav class="navbar navbar-expand-lg navbar-light  bg-wine  ">
+            <div class="container">
+                <a class="navbar-brand text-white" href="#">Jodi Maker</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto text-white">
+                        <li class="nav-item active">
+                            <a class="nav-link text-white" href="dashboard">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="dashboard">My Matches</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="search">Search</a>
+                        </li>
+                    </ul>
+                    <span class="navbar-text">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="profile">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="setting">Settings</a>
+                            </li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        </nav>
+    <div class="container-fluid">
+        <div class="row settingspanel">
+            <div class="col-md-2 mb-3">
+                <ul class="nav  flex-column border" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active border-bottom" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                            aria-controls="account settings" aria-selected="true">Account Settings</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link border-bottom" id="contact-tab" data-toggle="modal" href="#exampleModal"
+                            role="tab" aria-controls="contact" aria-selected="false">Contact Filters</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link border-bottom" id="emailAlert-tab" data-toggle="tab" href="#emailAlerts"
+                            role="tab" aria-controls="email alerts" aria-selected="false">Email Alerts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link border-bottom" id="privacy-tab" data-toggle="tab" href="#privacy" role="tab"
+                            aria-controls="privacy" aria-selected="false">Privacy Options</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="hide-tab" data-toggle="tab" href="#hide" role="tab"
+                            aria-controls="hide profile" aria-selected="false">Hide/Delete Profile</a>
+                    </li>
+
+                </ul>
+            </div>
+            <div class="col-md-8">
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+
+                        <form action="/setting" method="post" class="mt-5" id="form">
+                            <h4>My Accounts</h4>
+                            <div class="form-group ">
+                                <label for="email" style="font-size: 20px;">Email :</label>
+                                <input type="email" name="email" value="{{result.Signup.email}}"
+                                    class="form-control border bg-light">
+                            </div>
+                            <div class="form-group">
+                                <label for="password" style="font-size: 20px;">Password :</label>
+                                <input type="password" name="password" value="{{result.Signup.password}}"
+                                    class="form-control border bg-light">
+                            </div>
+                            <div>
+                                <button type="submit" class="btn">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal fade up " id="exampleModal" tabindex="-1" role="dialog"
+                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-muted" id="exampleModalLabel">Who can contact me</h5>
+                                    <br>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+
+                                </div>
+                                <h6 class="p-4"> Requests from members who do not meet the following criteria will be
+                                    filtered out
+                                </h6>
+                                <div class="modal-body">
+                                    <form action="/update" method="POST" id="fm" class="form-group">
+                                        <input type="hidden" name="id" id="userid" value="{{result._id}}">
+                                        <label class="text-muted"><b>Age:</b></label>
+                                        <input type="number" name="age1" class="form-control d-inline" id="age1"
+                                            value="{{result.Settings.age1}}" min="18" style="width:50px;"><b>To</b>
+                                        <input type="number" name="age2" id="age2" value="{{result.Settings.age2}}"
+                                            class="form-control d-inline" min="18" style="width:50px;">
+                                        <br>
+                                        <label class="text-muted"><b>Religion:</b></label>
+                                        <input type="text" name="religion" id="religion"
+                                            value="{{result.Settings.religion}}" class="form-control border">
+                                        <label class="text-muted"><b>Community:</b></label>
+                                        <input type="text" name="caste" id="community" value="{{result.Settings.caste}}"
+                                            class="form-control">
+                                        <label class="text-muted"><b>Mother Tongue:</b></label>
+                                        <input type="text" name="mothertongue" id="mt"
+                                            value="{{result.Settings.mothertongue}}" class="form-control">
+                                        <label class="text-muted"><b>Maritial status:</b></label>
+                                        <input type="text" name="maritialstatus" id="ms"
+                                            value="{{result.Settings.maritialstatus}}" class="form-control">
+
+
+                                        <button type="submit" class="btn btn-primary mt-3">Update</button>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="emailAlerts" role="tabpanel" aria-labelledby="emailAlert-tab">
+                        <h5>My Alerts Manager</h5>
+                        <p>Manage your subscriptions to Shaadi.com Alerts on email listed below. You can also subscribe
+                            to JodiMaker.com and ShaadiTimes Newsletter</p>
+                        <div class="container" style="background-color:gray;">
+                            <div class="row">
+                                <div class="col">
+                                    Match Mail & Photo Match Mail
+                                    <p>Personalized matches for you delivered via email as often as you like. A very
+                                        effective match-making tool.</p>
+                                </div>
+                                <div class="col">
+                                    <form action="/setting2" id="#set2" method="post">
+                                        <div class="radio">
+                                            <label><input type="radio" name="emailsubscribe" value="0">Daily</label>
+                                        </div>
+                                        <div class="radio">
+                                            <label><input type="radio" name="emailsubscribe" value="1">Weekly</label>
+                                        </div>
+                                        <div class="radio disabled">
+                                            <label><input type="radio" name="emailsubscribe"
+                                                    value="2">Unsubscribe</label>
+                                        </div>
+                                        <button class="btn btn-primary">Save</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="tab-pane fade" id="privacy" role="tabpanel" aria-labelledby="privacy-tab">
+                        <form id="set3">
+                            <h4>Privacy Options</h4>
+                            <div class="container bg-light border">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div>
+                                            <p>Display Name as</p>
+                                        </div>
+                                        <div>
+                                            <p>Phone</p>
+                                        </div>
+                                        <div>
+                                            <p>Email</p>
+                                        </div>
+                                        <div>
+                                            <p>Date of birth</p>
+                                        </div>
+                                        <div>
+                                            <p>Annual Income</p>
+                                        </div>
+                                        <div>
+                                            <p>Web Notification</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div id="display-name">
+
+                                            <p>{{result.Settings.showname}}</p>
+                                            <input type="text" style="display: none;" name="showname"
+                                                value="{{result.Settings.showname}}">
+                                        </div>
+
+                                        <div id="display-phone">
+                                            <p>Visible to all matched members</p>
+                                            <div class="radio">
+                                                <input type="radio" name="showphone" value="0">Visible to matched
+                                                members
+                                            </div>
+                                            <div class="radio">
+                                                <input type="radio" name="showphone" value="1">Hide to all members
+                                            </div>
+                                        </div>
+
+                                        <div id="display-email">
+                                            <p></p>
+                                            <div class="radio">
+                                                <input type="radio" name="showemail" value="0">
+                                                Visible to matched members
+                                            </div>
+                                            <div class="radio">
+                                                <input type="radio" name="showemail" value="1">Hide to all members
+                                            </div>
+                                            <div class="radio">
+                                                <input type="radio" name="showemail" value="2">Visible to all members
+                                            </div>
+                                        </div>
+
+                                        <div id="display-showdob">
+                                            <p>Show my full Date of Birth (dd/mm/yyyy)</p>
+                                            <div class="radio">
+                                                <input type="radio" name="showdob" value="0">Show my full Date of Birth
+                                                (dd/mm/yyyy)
+                                            </div>
+                                            <div class="radio">
+                                                <input type="radio" name="showdob" value="1">Show only the Month & Year
+                                                (mm/yyyy)
+                                            </div>
+                                        </div>
+                                        <div id="display-showsalary">
+                                            <p>Visible to all Members</p>
+                                            <div class="radio">
+                                                <input type="radio" name="showsalary" value="0">Show my salary to
+                                                matched users
+                                            </div>
+                                            <div class="radio">
+                                                <input type="radio" name="showsalary" value="1">Hide salary
+                                            </div>
+                                        </div>
+                                        <div id="unsubscribe">
+                                            <p>Unsubscribe</p>
+                                            <div class="radio">
+                                                <input type="radio" name="subscribe" value="0">Subscribe
+                                            </div>
+                                            <div class="radio">
+                                                <input type="radio" name="subscribe" value="1">Unsubscribe
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 ">
+                                        <div>
+                                            <p><a onclick="displayname()" id="edit" href="#">Edit</a></p>
+                                            <button type="button" id="save" class="btn btn-primary">Save</button>
+                                            <button type="button" id="cancel"
+                                                class="btn  cancel  btn-secodary">Cancel</button>
+                                        </div>
+                                        <div>
+                                            <p><a onclick="displayphone()" id="edit1" href="#">Edit</a></p>
+                                            <button type="button" id="save1" class="btn btn-primary">Save</button>
+                                            <button type="button" id="cancel1"
+                                                class="btn cancel  btn-secodary">Cancel</button>
+                                        </div>
+                                        <div>
+                                            <p><a onclick="displayemail()" id="edit2" href="#">Edit</a></p>
+                                            <button type="button" id="save2" class="btn btn-primary">Save</button>
+                                            <button type="button" id="cancel2"
+                                                class="btn  cancel btn-secodary">Cancel</button>
+                                        </div>
+                                        <div>
+                                            <p><a onclick="displayshowdob()" id="edit3" href="#">Edit</a></p>
+                                            <button type="button" id="save3" class="btn btn-primary">Save</button>
+                                            <button type="button" id="cancel3"
+                                                class="btn  cancel btn-secodary">Cancel</button>
+                                        </div>
+                                        <div>
+                                            <p><a onclick="displayshowsalary()" id="edit4" href="#">Edit</a></p>
+                                            <button type="button" id="save4" class="btn btn-primary">Save</button>
+                                            <button type="button" id="cancel4"
+                                                class="btn cancel  btn-secodary">Cancel</button>
+                                        </div>
+                                        <div>
+                                            <p><a onclick="showsubscribe()" id="edit5" href="#">Edit</a></p>
+                                            <button type="button" id="save5" class="btn btn-primary">Save</button>
+                                            <button type="button" id="cancel5"
+                                                class="btn  cancel btn-secodary">Cancel</button>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="hide" role="tabpanel" aria-labelledby="hide-tab">
+                        <h4>Hide Or Delete Profile</h4>
+                        <div class="container mt-5">
+                            <div class="row border bg-light">
+                                <div class="col-md-4">
+                                    <h6 class="text-muted">Hide Profile</h6>
+                                </div>
+                                <div class="col-md-4">
+                                    <p id="hide-profile">Your profile is currently Visible </p>
+
+                                </div>
+                                <div class="col-md-4">
+                                    <a href="#" id="hi">Hide</a>
+                                    <button id="save6" class="btn btn-primary">Save</button>
+                                    <button id="cancel6" class="btn btn-secodary">Cancel</button>
+                                </div>
+
+                            </div>
+                            <div class="row border bg-light">
+                                <div class="col-md-4">
+                                    <h6 class="text-muted">Delete Profile</h6>
+                                </div>
+                                <div class="col-md-4" id="delete">
+                                    <p id="del-profile">Delete your profile from JodiMaker.com</p>
+                                    <input type="hidden" name="id" id="userid" value="{{result._id}}">
+                                </div>
+                                <div class="col-md-4">
+                                    <a class="del" href="#" data-toggle="modal" data-target="#confirm-delete">
+                                        Delete</a>
+                                </div>
+                                <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog"
+                                    aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-hidden="true">&times;</button>
+                                                <h4 class="modal-title" id="myModalLabel">Confirm Delete</h4>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <p>You are about to delete your Account,this procedure is irreversible.
+                                                </p>
+                                                <p>Do you want to proceed?</p>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default"
+                                                    data-dismiss="modal">Cancel</button>
+                                                <a class="btn btn-danger btn-ok">Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <footer class="pt-4 mt-5 pb-5" style="width:100%;">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><i class="fa fa-check"></i><a href="#">About Us</a></li>
+                        <li><i class="fa fa-check"></i><a href="#">Success Stories</a></li>
+                        <li><i class="fa fa-check"></i><a href="#">Media & PR</a></li>
+                        <li><i class="fa fa-check"></i><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="col-2">
+                    <h4>Help & Support</h4>
+                    <ul>
+                        <li><i class="fa fa-check"></i><a href="#">Live Support</a></li>
+                        <li><i class="fa fa-check"></i><a href="#">Online Help - FAQ</a></li>
+                        <li><i class="fa fa-check"></i><a href="#">Contanct Us</a></li>
+                        <li><i class="fa fa-check"></i><a href="#">Site Map</a></li>
+                    </ul>
+                </div>
+                <div class="col-2">
+                    <h4>Policies</h4>
+                    <ul>
+                        <li><i class="fa fa-check"></i><a href="#">Privacy Policies</a></li>
+                        <li><i class="fa fa-check"></i><a href="#">Terms Of Use</a></li>
+                        <li><i class="fa fa-check"></i><a href="#">Disclaimer</a></li>
+                        <li><i class="fa fa-check"></i><a href="#">Payment Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-2">dfv</div>
+                <div class="col-2">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        <li class="d-inline mr-3 social-media"><a href="#" target="_blank"><i
+                                    class="fa fa-facebook fa-2x"></i></a></li>
+                        <li class="d-inline mr-3 social-media"><a href="#" target="_blank"><i
+                                    class="fa fa-twitter fa-2x"></i></a></li>
+                        <li class="d-inline mr-3 social-media"><a href="#" target="_blank"><i
+                                    class="fa fa-linkedin fa-2x"></i></a></li>
+                        <li class="d-inline mr-3 social-media"><a href="#" target="_blank"><i
+                                    class="fa fa-pinterest fa-2x"></i></li>
+                        <li class="d-inline mr-3 social-media"><a href="#" target="_blank"><i
+                                    class="fa fa-google-plus fa-2x"></i></a></li>
+                    </ul>
+                    <h4>App Available On</h4>
+                    <ul>
+                        <li class="d-inline mr-3 social-media"><a href="#" target="_blank"><i
+                                    class="fa fa-android fa-2x"></a></i></li>
+                        <li class="d-inline mr-3 social-media"><a href="#" target="_blank"><i
+                                    class="fa fa-apple fa-2x"></a></i></li>
+                    </ul>
+                </div>
+                <div class="col-2"></div>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+
+    <script>
+        var showemail = parseInt({{ result.Settings.showemail }})
+        $("#display-email .radio").hide()
+        $("[name='showemail']").eq(showemail).prop("checked", true);
+        $("#display-email p").text($("#display-email .radio").eq(showemail).text())
+        var showphone = parseInt({{ result.Settings.showphone }})
+        $("#display-phone .radio").hide()
+        $("[name='showphone']").eq(showphone).prop("checked", true);
+        $("#display-phone p").text($("#display-phone .radio").eq(showphone).text())
+        var showsalary = parseInt({{ result.Settings.showsalary }})
+        $("#display-showsalary .radio").hide()
+        $("[name='showsalary']").eq(showsalary).prop("checked", true);
+        $("#display-showsalary p").text($("#display-showsalary .radio").eq(showsalary).text())
+        var showdob = parseInt({{ result.Settings.showdob }})
+        $("#display-showdob .radio").hide()
+        $("[name='showdob']").eq(showdob).prop("checked", true);
+        $("#display-showdob p").text($("#display-showdob .radio").eq(showdob).text())
+        var subscribe = parseInt({{ result.Settings.subscribe }})
+        $("#unsubscribe .radio").hide()
+        $("[name='subscribe']").eq(subscribe).prop("checked", true);
+        $("#unsubscribe p").text($("#unsubscribe .radio").eq(subscribe).text())
+        var emailsubscribe = parseInt({{ result.Settings.emailsubscribe }})
+        $("[name='emailsubscribe']").eq(emailsubscribe).prop("checked", true);
+
+
+
+
+    </script>
+    <script src="js/setting.js"></script>
+
+</body>
+
+</html>
