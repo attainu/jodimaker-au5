@@ -5,3 +5,17 @@
 body {
   padding-top: 70px;
 }
+
+.btn-wine {
+  color: #fff;
+  background-color: #78244c;
+  border-color: #78244c;
+}
+
+.btn-wine:hover {
+  background-color: rgba(120, 36, 77, 0.342);
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  border-color: rgba(120, 36, 77, 0.342);
+}
