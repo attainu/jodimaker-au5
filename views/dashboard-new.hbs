@@ -61,15 +61,28 @@
                 {{!-- profile column --}}
                 <div class="d-flex col-md-3">
                     <div class="card">
-                        <div class="img-holder px-2 p-2">
-                            <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
+                        {{!-- <div class="img-holder px-2 p-2"> --}}
+                        {{!-- <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
                                 class="card-img-top rounded-circle image" alt="Profile Page">
                             <div class="middle">
                                 <input type="file" name="" id="">
                                 <button><i class="fa fa-camera"></i></button>
                                 <div>Upload image</div>
+                            </div> --}}
+
+
+
+                        <div class="avatar-upload">
+                            <div class="avatar-edit">
+                                <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                <label for="imageUpload"></label>
+                            </div>
+                            <div class="avatar-preview">
+                                <div id="imagePreview" style="background-image: url(http://i.pravatar.cc/500?img=7);">
+                                </div>
                             </div>
                         </div>
+                        {{!-- </div> --}}
                         <div class="card-body">
                             <hr>
                             <h5 class="card-title">FirstName LastName</h5>
