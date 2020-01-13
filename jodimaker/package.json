@@ -1,0 +1,24 @@
+{
+  "name": "jodimaker-boilerplate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "bcrypt": "^3.0.7",
+    "cloudinary": "^1.18.1",
+    "crypto-random-string": "^3.0.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "hbs": "^4.0.6",
+    "mongodb": "^3.4.1",
+    "mongoose": "^5.8.5",
+    "multiparty": "^4.2.1",
+    "nodemailer": "^6.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

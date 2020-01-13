@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/profile-2.css">
+    <title>Setup Profile</title>
+</head>
+
+<body class="bg-light">
+    <div class="container-fluid ">
+        <section>
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
+                <div class="container">
+                    <a class="navbar-brand text-white" href="#">Jodi Maker</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarText">
+                        <ul class="navbar-nav mr-auto text-white">
+                            <li class="nav-item active">
+                                <a class="nav-link text-white" href="">Profile Setup</a>
+                            </li>
+                            {{!-- <li class="nav-item">
+                                <a class="nav-link text-white" href="">Step-2</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="">Step-3</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="">Step-4</a>
+                            </li> --}}
+                        </ul>
+                        <span class="navbar-text">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="">Contact Us</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+
+        <section>
+            <div class="col-md-6 mx-auto mt-5  ">
+                <div class="container my-5 bg-white border rounded pt-1 position-absolute card-3">
+                    {{!-- progress bar --}}
+                    <div class="row mt-4">
+                        <div class="col-md-12 text-center mt-4">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                    aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%"></div>
+                            </div>
+                            <p class="text-center mt-2">30% Completed</p>
+                            <h6 class="mt-4">Personal Details</h6>
+                            <hr>
+                        </div>
+                    </div>
+                    <form class="needs-validation" novalidate method="POST" enctype="application/x-www-form-urlencoded"
+                        action="/profile/2">
+                        <div class="form-row mx-5">
+                            <label>Date of Birth</label>
+                        </div>
+                        <div class="form-row mx-5">
+                            <div class="col-md-4 mb-3">
+                                <div class="form-group">
+                                    <label for="day">Day</label>
+                                    <select class="form-control date-day" id="day" name="day" required>
+                                        <option selected value="">Day</option>
+                                        {{!-- jQuery --}}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label for="month">Month</label>
+                                <select class="custom-select" name="month" id="month" required>
+                                    <option value="">Month</option>
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                </select>
+                            </div>
+
+
+                            <div class="col-md-4 mb-3">
+                                <label for="year">Year</label>
+                                <select class="custom-select date-year" name="year" id="year" required>
+                                    <option value="">Year</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-row mx-5">
+                            <div class="col-md-4 mb-3">
+                                <div class="form-group">
+                                    <label for="gender">Gender: </label>
+                                </div>
+                            </div>
+                            <div class="col-md-8 mb-3">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline1" name="gender" id="gender"
+                                        class="custom-control-input" value="M" required>
+                                    <label class="custom-control-label" for="customRadioInline1">Male</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline2" name="gender" id="gender"
+                                        class="custom-control-input" value="F" required>
+                                    <label class="custom-control-label" for="customRadioInline2">Female</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row mx-5">
+                            <div class="col-md-4 mb-3">
+                                <div class="form-group">
+                                    <label for="martialStatus">Maritial Status:</label>
+                                </div>
+                            </div>
+                            <div class="col-md-8 mb-3">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline3" name="maritialstatus"
+                                        class="custom-control-input" value="nevermarried" required>
+                                    <label class="custom-control-label" for="customRadioInline3">Never
+                                        Married</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline4" name="maritialstatus"
+                                        class="custom-control-input" value="divorced" required>
+                                    <label class="custom-control-label" for="customRadioInline4">Divorced</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline5" name="maritialstatus"
+                                        class="custom-control-input" value="widowed" required>
+                                    <label class="custom-control-label" for="customRadioInline5">Widowed</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline6" name="maritialstatus"
+                                        class="custom-control-input" value="awaitingdivorce" required>
+                                    <label class="custom-control-label" for="customRadioInline6">Awating
+                                        Divorce</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline7" name="maritialstatus"
+                                        class="custom-control-input" value="annulled" required>
+                                    <label class="custom-control-label" for="customRadioInline7">Annulled</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row mx-5 my-3">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="height">Height</label>
+                                    <select class="custom-select height" name="height" id="height" required>
+                                        <option value="">Please Select</option>
+                                        {{!-- jQuery --}}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="weight">Weight</label>
+                                    <select class="custom-select weight" name="weight" id="weight" required>
+                                        <option value="">Please Select</option>
+                                        {{!-- jQuery --}}
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-row mx-5 my-3">
+                            <div class="col-md-4 mb-3">
+                                <label for="gender">Diet: </label>
+                            </div>
+                            <div class="col-md-8 mb-3">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline8" name="diet" class="custom-control-input"
+                                        value="veg" required>
+                                    <label class="custom-control-label" for="customRadioInline8">Veg</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline9" name="diet" class="custom-control-input"
+                                        value="nonveg" required>
+                                    <label class="custom-control-label" for="customRadioInline9">Non-Veg</label>
+                                </div>
+
+
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline10" name="diet"
+                                        class="custom-control-input" value="occasionallynonveg" required>
+                                    <label class="custom-control-label" for="customRadioInline10">Occasionally
+                                        Non-Veg</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline11" name="diet"
+                                        class="custom-control-input" value="eggetarian" required>
+                                    <label class="custom-control-label" for="customRadioInline11">Eggetarian</label>
+                                </div>
+
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline12" name="diet"
+                                        class="custom-control-input" value="jain" required>
+                                    <label class="custom-control-label" for="customRadioInline12">Jain</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline13" name="diet"
+                                        class="custom-control-input" value="vegan" required>
+                                    <label class="custom-control-label" for="customRadioInline13">Vegan</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row mx-5 my-3">
+                            <div class="col-md-4 mb-3">
+                                <label for="religion">Religion</label>
+                            </div>
+                            <div class="col-md-8">
+                                <select class="custom-select" name="religion" id="religion" required>
+                                    <option value="hindu">Hindu</option>
+                                    <option value="islam">Islam</option>
+                                    <option value="buddhism">Buddhism</option>
+                                    <option value="christianity">Christianity</option>
+                                    <option value="jainism">Jainism</option>
+                                    <option value="judaism">Judaism</option>
+                                    <option value="sikhism">Sikhism</option>
+                                    <option value="taoism">Taoism</option>
+                                    <option value="zoroastrianism">Zoroastrianism</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row mx-5 my-3">
+                            <div class="col-md-4 mb-3">
+                                <label for="caste">Caste</label>
+                            </div>
+                            <div class="col-md-8">
+                                <select class="custom-select castes" name="caste" id="caste" required>
+                                    <option value="">Select Caste</option>
+                                    {{!-- jQuery --}}
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-row mx-5 my-3">
+                            <div class="col-md-4 mb-3">
+                                <label for="motherTongue">Mother Tongue</label>
+                            </div>
+                            <div class="col-md-8">
+                                <input type="text" class="form-control" placeholder="Mother Tongue" name="mothertongue"
+                                    id="mothertongue" pattern="[a-zA-Z]{3,}" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row mx-5 mb-3">
+                            <div class="col-md-4">
+                                <label for="gender">Family Status: </label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline14" name="status"
+                                        class="custom-control-input" value="middleclass" required>
+                                    <label class="custom-control-label" for="customRadioInline14">Middle class</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline15" name="status"
+                                        class="custom-control-input" value="uppermiddleclass" required>
+                                    <label class="custom-control-label" for="customRadioInline15">Upper middle
+                                        class</label>
+                                </div>
+
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline16" name="status"
+                                        class="custom-control-input" value="rich" required>
+                                    <label class="custom-control-label" for="customRadioInline16">Rich</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline17" name="status"
+                                        class="custom-control-input" value="affluent" required>
+                                    <label class="custom-control-label" for="customRadioInline17">Affluent</label>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="form-row mx-5 mb-3">
+                            <div class="col-md-4">
+                                <label for="gender">Family Type: </label>
+                            </div>
+                            <div class="col-md-8 ">
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline18" name="type"
+                                        class="custom-control-input" value="joint" required>
+                                    <label class="custom-control-label" for="customRadioInline18">Joint</label>
+                                </div>
+                                <div class="custom-control custom-radio custom-control-inline">
+                                    <input type="radio" id="customRadioInline19" name="type"
+                                        class="custom-control-input" value="nuclear" required>
+                                    <label class="custom-control-label" for="customRadioInline19">Nuclear</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row mx-5">
+                            <div class="col-12  text-center">
+                                <button class="btn btn-outline-danger mb-4" type="submit">Proceed</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+</body>
+
+
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+{{!-- bootstrap scripts --}}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src="../js/profile-2.js"></script>
+
+</html>

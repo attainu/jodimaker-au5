@@ -1,0 +1,31 @@
+.header-top {
+    background-color: #78244C;
+}
+
+body {
+    min-height: 2000px;
+    padding-top: 70px;
+}
+
+hr.main {
+    border: 2px solid#78244C;
+    border-radius: 5px;
+}
+
+.btn-wine {
+    color: #fff;
+    background-color: #78244C;
+    border-color: #78244C;
+}
+
+.profileimage {
+    position: relative;
+    width: 175px;
+    height: 375px;
+    border-radius: 50%;
+    background-image: url("../images/woman-wearing-black-long-sleeved-shirt-1832959.jpg");
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position-y: 20%;
+}
