@@ -1,25 +1,20 @@
 .header-top {
-    background-color: #78244C;
+  background-color: #78244c;
 }
 
 body {
-    padding-top: 70px;
+  padding-top: 70px;
 }
 
 .avatar {
-    border: 0.3rem solid rgba(#fff, 0.3);
-    margin-top: -6rem;
-    margin-bottom: 1rem;
-    max-width: 9rem;
-    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+  border: 0.3rem solid rgba(#fff, 0.3);
+  margin-top: -6rem;
+  margin-bottom: 1rem;
+  max-width: 9rem;
 }
 
 .btn-wine {
-    color: #fff;
-    background-color: #78244C;
-    border-color: #78244C;
-}
-
-.card {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  color: #fff;
+  background-color: #78244c;
+  border-color: #78244c;
 }
