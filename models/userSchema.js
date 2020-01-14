@@ -12,7 +12,23 @@ const userSchema = new mongoose.Schema({
         Profile2: profileSchema2,
         Profile3: profileSchema3
     },
-    Settings: settingsSchema
+    Settings: settingsSchema,
+
+    Matches: {
+        sentrequests: Array,
+        receivedrequests: Array,
+        matchedusers: Array,
+        pendingrequests: Array
+    },
+    Notifications: {
+        sentrequests: {
+            type: Array,
+        },
+        receivedrequests: {
+            type: Array,
+        }
+
+    }
 
 
 })

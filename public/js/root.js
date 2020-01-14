@@ -5,7 +5,6 @@ $(document).ready(function () {
         $(".modal").modal("hide")
 
         $("#login").toggle();
-        // $( '.modal-backdrop' ).remove();
 
     });
 
@@ -13,29 +12,45 @@ $(document).ready(function () {
         $(".modal").modal("hide")
 
         $("#register").toggle();
-        // $( '.modal-backdrop' ).remove();
 
     });
+    $(".modal").on('hidden.bs.modal', function () {
+        if (!$("#myModal").hasClass("show")) {
 
+            $('input').val('')
+            $("form").removeClass("was-validated")
+            $("#emailsignupfeed").text("")
+            $("input").removeClass("is-valid is-invalid")
+        }
+    })
+
+    $("#password").keyup(function () {
+        $('#cfpassword').attr("pattern", $('#password').val())
+
+    })
     $('#cfpassword').on('keyup', function () {
         var password = $('#password').val()
         var confirm = $('#cfpassword').val()
+
         if (confirm.length >= 1) {
             if (confirm != password) {
-                $('#pwd').text("Password doesn't match.")
                 $('#submit').attr('disabled', 'true');
+                $("#cfpassword").removeClass("is-valid").addClass("is-invalid")
             } else {
-                $('#pwd').text("Password matched")
                 $('#submit').removeAttr('disabled');
+                $("#cfpassword").removeClass("is-invalid")
+
             }
         } else {
-            $('#pwd').text(" ")
+
             $('#submit').attr('disabled', 'true');
         }
     })
 
-    $("#submit").click(function () {
+    $("#submit").off("click").click(function () {
+        console.log("clicked")
         if ($('#signupform')[0].checkValidity()) {
+            console.log("checked")
 
             $.ajax({
                 type: "post",
@@ -44,10 +59,12 @@ $(document).ready(function () {
                 success: function (response) {
                     if (response != "user exists") {
                         $("#email").removeClass("is-invalid").addClass("is-valid")
+                        $(".modal").modal("hide")
                         $("#myModal").modal("show")
+
                     }
                     else {
-                        $("#email").addClass("is-invalid")
+                        $("#emailsignupfeed").text("Already registered")
                     }
                     $("#submitwithotp").off("click").click(function () {
                         $.ajax({
@@ -61,7 +78,7 @@ $(document).ready(function () {
                                 }
                                 else {
                                     $(".modal ,.modal-backdrop").hide()
-                                   $("#login").modal("show")
+                                    $("#login").modal("show")
                                 }
                             }
                         });
@@ -70,8 +87,37 @@ $(document).ready(function () {
             });
         }
         else {
-            $("#signupform")[0].reportValidity()
+            $("#signupform").addClass("was-validated")
         }
     })
+    $(".close").click(function () {
+        $("#register").modal("show")
+    })
 
-});
+
+    $("#resendotp").click(function () {
+        $.ajax({
+            type: "post",
+            url: "/generateotp",
+            data: { email: $("#email").val() },
+            success: function (response) {
+
+            }
+
+        })
+    });
+})
+    (function () {
+        'use strict';
+        $(window).on('load', function () {
+            $('.needs-validation').on('submit', function (e) {
+                if (!this.checkValidity()) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+
+                $(this).addClass('was-validated');
+            });
+        });
+    })();
+

@@ -10,14 +10,14 @@ var profileSchema3 = new mongoose.Schema({
         },
         isEmployed: {
             type: Boolean,
-            required: true
+            default: true
         },
         employer: {
             type: String,
             default: null
         },
         salary: {
-            type: Number,
+            type: String,
             default: 0
         }
     },

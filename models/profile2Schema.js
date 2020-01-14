@@ -1,6 +1,7 @@
 var mongoose = require("mongoose")
 
 var profileSchema2 = new mongoose.Schema({
+    age:Number,
     dob: {
         day: {
             type: Number,
@@ -28,11 +29,11 @@ var profileSchema2 = new mongoose.Schema({
         required: true
     },
     height: {
-        type: Number,
+        type: String,
         required: true
     },
     weight: {
-        type: Number,
+        type: String,
         required: true
     },
     diet: {
@@ -49,11 +50,11 @@ var profileSchema2 = new mongoose.Schema({
     family: {
         status: {
             type: String,
-            required: true
+            default:"Rich"
         },
         type: {
             type: String,
-            required: true
+            default: "Joint"
         }
     }
 }, { _id: false })

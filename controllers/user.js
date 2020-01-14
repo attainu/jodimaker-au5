@@ -61,11 +61,11 @@ UserController.login = function (req, res) {
                 if (err) console.log(err)
                 if (check) {
 
-                    req.session.user = { _id: user._id };
+                    req.session.user = { _id: "5e1cad417efcae05f9f8fce1" };
                     if (user.Profile.Profile3) {
 
 
-                        res.redirect("/dashboard")
+                        res.redirect("/home")
                     }
                     else {
                         res.redirect("/profile/1")
@@ -190,7 +190,7 @@ UserController.profile4 = function (req, res) {
     User.update({ _id: req.session.user._id }, { "Profile.Profile3.AboutYourself": AboutYourself })
         .then(user => {
             console.log("saved aboutyourself")
-            res.redirect("/dashboard")
+            res.redirect("/home")
 
         })
         .catch(err => console.log(err))

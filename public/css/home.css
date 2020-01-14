@@ -110,3 +110,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 }
+.matches-photo{
+  height: 7rem;
+  width: 7rem;
+}

@@ -7,7 +7,7 @@ var otp
 
 router.get("/", (req, res) => {
   if (req.session.user) {
-    res.redirect("/dashboard")
+    res.redirect("/home")
   }
   res.render("root");
 })
