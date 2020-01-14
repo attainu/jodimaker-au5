@@ -6,7 +6,7 @@ const db = require('./config/keys').MongoURI
 var user_dataId;
 //Using npm packages
 var express = require('express');
-var hbs = require('hbs');
+var exphbs = require('express-handlebars');
 var session = require('express-session');
 var mongoose = require('mongoose');
 
@@ -22,7 +22,9 @@ var cryptoRandomString = require("crypto-random-string");
 //setting  express object
 var app = express();
 //setting handlebars
+app.engine('hbs', exphbs({ extname: 'hbs', defaultLayout: 'layouts', layoutsDir: __dirname + "/views" }))
 app.set("view engine", "hbs");
+
 //setting body-parser
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
