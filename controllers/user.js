@@ -1,6 +1,6 @@
 var multiparty = require('multiparty');
 var cloudinary = require('cloudinary').v2;
-var bcrypt = require("bcrypt")
+var bcrypt = require("bcryptjs")
 //User model
 const Settings = require("../models/settingsSchema.js")
 const Signup = require('../models/signupSchema')
