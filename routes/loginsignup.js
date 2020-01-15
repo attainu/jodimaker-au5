@@ -3,7 +3,11 @@ const router = express.Router()
 var userController = require('../controllers/user');
 var nodemailer = require("nodemailer")
 var User = require("../models/userSchema")
+var bcrypt = require("bcrypt")
+var passwordResetHash
 var otp
+var cryptoRandomString = require("crypto-random-string");
+var tempsession
 
 router.get("/", (req, res) => {
   if (req.session.user) {
@@ -32,8 +36,78 @@ router.post("/generateotp", (req, res) => {
 
 
 })
-router.use("/signup", (req, res, next) => {
+
+router.get("/forgotpassword", (req, res) => {
+  res.render("forgotpassword")
+})
+router.post("/forgotpassword", (req, res) => {
   console.log(req.body)
+
+  User.findOne({ "Signup.email": req.body.email })
+    .then(user => {
+      if (user) {
+        passwordResetHash = user.Signup.password + ""
+        bcrypt.hash(passwordResetHash, 10, function (err, hash) {
+          if (err) console.log(err)
+          else {
+            console.log(hash)
+            hash = encodeURIComponent(hash)
+            hash = hash.replace(".", "%2E")
+            passwordReset(req.body.email, hash)
+
+            console.log("session set", tempsession)
+
+            tempsession = cryptoRandomString({ length: 10 })
+            req.session.user = tempsession
+            res.send("Click on the link sent to your email")
+          }
+        })
+      }
+
+    })
+
+})
+router.get("/resetpassword/:resetHash/:email", checktempSession, (req, res) => {
+  var resetHash = req.params.resetHash.replace("%2E", ".")
+  resetHash = decodeURIComponent(resetHash)
+  console.log(resetHash)
+  console.log(req.params.email)
+  User.findOne({ "Signup.email": req.params.email })
+
+    .then(user => {
+      var password = user.Signup.password
+      bcrypt.compare(password, resetHash, function (err, check) {
+
+        if (err) console.log(err)
+        if (check) {
+
+          res.render("resetpassword", {
+            user: user._id 
+          })
+        }
+      })
+    })
+
+
+})
+router.post("/setnewpassword", checktempSession, (req, res) => {
+  console.log(req.body)
+  User.findOne({ _id: req.body.id })
+    .then(user => {
+      bcrypt.hash(req.body.password, 10, function (err, hash) {
+        if (err) console.log(err)
+        else {
+          user.Signup.password = hash
+          user.save()
+          req.session.destroy()
+          res.redirect("/")
+        }
+      })
+    })
+
+})
+
+router.use("/signup", (req, res, next) => {
   if (req.body.otp == otp) {
     next()
   } else {
@@ -77,4 +151,45 @@ async function sendVerificationEmail(email) {
   // Preview only available when sending through an Ethereal account
   console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
   // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+}
+
+async function passwordReset(email, hash) {
+
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: "jodimaker.official@gmail.com",
+      pass: "ctswrvyyqdrrpukx"
+    }
+  });
+
+  // send mail with defined transport object
+  let info = await transporter.sendMail({
+    from: "jodimaker.official@gmail.com", // sender address
+    to: email, // list of receivers
+    subject: "Password Reset ", // Subject line
+    text: "" + otp, // plain text body
+    html: "<b>Click on this link to reset your password http://localhost:3000/resetpassword/" + hash + "/" + email + "</b>" // html body
+  });
+
+  console.log("Message sent: %s", info.messageId);
+  // Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+
+  // Preview only available when sending through an Ethereal account
+  console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
+  // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+}
+
+function checktempSession(req, res, next) {
+  if (req.session.user != tempsession || tempsession == undefined) {
+
+
+    res.redirect("/")
+  }
+  else {
+    next()
+  }
+
 }
