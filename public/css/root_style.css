@@ -25,7 +25,7 @@ a {
 
 a:hover {
   text-decoration: none;
-  color: #D79922;
+  color: #d79922;
   font-size: 13px;
 }
 
@@ -51,27 +51,27 @@ a:hover {
 
 .btn-wine {
   color: #fff;
-  background-color: #78244C;
-  border-color: #78244C;
+  background-color: #78244c;
+  border-color: #78244c;
 }
 
 .btn-wine:hover {
-  background-color: #D79922;
+  background-color: #d79922;
   color: white;
   font-size: 15px;
   font-weight: bold;
-  border-color: #D79922;
+  border-color: #d79922;
 }
 
 .btn-infor {
   color: #fff;
-  background-color: #D79922;
-  border-color: #D79922;
+  background-color: #d79922;
+  border-color: #d79922;
 }
 
 .btn-infor:hover {
-  background-color: #78244C;
-  border-color: #78244C;
+  background-color: #78244c;
+  border-color: #78244c;
   color: white;
   font-size: 15px;
   font-weight: bold;
@@ -79,14 +79,14 @@ a:hover {
 
 .bg-wine {
   color: #fff;
-  background-color: #78244C;
+  background-color: #78244c;
 }
 
 .card-img-top {
   height: 280px;
 }
 
- html {
+html {
   overflow: hidden;
   height: 100%;
 }
@@ -96,11 +96,10 @@ body {
   height: 100%;
 }
 
-
 .modal-open {
   overflow: auto;
 }
 
-#myModal{
+#myModal {
   top: -100px;
 }

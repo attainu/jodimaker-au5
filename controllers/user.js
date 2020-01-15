@@ -51,21 +51,25 @@ UserController.login = function(req, res) {
   var password = req.body.password;
   User.findOne({ "Signup.email": email })
     .then(user => {
-      bcrypt.compare(password, user.Signup.password, function(err, check) {
-        if (err) console.log(err);
-        if (check) {
-          req.session.user = {
-            _id: user._id
-          };
-          if (user.Profile.Profile3) {
-            res.redirect("/home");
+      if (!user) {
+        res.send("Email not registered");
+      } else {
+        bcrypt.compare(password, user.Signup.password, function(err, check) {
+          if (err) console.log(err);
+          if (check) {
+            req.session.user = {
+              _id: user._id
+            };
+            if (user.Profile.Profile3) {
+              res.redirect("/home");
+            } else {
+              res.redirect("/profile/1");
+            }
           } else {
-            res.redirect("/profile/1");
+            res.redirect("/?wrongpassword=true");
           }
-        } else {
-          res.redirect("/?wrongpassword=true");
-        }
-      });
+        });
+      }
     })
     .catch(err => console.log(err));
 };

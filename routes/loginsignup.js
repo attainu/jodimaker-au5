@@ -34,7 +34,8 @@ router.post("/generateotp", (req, res) => {
 
 router.get("/forgotpassword", (req, res) => {
   res.render("forgotpassword", {
-    sentEmail: req.query.sentEmail
+    sentEmail: req.query.sentEmail,
+    emailNotExists: req.query.emailNotExists
   });
 });
 router.post("/forgotpassword", (req, res) => {
@@ -50,12 +51,14 @@ router.post("/forgotpassword", (req, res) => {
           hash = encodeURIComponent(hash);
           hash = hash.replace(".", "%2E");
           passwordReset(req.body.email, hash);
-          console.log("session set", tempsession);
           tempsession = cryptoRandomString({ length: 10 });
-          req.session.user = tempsession;
+          req.session.password = tempsession;
+          console.log("session set", tempsession);
           res.redirect("forgotpassword?sentEmail=true");
         }
       });
+    } else {
+      res.redirect("forgotpassword?emailNotExists=true");
     }
   });
 });
@@ -64,6 +67,7 @@ router.get("/resetpassword/:resetHash/:email", checktempSession, (req, res) => {
   resetHash = decodeURIComponent(resetHash);
   console.log(resetHash);
   console.log(req.params.email);
+  console.log(req.params.email.split("/n")[0]);
   User.findOne({ "Signup.email": req.params.email }).then(user => {
     var password = user.Signup.password;
     bcrypt.compare(password, resetHash, function(err, check) {
@@ -170,9 +174,10 @@ async function passwordReset(email, hash) {
 }
 
 function checktempSession(req, res, next) {
-  if (req.session.user != tempsession || tempsession == undefined) {
+  if (req.session.password != tempsession || tempsession == undefined) {
     res.redirect("/");
   } else {
+    console.log(req.session.password);
     next();
   }
 }
