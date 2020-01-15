@@ -26,7 +26,8 @@ const userSchema = new mongoose.Schema({
         },
         receivedrequests: {
             type: Array,
-        }
+        },
+        all: Array
 
     }
 

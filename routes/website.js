@@ -22,51 +22,53 @@ router.get("/matches", (req, res) => {
 
         .catch(err => console.log(err))
 });
-var userController = require('../controllers/user');
-const User = require('../models/userSchema')
 
-// router.get("/dashboard", (req, res) => {
-//     console.log(req.query);
-//     User.findOne({ _id: req.session.user._id }).then(user => {
-        
-//         if(req.query.religion){
-//             if(req.query.isEmployed){
-//             User.find({"Profile.Profile3.hobbies": { $in : user.Profile.Profile3.hobbies }, "Profile.Profile2.gender" : { $ne : user.Profile.Profile2.gender }, "Profile.Profile2.age" : { $lte : req.query.age }, "Profile.Profile3.education.employed" : { $eq : req.query.isEmployed },"Profile.Profile2.religion" : { $eq : req.query.religion } }).then(matches => {
-//                 //console.log(matches)
-                
-//                 res.render("dashboard",{
-//                     matches : matches,
-//                 })}).catch(err => console.log(err))
-//                 return
-//             }
-//             User.find({"Profile.Profile3.hobbies": { $in : user.Profile.Profile3.hobbies }, "Profile.Profile2.gender" : { $ne : user.Profile.Profile2.gender }, "Profile.Profile2.age" : { $lte : req.query.age },"Profile.Profile2.religion" : { $eq : req.query.religion } }).then(matches => {
-//                 //console.log(matches)
-                
-//                 res.render("dashboard",{
-//                     matches : matches,
-//                 })}).catch(err => console.log(err))
-//                 return
-//         }
-                
-//         User.find({"Profile.Profile3.hobbies": { $in : user.Profile.Profile3.hobbies }, "Profile.Profile2.gender" : { $ne : user.Profile.Profile2.gender } }).then(matches => {
-//             //console.log(matches)
-            
-//             res.render("dashboard",{
-//                 matches : matches,
-//             })}).catch(err => console.log(err))
-//     }).catch(err => console.log(err))
-  
 
-// })
+router.get("/dashboard", (req, res) => {
+    console.log(req.query);
+    User.findOne({ _id: req.session.user._id }).then(user => {
+
+        if (req.query.religion) {
+            if (req.query.isEmployed) {
+                User.find({ "Profile.Profile3.hobbies": { $in: user.Profile.Profile3.hobbies }, "Profile.Profile2.gender": { $ne: user.Profile.Profile2.gender }, "Profile.Profile2.age": { $lte: req.query.age }, "Profile.Profile3.education.employed": { $eq: req.query.isEmployed }, "Profile.Profile2.religion": { $eq: req.query.religion } }).then(matches => {
+                    console.log(matches)
+
+                    res.render("dashboard", {
+                        matches: matches,
+                    })
+                }).catch(err => console.log(err))
+                return
+            }
+            User.find({ "Profile.Profile3.hobbies": { $in: user.Profile.Profile3.hobbies }, "Profile.Profile2.gender": { $ne: user.Profile.Profile2.gender }, "Profile.Profile2.age": { $lte: req.query.age }, "Profile.Profile2.religion": { $eq: req.query.religion } }).then(matches => {
+                console.log(matches)
+
+                res.render("dashboard", {
+                    matches: matches,
+                })
+            }).catch(err => console.log(err))
+            return
+        }
+
+        User.find({ "Profile.Profile3.hobbies": { $in: user.Profile.Profile3.hobbies }, "Profile.Profile2.gender": { $ne: user.Profile.Profile2.gender } }).then(matches => {
+            console.log(matches)
+
+            res.render("dashboard", {
+                matches: matches,
+            })
+        }).catch(err => console.log(err))
+    }).catch(err => console.log(err))
+
+
+})
 
 router.get("/profile", (req, res) => {
-    User.findOne({_id: req.session.user._id })
-    .then(user=>{
-        res.render("profile",{
-            result:user
+    User.findOne({ _id: req.session.user._id })
+        .then(user => {
+            res.render("profile", {
+                result: user
+            })
         })
-    })
-    .catch(err => console.log(err))
+        .catch(err => console.log(err))
 })
 router.get("/search", (req, res) => {
     res.render("search");
@@ -88,9 +90,11 @@ router.post("/sendrequest", (req, res) => {
             var matchname = match.Profile.Profile1.name
             match.Matches.receivedrequests.push(req.session.user._id)
             match.Notifications.receivedrequests.push("You recieved a request from " + username.firstname + " " + username.lastname)
+            match.Notifications.all.push("You recieved a request from " + username.firstname + " " + username.lastname)
             match.save()
             user.Matches.sentrequests.push(matchid)
             user.Notifications.sentrequests.push("You sent a request to " + matchname.firstname + " " + matchname.lastname)
+            user.Notifications.all.push("You sent a request to " + matchname.firstname + " " + matchname.lastname)
             user.save()
 
         })
@@ -120,9 +124,7 @@ router.get("/home", (req, res) => {
             var receivedrequests = matches.filter(match => {
                 return user.Matches.receivedrequests.includes(match._id) ? match : undefined
             })
-            var notifications = []
-            user.Notifications.sentrequests.forEach(el => notifications.push(el))
-            user.Notifications.receivedrequests.forEach(el => notifications.push(el))
+            var notifications = user.Notifications.all
 
             var agematches = []
             matches.forEach(el => {
@@ -150,6 +152,17 @@ router.get("/home", (req, res) => {
         });
 });
 
+
+router.post("/deletenotification", (req, res) => {
+    index = req.body.index
+    user.Notifications.all[index] = undefined
+    user.save()
+    User.findOne({ _id: req.session.user._id })
+        .then(user => {
+            res.send(user.Notifications.all.length + "")
+        })
+
+})
 
 
 
