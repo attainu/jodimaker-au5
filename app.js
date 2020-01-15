@@ -5,11 +5,10 @@ const db = require("./config/keys").MongoURI;
 
 var user_dataId;
 //Using npm packages
-var express = require('express');
-var exphbs = require('express-handlebars');
-var session = require('express-session');
-var mongoose = require('mongoose');
-
+var express = require("express");
+var exphbs = require("hbs");
+var session = require("express-session");
+var mongoose = require("mongoose");
 
 //Ameet modules
 var cryptoRandomString = require("crypto-random-string");
