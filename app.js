@@ -66,6 +66,7 @@ app.use('/', require('./routes/settings'))
 
 
 
+
 //activating server at PORT address 
 app.listen(PORT, () => {
     console.log("Server is active at port address" + PORT);
