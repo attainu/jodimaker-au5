@@ -1,131 +1,111 @@
-const express = require("express")
-const router = express.Router()
-var userController = require('../controllers/user');
-var nodemailer = require("nodemailer")
-var User = require("../models/userSchema")
-var bcrypt = require("bcrypt")
-var passwordResetHash
-var otp
+const express = require("express");
+const router = express.Router();
+var userController = require("../controllers/user");
+var nodemailer = require("nodemailer");
+var User = require("../models/userSchema");
+var bcrypt = require("bcrypt");
+var passwordResetHash;
+var otp;
 var cryptoRandomString = require("crypto-random-string");
-var tempsession
+var tempsession;
 
 router.get("/", (req, res) => {
   if (req.session.user) {
-    res.redirect("/home")
+    res.redirect("/home");
   }
   res.render("root");
-})
-
+});
 
 router.post("/generateotp", (req, res) => {
   User.findOne({ "Signup.email": req.body.email })
     .then(user => {
       if (user) {
-        res.send("user exists")
-      }
-      else {
-        otp = Math.floor(Math.random() * 10000000000) + ""
-        otp = otp.slice(0, 5)
-        console.log(otp)
+        res.send("user exists");
+      } else {
+        otp = Math.floor(Math.random() * 10000000000) + "";
+        otp = otp.slice(0, 5);
+        console.log(otp);
         sendVerificationEmail(req.body.email).catch(console.error);
-        res.send("otp sent")
-
+        res.send("otp sent");
       }
     })
-    .catch(err => console.log(err))
-
-
-})
+    .catch(err => console.log(err));
+});
 
 router.get("/forgotpassword", (req, res) => {
-  res.render("forgotpassword")
-})
+  res.render("forgotpassword", {
+    sentEmail: req.query.sentEmail
+  });
+});
 router.post("/forgotpassword", (req, res) => {
-  console.log(req.body)
+  console.log(req.body);
 
-  User.findOne({ "Signup.email": req.body.email })
-    .then(user => {
-      if (user) {
-        passwordResetHash = user.Signup.password + ""
-        bcrypt.hash(passwordResetHash, 10, function (err, hash) {
-          if (err) console.log(err)
-          else {
-            console.log(hash)
-            hash = encodeURIComponent(hash)
-            hash = hash.replace(".", "%2E")
-            passwordReset(req.body.email, hash)
-
-            console.log("session set", tempsession)
-
-            tempsession = cryptoRandomString({ length: 10 })
-            req.session.user = tempsession
-            res.send("Click on the link sent to your email")
-          }
-        })
-      }
-
-    })
-
-})
-router.get("/resetpassword/:resetHash/:email", checktempSession, (req, res) => {
-  var resetHash = req.params.resetHash.replace("%2E", ".")
-  resetHash = decodeURIComponent(resetHash)
-  console.log(resetHash)
-  console.log(req.params.email)
-  User.findOne({ "Signup.email": req.params.email })
-
-    .then(user => {
-      var password = user.Signup.password
-      bcrypt.compare(password, resetHash, function (err, check) {
-
-        if (err) console.log(err)
-        if (check) {
-
-          res.render("resetpassword", {
-            user: user._id 
-          })
-        }
-      })
-    })
-
-
-})
-router.post("/setnewpassword", checktempSession, (req, res) => {
-  console.log(req.body)
-  User.findOne({ _id: req.body.id })
-    .then(user => {
-      bcrypt.hash(req.body.password, 10, function (err, hash) {
-        if (err) console.log(err)
+  User.findOne({ "Signup.email": req.body.email }).then(user => {
+    if (user) {
+      passwordResetHash = user.Signup.password + "";
+      bcrypt.hash(passwordResetHash, 10, function(err, hash) {
+        if (err) console.log(err);
         else {
-          user.Signup.password = hash
-          user.save()
-          req.session.destroy()
-          res.redirect("/")
+          console.log(hash);
+          hash = encodeURIComponent(hash);
+          hash = hash.replace(".", "%2E");
+          passwordReset(req.body.email, hash);
+          console.log("session set", tempsession);
+          tempsession = cryptoRandomString({ length: 10 });
+          req.session.user = tempsession;
+          res.redirect("forgotpassword?sentEmail=true");
         }
-      })
-    })
-
-})
+      });
+    }
+  });
+});
+router.get("/resetpassword/:resetHash/:email", checktempSession, (req, res) => {
+  var resetHash = req.params.resetHash.replace("%2E", ".");
+  resetHash = decodeURIComponent(resetHash);
+  console.log(resetHash);
+  console.log(req.params.email);
+  User.findOne({ "Signup.email": req.params.email }).then(user => {
+    var password = user.Signup.password;
+    bcrypt.compare(password, resetHash, function(err, check) {
+      if (err) console.log(err);
+      if (check) {
+        res.render("resetpassword", {
+          user: user._id
+        });
+      }
+    });
+  });
+});
+router.post("/setnewpassword", checktempSession, (req, res) => {
+  console.log(req.body);
+  User.findOne({ _id: req.body.id }).then(user => {
+    bcrypt.hash(req.body.password, 10, function(err, hash) {
+      if (err) console.log(err);
+      else {
+        user.Signup.password = hash;
+        user.save();
+        req.session.destroy();
+        res.redirect("/");
+      }
+    });
+  });
+});
 
 router.use("/signup", (req, res, next) => {
   if (req.body.otp == otp) {
-    next()
+    next();
   } else {
-    res.send("false")
+    res.send("false");
   }
-
-})
+});
 
 router.post("/signup", userController.signup);
-
 
 router.post("/login", userController.login);
 
 module.exports = router;
 
-
 async function sendVerificationEmail(email) {
-
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -142,7 +122,10 @@ async function sendVerificationEmail(email) {
     to: email, // list of receivers
     subject: "Verification ✔", // Subject line
     text: "" + otp, // plain text body
-    html: "<b>Welcome to Jodimaker.Your Jodimaker verification code is " + otp + "</b>" // html body
+    html:
+      "<b>Welcome to Jodimaker.Your Jodimaker verification code is " +
+      otp +
+      "</b>" // html body
   });
 
   console.log("Message sent: %s", info.messageId);
@@ -154,7 +137,6 @@ async function sendVerificationEmail(email) {
 }
 
 async function passwordReset(email, hash) {
-
   let transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 465,
@@ -171,7 +153,12 @@ async function passwordReset(email, hash) {
     to: email, // list of receivers
     subject: "Password Reset ", // Subject line
     text: "" + otp, // plain text body
-    html: "<b>Click on this link to reset your password http://localhost:3000/resetpassword/" + hash + "/" + email + "</b>" // html body
+    html:
+      "<b>Click on this link to reset your password http://localhost:3000/resetpassword/" +
+      hash +
+      "/" +
+      email +
+      "</b>" // html body
   });
 
   console.log("Message sent: %s", info.messageId);
@@ -184,12 +171,8 @@ async function passwordReset(email, hash) {
 
 function checktempSession(req, res, next) {
   if (req.session.user != tempsession || tempsession == undefined) {
-
-
-    res.redirect("/")
+    res.redirect("/");
+  } else {
+    next();
   }
-  else {
-    next()
-  }
-
 }
