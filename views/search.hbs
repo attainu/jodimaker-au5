@@ -103,27 +103,25 @@
                             <option value="sanskrit">Sanskrit</option>
                         </select>
                     </div>
-                    <div class="mb-3">
-                        <label for="firstname"><b>Country</b></label>
-                        <select name="country" class="countries custom-select" id="countryId">
-                            <option value="">Select Country</option>
-                            {{#each countries}}
-                            <option class="country" value="{{name}}">{{name}}</option>
-                            {{/each}}
-                        </select>
-                    </div>
-                    <div class="mb-3 location">
-                        <label for="state"><b>State</b></label>
-                        <select name="state" class="states custom-select st" multiple="multiple" id="stateId">
-                            <option value="">Select State</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="city"><b>City</b></label>
-                        <select name="city" class="cities custom-select ct" multiple="multiple" id="cityId">
-                            <option value="">Select City</option>
-                        </select>
-                    </div>
+                    <div class=" mb-3">
+                                <label for="countryId">Country</label>
+                                <select name="country" class="countries custom-select" id="countryId">
+                                    <option value="">Select Country</option>
+                                    <option class="country" value="India">India</option>
+                                </select>
+                            </div>
+                   <div class="mb-3 location">
+                                <label for="stateId">State</label>
+                                <select name="state" class="states custom-select st" multiple="multiple" id="stateId">
+                                    <option value="">Select State</option>
+                                </select>
+                            </div>
+                     <div class="mb-3">
+                                <label for="cityId">City</label>
+                                <select name="city" class="cities custom-select ct" multiple="multiple" id="cityId">
+                                    <option value="">Select City</option>
+                                </select>
+                            </div>
                     <div>
                         <label><b>Photo Settings</b></label>
                         <div class="custom-control custom-checkbox mb-3">
@@ -219,6 +217,8 @@
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.0.12/dist/js/select2.min.js"></script>
+<script src="../js/profile-1.js"></script>
+
 <script>
     $(".religion").select2({
         tags: true,

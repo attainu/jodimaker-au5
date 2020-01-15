@@ -24,8 +24,13 @@ router.get("/matches", (req, res) => {
 });
 
 router.get("/profile", (req, res) => {
-    res.render("profile");
-
+    User.findOne({_id: req.session.user._id })
+    .then(user=>{
+        res.render("profile",{
+            result:user
+        })
+    })
+    .catch(err => console.log(err))
 })
 router.get("/search", (req, res) => {
     res.render("search");
@@ -108,6 +113,8 @@ router.get("/home", (req, res) => {
 
         });
 });
+
+
 
 
 module.exports = router

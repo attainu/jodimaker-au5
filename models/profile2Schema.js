@@ -16,6 +16,9 @@ var profileSchema2 = new mongoose.Schema({
             required: true
         },
     },
+    age:{
+        type:Number
+    },
     gender: {
         type: String,
         required: true
