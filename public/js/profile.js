@@ -2,7 +2,7 @@ $(".disabled").attr("disabled",true)
 $(".edit").click(function(){
     $(this).hide();
     $(".disabled").addClass("shadow p-2  mb-5 bg-white rounded")
-    $(this).after("<button class='float-right cancel'>Cancel</button>&nbsp;<button type='submit' id='save'data-toggle= class='float-right mr-3 save'>Save</button>&nbsp;")
+    $(this).after("<button type='button' class='float-right cancel'>Cancel</button>&nbsp;<button type='button' data-toggle='modal' data-target='#confirm-update' class='float-right mr-3 save'>Save</button>&nbsp;")
     $(".disabled").attr("disabled",false).css("border","1px solid black")
     
 
@@ -18,6 +18,6 @@ $('input').keydown(function(e){
     //   return false;
 })
 $(".disabled").addClass("text-capitalize")
-$(".save").click(function(){
-    
+$(".btn-ok").click(function(){
+  $("form").submit();
 })
