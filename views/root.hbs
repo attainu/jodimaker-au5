@@ -279,16 +279,13 @@
                     </div>
                   
                     <div class="modal-footer">
-                        <p>Already have an Account? <button class="btn btn-infor ml-2" type="button" id="newLogin"
-                                data-toggle="modal" data-target="#login">Login</button></p>
+                        <p>Already have an Account?
+                            <button class="btn btn-infor ml-2" type="button" id="newLogin" data-toggle="modal"
+                                data-target="#login">Login
+                            </button></p>
                     </div>
                 </div>
-
-
             </div>
-
-        </div>
-        </div>
         </div>
     </section>
 
@@ -318,8 +315,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label for="password"><span></span>
+                                <label for="password">
                                     Password</label>
+                                <p class="float-right"><a href="/forgotpassword" class="font-weight-bold">Forgot
+                                        Password?</a></p>
                                 <input type="password" id="passwordlogin" name="password" class="form-control"
                                     placeholder="Password" required>
                                 <div class="valid-feedback">
@@ -358,7 +357,7 @@
 
                 <form action="/verify" id="otpform" method="post">
                     <div class="form-group">
-                        <button type="button" class="close col-1 float-right" data-dismiss="modal" >&times;</button>
+                        <button type="button" class="close col-1 float-right" data-dismiss="modal">&times;</button>
                         <label for="Verification code">Verification code</label>
                         <input class="form-control" placeholder="5-digit verification code" type="text" name="otp"
                             id="otp" required>

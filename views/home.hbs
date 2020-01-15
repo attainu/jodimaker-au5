@@ -88,6 +88,9 @@
                         <div class="card-body">
                             <hr>
                             <h5 class="card-title text-capitalize">{{user.Profile.Profile1.name.firstname}}
+                                {{#if user.Profile.Profile1.name.middlename}}
+                                {{user.Profile.Profile1.name.middlename}}
+                                {{/if}}
                                 {{user.Profile.Profile1.name.lastname}}</h5>
                             <p class="card-text text-center">Profile completion: <mark>80
                                     %</mark>
