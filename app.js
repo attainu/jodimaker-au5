@@ -34,10 +34,11 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      maxAge: 1000 * 10 * 60,
+      maxAge: 1000 * 60 * 60,
       path: "/",
       httpOnly: true
-    }
+    },
+    rolling: true
   })
 );
 

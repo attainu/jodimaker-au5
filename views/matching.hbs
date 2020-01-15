@@ -20,7 +20,7 @@
     <section>
         <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
             <div class="container">
-                <a class="navbar-brand text-white" href="#">Jodi Maker</a>
+                <a class="navbar-brand text-white" href="#"><img src= "img/jodi.png"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -40,7 +40,7 @@
                     <span class="navbar-text">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="profile">Profile</a>
+                                <a class="nav-link text-white" href="../profile">Profile</a>
                             </li>
                         </ul>
                     </span>
@@ -57,15 +57,20 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body text-center">
-                            <img class="avatar rounded-circle"
-                                src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                alt="Bologna">
-                            <h4 class="card-title mt-4">Robert Downey Jr.,54</h4>
-                            <h6 class="card-subtitle mb-2 text-muted">New York, USA</h6>
-                            <p class="card-text">Big man in a suit of armor. Under that what am I? Genius, billionaire,
-                                playboy, philanthropist. </p>
+                            <img class="avatar rounded-circle" src="{{match.Profile.Profile1.photo}}" alt="Bologna">
+                            <h4 class="card-title mt-4">{{match.Profile.Profile1.name.firstname}}
+                                {{match.Profile.Profile1.name.lastname}},{{match.Profile.Profile2.age}}</h4>
+                            <h6 class="card-subtitle mb-2 text-muted">
+                                {{match.Profile.Profile1.location.city}},{{match.Profile.Profile1.location.country}}
+                            </h6>
+                            <p class="card-text">{{match.Profile.Profile3.AboutYourself}} </p>
                             <a href="#" class="btn btn-outline-secondary">Message</a>
-                            <a href="#" class="btn btn-wine text-white">Connect</a>
+                            {{#if sent}}
+                            <a class="btn btn-success  text-white">Sent</a>
+
+                            {{else}}
+                            <a class="btn btn-wine connect text-white">Connect</a>
+                            {{/if}}
 
                         </div>
                         <hr class="ml-3 mr-3 main">
@@ -73,7 +78,7 @@
                             <div class="row mx-3">
                                 <h6>Contact Details</h6>
                             </div>
-                            <div class="row mx-3">
+                            <div class="row mt-4 mx-3">
                                 <div class="col-md-1">
                                     <label for="number"><i class="fa fa-phone"></i> :</label>
                                 </div>
@@ -86,51 +91,52 @@
                                 <div class="col md-3">
                                     <p>iamironXXXXXXX</p>
                                 </div>
-                                <div class="col"><span class="btn btn-wine text-white">Connect</span> to view details
+                                <div class="col"><span class="btn btn-wine mb-4 text-white">Connect for details</span>
                                 </div>
                             </div>
                         </div>
+                        <hr class="ml-3 mr-3 main">
+
                         <div class="row mx-2">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <div class="row mx-3">
-                                    <h6>Lifestyle</h6>
+                                    <h6><span class="ml-2">Lifestyle</span></h6>
                                 </div>
-                                <div class="row mx-3">
+                                <div class="row mx-3 pb-2 mt-3">
                                     <div class="col-md-3">
                                         <label for="number">Smoking: </label>
                                     </div>
-                                    <div class="col md-3">
-                                        <p><i class="fa fa-check-circle" style="color: green;"></i></p>
+                                    <div class="col  md-3">
+                                        <p>{{match.Profile.Profile2.smoking}}</p>
                                     </div>
                                 </div>
-                                <div class="row mx-3">
+                                <div class="row mx-3 pb-2">
                                     <div class="col-md-3">
                                         <label for="number">Drinking: </label>
                                     </div>
-                                    <div class="col md-3">
-                                        <p><i class="fa fa-check-circle" style="color: green;"></i></p>
+                                    <div class="col mt-3">
+                                        <p>{{match.Profile.Profile2.drinking}}</p>
                                     </div>
                                 </div>
-                                <div class="row mx-3">
+                                <div class="row mx-3 ">
                                     <div class="col-md-3">
                                         <label for="number">Diet: </label>
                                     </div>
                                     <div class="col md-3">
-                                        <p><img src="../images/drumstick-bite-solid.svg" alt="nonveg" width="20px"
-                                                height="20px"></p>
+                                        <p>{{match.Profile.Profile2.diet}}</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row mx-3">
-                                    <h6>Background</h6>
+                                    <h6><span class="ml-2">Background</span></h6>
                                 </div>
-                                <div class="row mx-3">
+                                <div class="row mx-3 mt-3">
                                     <div class="col-md-3">
                                         <label for="number">Religion: </label>
                                     </div>
                                     <div class="col md-3">
-                                        <p>Christian</i></p>
+                                        <p>{{match.Profile.Profile2.religion}}</p>
                                     </div>
                                 </div>
                                 <div class="row mx-3">
@@ -138,7 +144,7 @@
                                         <label for="number">Caste: </label>
                                     </div>
                                     <div class="col md-3">
-                                        <p>Not Shared</p>
+                                        <p>{{match.Profile.Profile2.caste}}</p>
                                     </div>
                                 </div>
                                 <div class="row mx-3">
@@ -146,15 +152,16 @@
                                         <label for="number">Education: </label>
                                     </div>
                                     <div class="col md-3">
-                                        <p>Phd from MIT</p>
+                                        <p>{{match.Profile.Profile2.education.educationlevel}}</p>
                                     </div>
                                 </div>
+                                {{#if match.Profile.Profile2.education.isEmployed}}
                                 <div class="row mx-3">
                                     <div class="col-md-3">
                                         <label for="number">Working as: </label>
                                     </div>
                                     <div class="col md-3">
-                                        <p>Iron-Man</p>
+                                        <p>{{match.Profile.Profile2.education.employer}}</p>
                                     </div>
                                 </div>
                                 <div class="row mx-3">
@@ -162,9 +169,10 @@
                                         <label for="number">Salary: </label>
                                     </div>
                                     <div class="col md-3">
-                                        <p>1.1bn $</p>
+                                        <p>{{match.Profile.Profile2.education.salary}}</p>
                                     </div>
                                 </div>
+                                {{/if}}
                             </div>
                         </div>
                         <hr class="ml-3 mr-3 main">
@@ -176,19 +184,19 @@
                         <div class="col-md-12">
                             <div class="row mx-3 justify-content-around">
                                 <div class="col-md-3">
-                                    <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
+                                    <img src="{{match.Profile.Profile1.photo}}"
                                         class="card-img-top rounded-circle image" alt="Profile Page">
                                 </div>
                                 <div class="col-md-3">
-                                    <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                        class="card-img-top rounded-circle image" alt="Profile Page">
+                                    <img src="{{user.Profile.Profile1.photo}}" class="card-img-top rounded-circle image"
+                                        alt="Profile Page">
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-md-12">
                             <div class="row mx-3 justify-content-around">
-                                <p class="font-weight-bold">His Preferences</p>
+                                <p class="font-weight-bold">{{match.Profile.Profile1.name.firstname}}'s Preferences</p>
                                 <p class="font-weight-bold">You Match</p>
                             </div>
                         </div>

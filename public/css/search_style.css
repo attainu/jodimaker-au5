@@ -1,12 +1,13 @@
 body {
   min-height: 100vh!important;
+  background-image: linear-gradient(rgb(221, 174, 86), #F3F9A7);
 }
 
 h4 {
   font-size: 15px;
 }
 
-.settingspanel{
+.settingspanel {
   height: 60vh;
 }
 
@@ -59,4 +60,15 @@ a {
 .bg-wine {
   color: #fff;
   background-color: #78244C;
+}
+
+#amount {
+  border: 0;
+  color: #f6931f;
+  font-weight: bold;
+  outline: none;
+  background: transparent;
+  cursor: default;
+
+
 }

@@ -11,8 +11,8 @@ User.find({}, function (err, users) {
         if (user.Notifications) {
             user.Notifications.sentrequests = undefined
             user.Notifications.receivedrequests = undefined
-            user.Matches.sentrequests = undefined
             user.Matches.receivedrequests = undefined
+            user.Matches.acceptedrequests = undefined
             user.save()
         }
     })
