@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
     <title>Jodi Maker</title>
     <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="css/root_style.css">
 
 </head>
 
@@ -56,42 +57,39 @@
 
     <section>
         <div class="container ">
-            <div class="row">
+            <div class="row mt-5">
                 <div class="col-md-2 mt-5 px-5 pb-2">
-                    <form action="" method="POST">
-                        <h5 class="mt-2 text-center">Filter Search</h5>
-                        <div class="row">
-                            <h6>Age</h6>
+        
+                    <form action="/dashboard" method="GET">
+                        <h5 class="mt-2 text-center"><b>Filters</b></h5>
+                        <div class="row mt-3">
+                            <h6><b>Maximum Age</b></h6>
                             <input type="range" class="custom-range" min="18" max="50" value="20" id="customRange1"
-                                name="salary">
+                                name="age">
                             <p class="text-center"><span id="sliderValue"></span></p>
                         </div>
-                        <div class="row">
-                            <h6>Gender</h6>
+                        <div class="row mt-3">
+                            <h6><b>Working Professional</b></h6>
                         </div>
                         <div class="row">
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="customRadioInline1" name="customRadioInline1"
-                                    class="custom-control-input" value="M">
-                                <label class="custom-control-label" for="customRadioInline1">Male</label>
+                                <input type="radio" id="customRadioInline1" name="isEmployed"
+                                    class="custom-control-input" value="Yes">
+                                <label class="custom-control-label" for="customRadioInline1">Yes</label>
                             </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="customRadioInline2" name="customRadioInline1"
-                                    class="custom-control-input" value="F">
-                                <label class="custom-control-label" for="customRadioInline2">Female</label>
-                            </div>
+                            
                         </div>
                         {{!-- <div> --}}
-                        <div class="row">
-                            <h6>Religion</h6>
+                        <div class="row mt-3">
+                            <h6><b>Religion</b></h6>
                         </div>
                         <div class="row">
-                            <select class="custom-select" name="religion" id="religion" required>
-                                <option value="hindu">Hindu</option>
+                            <select class="custom-select" name="religion" id="religion">
+                                <option value="Hinduism">Hindu</option>
                                 <option value="islam">Islam</option>
                                 <option value="buddhism">Buddhism</option>
-                                <option value="christianity">Christianity</option>
-                                <option value="jainism">Jainism</option>
+                                <option value="Christian">christianity</option>
+                                <option value="Jainism">Jainism</option>
                                 <option value="judaism">Judaism</option>
                                 <option value="sikhism">Sikhism</option>
                                 <option value="taoism">Taoism</option>
@@ -100,7 +98,7 @@
                         </div>
                         {{!-- </div> --}}
                         <div class="row mx-auto mt-3">
-                            <button type="submit" class="btn btn-primary">Apply</button>
+                            <button type="submit" class="btn btn-infor">Apply</button>
                         </div>
 
                     </form>
@@ -111,13 +109,14 @@
                       
                             <div class="col-md-4 mt-5">
                             <div class="card">
-                                <div class="card-body text-center">
-                                    <a href="/matchprofile"><img class="avatar rounded-circle" style="height:150px; width:150px"
+                                 <a href="/matchprofile" class="text-center" ><img style="height:150px; width:150px"
                                             src="{{this.Profile.Profile1.photo}}"
-                                            alt="Bologna"></a>
+                                            alt="{{this.Profile.Profile1.name.firstname}} {{this.Profile.Profile1.name.middlename}} {{this.Profile.Profile1.name.lastname}}"></a>
+                                <div class="card-body text-center">
+                                   
                                     <h4 class="card-title">{{this.Profile.Profile1.name.firstname}} {{this.Profile.Profile1.name.middlename}} {{this.Profile.Profile1.name.lastname}}</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">{{this.Profile.Profile2.height}}</h6>
-                                    <p class="card-text">{{this.Profile.Profile1.location.city}}</p>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{this.Profile.Profile2.age}}years {{this.Profile.Profile2.height}}</h6>
+                                    <p class="card-text">{{this.Profile.Profile1.location.city}} , {{this.Profile.Profile1.location.state}}</p>
                                     <a href="#" class="btn btn-outline-secondary">Message</a>
                                     <a href="#" class="btn btn-wine text-white">Connect</a>
                                 </div>
