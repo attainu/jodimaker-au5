@@ -20,21 +20,7 @@ var profileSchema1 = new mongoose.Schema({
         type: String,
         required: true
     },
-    location: {
-        country: {
-            type: String,
-            required: true
-        },
-        state: {
-            type: String,
-            required: true
-        },
-        city: {
-            type: String,
-            required: true
-        }
-
-    }
+   
 },{ _id: false })
 
 const Profile1 = mongoose.model('profile1', profileSchema1)

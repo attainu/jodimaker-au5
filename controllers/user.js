@@ -7,6 +7,7 @@ const Signup = require('../models/signupSchema')
 const Profile1 = require('../models/profile1Schema.js');
 const Profile2 = require('../models/profile2Schema.js');
 const Profile3 = require('../models/profile3Schema.js');
+const Userpref = require('../models/userprefSchema.js')
 const User = require('../models/userSchema')
 
 //clodinary configruation 
@@ -21,7 +22,11 @@ const UserController = {};
 UserController.signup = function (req, res) {
 
     console.log(req.body)
+<<<<<<< HEAD
     const { mobile, email } = req.body
+=======
+    const { mobile, email, createdBy } = req.body
+>>>>>>> fc4d45d8f2168e086a28fbbbdd5bf6af53838abc
     var password = req.body.password
 
     bcrypt.hash(password, 10, function (err, hash) {
@@ -191,7 +196,7 @@ UserController.profile4 = function (req, res) {
     User.update({ _id: req.session.user._id }, { "Profile.Profile3.AboutYourself": AboutYourself })
         .then(user => {
             console.log("saved aboutyourself")
-            res.redirect("/home")
+            res.redirect("/userpref")
 
         })
         .catch(err => console.log(err))
@@ -249,6 +254,38 @@ UserController.profile = function (req, res) {
         .catch(err => console.log(err))
 }
 
+UserController.userpref = function (req, res) {
+    User.findOne({ _id: req.session.user._id })
+        .then(user => {
+            var userpref = {}
+
+            userpref.minage = parseInt(req.body.age.split("-")[0]),
+                userpref.maxage = parseInt(req.body.age.split("-")[1]),
+                userpref.height = req.body.height,
+                userpref.religion = req.body.religion,
+                userpref.mothertongue = req.body.mothertongue,
+                userpref.maritialstatus = req.body.maritialstatus,
+                userpref.diet = req.body.diet,
+                userpref.location = {}
+
+            userpref.location.country = req.body.country,
+                userpref.location.state = req.body.state,
+                userpref.location.city = req.body.city
+            userpref.education = {}
+            userpref.education.educationlevel = req.body.educationlevel,
+                userpref.education.workingwith = req.body.workingwith,
+                userpref.education.employer = req.body.employer,
+                userpref.education.salary = req.body.salary
+
+            const newuserpref = new Userpref(userpref)
+            user.Userpref = newuserpref
+            console.log(user)
+            user.save()
+                .then(() => { res.redirect('/home') })
+        })
+}
+
+module.exports = UserController;
 
 module.exports = UserController;
 

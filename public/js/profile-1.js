@@ -24,10 +24,12 @@ $(document).ready(function () {
             return state == item.state
           })
           $('#cityId').empty()
+          $('#cityId').append(`<option value="">Select City</option>`);
           for (let i = 0; i < filterCities.length; i++) {
-
+                
             $('#cityId').append(`<option value="${filterCities[i].name}">${filterCities[i].name}</option>`);
           }
+        
         })
       })
 
