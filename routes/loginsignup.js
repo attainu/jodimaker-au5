@@ -39,18 +39,18 @@ router.get("/forgotpassword", (req, res) => {
   });
 });
 router.post("/forgotpassword", (req, res) => {
-  console.log(req.body);
+  var email = req.body.email
 
-  User.findOne({ "Signup.email": req.body.email }).then(user => {
+  User.findOne({ "Signup.email": email }).then(user => {
     if (user) {
       passwordResetHash = user.Signup.password + "";
-      bcrypt.hash(passwordResetHash, 10, function(err, hash) {
+      bcrypt.hash(passwordResetHash, 10, function (err, hash) {
         if (err) console.log(err);
         else {
           console.log(hash);
           hash = encodeURIComponent(hash);
           hash = hash.replace(".", "%2E");
-          passwordReset(req.body.email, hash);
+          passwordReset(email, hash);
           tempsession = cryptoRandomString({ length: 10 });
           req.session.password = tempsession;
           console.log("session set", tempsession);
@@ -65,25 +65,25 @@ router.post("/forgotpassword", (req, res) => {
 router.get("/resetpassword/:resetHash/:email", checktempSession, (req, res) => {
   var resetHash = req.params.resetHash.replace("%2E", ".");
   resetHash = decodeURIComponent(resetHash);
-  console.log(resetHash);
-  console.log(req.params.email);
-  console.log(req.params.email.split("/n")[0]);
-  User.findOne({ "Signup.email": req.params.email }).then(user => {
-    var password = user.Signup.password;
-    bcrypt.compare(password, resetHash, function(err, check) {
-      if (err) console.log(err);
-      if (check) {
-        res.render("resetpassword", {
-          user: user._id
-        });
-      }
+  var email = req.params.email;
+  console.log(email)
+  User.findOne({ "Signup.email": email })
+    .then(user => {
+      var password = user.Signup.password;
+      bcrypt.compare(password, resetHash, function (err, check) {
+        if (err) console.log(err);
+        if (check) {
+          res.render("resetpassword", {
+            user: user._id
+          });
+        }
+      });
     });
-  });
 });
 router.post("/setnewpassword", checktempSession, (req, res) => {
   console.log(req.body);
   User.findOne({ _id: req.body.id }).then(user => {
-    bcrypt.hash(req.body.password, 10, function(err, hash) {
+    bcrypt.hash(req.body.password, 10, function (err, hash) {
       if (err) console.log(err);
       else {
         user.Signup.password = hash;

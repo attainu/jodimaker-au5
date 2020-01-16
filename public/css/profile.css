@@ -38,8 +38,10 @@ a.nav-link {
     height: 70px
 }
 
+
 .fa:hover {
     opacity: 0.7;
+    cursor: pointer !important;
 }
 
 .fa-facebook {
@@ -69,4 +71,12 @@ hr {
 
 body {
     padding-top: 70px;
+}
+.disabled{
+    background: transparent;
+    border: none;
+}
+.row{
+    margin-left: 0px;
+    margin-right: 0px;
 }

@@ -114,3 +114,9 @@ body {
   height: 7rem;
   width: 7rem;
 }
+.close{
+  cursor: pointer;
+}
+.card-img-top{
+  height: 7rem;
+}

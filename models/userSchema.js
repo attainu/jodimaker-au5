@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema({
     Matches: {
         sentrequests: Array,
         receivedrequests: Array,
-        matchedusers: Array,
+        acceptedrequests: Array,
         pendingrequests: Array
     },
     Notifications: {
@@ -26,9 +26,11 @@ const userSchema = new mongoose.Schema({
         },
         receivedrequests: {
             type: Array,
-        }
+        },
+        all: Array
 
-    }
+    },
+    Messages: Object
 
 
 })

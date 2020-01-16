@@ -5,18 +5,18 @@ mongoose
     .then(console.log("Mongodb connected...."))
     .catch(err => console.log(err));
 
-// User.find({}, function (err, users) {
-//     users.map(el => {
-//         var user = el
-//         if (user.Notifications) {
-//             user.Notifications.sentrequests = undefined
-//             user.Notifications.receivedrequests = undefined
-//             user.Matches.sentrequests = undefined
-//             user.Matches.receivedrequests = undefined
-//             user.save()
-//         }
-//     })
-// })
+User.find({}, function (err, users) {
+    users.map(el => {
+        var user = el
+        if (user.Notifications) {
+            user.Notifications.sentrequests = undefined
+            user.Notifications.receivedrequests = undefined
+            user.Matches.receivedrequests = undefined
+            user.Matches.acceptedrequests = undefined
+            user.save()
+        }
+    })
+})
 
 function getAge(DOB) {
     var today = new Date();
