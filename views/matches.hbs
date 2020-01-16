@@ -25,7 +25,7 @@
     <section>
         <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
             <div class="container">
-                <a class="navbar-brand text-white" href="#"><img src= "img/jodi.png"></a>
+                <a class="navbar-brand text-white" href="#"><img src="img/jodi.png"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -62,36 +62,32 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-2 mt-5">
-                    <form action="/filtersearch" method="POST">
+                    <form action="/matches" method="get">
                         <h5 class="mt-2 text-center">Filter Search</h5>
                         {{!-- age  --}}
                         <p>
                             <label for="age">Age:</label>
-                            <input type="text" id="age" disabled style="border:0; color:#f6931f; font-weight:bold;"
-                                class="bg-transparent" />
+                            <input type="text" name="age" id="age" value="18-50" readonly
+                                style="border:0; color:#f6931f; font-weight:bold;" class="bg-transparent" />
                         </p>
                         <div id="slider-range"></div>
-                        {{!-- gender  --}}
-                        <label for="gender">Gender</label>
-                        <div class="row mx-auto">
+                        {{!-- Employed  --}}
+                        <div class="row my-3 mx-auto">
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="customRadioInline1" name="gender" class="custom-control-input"
-                                    value="M">
-                                <label class="custom-control-label" for="customRadioInline1">Male</label>
+                                <input type="radio" id="customRadioInline1" name="isEmployed"
+                                    class="custom-control-input" value="true">
+                                <label class="custom-control-label" for="customRadioInline1">Employed</label>
                             </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="customRadioInline2" name="gender" class="custom-control-input"
-                                    value="F">
-                                <label class="custom-control-label" for="customRadioInline2">Female</label>
-                            </div>
+
                         </div>
                         {{!-- religion  --}}
                         <label for="religion">Religion</label>
-                        <select class="custom-select" name="religion" id="religion" required>
+                        <select class="custom-select" name="religion" id="religion" >
+                            <option value="">Doesn't Matter</option>
                             <option value="hindu">Hindu</option>
                             <option value="islam">Islam</option>
                             <option value="buddhism">Buddhism</option>
-                            <option value="christianity">Christianity</option>
+                            <option value="christian">Christianity</option>
                             <option value="jainism">Jainism</option>
                             <option value="judaism">Judaism</option>
                             <option value="sikhism">Sikhism</option>
@@ -101,15 +97,15 @@
                         {{!-- height --}}
                         <p>
                             <label for="height">Height:</label>
-                            <input type="text" id="height" readonly style="border:0; color:#f6931f; font-weight:bold;"
-                                class="bg-transparent" />
+                            <input type="text" id="height" name="height" value="4'7-6'7" readonly
+                                style="border:0; color:#f6931f; font-weight:bold;" class="bg-transparent" />
                         </p>
                         <div id="height-range"></div>
                         {{!-- salary  --}}
                         <p>
                             <label for="salary">Salary:</label>
-                            <input type="text" id="salary" readonly style="border:0; color:#f6931f; font-weight:bold;"
-                                class="bg-transparent" />
+                            <input type="text" id="salary" name="salary" value="4-40" 
+                                style="border:0; color:#f6931f; font-weight:bold;" class="bg-transparent" readonly/>
                         </p>
                         <div id="salary-range"></div>
 
