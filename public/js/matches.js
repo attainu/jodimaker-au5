@@ -25,12 +25,14 @@ $(document).ready(function () {
 
   //Slider
   /* age slider */
+  var minage =$("#age").val().split("-")[0]
+  var maxage =$("#age").val().split("-")[1]
   $(function () {
     $("#slider-range").slider({
       range: true,
       min: 18,
       max: 50,
-      values: [18, 50],
+      values: [minage, maxage],
       slide: function (event, ui) {
         $("#age").val(ui.values[0] + " - " + ui.values[1]);
       }
@@ -59,6 +61,7 @@ $(document).ready(function () {
     );
   });
   /* salary slider */
+
   $(function () {
     $("#salary-range").slider({
       range: true,
@@ -96,7 +99,7 @@ $(document).ready(function () {
     var realFeet = ((n * 0.393700) / 12);
     var feet = Math.floor(realFeet);
     var inches = Math.round((realFeet - feet) * 12);
-    return feet + "\'" + inches + "ft"
+    return feet + "'" + inches + "ft"
   }
 
 });

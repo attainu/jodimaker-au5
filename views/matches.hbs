@@ -67,8 +67,15 @@
                         {{!-- age  --}}
                         <p>
                             <label for="age">Age:</label>
+                            {{#if filter.age}}
+                            <input type="text" name="age" id="age" value="{{filter.age}}" readonly
+                                style="border:0; color:#f6931f; font-weight:bold;" class="bg-transparent" />
+
+                            {{else}}
                             <input type="text" name="age" id="age" value="18-50" readonly
                                 style="border:0; color:#f6931f; font-weight:bold;" class="bg-transparent" />
+
+                            {{/if}}
                         </p>
                         <div id="slider-range"></div>
                         {{!-- Employed  --}}
@@ -82,10 +89,10 @@
                         </div>
                         {{!-- religion  --}}
                         <label for="religion">Religion</label>
-                        <select class="custom-select" name="religion" id="religion" >
+                        <select class="custom-select" name="religion" id="religion">
                             <option value="">Doesn't Matter</option>
                             <option value="hindu">Hindu</option>
-                            <option value="islam">Islam</option>
+                            <option value="islam" >Islam</option>
                             <option value="buddhism">Buddhism</option>
                             <option value="christian">Christianity</option>
                             <option value="jainism">Jainism</option>
@@ -97,15 +104,15 @@
                         {{!-- height --}}
                         <p>
                             <label for="height">Height:</label>
-                            <input type="text" id="height" name="height" value="4'7-6'7" readonly
+                            <input type="text" id="height" name="height" value="4f7in- 6f7in" readonly
                                 style="border:0; color:#f6931f; font-weight:bold;" class="bg-transparent" />
                         </p>
                         <div id="height-range"></div>
                         {{!-- salary  --}}
                         <p>
                             <label for="salary">Salary:</label>
-                            <input type="text" id="salary" name="salary" value="4-40" 
-                                style="border:0; color:#f6931f; font-weight:bold;" class="bg-transparent" readonly/>
+                            <input type="text" id="salary" name="salary" value="4-40"
+                                style="border:0; color:#f6931f; font-weight:bold;" class="bg-transparent" readonly />
                         </p>
                         <div id="salary-range"></div>
 
@@ -187,6 +194,7 @@
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
 <script src="../js/matches.js"></script>
+
 
 
 

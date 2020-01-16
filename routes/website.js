@@ -12,9 +12,10 @@ router.get("/matches", (req, res) => {
         var maxage = parseInt(age.split("-")[1])
         console.log(req.query)
 
-
-        var minheight = parseInt(height.split("-")[0])
-        var maxheight = parseInt(height.split("-")[1])
+        console.log(typeof (height), height[9])
+        var minheight = parseInt(height[0]) * 12 + parseInt(height[2])
+        var maxheight = parseInt(height[8]) * 12 + parseInt(height[10])
+        console.log(minheight, maxheight)
 
 
         var minsalary = parseInt(salary.split("-")[0])
@@ -23,6 +24,7 @@ router.get("/matches", (req, res) => {
     }
     User.find({})
         .then(users => {
+
             var matches = users.filter(el => {
                 if (el.Profile.Profile2) {
                     if (el.Profile.Profile2.gender == user.Profile.Profile2.gender) {
@@ -41,7 +43,9 @@ router.get("/matches", (req, res) => {
                         if (el.Profile.Profile2.salary < minsalary || el.Profile.Profile2.salary > maxsalary) {
                             return
                         }
-                        if (el.Profile.Profile2.height < minheight || el.Profile.Profile2.height > maxheight) {
+                        var heightfeet = el.Profile.Profile2.height
+                        var heightinches = parseInt(heightfeet[1]) * 12 + parseInt(heightfeet[3])
+                        if (heightinches < minheight || heightinches > maxheight) {
                             return
                         }
 
@@ -60,7 +64,8 @@ router.get("/matches", (req, res) => {
 
             res.render("matches", {
                 user: user,
-                matches: matches
+                matches: matches,
+                filter: req.query
             });
         })
 
