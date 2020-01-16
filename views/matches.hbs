@@ -6,14 +6,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS and FontAwesome CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
-    <title>Dashboard</title>
+    <title>My Matches</title>
     <link rel="stylesheet" href="../css/matches.css">
+    {{!-- slider scripts --}}
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <link rel="stylesheet" href="/resources/demos/style.css" />
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 </head>
 
@@ -55,53 +59,65 @@
 
 
     <section>
-        <div class="container ">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-md-2 mt-5 px-5 pb-2">
-                    <form action="" method="POST">
+                <div class="col-md-2 mt-5">
+                    <form action="/filtersearch" method="POST">
                         <h5 class="mt-2 text-center">Filter Search</h5>
-                        <div class="row">
-                            <h6>Age</h6>
-                            <input type="range" class="custom-range" min="18" max="50" value="20" id="customRange1"
-                                name="salary">
-                            <p class="text-center"><span id="sliderValue"></span></p>
-                        </div>
-                        <div class="row">
-                            <h6>Gender</h6>
-                        </div>
-                        <div class="row">
+                        {{!-- age  --}}
+                        <p>
+                            <label for="age">Age:</label>
+                            <input type="text" id="age" disabled style="border:0; color:#f6931f; font-weight:bold;"
+                                class="bg-transparent" />
+                        </p>
+                        <div id="slider-range"></div>
+                        {{!-- gender  --}}
+                        <label for="gender">Gender</label>
+                        <div class="row mx-auto">
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="customRadioInline1" name="customRadioInline1"
-                                    class="custom-control-input" value="M">
-                                <label class="custom-control-label" for="customRadioInline1"></label>
+                                <input type="radio" id="customRadioInline1" name="gender" class="custom-control-input"
+                                    value="M">
+                                <label class="custom-control-label" for="customRadioInline1">Male</label>
                             </div>
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="customRadioInline2" name="customRadioInline1"
-                                    class="custom-control-input" value="F">
+                                <input type="radio" id="customRadioInline2" name="gender" class="custom-control-input"
+                                    value="F">
                                 <label class="custom-control-label" for="customRadioInline2">Female</label>
                             </div>
                         </div>
-                        {{!-- <div> --}}
-                        <div class="row">
-                            <h6>Religion</h6>
-                        </div>
-                        <div class="row">
-                            <select class="custom-select" name="religion" id="religion" required>
-                                <option value="hindu">Hindu</option>
-                                <option value="islam">Islam</option>
-                                <option value="buddhism">Buddhism</option>
-                                <option value="christianity">Christianity</option>
-                                <option value="jainism">Jainism</option>
-                                <option value="judaism">Judaism</option>
-                                <option value="sikhism">Sikhism</option>
-                                <option value="taoism">Taoism</option>
-                                <option value="zoroastrianism">Zoroastrianism</option>
-                            </select>
-                        </div>
-                        {{!-- </div> --}}
+                        {{!-- religion  --}}
+                        <label for="religion">Religion</label>
+                        <select class="custom-select" name="religion" id="religion" required>
+                            <option value="hindu">Hindu</option>
+                            <option value="islam">Islam</option>
+                            <option value="buddhism">Buddhism</option>
+                            <option value="christianity">Christianity</option>
+                            <option value="jainism">Jainism</option>
+                            <option value="judaism">Judaism</option>
+                            <option value="sikhism">Sikhism</option>
+                            <option value="taoism">Taoism</option>
+                            <option value="zoroastrianism">Zoroastrianism</option>
+                        </select>
+                        {{!-- height --}}
+                        <p>
+                            <label for="height">Height:</label>
+                            <input type="text" id="height" readonly style="border:0; color:#f6931f; font-weight:bold;"
+                                class="bg-transparent" />
+                        </p>
+                        <div id="height-range"></div>
+                        {{!-- salary  --}}
+                        <p>
+                            <label for="salary">Salary:</label>
+                            <input type="text" id="salary" readonly style="border:0; color:#f6931f; font-weight:bold;"
+                                class="bg-transparent" />
+                        </p>
+                        <div id="salary-range"></div>
+
                         <div class="row mx-auto mt-3">
                             <button type="submit" class="btn btn-primary">Apply</button>
                         </div>
+
+
 
                     </form>
                 </div>
@@ -109,14 +125,14 @@
                 <div class="col-md-10 mt-5">
                     <div class="row">
                         {{#each matches}}
-                        <div class="col-md-4 mt-5">
-                            <div class="card">
+                        <div class="col-md-3 mt-5">
+                            <div class="card" style="width: 18rem;">
                                 <div class="card-body text-center">
                                     <a href="/matchprofile?id={{_id}}"><img class="avatar rounded-circle"
                                             src="{{Profile.Profile1.photo}}" alt="Bologna"></a>
-                                    <h5 class="card-title">{{Profile.Profile1.name.firstname}}
-                                        {{Profile.Profile1.name.lastname}},
-                                        {{Profile.Profile2.age}}</h5>
+                                    <h4 class="card-title">{{Profile.Profile1.name.firstname}}
+                                        {{Profile.Profile1.name.lastname}},<br>
+                                        {{Profile.Profile2.age}}</h4>
                                     <h6 class="card-subtitle mb-2 text-muted">{{Profile.Profile2.height}},
                                         {{Profile.Profile2.maritialstatus}}</h6>
                                     <p class="card-text">{{Profile.Profile1.location.city}}</p>
@@ -166,8 +182,8 @@
 
 
 {{!-- bootstrap scripts --}}
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+{{!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script> --}}
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
     integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
     crossorigin="anonymous"></script>
@@ -175,7 +191,7 @@
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
 <script src="../js/matches.js"></script>
-<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+
 
 
 </html>
