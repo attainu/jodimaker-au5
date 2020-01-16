@@ -121,3 +121,7 @@ $(document).ready(function () {
         });
     })();
 
+<<<<<<< HEAD
+=======
+});
+>>>>>>> b39cc866c476b117b0d3a382c20298335eaf4f38

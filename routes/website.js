@@ -267,6 +267,9 @@ router.post("/acceptrequest", (req, res) => {
         })
 
 })
+router.get("/userpref",(req,res)=>{
+    res.render("userpref")
+})
 
 router.post("/searchsave", (req, res) => {
     console.log(req.body)
