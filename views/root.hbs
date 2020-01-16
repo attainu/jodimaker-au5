@@ -3,9 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Landing Page</title>
+    <meta name="google-signin-client_id" content="2310155633-hbrsv0a8n5ghq9d2dneibjqf0ecvdlm5.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/root_style.css">
@@ -252,8 +253,7 @@
                     <div class="modal-footer">
                         <p>Already have an Account? <button class="btn btn-infor ml-2" type="button" id="newLogin"
                                 data-toggle="modal" data-target="#login">Login</button></p>
-                    </div>
-                </div>
+                  
 
             </div>
         </div>
@@ -293,6 +293,9 @@
                     <div class="modal-footer">
                         <p>Not a member? <button class="btn btn-infor ml-2" id="newRegister" type="button"
                                 data-toggle="modal" data-target="#register">Register Free!</button></p>
+                          </div>
+                    <div class="g-signin2" data-onsuccess="onSignIn"> </div>
+                </div>        
 
                     </div>
                 </div>

@@ -28,6 +28,9 @@ router.get("/matchprofile", (req, res) => {
     res.render("matching");
 
 })
+router.get("/userpref",(req,res)=>{
+    res.render("userpref")
+})
 
 
 
