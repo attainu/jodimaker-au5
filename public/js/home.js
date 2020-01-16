@@ -47,6 +47,22 @@ $(document).ready(function () {
 
   })
 
+  $(".deletereceived").click(function () {
+    var deletebtn = $(this)
+    var data = { id: deletebtn.siblings("input").val() }
+    $.ajax({
+      type: "post",
+      url: "/deletereceived",
+      data: data,
+      success: function (response) {
+        console.log(deletebtn.parents(".no-gutters").remove())
+        $("#received").text(response)
+      }
+    });
+
+
+  })
+
   $(".acceptreq").click(function () {
     console.log("clicked")
     var acceptbtn = $(this)
@@ -81,7 +97,7 @@ $(document).ready(function () {
             </div>
         </div>
         <div class="col-md-2">
-            <a class="btn btn-success">View</a>
+            <a class="btn btn-outline-secondary">Message</a>
         </div>
 
     </div>`)

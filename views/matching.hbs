@@ -20,7 +20,7 @@
     <section>
         <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
             <div class="container">
-                <a class="navbar-brand text-white" href="#"><img src= "img/jodi.png"></a>
+                <a class="navbar-brand text-white" href="#"><img src="img/jodi.png"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -64,12 +64,16 @@
                                 {{match.Profile.Profile1.location.city}},{{match.Profile.Profile1.location.country}}
                             </h6>
                             <p class="card-text">{{match.Profile.Profile3.AboutYourself}} </p>
-                            <a href="#" class="btn btn-outline-secondary">Message</a>
+                            {{#if isMatched}}
+                            <a class="btn btn-outline-dark ">Message</a>
+                            {{else}}
                             {{#if sent}}
                             <a class="btn btn-success  text-white">Sent</a>
 
                             {{else}}
                             <a class="btn btn-wine connect text-white">Connect</a>
+                            {{/if}}
+
                             {{/if}}
 
                         </div>
@@ -82,40 +86,54 @@
                                 <div class="col-md-1">
                                     <label for="number"><i class="fa fa-phone"></i> :</label>
                                 </div>
+                                {{#if isMatched}}
                                 <div class="col md-3">
-                                    <p>123XXXXXXX</p>
+                                    <p>{{match.Signup.mobile}}</p>
                                 </div>
                                 <div class="col-md-1">
                                     <label for="number"><i class="fa fa-envelope"></i> :</label>
                                 </div>
                                 <div class="col md-3">
-                                    <p>iamironXXXXXXX</p>
+                                    <p>{{match.Signup.email}}</p>
+                                </div>
+                                <div class="col"><span class="btn btn-success mb-4 text-white">You are connected</span>
+                                </div>
+                                {{else}}
+                                <div class="col md-3">
+                                    <p>98XXXXXXXX</p>
+                                </div>
+                                <div class="col-md-1">
+                                    <label for="number"><i class="fa fa-envelope"></i> :</label>
+                                </div>
+                                <div class="col md-3">
+                                    <p>XXXXXXX@gmail.com</p>
                                 </div>
                                 <div class="col"><span class="btn btn-wine mb-4 text-white">Connect for details</span>
                                 </div>
+                                {{/if}}
                             </div>
                         </div>
                         <hr class="ml-3 mr-3 main">
 
                         <div class="row mx-2">
                             <div class="col-md-4">
-                                <div class="row mx-3">
-                                    <h6><span class="ml-2">Lifestyle</span></h6>
+                                <div class="row ">
+                                    <h6 class=""><span class="ml-4"><span class="ml-3">Lifestyle</span></span></h6>
                                 </div>
-                                <div class="row mx-3 pb-2 mt-3">
+                                <div class="row mx-3  ">
                                     <div class="col-md-3">
                                         <label for="number">Smoking: </label>
                                     </div>
-                                    <div class="col  md-3">
-                                        <p>{{match.Profile.Profile2.smoking}}</p>
+                                    <div class="col-md-3">
+                                        <p>{{match.Profile.Profile3.smoking}}</p>
                                     </div>
                                 </div>
-                                <div class="row mx-3 pb-2">
+                                <div class="row mx-3">
                                     <div class="col-md-3">
                                         <label for="number">Drinking: </label>
                                     </div>
-                                    <div class="col mt-3">
-                                        <p>{{match.Profile.Profile2.drinking}}</p>
+                                    <div class="col ">
+                                        <p>{{match.Profile.Profile3.drinking}}</p>
                                     </div>
                                 </div>
                                 <div class="row mx-3 ">
@@ -126,12 +144,28 @@
                                         <p>{{match.Profile.Profile2.diet}}</p>
                                     </div>
                                 </div>
+                                <div class="row mx-3 ">
+                                    <div class="col-md-3">
+                                        <label for="number"> Values: </label>
+                                    </div>
+                                    <div class="col  md-3">
+                                        <p>{{match.Profile.Profile3.personalvalues}}</p>
+                                    </div>
+                                </div>
+                                <div class="row mx-3 ">
+                                    <div class="col-md-3">
+                                        <label for="number"> Movies: </label>
+                                    </div>
+                                    <div class="col  md-3">
+                                        <p>{{match.Profile.Profile3.preferredmovies}}</p>
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="row mx-3">
                                     <h6><span class="ml-2">Background</span></h6>
                                 </div>
-                                <div class="row mx-3 mt-3">
+                                <div class="row mx-3 ">
                                     <div class="col-md-3">
                                         <label for="number">Religion: </label>
                                     </div>
@@ -152,16 +186,16 @@
                                         <label for="number">Education: </label>
                                     </div>
                                     <div class="col md-3">
-                                        <p>{{match.Profile.Profile2.education.educationlevel}}</p>
+                                        <p>{{match.Profile.Profile3.education.educationlevel}}</p>
                                     </div>
                                 </div>
-                                {{#if match.Profile.Profile2.education.isEmployed}}
+                                {{#if match.Profile.Profile3.education.isEmployed}}
                                 <div class="row mx-3">
                                     <div class="col-md-3">
-                                        <label for="number">Working as: </label>
+                                        <label for="number">Working at: </label>
                                     </div>
                                     <div class="col md-3">
-                                        <p>{{match.Profile.Profile2.education.employer}}</p>
+                                        <p>{{match.Profile.Profile3.education.employer}}</p>
                                     </div>
                                 </div>
                                 <div class="row mx-3">
@@ -169,7 +203,7 @@
                                         <label for="number">Salary: </label>
                                     </div>
                                     <div class="col md-3">
-                                        <p>{{match.Profile.Profile2.education.salary}}</p>
+                                        <p>{{match.Profile.Profile3.education.salary}} LPA</p>
                                     </div>
                                 </div>
                                 {{/if}}

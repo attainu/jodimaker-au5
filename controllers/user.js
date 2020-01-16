@@ -78,7 +78,7 @@ UserController.login = function (req, res) {
 
         })
         .catch(err => console.log(err))
-} 
+}
 
 UserController.profile1 = function (req, res) {
     var userId = req.session.user._id;
@@ -127,7 +127,7 @@ UserController.profile2 = function (req, res) {
             month: parseFloat(req.body.month),
             year: parseFloat(req.body.year)
         },
-        age: getAge(""+parseFloat(req.body.month)+"/"+parseFloat(req.body.day)+"/"+parseFloat(req.body.year)+""),
+        age: getAge("" + parseFloat(req.body.month) + "/" + parseFloat(req.body.day) + "/" + parseFloat(req.body.year) + ""),
         gender: req.body.gender,
         maritialstatus: req.body.maritialstatus,
         height: parseFloat(req.body.height),
@@ -252,3 +252,14 @@ UserController.profile = function (req, res) {
 
 module.exports = UserController;
 
+function getAge(DOB) {
+    var today = new Date();
+    var birthDate = new Date(DOB);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age = age - 1;
+    }
+
+    return age;
+}

@@ -18,10 +18,11 @@
 </head>
 
 <body class="bg-light">
+
     <section>
         <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
             <div class="container">
-                <a class="navbar-brand text-white" href="#"><img src= "img/jodi.png"></a>
+                <a class="navbar-brand text-white" href="#"><img src="img/jodi.png"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -132,6 +133,13 @@
                             </div>
                         </div>
                         {{/each}}
+                        <div class="col-md-9 mt-5 offset-2">
+
+                            {{#unless matches}}
+                            <h5>No current matches for this search.</h5>
+                            <h5> We'll have new matches for you soon.</h5>
+                            {{/unless}}
+                        </div>
 
 
                     </div>

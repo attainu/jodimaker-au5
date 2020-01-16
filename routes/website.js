@@ -118,10 +118,12 @@ router.get("/matchprofile", (req, res) => {
     if (req.query.id) {
         User.findOne({ _id: req.query.id })
             .then(matchprofile => {
+                var isMatched = matchprofile.Matches.acceptedrequests.includes(user._id)
 
                 res.render("matching", {
                     user: user,
-                    match: matchprofile
+                    match: matchprofile,
+                    isMatched: isMatched
 
                 });
             })
@@ -217,6 +219,24 @@ router.post("/deletesent", (req, res) => {
         })
 
 })
+router.post("/deletereceived", (req, res) => {
+    var id = req.body.id
+
+
+    user.Matches.receivedrequests = user.Matches.receivedrequests.filter(el => el != id)
+
+    user.save()
+        .then(done => {
+
+            User.findOne({ _id: req.session.user._id })
+                .then(newuser => {
+                    user = newuser
+                    res.send(newuser.Matches.receivedrequests.length + "")
+                })
+        })
+
+})
+
 
 router.post("/acceptrequest", (req, res) => {
     var id = req.body.id
@@ -248,6 +268,82 @@ router.post("/acceptrequest", (req, res) => {
 
 })
 
+router.post("/searchsave", (req, res) => {
+    console.log(req.body)
+    var ageArray = req.body.age.split("-").map(age => parseInt(age))
+    var minage = ageArray[0]
+    var maxage = ageArray[1]
+    var { maritialstatus, religion, mothertongue, country, state, city } = req.body
+    maritialstatus = maritialstatus? changetoArray(maritialstatus):undefined
+    religion = religion?changetoArray(religion):undefined
+    mothertongue = mothertongue?changetoArray(mothertongue):undefined
+    country = country?changetoArray(country):undefined
+    state = state?changetoArray(state):undefined
+    city = city?changetoArray(city):undefined
 
+    var matches
+    User.find({ "Profile.Profile2.gender": { $ne: user.Profile.Profile2.gender } })
+        .then(users => {
+            matches = users
+            matches = matches.filter(match => {
+                if (user.Matches.acceptedrequests.includes(match._id))
+                    return
+                if (user.Matches.receivedrequests.includes(match._id))
+                    return
+                if (match.Profile.Profile2) {
+
+                    if (match.Profile.Profile2.age >= minage && match.Profile.Profile2.age <= maxage) {
+
+                        if (maritialstatus) {
+                            if (!maritialstatus.includes(match.Profile.Profile2.maritialstatus)) {
+                                return
+                            }
+                        }
+                        if (religion) {
+                            if (!religion.includes(match.Profile.Profile2.religion)) {
+                                return
+                            }
+                        }
+                        if (mothertongue) {
+                            if (!mothertongue.includes(match.Profile.Profile2.mothertongue)) {
+                                return
+                            }
+                        }
+                        if (country) {
+                            if (!country.includes(match.Profile.Profile1.location.country)) {
+                                return
+                            }
+                        }
+                        if (state) {
+                            if (!state.includes(match.Profile.Profile1.location.state)) {
+                                return
+                            }
+                        }
+                        if (city) {
+                            if (!city.includes(match.Profile.Profile1.location.city)) {
+                                return
+                            }
+                        }
+
+                        return match
+
+                    }
+                }
+
+            })
+            res.render("searchresults", {
+                matches: matches
+            })
+        })
+
+    function changetoArray(x) {
+        if (typeof (x) != "object") {
+            var y = []
+            y[0] = x
+            return y
+        }
+        else return x
+    }
+})
 
 module.exports = router

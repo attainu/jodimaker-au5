@@ -1,6 +1,6 @@
 body {
   min-height: 100vh!important;
-  background-image: linear-gradient(rgb(221, 174, 86), #F3F9A7);
+  background-image: linear-gradient(rgb(236, 215, 174), rgb(249, 250, 236));
 }
 
 h4 {
@@ -62,7 +62,7 @@ a {
   background-color: #78244C;
 }
 
-#amount {
+#age1 {
   border: 0;
   color: #f6931f;
   font-weight: bold;
