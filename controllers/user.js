@@ -7,6 +7,7 @@ const Signup = require('../models/signupSchema')
 const Profile1 = require('../models/profile1Schema.js');
 const Profile2 = require('../models/profile2Schema.js');
 const Profile3 = require('../models/profile3Schema.js');
+const Userpref = require('../models/userprefSchema.js')
 const User = require('../models/userSchema')
 
 //clodinary configruation 
@@ -21,7 +22,7 @@ const UserController = {};
 UserController.signup = function (req, res) {
 
     console.log(req.body)
-    const { mobile, email,createdBy } = req.body
+    const { mobile, email, createdBy } = req.body
     var password = req.body.password
 
     bcrypt.hash(password, 10, function (err, hash) {
@@ -131,22 +132,22 @@ UserController.profile2 = function (req, res) {
         if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
             age = age - 1;
         }
-    
+
         return age;
     }
-    function toFeet(n) {
-        var realFeet = ((n*0.393700) / 12);
-        var feet = Math.floor(realFeet);
-        var inches = Math.round((realFeet - feet) * 12);
-        return feet + "&prime;" + inches + '&Prime;';
-      }
+    // function toFeet(n) {
+    //     var realFeet = ((n * 0.393700) / 12);
+    //     var feet = Math.floor(realFeet);
+    //     var inches = Math.round((realFeet - feet) * 12);
+    //     return feet + "&prime;" + inches + '&Prime;';
+    // }
     data = {
         dob: {
             day: parseFloat(req.body.day),
             month: parseFloat(req.body.month),
             year: parseFloat(req.body.year)
         },
-        age: getAge(""+parseFloat(req.body.month)+"/"+parseFloat(req.body.day)+"/"+parseFloat(req.body.year)+""),
+        age: getAge("" + parseFloat(req.body.month) + "/" + parseFloat(req.body.day) + "/" + parseFloat(req.body.year) + ""),
         gender: req.body.gender,
         maritialstatus: req.body.maritialstatus,
         height: parseFloat(req.body.height),
@@ -210,7 +211,7 @@ UserController.profile4 = function (req, res) {
     User.update({ _id: req.session.user._id }, { "Profile.Profile3.AboutYourself": AboutYourself })
         .then(user => {
             console.log("saved aboutyourself")
-            res.redirect("/dashboard")
+            res.redirect("/userpref")
 
         })
 
@@ -220,49 +221,49 @@ UserController.profile4 = function (req, res) {
 UserController.profile = function (req, res) {
     User.findOne({ _id: req.session.user._id })
         .then(user => {
-           
+
             user.Profile.Profile2.height = req.body.height,
-            user.Profile.Profile3.disability=req.body.disability,
-            user.Profile.Profile2.age=req.body.age,
-            user.Profile.Profile2.maritialstatus=req.body.maritialstatus,
-            user.Profile.Profile2.religion=req.body.religion,
-            user.Profile.Profile1.location.city=req.body.city,
-            user.Profile.Profile2.mothertongue=req.body.mothertongue,
-            user.Profile.Profile1.location.country=req.body.country,
-            user.Profile.Profile2.weight=req.body.weight,
-            user.Profile.Profile2.diet=req.body.diet,
-            user.Profile.Profile3.sunshine=req.body.sunshine,
-            user.Profile.Profile3.personalvalues=req.body.personalvalues,
-            user.Profile.Profile3.grewup=req.body.grewup,
-            user.Profile.Profile3.bloodgroup=req.body.bloodgroup,
-            user.Profile.Profile3.fluent=req.body.fluent,
-            user.Profile.Profile2.caste=req.body.caste,
-            user.Profile.Profile2.subcaste=req.body.subcaste,
-            user.Profile.Profile3.rashi=req.body.rashi,
-            user.Profile.Profile3.gothra=req.body.gothra,
-            user.Profile.Profile3.manglik=req.body.manglik,
-            user.Profile.Profile3.birthcity=req.body.birthcity,
-            user.Profile.Profile2.family.status=req.body.status,
-            user.Profile.Profile2.family.type=req.body.type,
-            user.Profile.Profile3.fatherstatus=req.body.fatherstatus,
-            user.Profile.Profile3.motherstatus=req.body.motherstatus,
-            user.Profile.Profile3.familylocation=req.body.familylocation,
-            user.Profile.Profile3.nativeplace=req.body.nativeplace,
-            user.Profile.Profile3.siblings=req.body.siblings,
-            user.Profile.Profile3.familyvalues=req.body.familyvalues,
-            user.Profile.Profile3.education.educationlevel=req.body.educationlevel,
-            user.Profile.Profile3.workingsector=req.body.workingsector,
-            user.Profile.Profile3.profession=req.body.profession,
-            user.Profile.Profile3.education.employer=req.body.employer,
-            user.Profile.Profile3.education.salary=req.body.salary,
-            user.Profile.Profile3.healthinfo=req.body.healthinfo
-            user.Profile.Profile3.hobbies=req.body.hobbies,
-            user.Profile.Profile3.interests=req.body.interests,
-            user.Profile.Profile3.favoritemusic= req.body.favoritemusic,
-            user.Profile.Profile3.favoritereads=req.body.favoritereads,
-            user.Profile.Profile3.preferredmovies=req.body.preferredmovies,
-            user.Profile.Profile3.sportactivities=req.body.sportactivities,
-            user.Profile.Profile3.favoritecuisines=req.body.favoritecuisines
+                user.Profile.Profile3.disability = req.body.disability,
+                user.Profile.Profile2.age = req.body.age,
+                user.Profile.Profile2.maritialstatus = req.body.maritialstatus,
+                user.Profile.Profile2.religion = req.body.religion,
+                user.Profile.Profile1.location.city = req.body.city,
+                user.Profile.Profile2.mothertongue = req.body.mothertongue,
+                user.Profile.Profile1.location.country = req.body.country,
+                user.Profile.Profile2.weight = req.body.weight,
+                user.Profile.Profile2.diet = req.body.diet,
+                user.Profile.Profile3.sunshine = req.body.sunshine,
+                user.Profile.Profile3.personalvalues = req.body.personalvalues,
+                user.Profile.Profile3.grewup = req.body.grewup,
+                user.Profile.Profile3.bloodgroup = req.body.bloodgroup,
+                user.Profile.Profile3.fluent = req.body.fluent,
+                user.Profile.Profile2.caste = req.body.caste,
+                user.Profile.Profile2.subcaste = req.body.subcaste,
+                user.Profile.Profile3.rashi = req.body.rashi,
+                user.Profile.Profile3.gothra = req.body.gothra,
+                user.Profile.Profile3.manglik = req.body.manglik,
+                user.Profile.Profile3.birthcity = req.body.birthcity,
+                user.Profile.Profile2.family.status = req.body.status,
+                user.Profile.Profile2.family.type = req.body.type,
+                user.Profile.Profile3.fatherstatus = req.body.fatherstatus,
+                user.Profile.Profile3.motherstatus = req.body.motherstatus,
+                user.Profile.Profile3.familylocation = req.body.familylocation,
+                user.Profile.Profile3.nativeplace = req.body.nativeplace,
+                user.Profile.Profile3.siblings = req.body.siblings,
+                user.Profile.Profile3.familyvalues = req.body.familyvalues,
+                user.Profile.Profile3.education.educationlevel = req.body.educationlevel,
+                user.Profile.Profile3.workingsector = req.body.workingsector,
+                user.Profile.Profile3.profession = req.body.profession,
+                user.Profile.Profile3.education.employer = req.body.employer,
+                user.Profile.Profile3.education.salary = req.body.salary,
+                user.Profile.Profile3.healthinfo = req.body.healthinfo
+            user.Profile.Profile3.hobbies = req.body.hobbies,
+                user.Profile.Profile3.interests = req.body.interests,
+                user.Profile.Profile3.favoritemusic = req.body.favoritemusic,
+                user.Profile.Profile3.favoritereads = req.body.favoritereads,
+                user.Profile.Profile3.preferredmovies = req.body.preferredmovies,
+                user.Profile.Profile3.sportactivities = req.body.sportactivities,
+                user.Profile.Profile3.favoritecuisines = req.body.favoritecuisines
             user.save()
             console.log("data updated")
             res.redirect("/profile")
@@ -270,5 +271,36 @@ UserController.profile = function (req, res) {
         .catch(err => console.log(err))
 }
 
-module.exports = UserController; 
+UserController.userpref = function (req, res) {
+    User.findOne({ _id: req.session.user._id })
+        .then(user => {
+            var userpref = {}
+
+            userpref.minage = parseInt(req.body.age.split("-")[0]),
+                userpref.maxage = parseInt(req.body.age.split("-")[1]),
+                userpref.height = req.body.height,
+                userpref.religion = req.body.religion,
+                userpref.mothertongue = req.body.mothertongue,
+                userpref.maritialstatus = req.body.maritialstatus,
+                userpref.diet = req.body.diet,
+                userpref.location = {}
+
+                userpref.location.country = req.body.country,
+                userpref.location.state = req.body.state,
+                userpref.location.city = req.body.city
+                userpref.education={}
+                userpref.education.educationlevel=req.body.educationlevel,
+                userpref.education.workingwith=req.body.workingwith,
+                userpref.education.employer=req.body.employer,
+                userpref.education.salary=req.body.salary
+
+            const newuserpref = new Userpref(userpref)
+            user.Userpref = newuserpref
+            console.log(user)
+            user.save()
+                .then(() => { res.redirect('/home') })
+        })
+}
+
+module.exports = UserController;
 

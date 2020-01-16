@@ -31,11 +31,11 @@ var profileSchema2 = new mongoose.Schema({
         required: true
     },
     height: {
-        type: Number,
+        type: String,
         required: true
     },
     weight: {
-        type: Number,
+        type: String,
         required: true
     },
     diet: {
