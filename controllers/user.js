@@ -22,11 +22,7 @@ const UserController = {};
 UserController.signup = function (req, res) {
 
     console.log(req.body)
-<<<<<<< HEAD
-    const { mobile, email } = req.body
-=======
     const { mobile, email, createdBy } = req.body
->>>>>>> fc4d45d8f2168e086a28fbbbdd5bf6af53838abc
     var password = req.body.password
 
     bcrypt.hash(password, 10, function (err, hash) {
@@ -114,6 +110,7 @@ UserController.profile1 = function (req, res) {
                     user.Profile.Profile1 = newProfile1
                     var newSettings = new Settings({ showname: fields.firstname[0][0] + " " + fields.lastname[0] })
                     user.Settings = newSettings
+                    
                     user.save()
                         .then(user => {
                             console.log("saved user profile1")

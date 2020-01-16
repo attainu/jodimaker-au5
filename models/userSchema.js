@@ -14,7 +14,25 @@ const userSchema = new mongoose.Schema({
         Profile3: profileSchema3
     },
     Settings: settingsSchema,
-    Userpref:userprefSchema
+
+    Matches: {
+        sentrequests: Array,
+        receivedrequests: Array,
+        acceptedrequests: Array,
+        pendingrequests: Array
+    },
+    Notifications: {
+        sentrequests: {
+            type: Array,
+        },
+        receivedrequests: {
+            type: Array,
+        },
+        all: Array
+
+    },
+    Messages: Object,
+    Userpref: userprefSchema
 
 
 })
