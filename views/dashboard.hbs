@@ -12,8 +12,9 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <title>Jodi Maker</title>
+    {{!-- <link rel="stylesheet" href="../css/dashboard.css"> --}}
+    <link rel="stylesheet" href="css/matches.css">
 
 </head>
 
@@ -21,7 +22,7 @@
     <section>
         <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
             <div class="container">
-                <a class="navbar-brand text-white" href="#">Jodi Maker</a>
+                <a class="navbar-brand text-white" href="#"><img src= "img/jodi.png"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -56,42 +57,39 @@
 
     <section>
         <div class="container ">
-            <div class="row">
+            <div class="row mt-5">
                 <div class="col-md-2 mt-5 px-5 pb-2">
-                    <form action="" method="POST">
-                        <h5 class="mt-2 text-center">Filter Search</h5>
-                        <div class="row">
-                            <h6>Age</h6>
+        
+                    <form action="/dashboard" method="GET">
+                        <h5 class="mt-2 text-center"><b>Filters</b></h5>
+                        <div class="row mt-3">
+                            <h6><b>Maximum Age</b></h6>
                             <input type="range" class="custom-range" min="18" max="50" value="20" id="customRange1"
-                                name="salary">
+                                name="age">
                             <p class="text-center"><span id="sliderValue"></span></p>
                         </div>
-                        <div class="row">
-                            <h6>Gender</h6>
+                        <div class="row mt-3">
+                            <h6><b>Working Professional</b></h6>
                         </div>
                         <div class="row">
                             <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="customRadioInline1" name="customRadioInline1"
-                                    class="custom-control-input" value="M">
-                                <label class="custom-control-label" for="customRadioInline1">Male</label>
+                                <input type="radio" id="customRadioInline1" name="isEmployed"
+                                    class="custom-control-input" value="Yes">
+                                <label class="custom-control-label" for="customRadioInline1">Yes</label>
                             </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="customRadioInline2" name="customRadioInline1"
-                                    class="custom-control-input" value="F">
-                                <label class="custom-control-label" for="customRadioInline2">Female</label>
-                            </div>
+                            
                         </div>
                         {{!-- <div> --}}
-                        <div class="row">
-                            <h6>Religion</h6>
+                        <div class="row mt-3">
+                            <h6><b>Religion</b></h6>
                         </div>
                         <div class="row">
-                            <select class="custom-select" name="religion" id="religion" required>
-                                <option value="hindu">Hindu</option>
+                            <select class="custom-select" name="religion" id="religion">
+                                <option value="Hinduism">Hindu</option>
                                 <option value="islam">Islam</option>
                                 <option value="buddhism">Buddhism</option>
-                                <option value="christianity">Christianity</option>
-                                <option value="jainism">Jainism</option>
+                                <option value="Christian">christianity</option>
+                                <option value="Jainism">Jainism</option>
                                 <option value="judaism">Judaism</option>
                                 <option value="sikhism">Sikhism</option>
                                 <option value="taoism">Taoism</option>
@@ -100,282 +98,33 @@
                         </div>
                         {{!-- </div> --}}
                         <div class="row mx-auto mt-3">
-                            <button type="submit" class="btn btn-primary">Apply</button>
+                            <button type="submit" class="btn btn-infor">Apply</button>
                         </div>
 
                     </form>
                 </div>
                 <div class="col-md-10 mt-5">
-                    <div class="row">
-                        <div class="col-md-4 mt-5">
+                      <div class="row">
+                        {{#each matches}}
+                      
+                            <div class="col-md-4 mt-5">
                             <div class="card">
+                                 <a href="/matchprofile" class="text-center" ><img style="height:150px; width:150px"
+                                            src="{{this.Profile.Profile1.photo}}"
+                                            alt="{{this.Profile.Profile1.name.firstname}} {{this.Profile.Profile1.name.middlename}} {{this.Profile.Profile1.name.lastname}}"></a>
                                 <div class="card-body text-center">
-                                    <a href="/matchprofile"><img class="avatar rounded-circle"
-                                            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                            alt="Bologna"></a>
-                                    <h4 class="card-title">firstName LastName,Age</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Religion, Caste</h6>
-                                    <p class="card-text">Location</p>
+                                   
+                                    <h4 class="card-title">{{this.Profile.Profile1.name.firstname}} {{this.Profile.Profile1.name.middlename}} {{this.Profile.Profile1.name.lastname}}</h4>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{this.Profile.Profile2.age}}years {{this.Profile.Profile2.height}}</h6>
+                                    <p class="card-text">{{this.Profile.Profile1.location.city}} , {{this.Profile.Profile1.location.state}}</p>
                                     <a href="#" class="btn btn-outline-secondary">Message</a>
                                     <a href="#" class="btn btn-wine text-white">Connect</a>
                                 </div>
                             </div>
                         </div>
-
-
-                        <div class="col-md-4 mt-5">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <a href="/matchprofile"><img class="avatar rounded-circle"
-                                            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                            alt="Bologna"></a>
-                                    <h4 class="card-title">firstName LastName,Age</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Religion, Caste</h6>
-                                    <p class="card-text">Location</p>
-
-                                    <a href="#" class="btn btn-outline-secondary">Message</a>
-                                    <a href="#" class="btn btn-wine text-white">Connect</a>
-                                </div>
-                            </div>
+                        {{/each}}
                         </div>
-
-                        <div class="col-md-4 mt-5">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <a href="/matchprofile"><img class="avatar rounded-circle"
-                                            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                            alt="Bologna"></a>
-                                    <h4 class="card-title">firstName LastName,Age</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Religion, Caste</h6>
-                                    <p class="card-text">Location</p>
-                                    <a href="#" class="btn btn-outline-secondary">Message</a>
-                                    <a href="#" class="btn btn-wine text-white">Connect</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 mt-5">
-                            <div class="card mt-5">
-
-                                <div class="card-body text-center">
-                                    <a href="/matchprofile"><img class="avatar rounded-circle"
-                                            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                            alt="Bologna"></a>
-                                    <h4 class="card-title">firstName LastName,Age</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Religion, Caste</h6>
-                                    <p class="card-text">Location</p>
-                                    <a href="#" class="btn btn-outline-secondary">Message</a>
-                                    <a href="#" class="btn btn-wine text-white">Connect</a>
-                                </div>
-                            </div>
-                        </div>
-
-
-                        <div class="col-md-4 mt-5">
-                            <div class="card mt-5">
-                                <div class="card-body text-center">
-                                    <a href="/matchprofile"><img class="avatar rounded-circle"
-                                            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                            alt="Bologna"></a>
-                                    <h4 class="card-title">firstName LastName,Age</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Religion, Caste</h6>
-                                    <p class="card-text">Location</p>
-                                    <a href="#" class="btn btn-outline-secondary">Message</a>
-                                    <a href="#" class="btn btn-wine text-white">Connect</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 mt-5">
-                            <div class="card mt-5">
-                                <div class="card-body text-center">
-                                    <a href="/matchprofile"><img class="avatar rounded-circle"
-                                            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                            alt="Bologna"></a>
-                                    <h4 class="card-title">firstName LastName,Age</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Religion, Caste</h6>
-                                    <p class="card-text">Location</p>
-                                    <a href="#" class="btn btn-outline-secondary">Message</a>
-                                    <a href="#" class="btn btn-wine text-white">Connect</a>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 mt-5">
-                            <div class="card mt-5">
-                                <div class="card-body text-center">
-                                    <a href="/matchprofile"><img class="avatar rounded-circle"
-                                            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                            alt="Bologna"></a>
-                                    <h4 class="card-title">firstName LastName,Age</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Religion, Caste</h6>
-                                    <p class="card-text">Location</p>
-                                    <a href="#" class="btn btn-outline-secondary">Message</a>
-                                    <a href="#" class="btn btn-wine text-white">Connect</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-5">
-                            <div class="card mt-5">
-                                <div class="card-body text-center">
-                                    <a href="/matchprofile"><img class="avatar rounded-circle"
-                                            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                            alt="Bologna"></a>
-                                    <h4 class="card-title">firstName LastName,Age</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Religion, Caste</h6>
-                                    <p class="card-text">Location</p>
-                                    <a href="#" class="btn btn-outline-secondary">Message</a>
-                                    <a href="#" class="btn btn-wine text-white">Connect</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-5">
-                            <div class="card mt-5">
-                                <div class="card-body text-center">
-                                    <a href="/matchprofile"><img class="avatar rounded-circle"
-                                            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                            alt="Bologna"></a>
-                                    <h4 class="card-title">firstName LastName,Age</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Religion, Caste</h6>
-                                    <p class="card-text">Location</p>
-                                    <a href="#" class="btn btn-outline-secondary">Message</a>
-                                    <a href="#" class="btn btn-wine text-white">Connect</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-5">
-                            <div class="card mt-5">
-                                <div class="card-body text-center">
-                                    <a href="/matchprofile"><img class="avatar rounded-circle"
-                                            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                            alt="Bologna"></a>
-                                    <h4 class="card-title">firstName LastName,Age</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Religion, Caste</h6>
-                                    <p class="card-text">Location</p>
-                                    <a href="#" class="btn btn-outline-secondary">Message</a>
-                                    <a href="#" class="btn btn-wine text-white">Connect</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-5">
-                            <div class="card mt-5">
-                                <div class="card-body text-center">
-                                    <a href="/matchprofile"><img class="avatar rounded-circle"
-                                            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                            alt="Bologna"></a>
-                                    <h4 class="card-title">firstName LastName,Age</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Religion, Caste</h6>
-                                    <p class="card-text">Location</p>
-                                    <a href="#" class="btn btn-outline-secondary">Message</a>
-                                    <a href="#" class="btn btn-wine text-white">Connect</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-5">
-                            <div class="card mt-5">
-                                <div class="card-body text-center">
-                                    <a href="/matchprofile"><img class="avatar rounded-circle"
-                                            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                            alt="Bologna"></a>
-                                    <h4 class="card-title">firstName LastName,Age</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Religion, Caste</h6>
-                                    <p class="card-text">Location</p>
-                                    <a href="#" class="btn btn-outline-secondary">Message</a>
-                                    <a href="#" class="btn btn-wine text-white">Connect</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-5">
-                            <div class="card mt-5">
-                                <div class="card-body text-center">
-                                    <a href="/matchprofile"><img class="avatar rounded-circle"
-                                            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                            alt="Bologna"></a>
-                                    <h4 class="card-title">firstName LastName,Age</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Religion, Caste</h6>
-                                    <p class="card-text">Location</p>
-                                    <a href="#" class="btn btn-outline-secondary">Message</a>
-                                    <a href="#" class="btn btn-wine text-white">Connect</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-5">
-                            <div class="card mt-5">
-                                <div class="card-body text-center">
-                                    <a href="/matchprofile"><img class="avatar rounded-circle"
-                                            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                            alt="Bologna"></a>
-                                    <h4 class="card-title">firstName LastName,Age</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Religion, Caste</h6>
-                                    <p class="card-text">Location</p>
-                                    <a href="#" class="btn btn-outline-secondary">Message</a>
-                                    <a href="#" class="btn btn-wine text-white">Connect</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-5">
-                            <div class="card mt-5">
-                                <div class="card-body text-center">
-                                    <a href="/matchprofile"><img class="avatar rounded-circle"
-                                            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                            alt="Bologna"></a>
-                                    <h4 class="card-title">firstName LastName,Age</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Religion, Caste</h6>
-                                    <p class="card-text">Location</p>
-                                    <a href="#" class="btn btn-outline-secondary">Message</a>
-                                    <a href="#" class="btn btn-wine text-white">Connect</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-5">
-                            <div class="card mt-5">
-                                <div class="card-body text-center">
-                                    <a href="/matchprofile"><img class="avatar rounded-circle"
-                                            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                            alt="Bologna"></a>
-                                    <h4 class="card-title">firstName LastName,Age</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Religion, Caste</h6>
-                                    <p class="card-text">Location</p>
-                                    <a href="#" class="btn btn-outline-secondary">Message</a>
-                                    <a href="#" class="btn btn-wine text-white">Connect</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-5">
-                            <div class="card mt-5">
-                                <div class="card-body text-center">
-                                    <a href="/matchprofile"><img class="avatar rounded-circle"
-                                            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                            alt="Bologna"></a>
-                                    <h4 class="card-title">firstName LastName,Age</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Religion, Caste</h6>
-                                    <p class="card-text">Location</p>
-                                    <a href="#" class="btn btn-outline-secondary">Message</a>
-                                    <a href="#" class="btn btn-wine text-white">Connect</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-5">
-                            <div class="card mt-5">
-                                <div class="card-body text-center">
-                                    <a href="/matchprofile"><img class="avatar rounded-circle"
-                                            src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                            alt="Bologna"></a>
-                                    <h4 class="card-title">firstName LastName,Age</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">Religion, Caste</h6>
-                                    <p class="card-text">Location</p>
-                                    <a href="#" class="btn btn-outline-secondary">Message</a>
-                                    <a href="#" class="btn btn-wine text-white">Connect</a>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-                    </div>
                 </div>
-            </div>
-        </div>
     </section>
 
 
@@ -412,7 +161,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
-<script src="../js/dashboard.js"></script>
+<script src="../js/matches.js"></script>
 <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 
 </html>

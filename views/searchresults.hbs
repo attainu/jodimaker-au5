@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="../css/matches.css">
+
+</head>
+
+<body class="bg-light">
+
+    <section>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
+            <div class="container">
+                <a class="navbar-brand text-white" href="#"><img src="img/jodi.png"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto text-white">
+                        <li class="nav-item active">
+                            <a class="nav-link text-white" href="home">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="home">My Matches</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="search">Search</a>
+                        </li>
+                    </ul>
+                    <span class="navbar-text">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="profile">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="setting">Settings</a>
+                            </li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        </nav>
+    </section>
+
+
+    <section>
+        <div class="container ">
+            <div class="row">
+                <div class="col-md-2 mt-5 px-5 pb-2">
+                    <form action="/searchresults" method="get">
+                        <h5 class="mt-2 text-center">Filter Search</h5>
+                        {{!-- age  --}}
+                        <p>
+                            <label for="age">Age:</label>
+                            <input type="text" id="age" disabled style="border:0; color:#f6931f; font-weight:bold;"
+                                class="bg-transparent" />
+                        </p>
+                        <div id="slider-range"></div>
+                        {{!-- gender  --}}
+                        <div class="row my-3 mx-auto">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" name="isEmployed"
+                                    class="custom-control-input" value="true">
+                                <label class="custom-control-label" for="customRadioInline1">Employed</label>
+                            </div>
+
+                        </div>
+                        {{!-- religion  --}}
+                        <label for="religion">Religion</label>
+                        <select class="custom-select" name="religion" id="religion" >
+                            <option>Doesn't Matter</option>
+                            <option value="hindu">Hindu</option>
+                            <option value="islam">Islam</option>
+                            <option value="buddhism">Buddhism</option>
+                            <option value="christianity">Christianity</option>
+                            <option value="jainism">Jainism</option>
+                            <option value="judaism">Judaism</option>
+                            <option value="sikhism">Sikhism</option>
+                            <option value="taoism">Taoism</option>
+                            <option value="zoroastrianism">Zoroastrianism</option>
+                        </select>
+                        {{!-- height --}}
+                        <p>
+                            <label for="height">Height:</label>
+                            <input type="text" id="height" readonly style="border:0; color:#f6931f; font-weight:bold;"
+                                class="bg-transparent" />
+                        </p>
+                        <div id="height-range"></div>
+                        {{!-- salary  --}}
+                        <p>
+                            <label for="salary">Salary:</label>
+                            <input type="text" id="salary" readonly style="border:0; color:#f6931f; font-weight:bold;"
+                                class="bg-transparent" />
+                        </p>
+                        <div id="salary-range"></div>
+
+                        <div class="row mx-auto mt-3">
+                            <button type="submit" class="btn btn-primary">Apply</button>
+                        </div>
+
+
+
+                    </form>
+                </div>
+
+                <div class="col-md-10 mt-5">
+                    <div class="row">
+                        {{#each matches}}
+                        <div class="col-md-4 mt-5">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <a href="/matchprofile?id={{_id}}"><img class="avatar rounded-circle"
+                                            src="{{Profile.Profile1.photo}}" alt="Bologna"></a>
+                                    <h5 class="card-title">{{Profile.Profile1.name.firstname}}
+                                        {{Profile.Profile1.name.lastname}},
+                                        {{Profile.Profile2.age}}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{Profile.Profile2.height}},
+                                        {{Profile.Profile2.maritialstatus}}</h6>
+                                    <p class="card-text">{{Profile.Profile1.location.city}}</p>
+                                    <a class="btn btn-outline-secondary">Message</a>
+                                    <input type="hidden" class="userid" value="{{_id}}">
+                                    {{#if sent}}
+                                    <a class="btn btn-success  text-white">Sent</a>
+
+                                    {{else}}
+                                    <a class="btn btn-wine connect text-white">Connect</a>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                        <div class="col-md-9 mt-5 offset-2">
+
+                            {{#unless matches}}
+                            <h5>No current matches for this search.</h5>
+                            <h5> We'll have new matches for you soon.</h5>
+                            {{/unless}}
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <nav aria-label="Page navigation example ">
+        <ul class="pagination justify-content-center mt-5">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                    <span class="sr-only">Previous</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</body>
+
+
+
+{{!-- bootstrap scripts --}}
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+<script src="../js/matches.js"></script>
+<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
+
+
+</html>

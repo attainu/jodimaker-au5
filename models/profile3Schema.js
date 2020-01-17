@@ -10,14 +10,14 @@ var profileSchema3 = new mongoose.Schema({
         },
         isEmployed: {
             type: Boolean,
-            required: true
+            default: true
         },
         employer: {
             type: String,
             default: null
         },
         salary: {
-            type: Number,
+            type: String,
             default: 0
         }
     },
@@ -32,7 +32,34 @@ var profileSchema3 = new mongoose.Schema({
 
     AboutYourself: {
         type: String,
-    }
+    },
+    sunshine:String,
+    personalvalues:String,
+    bloodgroup:String,
+    healthinfo:String,
+    disability:String,
+    fluent:String,
+    subcaste:String,
+    gothra:String,
+    rashi:String,
+    manglik:String,
+    birthcity:String,
+    fatherstatus:String,
+    motherstatus:String,
+    familylocation:String,
+    nativeplace:String,
+    siblings:String,
+    familyvalues:String,
+    profession:String,
+    workingsector:String,
+    interests:String,
+    favoritemusic:String,
+    favoritereads:String,
+    preferredmovies:String,
+    favoritecuisions:String,
+    sportactivities:String
+
+    
 }, { _id: false })
 const Profile3 = mongoose.model('profile3', profileSchema3)
 module.exports = Profile3

@@ -1,77 +1,125 @@
-$(document).ready(function () {
+$(document).ready(function() {
+  $("#newRegister").click(function() {
+    $(".modal").modal("hide");
 
+    $("#login").toggle();
+  });
 
-    $('#newRegister').click(function () {
-        $(".modal").modal("hide")
+  $("#newLogin").click(function() {
+    $(".modal").modal("hide");
 
-        $("#login").toggle();
-        // $( '.modal-backdrop' ).remove();
+    $("#register").toggle();
+  });
+  $(".modal").on("hidden.bs.modal", function() {
+    if (!$("#myModal").hasClass("show")) {
+      $("input").val("");
+      $("form").removeClass("was-validated");
+      $("#emailsignupfeed").text("");
+      $("input").removeClass("is-valid is-invalid");
+    }
+  });
 
-    });
+  $("#password").keyup(function() {
+    $("#cfpassword").attr("pattern", $("#password").val());
+  });
+  $("#cfpassword").on("keyup", function() {
+    var password = $("#password").val();
+    var confirm = $("#cfpassword").val();
 
-    $('#newLogin').click(function () {
-        $(".modal").modal("hide")
+    if (confirm.length >= 1) {
+      if (confirm != password) {
+        $("#submit").attr("disabled", "true");
+        $("#cfpassword")
+          .removeClass("is-valid")
+          .addClass("is-invalid");
+      } else {
+        $("#submit").removeAttr("disabled");
+        $("#cfpassword").removeClass("is-invalid");
+      }
+    } else {
+      $("#submit").attr("disabled", "true");
+    }
+  });
 
-        $("#register").toggle();
-        // $( '.modal-backdrop' ).remove();
+  $("#submit")
+    .off("click")
+    .click(function() {
+      console.log("clicked");
+      if ($("#signupform")[0].checkValidity()) {
+        console.log("checked");
 
-    });
-
-    $('#cfpassword').on('keyup', function () {
-        var password = $('#password').val()
-        var confirm = $('#cfpassword').val()
-        if (confirm.length >= 1) {
-            if (confirm != password) {
-                $('#pwd').text("Password doesn't match.")
-                $('#submit').attr('disabled', 'true');
+        $.ajax({
+          type: "post",
+          url: "/generateotp",
+          data: { email: $("#email").val() },
+          success: function(response) {
+            if (response != "user exists") {
+              $("#email")
+                .removeClass("is-invalid")
+                .addClass("is-valid");
+              $(".modal").modal("hide");
+              $("#myModal").modal("show");
             } else {
-                $('#pwd').text("Password matched")
-                $('#submit').removeAttr('disabled');
+              $("#emailsignupfeed").text("Already registered");
             }
-        } else {
-            $('#pwd').text(" ")
-            $('#submit').attr('disabled', 'true');
-        }
-    })
-
-    $("#submit").click(function () {
-        if ($('#signupform')[0].checkValidity()) {
-
-            $.ajax({
-                type: "post",
-                url: "/generateotp",
-                data: { email: $("#email").val() },
-                success: function (response) {
-                    if (response != "user exists") {
-                        $("#email").removeClass("is-invalid").addClass("is-valid")
-                        $("#myModal").modal("show")
+            $("#submitwithotp")
+              .off("click")
+              .click(function() {
+                $.ajax({
+                  type: "post",
+                  url: "/signup",
+                  data: $("#signupform,#otpform").serialize(),
+                  success: function(response) {
+                    console.log(response);
+                    if (response == "false") {
+                      $("#otp").addClass("is-invalid");
+                    } else {
+                      $(".modal ,.modal-backdrop").hide();
+                      $("#login").modal("show");
                     }
-                    else {
-                        $("#email").addClass("is-invalid")
-                    }
-                    $("#submitwithotp").off("click").click(function () {
-                        $.ajax({
-                            type: "post",
-                            url: "/signup",
-                            data: $("#signupform,#otpform").serialize(),
-                            success: function (response) {
-                                console.log(response)
-                                if (response == "false") {
-                                    $("#otp").addClass("is-invalid")
-                                }
-                                else {
-                                    $(".modal ,.modal-backdrop").hide()
-                                   $("#login").modal("show")
-                                }
-                            }
-                        });
-                    })
-                }
-            });
-        }
-        else {
-            $("#signupform")[0].reportValidity()
-        }
-    })
+                  }
+                });
+              });
+          }
+        });
+      } else {
+        $("#signupform").addClass("was-validated");
+      }
+    });
+  $(".close").click(function() {
+    $("#register").modal("show");
+  });
 
-});
+  $("#resendotp").click(function() {
+    $.ajax({
+      type: "post",
+      url: "/generateotp",
+      data: { email: $("#email").val() },
+      success: function(response) {}
+    });
+  });
+})(function() {
+  "use strict";
+  window.addEventListener(
+    "load",
+    function() {
+      // Fetch all the forms we want to apply custom Bootstrap validation styles to
+      var forms = document.getElementsByClassName("needs-validation");
+      // Loop over them and prevent submission
+      var validation = Array.prototype.filter.call(forms, function(form) {
+        form.addEventListener(
+          "submit",
+          function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add("was-validated");
+          },
+          false
+        );
+      });
+    },
+    false
+  );
+})();

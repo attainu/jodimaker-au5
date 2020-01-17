@@ -15,7 +15,7 @@ router.use("/", function (req, res, next) {
     }
 })
 
-//get routes
+//get routes 
 
 
 router.get("/profile/1", (req, res) => {
@@ -39,17 +39,12 @@ router.get("/profile/4", (req, res) => {
 
 router.post("/profile/1", userController.profile1);
 
-
-
-
-
-
-
-
 router.post("/profile/2", userController.profile2);
 
 router.post("/profile/3", userController.profile3);
 router.post("/profile/4", userController.profile4);
+router.post("/updatePi",userController.profile)
+router.post("/userpref",userController.userpref)
 
 module.exports = router;
 

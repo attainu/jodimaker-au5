@@ -1,0 +1,66 @@
+.profileimage {
+    position: relative;
+    width: 175px;
+    height: 375px;
+    border-radius: 50%;
+    background-image: url("../img/woman-wearing-black-long-sleeved-shirt-1832959.jpg");
+    background-position: center;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position-y: 20%;
+}
+
+.header-top {
+    background-color: #78244C;
+}
+
+.nav-tabs {
+    border: 0;
+}
+
+.nav-link {
+    border: none !important;
+
+}
+
+a.nav-link {
+    padding-bottom: 0 !important;
+}
+
+.social {
+    padding: 20px;
+    width: 70px;
+    text-align: center;
+    text-decoration: none !important;
+    margin: 5px 2px;
+    font-weight: bold;
+    font-size: 2em;
+    height: 70px
+}
+
+
+
+
+hr {
+    border: 3px solid#78244C;
+    border-radius: 5px;
+}
+
+.header-top {
+    background-color: #78244C;
+}
+
+body {
+    padding-top: 70px;
+}
+.disabled{
+    background: transparent;
+    border: none;
+}
+.row{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+.btn-wine{
+    background-color: #78244C;
+}

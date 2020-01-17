@@ -1,0 +1,25 @@
+.header-top {
+  background-color: #78244c;
+}
+
+body {
+  padding-top: 70px;
+}
+
+.avatar {
+  border: 0.3rem solid rgba(#fff, 0.3);
+  margin-top: -6rem;
+  margin-bottom: 1rem;
+   width: 11rem;
+  height: 11rem;
+}
+
+.btn-wine {
+  color: #fff;
+  background-color: #78244c;
+  border-color: #78244c;
+}
+input{
+  outline: none;
+  cursor: default;
+}

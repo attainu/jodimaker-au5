@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="../css/userpref.css">
+    <title>User Preference</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <section>
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
+                <div class="container">
+                    <a class="navbar-brand text-white" href="#">Jodi Maker</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarText">
+                        <ul class="navbar-nav mr-auto text-white">
+                            <li class="nav-item active">
+                                <a class="nav-link text-white" href="dashboard">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="dashboard">My Matches</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="search">Search</a>
+                            </li>
+                        </ul>
+                        <span class="navbar-text">
+                            <ul class="navbar-nav mr-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="profile">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="setting">Settings</a>
+                                </li>
+                            </ul>
+                        </span>
+                    </div>
+                </div>
+            </nav>
+        </section>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 offset-md-2">
+                    <form action="/userpref" method="post" class="bg-light p-3">
+                        <div class=" row px-2">
+                            <h4 class="mt-2 ">Basic Information
+                                <hr>
+                            </h4>
+
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="age">Age range:</label><br>
+                            <input type="text" name="age" id="age1"> 
+                             <div class="form-control mt-2" id="slider-range"></div>
+                        </div>
+                       
+                        <div class="mb-3">
+                            <label><b>Height</b></label>
+                            <input class="form-control" type="text" name="height">
+                        </div>
+                        <div class="mb-3">
+                            <label><b>Maritial Status:</b></label>
+                            <select class="form-control" name="Maritialstatus">
+                                <option>Select option</option>
+                                <option value="nevermarried">Never Married</option>
+                                <option value="divorced">Divorced</option>
+                                <option value="windowed">Widowed</option>
+                                <option value="awaitingdivorce">Awaiting Divorce</option>
+                                <option value="anulled">Annulled</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label><b>Religion:</b></label>
+                            <select class="form-control" name="religion">
+                                <option>Select option</option>
+                                <option value="doesnotmatter">Doesn't Matter</option>
+                                <option value="hindu">Hindu</option>
+                                <option value="islam">Islam</option>
+                                <option value="buddhism">Buddhism</option>
+                                <option value="christianity">Christianity</option>
+                                <option value="jainism">Jainism</option>
+                                <option value="judaism">Judaism</option>
+                                <option value="sikhism">Sikhism</option>
+                                <option value="taoism">Taoism</option>
+                                <option value="zoroastrianism">Zoroastrianism</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label><b>Mother Tongue</b></label>
+                            <select class="form-control" name="mothertongue">
+                                <option>Select option</option>
+                                <option value="doesnotmatter">Doesn't Matter</option>
+                                <option value="hindi">Hindi</option>
+                                <option value="bengali">Bengali</option>
+                                <option value="urdu">Urdu</option>
+                                <option value="punjabi">Punjabi</option>
+                                <option value="marathi">Marathi</option>
+                                <option value="telugu">Telugu</option>
+                                <option value="tamil">Tamil</option>
+                                <option value="gujarati">Gujarati</option>
+                                <option value="oriya">Oriya</option>
+                                <option value="kannada">Kannada</option>
+                                <option value="malayalam">Malayalam</option>
+                                <option value="sanskrit">Sanskrit</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label><b>Diet:</b></label>
+                            <select class="form-control" name="diet">
+                                <option>Select option</option>
+                                <option value="Veg">Veg</option>
+                                <option value="Non-veg">Non-Veg</option>
+                                <option value="Occassionally Non-veg">Occassionally Non-veg</option>
+                                <option value="Eggetarian">Eggetarian</option>
+                                <option value="Jain">Jain</option>
+                                <option value="Vegan">Vegan</option>
+                            </select>
+                        </div>
+                        <div class=" row px-2">
+                            <h4 class="mt-2 ">Location Details
+                                <hr>
+                            </h4>
+
+                        </div>
+
+                        <div class=" mb-3">
+                            <label for="countryId"><b>Country</b></label>
+                            <select name="country" class="countries custom-select" id="countryId">
+                                <option value="">Select Country</option>
+                                <option class="country" value="India">India</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 location">
+                            <label for="stateId"><b>State</b></label>
+                            <select name="state" class="states custom-select" id="stateId">
+                                <option value="">Select State</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cityId"><b>City</b></label>
+                            <select name="city" class="cities custom-select" id="cityId">
+                                <option value="">Select City</option>
+                            </select>
+                        </div>
+                        <div class=" row px-2">
+                            <h4 class="mt-2 ">Education &amp; Career
+                                <hr>
+                            </h4>
+                        </div>
+                        <div class="mb-3">
+                            <label><b>Education Level:</b></label>
+                            <select class="form-control" name="educationlevel">
+                                <option>Select option</option>
+                                <option value="doctrate">Doctrate</option>
+                                <option value="masters">Masters</option>
+                                <option value="Honoursdegree">Honours Degree</option>
+                                <option value="Bechelors">Bechelors</option>
+                                <option value="Undergraduate">Undergraduate</option>
+                                <option value="Highschool">High School</option>
+                                <option value="less than high school">Less Than High School</option>
+                                <option value="Trade school">Trade School</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label><b>Working with</b></label>
+                            <select class="form-control" name="workingwith">
+                                <option>Select option</option>
+                                <option value="government job">Government sector</option>
+                                <option value="Civil Services">Civil Services</option>
+                                <option value="Business">Business</option>
+                                <option value="Self employed">Self Employed</option>
+                                <option value="Not working">Not Working</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label><b>Employer</b></label>
+                            <input type="text" name="employer" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="customRange1"><b>Salary</b></label>
+                            <div class="col-md-8">
+                                <input type="range" class="custom-range form-control" min="1" max="40" value="1"
+                                    id="customRange1" name="salary">
+                                <p class="text-center">&#8377;<span id="sliderValue"></span> Lakhs</p>
+                            </div>
+                        </div>
+                        <div class="form-row mx-5">
+                            <div class="col-12  text-center">
+                                <button class="btn btn-outline-success mb-4 slide" type="submit">Save</button>
+                            </div>
+                        </div>
+                        </form>
+                    </form>
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+                integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+                crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+                integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+                crossorigin="anonymous"></script>
+            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+                integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+            <script src="../js/profile-1.js"></script>
+            <script>
+                var slider = document.getElementById("customRange1");
+                var output = document.getElementById("sliderValue");
+                output.innerHTML = slider.value;
+                slider.oninput = function () {
+                    output.innerHTML = this.value;
+                };
+                $(function () {
+                    $("#slider-range").slider({
+                        range: true,
+                        min: 18,
+                        max: 75,
+                        values: [20, 30],
+                        slide: function (event, ui) {
+                            $("#age1").val((ui.values[0]) + " - " + ui.values[1]);
+                        }
+                    });
+                    $("#age1").val($("#slider-range").slider("values", 0) +
+                        " - " + $("#slider-range").slider("values", 1));
+                });
+
+            </script>
+
+</body>
+
+</html>
