@@ -110,7 +110,7 @@ UserController.profile1 = function (req, res) {
                     user.Profile.Profile1 = newProfile1
                     var newSettings = new Settings({ showname: fields.firstname[0][0] + " " + fields.lastname[0] })
                     user.Settings = newSettings
-                    
+
                     user.save()
                         .then(user => {
                             console.log("saved user profile1")
@@ -132,8 +132,8 @@ UserController.profile2 = function (req, res) {
         age: getAge("" + parseFloat(req.body.month) + "/" + parseFloat(req.body.day) + "/" + parseFloat(req.body.year) + ""),
         gender: req.body.gender,
         maritialstatus: req.body.maritialstatus,
-        height: parseFloat(req.body.height),
-        weight: parseFloat(req.body.weight),
+        height: req.body.height,
+        weight: req.body.weight,
         diet: req.body.diet,
         religion: req.body.religion,
         caste: req.body.caste,

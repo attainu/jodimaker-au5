@@ -13,8 +13,8 @@ router.get("/matches", (req, res) => {
         console.log(req.query)
 
         console.log(typeof (height), height[9])
-        var minheight = parseInt(height[0]) * 12 + parseInt(height[2])
-        var maxheight = parseInt(height[8]) * 12 + parseInt(height[10])
+        var minheight = parseInt(height[0]) * 12 + parseInt(height[2] + height[3])
+        var maxheight = parseInt(height[8]) * 12 + parseInt(height[10] + height[11])
         console.log(minheight, maxheight)
 
 
@@ -44,7 +44,7 @@ router.get("/matches", (req, res) => {
                             return
                         }
                         var heightfeet = el.Profile.Profile2.height
-                        var heightinches = parseInt(heightfeet[1]) * 12 + parseInt(heightfeet[3])
+                        var heightinches = parseInt(heightfeet[1]) * 12 + parseInt(heightfeet[3] + heightfeet[4])
                         if (heightinches < minheight || heightinches > maxheight) {
                             return
                         }
@@ -121,11 +121,51 @@ router.get("/matchprofile", (req, res) => {
         User.findOne({ _id: req.query.id })
             .then(matchprofile => {
                 var isMatched = matchprofile.Matches.acceptedrequests.includes(user._id)
+                if (matchprofile.Userpref) {
+                    var matchingpref = {}
+
+                    if (user.Profile.Profile2.age > matchprofile.Userpref.minage && user.Profile.Profile2.age < matchprofile.Userpref.maxage) {
+                        matchingpref.age = matchprofile.Userpref.minage + "-" + matchprofile.Userpref.maxage
+                    }
+                    var heightfeet = user.Profile.Profile2.height
+
+                    var minheight = parseInt(matchprofile.Userpref.height[1]) * 12 + parseInt(matchprofile.Userpref.height[3] + matchprofile.Userpref.height[4])
+                    var heightinches = parseInt(heightfeet[1]) * 12 + parseInt(heightfeet[3] + heightfeet[4])
+                    if (heightinches >= minheight) {
+                        matchingpref.height = matchprofile.Userpref.height + "-" + "6'5 ft"
+                    }
+                    if (matchprofile.Userpref.maritialstatus == user.Profile.Profile2.maritialstatus) {
+                        matchingpref.maritalstatus = matchprofile.Userpref.maritialstatus
+                    }
+                    if (matchprofile.Userpref.religion == user.Profile.Profile2.religion) {
+                        matchingpref.religion = matchprofile.Userpref.religion
+                    }
+                    if (matchprofile.Userpref.mothertongue == user.Profile.Profile2.mothertongue) {
+                        matchingpref.mothertongue = matchprofile.Userpref.mothertongue
+                    }
+                    if (matchprofile.Userpref.diet == user.Profile.Profile2.diet) {
+                        matchingpref.diet = matchprofile.Userpref.diet
+                    }
+                    console.log(user.Profile.Profile1)
+                    if (matchprofile.Userpref.location.country == user.Profile.Profile1.location.country) {
+                        matchingpref.country = matchprofile.Userpref.location.country
+                    }
+                    if (matchprofile.Userpref.location.state == user.Profile.Profile1.location.state) {
+                        matchingpref.state = matchprofile.Userpref.location.state
+                    }
+                    if (matchprofile.Userpref.location.city == user.Profile.Profile1.location.city) {
+                        matchingpref.city = matchprofile.Userpref.location.city
+                    }
+
+
+                }
+
 
                 res.render("matching", {
                     user: user,
                     match: matchprofile,
-                    isMatched: isMatched
+                    isMatched: isMatched,
+                    matchingpref: matchingpref
 
                 });
             })

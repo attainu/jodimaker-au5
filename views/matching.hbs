@@ -96,7 +96,7 @@
                                 <div class="col md-3">
                                     <p>{{match.Signup.email}}</p>
                                 </div>
-                               
+
                                 {{else}}
                                 <div class="col md-3">
                                     <p>98XXXXXXXX</p>
@@ -119,7 +119,7 @@
                                 <div class="row ">
                                     <h6 class=""><span class="ml-4"><span class="ml-3">Lifestyle</span></span></h6>
                                 </div>
-                                <div class="row mx-3  ">
+                                <div class="row mx-3 mt-2 ">
                                     <div class="col-md-3">
                                         <label for="number">Smoking: </label>
                                     </div>
@@ -164,7 +164,7 @@
                                 <div class="row mx-3">
                                     <h6><span class="ml-2">Background</span></h6>
                                 </div>
-                                <div class="row mx-3 ">
+                                <div class="row mx-3 mt-2 ">
                                     <div class="col-md-3">
                                         <label for="number">Religion: </label>
                                     </div>
@@ -215,7 +215,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <div class="row mx-3 justify-content-around">
+                            <div class="row mx-4 justify-content-around">
                                 <div class="col-md-3">
                                     <img src="{{match.Profile.Profile1.photo}}"
                                         class="card-img-top rounded-circle image" alt="Profile Page">
@@ -228,27 +228,30 @@
                         </div>
 
                         <div class="col-md-12">
-                            <div class="row mx-3 justify-content-around">
-                                <p class="font-weight-bold">{{match.Profile.Profile1.name.firstname}}'s Preferences</p>
-                                <p class="font-weight-bold">You Match</p>
+                            <div class="row mx-3 justify-content-around mt-4">
+                                <p class="font-weight-bold mr-4">{{match.Profile.Profile1.name.firstname}}'s Preferences</p>
+                                <p class="font-weight-bold mr-4">You Match</p>
                             </div>
                         </div>
 
 
-                        <div class="col-md-12">
-                            <div class="row mx-3 justify-content-around text-center">
-                                <div class="col">
-                                    <label for="age">Age</label>
-                                    <p>21-26</p>
+
+                        {{#each matchingpref}}
+
+                        <div class="col-md-9 mt-3 offset-md-2 ">
+                            <div class="row mx-3 ">
+                                <div class="col-md-9">
+                                    <label class="text-capitalize" for="age">{{@key}}: {{this}}</label>
+                                    
                                 </div>
                                 <div class="col">
                                     <p><i class="fa fa-check-circle" style="color: green;"></i></p>
                                 </div>
                             </div>
                         </div>
+                        {{/each}}
 
-
-
+                        {{!-- 
                         <div class="col-md-12">
                             <div class="row mx-3 justify-content-around text-center">
                                 <div class="col">
@@ -339,7 +342,7 @@
                             </div>
                         </div>
 
-
+                        --}}
                     </div>
 
 
