@@ -1,14 +1,14 @@
-const socket = io()
-socket.on("message", data => {
-  console.log("hello")
-  if ($(".chatwindow").attr("id")) {
-    loadchat()
-  }
-  else console.log("not here")
-})
+
 
 $(document).ready(function () {
-
+  const socket = io();
+  socket.on("message", data => {
+    console.log("hello")
+    if ($(".chatwindow").attr("id")) {
+      loadchat()
+    }
+    else console.log("not here")
+  })
   function readURL(input) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();
@@ -146,11 +146,12 @@ $(document).ready(function () {
   })
 
   // chat
-
+  var listItem
 
   $(".openchat").click(function () {
     var friend = $(this).text()
-    var listItem = $(this)
+     listItem = $(this)
+    console.log(listItem.children("input").val())
     $(".chatwindow").remove()
     $("body").append("<div id = '" + $(this).children("input").val() + "' class ='chatwindow '>")
     $(".chatwindow:last").append("<div class ='ml-2' style ='position:relative;top:0'><i class = 'text-success fa fa-circle'></i> " + friend + "</div>")
@@ -160,7 +161,7 @@ $(document).ready(function () {
     })
     $.ajax({
       type: "post",
-      url: "/chat/" + $(".chatwindow:last").attr("id"),
+      url: "/chat/" + listItem.children("input").val(),
       success: function (response) {
         console.log(response)
         $(".chatwindow").append("<div class='msgarea text-break w-100' style='height:82%'> ")
@@ -183,7 +184,7 @@ $(document).ready(function () {
 
           var data = {
             "message": $("#message").val(),
-            "friend_id": response.friend_id,
+            "friend_id": listItem.children("input").val(),
             "friend": friend
           }
           $.ajax({
@@ -203,26 +204,27 @@ $(document).ready(function () {
 
 
 
+
+  function loadchat() {
+    $.ajax({
+      type: "post",
+      url: "/chat/" + listItem.children("input").val(),
+      success: function (response) {
+        console.log(response)
+        $(".msgarea").remove()
+        $(".chatwindow form").before("<div class='msgarea text-break w-100' style='height:82%'> ")
+        response.messages.forEach(element => {
+          if (element.from == "You") {
+
+            $(".msgarea:last").append("<p class ='m-1 mt-2 chatmsg bg-white p-2 rounded shadow d-block float-right'>" + element.message + "</p> <br><br>")
+          } else {
+            $(".msgarea:last").append("<p class ='m-1 mt-2 chatmsg p-2 bg-warning rounded shadow float-left'>" + element.message + "</p><br><br>")
+
+          }
+        });
+        $(".msgarea:last").scrollTop($(".msgarea:last").prop("scrollHeight"))
+
+      }
+    })
+  }
 });
-function loadchat() {
-  $.ajax({
-    type: "post",
-    url: "/chat/" + $(".chatwindow:last").attr("id"),
-    success: function (response) {
-      console.log(response)
-      $(".msgarea").remove()
-      $(".chatwindow form").before("<div class='msgarea text-break w-100' style='height:82%'> ")
-      response.messages.forEach(element => {
-        if (element.from == "You") {
-
-          $(".msgarea:last").append("<p class ='m-1 mt-2 chatmsg bg-white p-2 rounded shadow d-block float-right'>" + element.message + "</p> <br><br>")
-        } else {
-          $(".msgarea:last").append("<p class ='m-1 mt-2 chatmsg p-2 bg-warning rounded shadow float-left'>" + element.message + "</p><br><br>")
-
-        }
-      });
-      $(".msgarea:last").scrollTop($(".msgarea:last").prop("scrollHeight"))
-
-    }
-  })
-}

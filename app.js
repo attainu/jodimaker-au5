@@ -42,18 +42,20 @@ app.use(
     rolling: true
   })
 );
+var server = require('http').Server(app)
+var io = require('socket.io')(server)
+var website = require("./routes/website")(io)
 
 //connect to mongo
 mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(console.log("Mongodb connected...."))
   .catch(err => console.log(err));
-var io = require('socket.io')(server)
 
-
-io.on('connection', (socket) => {
-  socket.emit("connected", "user is connected")
-})
+//activating server at PORT address
+server.listen(PORT, () => {
+  console.log("Server is active at port address" + PORT);
+});
 
 //Routes
 //root and loginsignup
@@ -61,10 +63,10 @@ app.use("/", require("./routes/loginsignup"));
 //profilesetup
 app.use("/", require("./routes/profilesetup"));
 //homepage
-app.use("/", require("./routes/website"));
+app.use("/", website);
 app.use("/", require("./routes/settings"));
 
-//activating server at PORT address
-server.listen(PORT, () => {
-  console.log("Server is active at port address" + PORT);
-});
+
+// io.on('connection', (socket) => {
+//   console.log("someone connected")
+// })
