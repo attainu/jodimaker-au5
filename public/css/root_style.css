@@ -106,3 +106,8 @@ body {
 #register{
   top:-20px;
 }
+
+.toast{
+  box-shadow: none;
+  border:none;
+}

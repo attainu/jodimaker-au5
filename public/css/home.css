@@ -123,3 +123,12 @@ body {
 /* .deletereceived{
   width:83%;
 } */
+.toast{
+  box-shadow: none;
+  border:none;
+  background-color:transparent;
+  position: absolute;
+  top: 620px;
+  right: 0px;
+  z-index: 999999; 
+}

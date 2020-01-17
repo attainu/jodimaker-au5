@@ -23,3 +23,9 @@ input{
   outline: none;
   cursor: default;
 }
+.toast{
+  box-shadow: none;
+  border:none;
+  background-color:transparent
+}
+

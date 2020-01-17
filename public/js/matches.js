@@ -19,6 +19,7 @@ $(document).ready(function () {
           .removeClass("bg-wine")
           .addClass("bg-success")
           .text("Sent");
+          $(".toast").toast("show")  
       }
     });
   });

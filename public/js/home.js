@@ -1,6 +1,6 @@
 $(document).ready(function () {
   $(".fa").on("click", function () { });
-
+  $(".toast").toast("show")  
   function readURL(input) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();

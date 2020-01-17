@@ -42,6 +42,11 @@
                             <a class="nav-link text-white" href="search">Search</a>
                         </li>
                     </ul>
+                     <div class="col-5 toast" data-delay="5000">
+                        <div class="alert alert-success text-center">
+                            <h6>Request sent &nbsp;<i class="fa fa-smile-o" aria-hidden="true"></i></h6>
+                        </div>
+                    </div>
                     <span class="navbar-text">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
@@ -124,9 +129,11 @@
 
                     </form>
                 </div>
-
+                 
                 <div class="col-md-10 mt-5">
+                    
                     <div class="row">
+                        
                         {{#each matches}}
                         <div class="col-md-3 mt-5">
                             <div class="card" style="width: 18rem;">
@@ -143,14 +150,15 @@
                                     <input type="hidden" class="userid" value="{{_id}}">
                                     {{#if sent}}
                                     <a class="btn btn-success  text-white">Sent</a>
-
-                                    {{else}}
+                                   {{else}}
                                     <a class="btn btn-wine connect text-white">Connect</a>
                                     {{/if}}
+                                      
                                 </div>
                             </div>
                         </div>
                         {{/each}}
+                        
 
 
                     </div>
