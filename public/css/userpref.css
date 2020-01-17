@@ -64,3 +64,7 @@ body {
 .btn-wine{
     background-color: #78244C;
 }
+#age1{
+    background-color: transparent;
+    border:none;
+}
