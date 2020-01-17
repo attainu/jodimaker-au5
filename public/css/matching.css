@@ -18,14 +18,9 @@ hr.main {
     border-color: #78244C;
 }
 
-.profileimage {
-    position: relative;
-    width: 175px;
-    height: 375px;
-    border-radius: 50%;
-    background-image: url("../images/woman-wearing-black-long-sleeved-shirt-1832959.jpg");
-    background-position: center;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position-y: 20%;
+.avatar{
+    height: 28rem;
+}
+.image{
+    height: 18rem;
 }

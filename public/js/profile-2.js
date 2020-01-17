@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
   const castes = [
     "Adaviyar",
     "Agri",
@@ -269,21 +269,22 @@ $(document).ready(function() {
   }
   for (let i = 3, l = 0, k = 0; l < 36; l++) {
     let j = l % 12;
+    var feet = i + "'" + j
     if (!j) {
       i++;
     }
     k = Math.round((i + j / 12) * 30.48);
     if (!j) {
       //   console.log(i + "ft" + k + "cms");
-      $(".height").append(`<option value="${k}">${i}ft - ${k}cms</option>`);
+      $(".height").append(`<option value=" ${feet}ft">${i}ft - ${k}cms</option>`);
     } else {
       //   console.log(i + "ft" + j + "in" + k + "cms");
       $(".height").append(
-        `<option value="${k}">${i}ft ${j}in - ${k}cms</option>`
+        `<option value=" ${feet}ft">${i}ft ${j}in - ${k}cms</option>`
       );
     }
   }
 
   for (let i = 40; i < 151; i += 2)
-    $(".weight").append(`<option value="${i}">${i} Kgs</option>`);
+    $(".weight").append(`<option value="${i}Kgs">${i} Kgs</option>`);
 });

@@ -15,7 +15,7 @@ router.use("/", function (req, res, next) {
     }
 })
 
-//get routes
+//get routes 
 
 
 router.get("/profile/1", (req, res) => {
@@ -38,14 +38,6 @@ router.get("/profile/4", (req, res) => {
 
 
 router.post("/profile/1", userController.profile1);
-
-
-
-
-
-
-
-
 
 router.post("/profile/2", userController.profile2);
 

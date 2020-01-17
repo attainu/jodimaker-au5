@@ -37,7 +37,6 @@ UserController.signup = function (req, res) {
                 email,
                 password,
                 mobile,
-                createdBy
             })
             newUser.Signup = newSignup
             newUser.save()
@@ -67,7 +66,7 @@ UserController.login = function (req, res) {
                     if (user.Profile.Profile3) {
 
 
-                        res.redirect("/dashboard")
+                        res.redirect("/home")
                     }
                     else {
                         res.redirect("/profile/1")
@@ -111,6 +110,7 @@ UserController.profile1 = function (req, res) {
                     user.Profile.Profile1 = newProfile1
                     var newSettings = new Settings({ showname: fields.firstname[0][0] + " " + fields.lastname[0] })
                     user.Settings = newSettings
+
                     user.save()
                         .then(user => {
                             console.log("saved user profile1")
@@ -122,25 +122,7 @@ UserController.profile1 = function (req, res) {
 
     })
 }
-
 UserController.profile2 = function (req, res) {
-    function getAge(DOB) {
-        var today = new Date();
-        var birthDate = new Date(DOB);
-        var age = today.getFullYear() - birthDate.getFullYear();
-        var m = today.getMonth() - birthDate.getMonth();
-        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-            age = age - 1;
-        }
-
-        return age;
-    }
-    // function toFeet(n) {
-    //     var realFeet = ((n * 0.393700) / 12);
-    //     var feet = Math.floor(realFeet);
-    //     var inches = Math.round((realFeet - feet) * 12);
-    //     return feet + "&prime;" + inches + '&Prime;';
-    // }
     data = {
         dob: {
             day: parseFloat(req.body.day),
@@ -150,8 +132,8 @@ UserController.profile2 = function (req, res) {
         age: getAge("" + parseFloat(req.body.month) + "/" + parseFloat(req.body.day) + "/" + parseFloat(req.body.year) + ""),
         gender: req.body.gender,
         maritialstatus: req.body.maritialstatus,
-        height: parseFloat(req.body.height),
-        weight: parseFloat(req.body.weight),
+        height: req.body.height,
+        weight: req.body.weight,
         diet: req.body.diet,
         religion: req.body.religion,
         caste: req.body.caste,
@@ -214,10 +196,8 @@ UserController.profile4 = function (req, res) {
             res.redirect("/userpref")
 
         })
-
         .catch(err => console.log(err))
 }
-
 UserController.profile = function (req, res) {
     User.findOne({ _id: req.session.user._id })
         .then(user => {
@@ -285,14 +265,14 @@ UserController.userpref = function (req, res) {
                 userpref.diet = req.body.diet,
                 userpref.location = {}
 
-                userpref.location.country = req.body.country,
+            userpref.location.country = req.body.country,
                 userpref.location.state = req.body.state,
                 userpref.location.city = req.body.city
-                userpref.education={}
-                userpref.education.educationlevel=req.body.educationlevel,
-                userpref.education.workingwith=req.body.workingwith,
-                userpref.education.employer=req.body.employer,
-                userpref.education.salary=req.body.salary
+            userpref.education = {}
+            userpref.education.educationlevel = req.body.educationlevel,
+                userpref.education.workingwith = req.body.workingwith,
+                userpref.education.employer = req.body.employer,
+                userpref.education.salary = req.body.salary
 
             const newuserpref = new Userpref(userpref)
             user.Userpref = newuserpref
@@ -304,3 +284,16 @@ UserController.userpref = function (req, res) {
 
 module.exports = UserController;
 
+module.exports = UserController;
+
+function getAge(DOB) {
+    var today = new Date();
+    var birthDate = new Date(DOB);
+    var age = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age = age - 1;
+    }
+
+    return age;
+}

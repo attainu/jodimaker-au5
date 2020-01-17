@@ -20,7 +20,7 @@
         <section>
             <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
                 <div class="container">
-                    <a class="navbar-brand text-white" href="#">Jodi Maker</a>
+                    <a class="navbar-brand text-white" href="#"><img src="img/jodi.png"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -28,10 +28,10 @@
                     <div class="collapse navbar-collapse" id="navbarText">
                         <ul class="navbar-nav mr-auto text-white">
                             <li class="nav-item active">
-                                <a class="nav-link text-white" href="dashboard">Dashboard</a>
+                                <a class="nav-link text-white" href="home">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="dashboard">My Matches</a>
+                                <a class="nav-link text-white" href="home">My Matches</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="search">Search</a>
@@ -94,30 +94,41 @@
                     </div>
                 </div>
             </div>
-             <div class="modal fade" id="confirm-update" tabindex="-1" role="dialog"
-                                    aria-labelledby="myModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
+            <div class="modal fade" id="confirm-update" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
 
-                                            <div class="modal-header">
-                                                <h4>Confirm Update</h4>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-hidden="true">&times;</button>
-                                                <h4 class="modal-title" id="myModalLabel"></h4>
-                                            </div>
+                        <div class="modal-header">
+<<<<<<< HEAD
+                            <h4>Confirm Update</h4>
+=======
+>>>>>>> 5fd2902bf21518b551ed3aba76cdc569b8609763
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title" id="myModalLabel"></h4>
+                        </div>
 
-                                            <div class="modal-body">
-                                                <p>Are you sure for update.</p>
-                                            </div>
+                        <div class="modal-body">
+<<<<<<< HEAD
+                            <p>Are you sure for update.</p>
+=======
+                            <p>You are about to update your Account,this procedure is irreversible.
+                            </p>
+                            <p>Do you want to proceed?</p>
+>>>>>>> 5fd2902bf21518b551ed3aba76cdc569b8609763
+                        </div>
 
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default"
-                                                    data-dismiss="modal">Cancel</button>
-                                                <a class="btn btn-info btn-ok">Update</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+<<<<<<< HEAD
+                            <a class="btn btn-info btn-ok">Update</a>
+=======
+                            <a class="btn btn-danger btn-ok">Update</a>
+>>>>>>> 5fd2902bf21518b551ed3aba76cdc569b8609763
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="tab-content py-4 bg-white border">
                 {{!-- profile --}}
                 <div class="tab-pane active" id="profile">
@@ -147,7 +158,8 @@
                                         </div>
                                         <div class="col-md-8">
                                             <div class="text-nowrap"><input class="disabled" type="text" name="dob"
-                                                    value="{{result.Profile.Profile2.dob.day}}/{{result.Profile.Profile2.dob.month}}/{{result.Profile.Profile2.dob.year}}" required>
+                                                    value="{{result.Profile.Profile2.dob.day}}/{{result.Profile.Profile2.dob.month}}/{{result.Profile.Profile2.dob.year}}"
+                                                    required>
                                             </div>
                                         </div>
                                     </div>
@@ -176,7 +188,12 @@
                                             <label class="text-nowrap">Posted by:</label>
                                         </div>
                                         <div class="col-md-8">
-                                            <div class="text-nowrap"><input type="text" class="disabled" value="{{result.Signup.createdBy}}" required></div>
+                                            <div class="text-nowrap"><input type="text" class="disabled"
+<<<<<<< HEAD
+                                                    value="{{result.Signup.createdBy}}" required></div>
+=======
+                                                    value="{{result.Signup.createdBy}}"></div>
+>>>>>>> 5fd2902bf21518b551ed3aba76cdc569b8609763
                                         </div>
                                     </div>
                                 </div>
@@ -187,8 +204,8 @@
                                         </div>
                                         <div class="col-md-7">
                                             <div class="text-nowrap"><input class="disabled" type="text"
-                                                    name="mothertongue"
-                                                    value="{{result.Profile.Profile2.mothertongue}}" required></div>
+                                                    name="mothertongue" value="{{result.Profile.Profile2.mothertongue}}"
+                                                    required></div>
                                         </div>
                                     </div>
                                     <div class="row ">
@@ -223,7 +240,7 @@
                             </div>
                             {{!-- basic Information --}}
                             <div class="col-md-12">
-                               
+
                                 <div class="row">
                                     <h6 class="mt-2"> Basics &amp; Lifestyle
                                         <hr>
@@ -247,11 +264,12 @@
                                             <div class="col-md-7">
                                                 {{#if result.Profile.Profile3.sunshine}}
                                                 <div class="text-nowrap"><input class="disabled" type="text"
-                                                        name="sunshine" value="{{result.Profile.Profile3.sunshine}}"></div>
-                                                {{else}}    
-                                                   <div class="text-nowrap"><input class="disabled" type="text"
-                                                        name="sunshine" value="Update"></div> 
-                                                {{/if}}           
+                                                        name="sunshine" value="{{result.Profile.Profile3.sunshine}}">
+                                                </div>
+                                                {{else}}
+                                                <div class="text-nowrap"><input class="disabled" type="text"
+                                                        name="sunshine" value="Update"></div>
+                                                {{/if}}
                                             </div>
                                         </div>
                                         <div class="row">
@@ -261,11 +279,12 @@
                                             <div class="col-md-7 ">
                                                 {{#if result.Profile.Profile3.personalvalues}}
                                                 <div class="text-nowrap"><input class="disabled" type="text"
-                                                        name="personalvalues" value="{{result.Profile.Profile3.personalvalues}}"></div>
+                                                        name="personalvalues"
+                                                        value="{{result.Profile.Profile3.personalvalues}}"></div>
                                                 {{else}}
-                                                  <div class="text-nowrap"><input class="disabled" type="text"
-                                                        name="personalvalues" value="enter here"></div>    
-                                                {{/if}}            
+                                                <div class="text-nowrap"><input class="disabled" type="text"
+                                                        name="personalvalues" value="enter here"></div>
+                                                {{/if}}
                                             </div>
                                         </div>
 
@@ -276,7 +295,8 @@
                                             <div class="col-md-7 ">
                                                 <div class="text-nowrap"><input class="disabled" type="text"
                                                         name="grewup"
-                                                        value="{{result.Profile.Profile1.location.country}}" required></div>
+                                                        value="{{result.Profile.Profile1.location.country}}" required>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -287,12 +307,13 @@
                                             </div>
                                             <div class="col-md-7">
                                                 {{#if result.Profile.Profile3.bloodgroup}}
-                                                 <div class="text-nowrap"><input class="disabled" name="bloodgroup" type="text"
-                                                        value="{{result.Profile.Profile3.bloodgroup}}"></div>
+                                                <div class="text-nowrap"><input class="disabled" name="bloodgroup"
+                                                        type="text" value="{{result.Profile.Profile3.bloodgroup}}">
+                                                </div>
                                                 {{else}}
-                                                 <div class="text-nowrap"><input class="disabled" name="bloodgroup" type="text"
-                                                        value="Update"></div>
-                                                  {{/if}}       
+                                                <div class="text-nowrap"><input class="disabled" name="bloodgroup"
+                                                        type="text" value="Update"></div>
+                                                {{/if}}
                                             </div>
                                         </div>
                                         <div class="row">
@@ -302,12 +323,13 @@
                                             <div class="col-md-7">
                                                 {{#if result.Profile.Profile3.healthinfo}}
                                                 <div class="text-nowrap"><input class="disabled" type="text"
-                                                        name="healthinfo" value="{{result.Profile.Profile3.healthinfo}}"></div>
+                                                        name="healthinfo"
+                                                        value="{{result.Profile.Profile3.healthinfo}}"></div>
                                                 {{else}}
-                                                  <div class="text-nowrap"><input class="disabled" type="text"
+                                                <div class="text-nowrap"><input class="disabled" type="text"
                                                         name="healthinfo" value="update"></div>
                                                 {{/if}}
-                                                         
+
                                             </div>
                                         </div>
                                         <div class="row">
@@ -331,12 +353,12 @@
                                             <div class="col-md-7">
                                                 <div>
                                                     {{#if result.Profile.Profile3.fluent}}
-                                                     <div><input class="disabled" type="text" name="fluent"
+                                                    <div><input class="disabled" type="text" name="fluent"
                                                             value="{{result.Profile.Profile3.fluent}}"></div>
                                                     {{else}}
-                                                     <div><input class="disabled" type="text" name="fluent"
+                                                    <div><input class="disabled" type="text" name="fluent"
                                                             value="Update"></div>
-                                                     {{/if}}       
+                                                    {{/if}}
                                                 </div>
                                             </div>
                                         </div>
@@ -345,7 +367,7 @@
                             </div>
                             {{!-- Religious Background --}}
                             <div class="col-md-12">
-                               
+
                                 <div class=" row ">
                                     <h6 class="mt-2 "> Religious Background
                                         <hr>
@@ -359,7 +381,8 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="text-nowrap"><input class="disabled" type="text"
-                                                        name="religion" value="{{result.Profile.Profile2.religion}}" required>
+                                                        name="religion" value="{{result.Profile.Profile2.religion}}"
+                                                        required>
                                                 </div>
                                             </div>
                                         </div>
@@ -369,7 +392,8 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="text-nowrap"><input class="disabled" type="text"
-                                                        name="caste" value="{{result.Profile.Profile2.caste}}" required></div>
+                                                        name="caste" value="{{result.Profile.Profile2.caste}}" required>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -382,11 +406,11 @@
                                                         name="subcaste" value="{{result.Profile.Profile3.subcaste}}">
                                                 </div>
                                                 {{else}}
-                                                 <div class="text-nowrap"><input class="disabled" type="text"
+                                                <div class="text-nowrap"><input class="disabled" type="text"
                                                         name="subcaste" value="Not Specified">
                                                 </div>
                                                 {{/if}}
-                                                  
+
                                             </div>
                                         </div>
                                         <div class="row">
@@ -396,11 +420,11 @@
                                             <div class="col-md-8">
                                                 <div class="text-nowrap">
                                                     {{#if result.Profile.Profile3.gothra}}
-                                                    <input class="disabled" type="text"
-                                                        name="gothra" value="{{result.Profile.Profile3.gothra}}">
+                                                    <input class="disabled" type="text" name="gothra"
+                                                        value="{{result.Profile.Profile3.gothra}}">
                                                     {{else}}
-                                                         <input class="disabled" type="text"
-                                                        name="gothra" value="Not Specified">
+                                                    <input class="disabled" type="text" name="gothra"
+                                                        value="Not Specified">
                                                     {{/if}}
                                                 </div>
                                             </div>
@@ -415,11 +439,11 @@
                                             <div class="col-md-7">
                                                 <div class="text-nowrap">
                                                     {{#if result.Profile.profile3.rashi}}
-                                                    <input class="disabled" type="text"
-                                                        name="rashi" value="{{result.Profile.profile3.rashi}}">
-                                                    {{else}}   
-                                                     <input class="disabled" type="text"
-                                                        name="rashi" value="Not Specified">
+                                                    <input class="disabled" type="text" name="rashi"
+                                                        value="{{result.Profile.profile3.rashi}}">
+                                                    {{else}}
+                                                    <input class="disabled" type="text" name="rashi"
+                                                        value="Not Specified">
                                                     {{/if}}
                                                 </div>
                                             </div>
@@ -431,12 +455,12 @@
                                             <div class="col-md-7 ">
                                                 <div class="text-nowrap">
                                                     {{#if result.Profile.Profile3.manglik}}
-                                                    <input class="disabled" name="manglik"
-                                                        type="text" value="{{result.Profile.Profile3.manglik}}">
+                                                    <input class="disabled" name="manglik" type="text"
+                                                        value="{{result.Profile.Profile3.manglik}}">
                                                     {{else}}
-                                                        <input class="disabled" name="manglik"
-                                                        type="text" value="Will tell you later">
-                                                    {{/if}} 
+                                                    <input class="disabled" name="manglik" type="text"
+                                                        value="Will tell you later">
+                                                    {{/if}}
                                                 </div>
                                             </div>
                                         </div>
@@ -447,13 +471,13 @@
                                             <div class="col-md-7">
                                                 <div class="text-nowrap">
                                                     {{#if result.Profile.Profile3.birthcity}}
-                                                       <input class="disabled" type="text"
-                                                        name="birthcity" value="{{result.Profile.Profile3.birthcity}}">
+                                                    <input class="disabled" type="text" name="birthcity"
+                                                        value="{{result.Profile.Profile3.birthcity}}">
                                                     {{else}}
-                                                         <input class="disabled" type="text"
-                                                        name="birthcity" value="Not spacified">
+                                                    <input class="disabled" type="text" name="birthcity"
+                                                        value="Not spacified">
                                                     {{/if}}
-                                                        
+
                                                 </div>
                                             </div>
                                         </div>
@@ -463,7 +487,7 @@
                     </div>
                     {{!-- family-details  --}}
                     <div class="col-md-12">
-                       
+
                         <div class=" row ">
                             <h6 class="mt-2 pl-3"> Family details
                                 <hr>
@@ -478,11 +502,12 @@
                                     <div class="col-md-8">
                                         <div>
                                             {{#if result.Profile.Profile3.fatherstatus}}
-                                            <input class="disabled" type="text" name="fatherstatus" value="{{result.Profile.Profile3.fatherstatus}}">
+                                            <input class="disabled" type="text" name="fatherstatus"
+                                                value="{{result.Profile.Profile3.fatherstatus}}">
                                             {{else}}
                                             <input class="disabled" type="text" name="fatherstatus" value="Update">
                                             {{/if}}
-                                      
+
                                         </div>
                                     </div>
                                 </div>
@@ -493,7 +518,8 @@
                                     <div class="col-md-8">
                                         <div>
                                             {{#if result.Profile.Profile3.motherstatus}}
-                                            <input class="disabled" type="text" name="motherstatus" value="{{result.Profile.Profile3.motherstatus}}">
+                                            <input class="disabled" type="text" name="motherstatus"
+                                                value="{{result.Profile.Profile3.motherstatus}}">
                                             {{else}}
                                             <input class="disabled" type="text" name="motherstatus" value="Update">
                                             {{/if}}
@@ -508,12 +534,12 @@
                                     <div class="col-md-8">
                                         <div class="text-nowrap">
                                             {{#if result.Profile.Profile3.familylocation}}
-                                              <input class="disabled" type="text"
-                                                name="familylocation" value="{{result.Profile.Profile3.familylocation}}">
+                                            <input class="disabled" type="text" name="familylocation"
+                                                value="{{result.Profile.Profile3.familylocation}}">
                                             {{else}}
-                                               <input class="disabled" type="text"
-                                                name="familylocation" value="Not specified">
-                                            {{/if}} 
+                                            <input class="disabled" type="text" name="familylocation"
+                                                value="Not specified">
+                                            {{/if}}
                                         </div>
                                     </div>
                                 </div>
@@ -527,10 +553,10 @@
                                             <input class="disabled" type="text" name="nativeplace"
                                                 value="{{result.Profile.Profile3.nativeplace}}">
                                             {{else}}
-                                                 <input class="disabled" type="text" name="nativeplace"
+                                            <input class="disabled" type="text" name="nativeplace"
                                                 value="Not specified">
                                             {{/if}}
-                                                
+
                                         </div>
                                     </div>
                                 </div>
@@ -540,10 +566,11 @@
                                     </div>
                                     <div class="col-md-8">
                                         {{#if result.Profile.Profile3.siblings}}
-                                        <div><input class="disabled" type="text" name="siblings" value="{{result.Profile.Profile3.siblings}}"></div>
+                                        <div><input class="disabled" type="text" name="siblings"
+                                                value="{{result.Profile.Profile3.siblings}}"></div>
                                         {{else}}
-                                         <div><input class="disabled" type="text" name="siblings" value="Update"></div>
-                                         {{/if}}
+                                        <div><input class="disabled" type="text" name="siblings" value="Update"></div>
+                                        {{/if}}
                                     </div>
                                 </div>
                             </div>
@@ -572,10 +599,11 @@
                                     </div>
                                     <div class="col-md-7">
                                         {{#if result.Profile.Profile3.familyvalues}}
-                                        <div><input class="disabled" type="text" name="familyvalues" value="{{result.Profile.Profile3.familyvalues}}">
+                                        <div><input class="disabled" type="text" name="familyvalues"
+                                                value="{{result.Profile.Profile3.familyvalues}}">
                                         </div>
                                         {{else}}
-                                         <div><input class="disabled" type="text" name="familyvalues" value="Update">
+                                        <div><input class="disabled" type="text" name="familyvalues" value="Update">
                                         </div>
                                         {{/if}}
                                     </div>
@@ -585,7 +613,7 @@
                     </div>
                     {{!-- Education-details  --}}
                     <div class="col-md-12">
-                      
+
                         <div class=" row ">
                             <h6 class="mt-2 pl-3 ">Education &amp; Career
                                 <hr>
@@ -610,12 +638,12 @@
                                     <div class="col-md-8">
                                         <div class="text-nowrap">
                                             {{#if result.Profile.Profile3.workingsector}}
-                                            <input class="disabled" name="workingsector"
-                                                type="text" value="{{result.Profile.Profile3.workingsector}}">
+                                            <input class="disabled" name="workingsector" type="text"
+                                                value="{{result.Profile.Profile3.workingsector}}">
                                             {{else}}
-                                            <input class="disabled" name="workingsector"
-                                                type="text" value="Not specified">
-                                                {{/if}}
+                                            <input class="disabled" name="workingsector" type="text"
+                                                value="Not specified">
+                                            {{/if}}
                                         </div>
                                     </div>
                                 </div>
@@ -625,7 +653,8 @@
                                     </div>
                                     <div class="col-md-8">
                                         {{#if result.Profile.Profile3.profession}}
-                                        <div><input class="disabled" type="text" name="profession" value="{{result.Profile.Profile3.profession}}"></div>
+                                        <div><input class="disabled" type="text" name="profession"
+                                                value="{{result.Profile.Profile3.profession}}"></div>
                                         {{else}}
                                         <div><input class="disabled" type="text" name="profession" value="Update"></div>
                                         {{/if}}
@@ -651,7 +680,11 @@
                                     </div>
                                     <div class="col-md-7">
                                         <div class="text-nowrap"> <input class="disabled" type="text" name="salary"
+<<<<<<< HEAD
                                                 value="{{result.Profile.Profile3.education.salary}}" required>
+=======
+                                                value="{{result.Profile.Profile3.education.salary}}" lakh annually>
+>>>>>>> 5fd2902bf21518b551ed3aba76cdc569b8609763
                                         </div>
                                     </div>
                                 </div>
@@ -660,7 +693,7 @@
                     </div>
                     {{!-- Hobbies --}}
                     <div class="col-md-12">
-                       
+
                         <div class=" row ">
                             <h6 class="mt-2 pl-3 ">Hobbies, Interests &amp; More
                                 <hr>
@@ -780,6 +813,7 @@
                         </form>
                     </div>
                 </div>
+<<<<<<< HEAD
                 {{!-- Partner Preference --}}
                 <div class="tab-pane" id="partnerPreference">
                     <div class="col-md-12">
@@ -795,7 +829,8 @@
                                         <label>Age:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <div class="text-nowrap">56</div>
+                                        <div class="text-nowrap">{{result.Userpref.minage}}-{{result.Userpref.maxage}}
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -803,15 +838,15 @@
                                         <label>Height:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <div class="text-nowrap">5ft 6in</div>
+                                        <div class="text-nowrap">{{result.Userpref.height}}</div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <label class="text-nowrap">Maritial Status:</label>
+                                        <label class="text-nowrap">Marital Status:</label>
                                     </div>
                                     <div class="col-md-4 ">
-                                        <div class="text-nowrap">Never Married</div>
+                                        <div class="text-nowrap">{{result.Userpref.maritialstatus}}</div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -819,37 +854,95 @@
                                         <label class="text-nowrap">Diet:</label>
                                     </div>
                                     <div class="col-md-4 ">
-                                        <div class="text-nowrap">Doesn't Matter</div>
+                                        <div class="text-nowrap">{{result.Userpref.diet}}</div>
                                     </div>
                                 </div>
+=======
+                {{!-- partner preferences --}}
+                <div class="tab-pane fade" id="partnerPreference">
+                    {{!-- Partner Preference --}}
+                    <div class="tab-pane" id="partnerPreference">
+                        <div class="col-md-12">
+                            <div class=" row">
+                                <h6 class="mt-2 ">Basic Information
+                                    <hr>
+                                </h6>
+>>>>>>> 5fd2902bf21518b551ed3aba76cdc569b8609763
                             </div>
-                            <div class="col-md-6 flex-nowrap mt-4">
-                                <div class="row ">
-                                    <div class="col-md-5">
-                                        <label>Religion/Community:</label>
+                            <div class="row">
+                                <div class="col-md-6 flex-nowrap mt-4">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Age:</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="text-nowrap">56</div>
+                                        </div>
                                     </div>
+<<<<<<< HEAD
                                     <div class="col-md-3">
-                                        <div class="text-nowrap">Hindu</div>
+                                        <div class="text-nowrap">{{result.Userpref.religion}}</div>
+=======
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Height:</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="text-nowrap">5ft 6in</div>
+                                        </div>
+>>>>>>> 5fd2902bf21518b551ed3aba76cdc569b8609763
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="text-nowrap">Maritial Status:</label>
+                                        </div>
+                                        <div class="col-md-4 ">
+                                            <div class="text-nowrap">Never Married</div>
+                                        </div>
+                                    </div>
+<<<<<<< HEAD
+                                    <div class="col-md-3">
+                                        <div class="text-nowrap">{{result.Userpref.mothertongue}}</div>
+=======
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="text-nowrap">Diet:</label>
+                                        </div>
+                                        <div class="col-md-4 ">
+                                            <div class="text-nowrap">Doesn't Matter</div>
+                                        </div>
+>>>>>>> 5fd2902bf21518b551ed3aba76cdc569b8609763
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <label class="text-nowrap">Mother Tongue:</label>
+                                <div class="col-md-6 flex-nowrap mt-4">
+                                    <div class="row ">
+                                        <div class="col-md-5">
+                                            <label>Religion/Community:</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="text-nowrap">Hindu</div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="text-nowrap">Hindi</div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <label class="text-nowrap">Mother Tongue:</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="text-nowrap">Hindi</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <label class="text-nowrap">Children:</label>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="text-nowrap">Doesn't Matter</div>
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <label class="text-nowrap">Children:</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="text-nowrap">Doesn't Matter</div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
                     </div>
                     {{!-- location details --}}
                     <div class="col-md-12">
@@ -865,7 +958,7 @@
                                         <label>Country living in:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <div class="text-nowrap">Doesn't Matter</div>
+                                        <div class="text-nowrap">{{result.Userpref.location.country}}</div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -873,7 +966,7 @@
                                         <label>State living in:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <div class="text-nowrap">Doesn't Matter</div>
+                                        <div class="text-nowrap">{{result.Userpref.location.state}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -883,13 +976,49 @@
                                         <label>City / District:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <div class="text-nowrap">Doesn't Matter</div>
+                                        <div class="text-nowrap">{{result.Userpref.location.city}}</div>
+=======
+                        {{!-- location details --}}
+                        <div class="col-md-12">
+                            <div class=" row px-3">
+                                <h6 class="mt-2 ">Location details
+                                    <hr>
+                                </h6>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 flex-nowrap mt-4">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Country living in:</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="text-nowrap">Doesn't Matter</div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>State living in:</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="text-nowrap">Doesn't Matter</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 flex-nowrap mt-4">
+                                    <div class="row ">
+                                        <div class="col-md-5">
+                                            <label>City / District:</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="text-nowrap">Doesn't Matter</div>
+                                        </div>
+>>>>>>> 5fd2902bf21518b551ed3aba76cdc569b8609763
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
+<<<<<<< HEAD
                     {{!-- Education --}}
                     <div class="col-md-12">
                         <div class=" row px-3">
@@ -904,7 +1033,7 @@
                                         <label>Education:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <div class="text-nowrap">Doesn't Matter</div>
+                                        <div class="text-nowrap">{{result.Userpref.education.educationlevel}}</div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -912,7 +1041,7 @@
                                         <label>Working with:</label>
                                     </div>
                                     <div class="col-md-3">
-                                        <div class="text-nowrap">Doesn't Matter</div>
+                                        <div class="text-nowrap">{{result.Userpref.minage}}</div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -923,22 +1052,63 @@
                                         <div class="text-nowrap">Doesn't Matter</div>
                                     </div>
                                 </div>
+=======
+                        {{!-- Education --}}
+                        <div class="col-md-12">
+                            <div class=" row px-3">
+                                <h6 class="mt-2 ">Education &amp; Career
+                                    <hr>
+                                </h6>
+>>>>>>> 5fd2902bf21518b551ed3aba76cdc569b8609763
                             </div>
-                            <div class="col-md-6 flex-nowrap mt-4">
-                                <div class="row ">
-                                    <div class="col-md-5">
-                                        <label>Working as:</label>
+                            <div class="row">
+                                <div class="col-md-6 flex-nowrap mt-4">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Education:</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="text-nowrap">Doesn't Matter</div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="text-nowrap">Doesn't Matter</div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Working with:</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="text-nowrap">Doesn't Matter</div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Profession area:</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="text-nowrap">Doesn't Matter</div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row ">
-                                    <div class="col-md-5">
-                                        <label>Annual income:</label>
+                                <div class="col-md-6 flex-nowrap mt-4">
+                                    <div class="row ">
+                                        <div class="col-md-5">
+                                            <label>Working as:</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="text-nowrap">Doesn't Matter</div>
+                                        </div>
                                     </div>
+<<<<<<< HEAD
                                     <div class="col-md-3">
-                                        <div class="text-nowrap">Doesn't Matter</div>
+                                        <div class="text-nowrap">{{result.Userpref.education.salary}} lpa</div>
+=======
+                                    <div class="row ">
+                                        <div class="col-md-5">
+                                            <label>Annual income:</label>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="text-nowrap">Doesn't Matter</div>
+                                        </div>
+>>>>>>> 5fd2902bf21518b551ed3aba76cdc569b8609763
                                     </div>
                                 </div>
                             </div>
@@ -946,9 +1116,8 @@
                     </div>
                 </div>
             </div>
-        </div>
 
-    </div>
+        </div>
 
 </body>
 

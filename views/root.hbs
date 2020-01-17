@@ -3,10 +3,9 @@
 
 <head>
     <meta charset="UTF-8">
-     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Landing Page</title>
-    <meta name="google-signin-client_id" content="2310155633-hbrsv0a8n5ghq9d2dneibjqf0ecvdlm5.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Jodi Maker</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="css/root_style.css">
@@ -200,37 +199,64 @@
             <div class="modal-dialog">
 
                 <!-- Modal content-->
-                <div class="modal-content">
+                <div class="modal-content px-4">
                     <div class="modal-header">
                         <h3 class="text-center"><b>Register Your Account</b></h3>
 
                     </div>
                     <div class="modal-body">
-                        <form role="form" method="POST" id="signupform" action="/signup">
+                        <form role="form" class="needs-validation" method="POST" id="signupform" action="/signup"
+                            novalidate>
                             <div class="form-group">
-                                <label for="email"><span></span> Enter Email</label>
+                                <label for="email"><span></span> Enter Email</label><span
+                                    class="text-danger float-right" id="emailsignupfeed"></span>
                                 <input type="text" id="email" name="email" class="form-control"
                                     placeholder="Enter Email"
                                     pattern="[A-Za-z.0-9]{1,64}[A-Za-z0-9]{1,64}[@][A-Za-z]{3,36}[.][A-Za-z]{1,6}"
                                     required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Enter a valid email
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="mobile"><span></span> Enter Mobile Number</label>
                                 <input type="text" id="mobile" name="mobile" class="form-control"
                                     placeholder="Enter Mobile No" pattern="0?[6-9][0-9]{9}"
                                     title="Please Enter a number starting from 6-9" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Enter a valid Mobile number
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="password"><span></span>
                                     Password</label>
-                                <input type="password" id="password" name="password" class="form-control"
+                                <input type="password" id="password" name="password"
+                                    pattern="(?=^.{6,20}$)(?=.*\d)(?=.*[a-zA-Z])(?!.*\s).*$" class="form-control"
                                     placeholder="Password" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    At least 6 characters including a number an alphabet.
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="cfpassword"><span></span>
                                     Confirm Password</label>
                                 <input type="password" id="cfpassword" name="cfpassword" class="form-control"
                                     placeholder="Confirm Password" required>
+                                <div class="valid-feedback">
+                                    Passwords match!!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Passwords don't match!!
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for="createdBy"><span> </span> Created Profile for:</label>
@@ -249,14 +275,17 @@
                             </div>
                             <button type="button" id="submit" class="btn btn-wine btn-block">Register</button>
                         </form>
-                    </div>
-                    <div class="modal-footer">
-                        <p>Already have an Account? <button class="btn btn-infor ml-2" type="button" id="newLogin"
-                                data-toggle="modal" data-target="#login">Login</button></p>
-                  
 
+                    </div>
+                  
+                    <div class="modal-footer">
+                        <p>Already have an Account?
+                            <button class="btn btn-infor ml-2" type="button" id="newLogin" data-toggle="modal"
+                                data-target="#login">Login
+                            </button></p>
+                    </div>
+                </div>
             </div>
-        </div>
         </div>
     </section>
 
@@ -272,22 +301,38 @@
 
                     </div>
                     <div class="modal-body" style="padding:40px 50px;">
-                        <form role="form" method="POST" action="/login">
+                        <form role="form " class="needs-validation" method="POST" action="/login" novalidate>
                             <div class="form-group">
                                 <label for="email"><span></span> Enter Email</label>
-                                <input type="email" id="emaillogin" name="email" class="form-control"
-                                    placeholder="Enter Email" required>
+                                <input type="email" id="emaillogin" name="email"
+                                    pattern="[A-Za-z.0-9]{1,64}[A-Za-z0-9]{1,64}[@][A-Za-z]{3,36}[.][A-Za-z]{1,6}"
+                                    class="form-control" placeholder="Enter Email" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Enter a valid email
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label for="password"><span></span>
+                                <label for="password">
                                     Password</label>
+                                <p class="float-right"><a href="/forgotpassword" class="font-weight-bold">Forgot
+                                        Password?</a></p>
                                 <input type="password" id="passwordlogin" name="password" class="form-control"
                                     placeholder="Password" required>
+                                <div class="valid-feedback">
+                                    Looks good!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Incorrect password
+                                </div>
                             </div>
                             <div class="checkbox">
                                 <label><input type="checkbox" value="" checked>Remember me</label>
                             </div>
-                            <button type="submit" class="btn btn-wine btn-block"><span></span> Login</button>
+                            <button type="submit" id="loginbtn" class="btn btn-wine btn-block"><span></span>
+                                Login</button>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -306,12 +351,16 @@
     </section>
     {{!-- verification code modal --}}
     <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
+
 
             <!-- Modal content-->
             <div class="modal-content p-3">
+
+
                 <form action="/verify" id="otpform" method="post">
                     <div class="form-group">
+                        <button type="button" class="close col-1 float-right" data-dismiss="modal">&times;</button>
                         <label for="Verification code">Verification code</label>
                         <input class="form-control" placeholder="5-digit verification code" type="text" name="otp"
                             id="otp" required>
@@ -320,7 +369,7 @@
                         </div>
                     </div>
                     <button class="btn btn-outline-info" id="submitwithotp" type="button">Submit</button>
-                    <button class="btn btn-outline-info" id="resendotp">Resend </button>
+                    <button class="btn btn-outline-info" id="resendotp" type="button">Resend </button>
                 </form>
             </div>
         </div>
@@ -335,6 +384,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
+
 <script src="/js/root.js"></script>
+
 
 </html>

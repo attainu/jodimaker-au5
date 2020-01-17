@@ -70,8 +70,11 @@
                         </div>
                        
                         <div class="mb-3">
-                            <label><b>Height</b></label>
-                            <input class="form-control" type="text" name="height">
+                           <label for="height">Height</label>
+                                    <select class="custom-select height" name="height" id="height" required>
+                                        <option value="">Please Select</option>
+                                        {{!-- jQuery --}}
+                                    </select>
                         </div>
                         <div class="mb-3">
                             <label><b>Maritial Status:</b></label>
@@ -251,6 +254,23 @@
                     $("#age1").val($("#slider-range").slider("values", 0) +
                         " - " + $("#slider-range").slider("values", 1));
                 });
+
+                 for (let i = 3, l = 0, k = 0; l < 36; l++) {
+    let j = l % 12;
+    if (!j) {
+      i++;
+    }
+    k = Math.round((i + j / 12) * 30.48);
+    if (!j) {
+      //   console.log(i + "ft" + k + "cms");
+      $(".height").append(`<option value="${k}">${i}ft - ${k}cms</option>`);
+    } else {
+      //   console.log(i + "ft" + j + "in" + k + "cms");
+      $(".height").append(
+        `<option value="${k}">${i}ft ${j}in - ${k}cms</option>`
+      );
+    }
+  }
 
             </script>
 
