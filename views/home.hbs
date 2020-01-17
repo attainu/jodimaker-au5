@@ -12,6 +12,7 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/home.css">
+
     <title>Dashboard</title>
 
 </head>
@@ -20,7 +21,7 @@
     <section>
         <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
             <div class="container">
-                <a class="navbar-brand text-white" href="#"><img src= "img/jodi.png"></a>
+                <a class="navbar-brand text-white" href="#"><img src="img/jodi.png"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -74,7 +75,10 @@
 
                             <div class="avatar-upload">
                                 <div class="avatar-edit">
-                                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                    <form id="profilepic" enctype="multipart/form-data" action="">
+
+                                        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                    </form>
                                     <label for="imageUpload"></label>
                                 </div>
                                 <div class="avatar-preview">
@@ -152,7 +156,7 @@
                                     <a class="btn btn-secondary text-white ">Message</a>
                                 </div>
 
-                            <hr>
+                                <hr>
                             </div>
                             {{/each}}
 
@@ -188,7 +192,7 @@
                                     <a class="btn deletereceived text-white btn-danger">Delete</a>
                                 </div>
 
-                            <hr>
+                                <hr>
                             </div>
 
                             {{/each}}
@@ -221,7 +225,7 @@
                                     <input type="hidden" value="{{_id}}">
                                     <a class="btn deletesent text-white btn-danger">Delete</a>
                                 </div>
-                            <hr>
+                                <hr>
                             </div>
 
                             {{/each}}
@@ -278,8 +282,10 @@
                         </div>
 
                         <div class="col-md-2 justify-content-around d-flex">
-                            <a href="#"><i class="fa fa-check text-success"></i></a>
-                            <a href=""><i class="fa fa-times text-danger"></i></a>
+                            <input type="hidden" value="{{_id}}">
+
+                            <i class="fa fa-check text-success"></i>
+                            <i class="fa fa-times text-danger"></i>
                         </div>
                     </div>
                     {{/each}}
@@ -312,8 +318,9 @@
                         </div>
 
                         <div class="col-md-2 justify-content-around d-flex">
-                            <a href="#"><i class="fa fa-check text-success"></i></a>
-                            <a href=""><i class="fa fa-times text-danger"></i></a>
+                            <input type="hidden" value="{{_id}}">
+                            <a><i class="fa fa-check text-success"></i></a>
+                            <a><i class="fa fa-times text-danger"></i></a>
                         </div>
                     </div>
                     {{/each}}
@@ -321,6 +328,28 @@
 
                 </div>
             </div>
+    </section>
+
+    <section>
+        {{!-- chat --}}
+        <div class="shadow mr-3 rounded chatbox">
+
+            <h6 class="text-center">
+                Chat
+            </h6>
+            <ul class="list-group">
+                {{#each acceptedrequests}}
+
+                <li class="list-group-item list-group-item-action openchat"><input type="hidden" value="{{_id}}">
+                    <div class="chatpic float-left mr-3 " style="background-image: url({{Profile.Profile1.photo}});">
+                    </div>
+                    {{Profile.Profile1.name.firstname}}
+                    {{Profile.Profile1.name.lastname}}
+                </li>
+
+                {{/each}}
+            </ul>
+        </div>
     </section>
 </body>
 
@@ -335,6 +364,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+
 <script src="../js/home.js"></script>
 
 </html>

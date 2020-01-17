@@ -120,6 +120,48 @@ body {
 .card-img-top{
   height: 7rem;
 }
+.fa-check{
+  cursor: pointer;
+}
+.fa-times{
+  cursor: pointer;
+}
 /* .deletereceived{
   width:83%;
 } */
+.chatbox {
+  position: fixed;
+  right: 0px;
+  bottom: 0;
+  height: 60%;
+  width: 15%;
+  background-color: rgb(211, 211, 211);
+}
+
+.chatwindow {
+  position: fixed;
+  right: 16.3%;
+  height: 50%;
+  background-color: #e8e7e7;
+  bottom: 10px;
+  width: 15%;
+  border: 1px solid gray;
+  border-radius: 10px;
+
+}
+
+.msgarea {
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.chatwindow p {
+  font-size: small;
+  font-weight: 400;
+}
+.chatpic{
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  background-size: cover;
+}

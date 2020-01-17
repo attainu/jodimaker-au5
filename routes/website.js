@@ -1,7 +1,15 @@
 const express = require("express")
+const app = express()
+var server = require('http').createServer(app)
+var io = require('socket.io')(server)
 const router = express.Router()
 const User = require("../models/userSchema")
+const multiparty = require("multiparty")
+var cloudinary = require('cloudinary').v2;
+
+
 var user
+
 var filteredmatches
 
 router.get("/matches", (req, res) => {
@@ -10,12 +18,9 @@ router.get("/matches", (req, res) => {
 
         var minage = parseInt(age.split("-")[0])
         var maxage = parseInt(age.split("-")[1])
-        console.log(req.query)
 
-        console.log(typeof (height), height[9])
         var minheight = parseInt(height[0]) * 12 + parseInt(height[2] + height[3])
         var maxheight = parseInt(height[8]) * 12 + parseInt(height[10] + height[11])
-        console.log(minheight, maxheight)
 
 
         var minsalary = parseInt(salary.split("-")[0])
@@ -98,7 +103,6 @@ router.post("/sendrequest", (req, res) => {
     var matchid = req.body.id
     User.findOne({ _id: matchid })
         .then(match => {
-            console.log(user)
             var username = user.Profile.Profile1.name
             var matchname = match.Profile.Profile1.name
             match.Matches.receivedrequests.push(req.session.user._id)
@@ -110,9 +114,9 @@ router.post("/sendrequest", (req, res) => {
             user.Notifications.all.push("You sent a request to " + matchname.firstname + " " + matchname.lastname)
             user.save()
 
+            res.send("done")
         })
         .catch(err => console.log("error in sending request", err))
-    res.send("done")
 
 })
 
@@ -146,7 +150,6 @@ router.get("/matchprofile", (req, res) => {
                     if (matchprofile.Userpref.diet == user.Profile.Profile2.diet) {
                         matchingpref.diet = matchprofile.Userpref.diet
                     }
-                    console.log(user.Profile.Profile1)
                     if (matchprofile.Userpref.location.country == user.Profile.Profile1.location.country) {
                         matchingpref.country = matchprofile.Userpref.location.country
                     }
@@ -176,6 +179,8 @@ router.get("/matchprofile", (req, res) => {
 
 })
 router.get("/home", (req, res) => {
+
+
 
     User.find({})
         .then(users => {
@@ -282,7 +287,6 @@ router.post("/deletereceived", (req, res) => {
 
 router.post("/acceptrequest", (req, res) => {
     var id = req.body.id
-    console.log(req.body)
     User.findOne({ _id: id })
         .then(match => {
             data = { "acceptedmatch": match }
@@ -290,7 +294,7 @@ router.post("/acceptrequest", (req, res) => {
             var matchname = match.Profile.Profile1.name
             match.Matches.sentrequests = match.Matches.sentrequests.filter(el => el != user._id)
             match.Matches.acceptedrequests.push(user._id + "")
-            match.Notifications.all.push(username.firstname + " " + username.lastname + "accepted your request.")
+            match.Notifications.all.push(username.firstname + " " + username.lastname + " accepted your request.")
             match.save()
             user.Matches.receivedrequests = user.Matches.receivedrequests.filter(el => el != match._id)
             user.Matches.acceptedrequests.push(match._id + "")
@@ -314,7 +318,6 @@ router.get("/userpref", (req, res) => {
 })
 
 router.post("/searchsave", (req, res) => {
-    console.log(req.body)
     var ageArray = req.body.age.split("-").map(age => parseInt(age))
     var minage = ageArray[0]
     var maxage = ageArray[1]
@@ -396,5 +399,75 @@ router.post("/searchsave", (req, res) => {
     }
 })
 
+router.patch("/changeprofilepic", (req, res) => {
+    let form = new multiparty.Form();
+    form.parse(req, function (err, fields, files) {
+        cloudinary.uploader.upload(files.imageFile[0].path, function (err, result) {
+            User.updateOne({ _id: req.session.user._id }, { "Profile.Profile1.photo": result.secure_url })
+                .then(() => {
+                    res.send("done")
+                })
+        })
+    })
+})
 
+// chat
+router.post("/chat/:user_id", (req, res) => {
+    var userid = req.params.user_id
+    User.findOne({ _id: user._id })
+        .then(newuser => {
+
+            res.send({
+                // user: req.session.user,
+                friend_id: userid,
+                messages: newuser.messages[userid]
+            })
+        })
+        .catch(err => console.log(err))
+
+})
+router.post("/messages", (req, res) => {
+
+
+
+    var friend_id = req.body.friend_id
+    User.findOne({ _id: friend_id })
+        .then(friend => {
+            var newMessagetoYou = {
+                "from": user.Profile.Profile1.name.firstname + " " + user.Profile.Profile1.name.lastname,
+                "to": "You",
+                "message": req.body.message
+            }
+            var newMessageFromYou = {
+                "from": "You",
+                "to": friend.Profile.Profile1.name.firstname + " " + friend.Profile.Profile1.name.lastname,
+                "message": req.body.message
+            }
+            if (!user.messages[req.body.friend_id]) {
+                user.messages[req.body.friend_id] = []
+            }
+            if (!friend.messages[user._id]) {
+
+                friend.messages[user._id] = []
+            }
+
+
+            user.messages[req.body.friend_id].push(newMessageFromYou)
+            friend.messages[user._id].push(newMessagetoYou)
+
+
+            friend.markModified("messages")
+            friend.save()
+
+            user.markModified("messages")
+            user.save(err => {
+                io.emit('message', "hello")
+            })
+
+
+
+
+
+        })
+})
 module.exports = router

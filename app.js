@@ -15,6 +15,8 @@ var cryptoRandomString = require("crypto-random-string");
 
 //setting  express object
 var app = express();
+var server = require('http').createServer(app)
+
 //setting handlebars
 // app.engine('hbs', exphbs({ extname: 'hbs', defaultLayout: 'layouts', layoutsDir: __dirname + "/views" }))
 app.set("view engine", "hbs");
@@ -46,6 +48,12 @@ mongoose
   .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(console.log("Mongodb connected...."))
   .catch(err => console.log(err));
+var io = require('socket.io')(server)
+
+
+io.on('connection', (socket) => {
+  socket.emit("connected", "user is connected")
+})
 
 //Routes
 //root and loginsignup
@@ -57,6 +65,6 @@ app.use("/", require("./routes/website"));
 app.use("/", require("./routes/settings"));
 
 //activating server at PORT address
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log("Server is active at port address" + PORT);
 });
