@@ -150,6 +150,7 @@ body {
   height: 60%;
   width: 15%;
   background-color: rgb(211, 211, 211);
+  overflow: auto;
 }
 
 .chatwindow {
@@ -193,4 +194,18 @@ body {
   padding-bottom: 2%;
   padding-left: 2%;
   border-bottom-left-radius: 10px;
+}
+.unmatch,.messageuser{
+  cursor: pointer;
+}
+.fa-window-minimize{
+  cursor: pointer;
+  position: relative;
+  top: -5px;
+  right: -75px;
+  font-size: smaller;
+
+}
+.chatheading{
+  cursor: pointer;
 }

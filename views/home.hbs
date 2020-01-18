@@ -152,8 +152,11 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col ">
-                                    <a class="btn btn-secondary text-white ">Message</a>
+                                <div class="col-md-2 ">
+                                    <div class="d-inline-flex flex-column">
+                                        <input type="hidden" value="{{_id}}">
+                                        <a class="btn-sm btn-danger text-white unmatch ">Unmatch</a>
+                                        <a class="btn-sm my-2 btn-secondary text-white messageuser ">Message</a></div>
                                 </div>
 
                                 <hr>
@@ -332,21 +335,24 @@
 
     <section>
         {{!-- chat --}}
-        <div class="shadow mr-3 rounded chatbox">
+        <div class="shadow mr-3  rounded chatbox">
 
-            <h6 class="text-center">
-                Chat
+            <h6 class="text-center chatheading">
+                Chat <i class="fa fa-window-minimize " id="minimize"></i>
             </h6>
             <ul class="list-group">
                 {{#each acceptedrequests}}
 
                 <li class="list-group-item list-group-item-action openchat"><input type="hidden" value="{{_id}}">
-                    <div class="chatpic float-left mr-3 " style="background-image: url({{Profile.Profile1.photo}});">
+                    <div class="chatpic float-left mr-2 " style="background-image: url({{Profile.Profile1.photo}});">
                     </div>
-                    {{Profile.Profile1.name.firstname}}
-                    {{Profile.Profile1.name.lastname}}
-                </li>
+                    <h6 class="text-truncate mt-1">
 
+                    {{Profile.Profile1.name.firstname}}
+                    {{Profile.Profile1.name.lastname}} <span class="badge badge-danger"></span>
+                    </h6>
+                </li>
+                
                 {{/each}}
             </ul>
         </div>

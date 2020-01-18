@@ -127,7 +127,7 @@ module.exports = function (io) {
         if (req.query.id) {
             User.findOne({ _id: req.query.id })
                 .then(matchprofile => {
-                    var isMatched = matchprofile.Matches.acceptedrequests.includes(user._id)
+                    var isMatched = matchprofile.Matches.acceptedrequests.includes(req.session.user._id)
                     if (matchprofile.Userpref) {
                         var matchingpref = {}
 
@@ -287,6 +287,31 @@ module.exports = function (io) {
 
     })
 
+    router.delete("/acceptedrequests", (req, res) => {
+        var id = req.body.id
+
+
+        user.Matches.acceptedrequests = user.Matches.acceptedrequests.filter(el => el != id)
+
+        user.save()
+            .then(done => {
+
+                User.findOne({ _id: req.session.user._id })
+                    .then(newuser => {
+                        user = newuser
+                        res.send(newuser.Matches.acceptedrequests.length + "")
+                        User.findOne({ _id: id })
+                            .then(unmatch => {
+                                unmatch.Matches.acceptedrequests = unmatch.Matches.acceptedrequests.filter(el => el != req.session.user._id)
+                                unmatch.save()
+                            })
+                    })
+            })
+
+
+
+    })
+
 
     router.post("/acceptrequest", (req, res) => {
         var id = req.body.id
@@ -295,8 +320,8 @@ module.exports = function (io) {
                 data = { "acceptedmatch": match }
                 var username = user.Profile.Profile1.name
                 var matchname = match.Profile.Profile1.name
-                match.Matches.sentrequests = match.Matches.sentrequests.filter(el => el != user._id)
-                match.Matches.acceptedrequests.push(user._id + "")
+                match.Matches.sentrequests = match.Matches.sentrequests.filter(el => el != req.session.user._id)
+                match.Matches.acceptedrequests.push(req.session.user._id + "")
                 match.Notifications.all.push(username.firstname + " " + username.lastname + " accepted your request.")
                 match.save()
                 user.Matches.receivedrequests = user.Matches.receivedrequests.filter(el => el != match._id)
@@ -452,7 +477,7 @@ module.exports = function (io) {
                     User.updateOne({ _id: friendid }, { $push: obj }, (err, result) => {
                         if (err) console.log(err)
 
-                        io.emit('message', req.body.message)
+                        io.emit('message', req.session.user._id)
                         res.send("done")
                     })
                 })

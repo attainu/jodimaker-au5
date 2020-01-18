@@ -7,7 +7,10 @@ $(document).ready(function () {
     if ($(".chatwindow").attr("id")) {
       loadchat()
     }
-    else console.log("not here")
+    else {
+      var newmsgcount = parseInt($("input[value~='" + data + "']").siblings(".badge").text())
+      $("input[value~='" + data + "']").siblings(".badge").text(++newmsgcount || 1)
+    }
   })
   function readURL(input) {
     if (input.files && input.files[0]) {
@@ -62,7 +65,7 @@ $(document).ready(function () {
       url: "/deletesent",
       data: data,
       success: function (response) {
-        console.log(deletebtn.parents(".no-gutters").remove())
+        deletebtn.parents(".no-gutters").remove()
         $("#sentreqs").text(response)
       }
     });
@@ -77,7 +80,7 @@ $(document).ready(function () {
       url: "/deletereceived",
       data: data,
       success: function (response) {
-        console.log(deletebtn.parents(".no-gutters").remove())
+        deletebtn.parents(".no-gutters").remove()
         $("#received").text(response)
       }
     });
@@ -149,12 +152,13 @@ $(document).ready(function () {
   var listItem
 
   $(".openchat").click(function () {
+    $(this).children(".badge").text("")
     var friend = $(this).text()
     listItem = $(this)
     console.log(listItem.children("input").val())
     $(".chatwindow").remove()
     $("body").append("<div id = '" + $(this).children("input").val() + "' class ='chatwindow '>")
-    $(".chatwindow:last").append("<div class ='ml-2' style ='position:relative;top:0'><i class = 'text-success fa fa-circle'></i> " + friend + "</div>")
+    $(".chatwindow:last").append("<div class ='ml-2' style ='position:relative;top:0'>" + friend + "</div>")
     $(".chatwindow div:first").append("<span id='close' class ='float-right mr-2 mb-2'>x</span>")
     $("#close").click(function () {
       $(".chatwindow").remove()
@@ -227,4 +231,32 @@ $(document).ready(function () {
       }
     })
   }
-});
+  $(".messageuser").click(function () {
+    $("input[value~='" + $(this).siblings('input').val() + "']").click()
+  })
+
+  $(".unmatch").click(function () {
+    console.log("clicked")
+    var id = $(this).siblings("input").val()
+    var unmatch = $(this)
+    $.ajax({
+      type: "delete",
+      url: "/acceptedrequests",
+      data: { id: id },
+      success: function (response) {
+        $("#accepted").text(response)
+        unmatch.parents(".no-gutters").remove()
+
+      }
+    });
+  });
+  $("#minimize").click(function (e) {
+    $(this).hide()
+    $(".chatbox").css("height", "5%")
+    e.stopPropagation()
+  })
+  $(".chatheading").click(function () {
+    $(".chatbox").css("height", "60%")
+    $("#minimize").show()
+  })
+})
