@@ -16,9 +16,17 @@
     "multiparty": "^4.2.1",
     "nodemailer": "^6.4.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/cli": "^7.8.3",
+    "@babel/core": "^7.8.3",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.8.3"
+  },
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "clean": "rm -rf build && mkdir build",
+    "build-server": "babel ./src -d ./build --plugins @babel/plugin-proposal-class-properties --presets @babel/env",
+    "build": "npm run clean && npm run build-server"
   },
   "author": "",
   "license": "ISC"
