@@ -100,19 +100,18 @@
                     <div class="modal-content">
 
                         <div class="modal-header">
+                            <h4>Confirm Update</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title" id="myModalLabel"></h4>
                         </div>
 
                         <div class="modal-body">
-                            <p>You are about to update your Account,this procedure is irreversible.
-                            </p>
-                            <p>Do you want to proceed?</p>
+                            <p>Are you sure for update.</p>
                         </div>
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                            <a class="btn btn-danger btn-ok">Update</a>
+                            <a class="btn btn-info btn-ok">Update</a>
                         </div>
                     </div>
                 </div>
@@ -137,7 +136,7 @@
                                         </div>
                                         <div class="col-md-8">
                                             <div class="text-nowrap"><input class="disabled" type="text" name="age"
-                                                    value="{{result.Profile.Profile2.age}}"></div>
+                                                    value="{{result.Profile.Profile2.age}}" required></div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -146,7 +145,8 @@
                                         </div>
                                         <div class="col-md-8">
                                             <div class="text-nowrap"><input class="disabled" type="text" name="dob"
-                                                    value="{{result.Profile.Profile2.dob.day}}/{{result.Profile.Profile2.dob.month}}/{{result.Profile.Profile2.dob.year}}">
+                                                    value="{{result.Profile.Profile2.dob.day}}/{{result.Profile.Profile2.dob.month}}/{{result.Profile.Profile2.dob.year}}"
+                                                    required>
                                             </div>
                                         </div>
                                     </div>
@@ -157,7 +157,7 @@
                                         <div class="col-md-8">
                                             <div class="text-nowrap"><input class="disabled" type="text"
                                                     name="maritialstatus"
-                                                    value="{{result.Profile.Profile2.maritialstatus}}"></div>
+                                                    value="{{result.Profile.Profile2.maritialstatus}}" required></div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -166,7 +166,7 @@
                                         </div>
                                         <div class="col-md-8">
                                             <div class="text-nowrap"><input class="disabled" type="text" name="height"
-                                                    value="{{result.Profile.Profile2.height}}"></div>
+                                                    value="{{result.Profile.Profile2.height}}" required></div>
                                         </div>
                                     </div>
 
@@ -176,7 +176,7 @@
                                         </div>
                                         <div class="col-md-8">
                                             <div class="text-nowrap"><input type="text" class="disabled"
-                                                    value="{{result.Signup.createdBy}}"></div>
+                                                    value="{{result.Signup.createdBy}}" required></div>
                                         </div>
                                     </div>
                                 </div>
@@ -187,8 +187,8 @@
                                         </div>
                                         <div class="col-md-7">
                                             <div class="text-nowrap"><input class="disabled" type="text"
-                                                    name="mothertongue"
-                                                    value="{{result.Profile.Profile2.mothertongue}}"></div>
+                                                    name="mothertongue" value="{{result.Profile.Profile2.mothertongue}}"
+                                                    required></div>
                                         </div>
                                     </div>
                                     <div class="row ">
@@ -198,7 +198,7 @@
                                         <div class="col-md-7">
                                             <div contenteditable="true" class="text-nowrap"><input class="disabled"
                                                     type="text" name="city"
-                                                    value="{{result.Profile.Profile1.location.city}}"></div>
+                                                    value="{{result.Profile.Profile1.location.city}}" required></div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -207,7 +207,7 @@
                                         </div>
                                         <div class="col-md-7 ">
                                             <div class="text-nowrap"><input class="disabled" type="text" name="country"
-                                                    value="{{result.Profile.Profile1.location.country}}"></div>
+                                                    value="{{result.Profile.Profile1.location.country}}" required></div>
                                         </div>
                                     </div>
                                     <div class="row">
@@ -216,7 +216,7 @@
                                         </div>
                                         <div class="col-md-7">
                                             <div class="text-nowrap"><input class="disabled" type="text" name="weight"
-                                                    value="{{result.Profile.Profile2.weight}}"></div>
+                                                    value="{{result.Profile.Profile2.weight}}" required></div>
                                         </div>
                                     </div>
                                 </div>
@@ -237,7 +237,7 @@
                                             </div>
                                             <div class="col-md-7">
                                                 <div class="text-nowrap"><input class="disabled" type="text" name="diet"
-                                                        value="{{result.Profile.Profile2.diet}}"></div>
+                                                        value="{{result.Profile.Profile2.diet}}" required></div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -278,7 +278,8 @@
                                             <div class="col-md-7 ">
                                                 <div class="text-nowrap"><input class="disabled" type="text"
                                                         name="grewup"
-                                                        value="{{result.Profile.Profile1.location.country}}"></div>
+                                                        value="{{result.Profile.Profile1.location.country}}" required>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -363,7 +364,8 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="text-nowrap"><input class="disabled" type="text"
-                                                        name="religion" value="{{result.Profile.Profile2.religion}}">
+                                                        name="religion" value="{{result.Profile.Profile2.religion}}"
+                                                        required>
                                                 </div>
                                             </div>
                                         </div>
@@ -373,7 +375,8 @@
                                             </div>
                                             <div class="col-md-8">
                                                 <div class="text-nowrap"><input class="disabled" type="text"
-                                                        name="caste" value="{{result.Profile.Profile2.caste}}"></div>
+                                                        name="caste" value="{{result.Profile.Profile2.caste}}" required>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -561,7 +564,7 @@
                                     </div>
                                     <div class="col-md-7">
                                         <div class="text-nowrap"><input class="disabled" type="text" name="status"
-                                                value="{{result.Profile.Profile2.family.status}}"></div>
+                                                value="{{result.Profile.Profile2.family.status}}" required></div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -570,7 +573,7 @@
                                     </div>
                                     <div class="col-md-7 ">
                                         <div class="text-nowrap"><input class="disabled" type="text" name="type"
-                                                value="{{result.Profile.Profile2.family.type}}"></div>
+                                                value="{{result.Profile.Profile2.family.type}}" required></div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -651,7 +654,7 @@
                                     </div>
                                     <div class="col-md-7">
                                         <div class="text-nowrap"><input class="disabled" type="text" name="employer"
-                                                value="{{result.Profile.Profile3.education.employer}}"></div>
+                                                value="{{result.Profile.Profile3.education.employer}}" required></div>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -660,7 +663,7 @@
                                     </div>
                                     <div class="col-md-7">
                                         <div class="text-nowrap"> <input class="disabled" type="text" name="salary"
-                                                value="{{result.Profile.Profile3.education.salary}}" lakh annually>
+                                                value="{{result.Profile.Profile3.education.salary}}" required>
                                         </div>
                                     </div>
                                 </div>
@@ -683,7 +686,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="text-nowrap"><input class="disabled" type="text" name="hobbies"
-                                                value="{{result.Profile.Profile3.hobbies}}"></div>
+                                                value="{{result.Profile.Profile3.hobbies}}" required></div>
                                     </div>
                                 </div>
                                 <div class="row">

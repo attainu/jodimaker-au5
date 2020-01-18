@@ -44,6 +44,7 @@ router.post("/profile/2", userController.profile2);
 router.post("/profile/3", userController.profile3);
 router.post("/profile/4", userController.profile4);
 router.post("/updatePi",userController.profile)
+router.post("/userpref",userController.userpref)
 
 module.exports = router;
 

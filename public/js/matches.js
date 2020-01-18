@@ -19,18 +19,25 @@ $(document).ready(function() {
           .removeClass("bg-wine")
           .addClass("bg-success")
           .text("Sent");
+        $(".toast").toast("show");
       }
     });
   });
 
   //Slider
   /* age slider */
+  var minage = $("#age")
+    .val()
+    .split("-")[0];
+  var maxage = $("#age")
+    .val()
+    .split("-")[1];
   $(function() {
     $("#slider-range").slider({
       range: true,
-      min: 16,
+      min: 18,
       max: 50,
-      values: [18, 50],
+      values: [minage, maxage],
       slide: function(event, ui) {
         $("#age").val(ui.values[0] + " - " + ui.values[1]);
       }
@@ -47,38 +54,37 @@ $(document).ready(function() {
       range: true,
       min: 122,
       max: 221,
-      values: [122, 140],
+      values: [130, 200],
       slide: function(event, ui) {
-        $("#height").val(ui.values[0] + "cms" + " - " + ui.values[1] + "cms");
+        $("#height").val(toFeet(ui.values[0]) + " - " + toFeet(ui.values[1]));
       }
     });
     $("#height").val(
-      $("#height-range").slider("values", 0) +
-        "cms" +
+      toFeet($("#height-range").slider("values", 0)) +
         " - " +
-        $("#height-range").slider("values", 1) +
-        "cms"
+        toFeet($("#height-range").slider("values", 1))
     );
   });
   /* salary slider */
+
   $(function() {
     $("#salary-range").slider({
       range: true,
       min: 0,
       max: 50,
-      values: [1, 10],
+      values: [4, 40],
       slide: function(event, ui) {
         $("#salary").val(
-          ui.values[0] + "lakhs" + " - " + ui.values[1] + "lakhs"
+          ui.values[0] + " lakhs" + " - " + ui.values[1] + " lakhs"
         );
       }
     });
     $("#salary").val(
       $("#salary-range").slider("values", 0) +
-        "lakhs" +
+        " lakhs" +
         " - " +
         $("#salary-range").slider("values", 1) +
-        "lakhs"
+        " lakhs"
     );
   });
 
@@ -92,4 +98,20 @@ $(document).ready(function() {
     }
     prevScrollpos = currentScrollPos;
   };
+  var radioState;
+
+  $("#customRadioInline1").on("click", function() {
+    if (radioState === this) {
+      this.checked = false;
+      radioState = null;
+    } else {
+      radioState = this;
+    }
+  });
+  function toFeet(n) {
+    var realFeet = (n * 0.3937) / 12;
+    var feet = Math.floor(realFeet);
+    var inches = Math.round((realFeet - feet) * 12);
+    return feet + "'" + inches + "ft";
+  }
 });

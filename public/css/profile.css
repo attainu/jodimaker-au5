@@ -84,3 +84,10 @@ body {
   display: block;
   transition: top 0.5s ease-in-out;
 }
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.btn-wine {
+  background-color: #78244c;
+}

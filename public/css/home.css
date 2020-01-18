@@ -110,13 +110,25 @@ body {
   background-repeat: no-repeat;
   background-position: center;
 }
-.matches-photo{
+.matches-photo {
   height: 7rem;
   width: 7rem;
 }
-.close{
+.close {
   cursor: pointer;
 }
-.card-img-top{
+.card-img-top {
   height: 7rem;
+}
+/* .deletereceived{
+  width:83%;
+} */
+.toast {
+  box-shadow: none;
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  top: 600px;
+  right: 0px;
+  z-index: 999999;
 }

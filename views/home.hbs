@@ -37,6 +37,14 @@
                             <a class="nav-link text-white" href="search">Search</a>
                         </li>
                     </ul>
+                    <div class="col-5 toast" id="popup" data-delay="2000">
+                        <div class="alert alert-success">
+                            <a class="panel-close close" data-dismiss="alert">×</a>
+                            <h6>Your Profile has been successfully registered &nbsp;
+                                <i class="fa fa-smile-o" aria-hidden="true"></i>
+                            </h6>
+                        </div>
+                    </div>
                     <span class="navbar-text">
                         <ul class="navbar-nav mr-auto">
                             <li class="nav-item">
@@ -148,8 +156,8 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col-md-2">
-                                    <a class="btn btn-outline-dark mr-2">Message</a>
+                                <div class="col ">
+                                    <a class="btn btn-secondary text-white ">Message</a>
                                 </div>
 
                                 <hr>
@@ -184,8 +192,8 @@
                                 </div>
                                 <div class="col-md-2">
                                     <input type="hidden" value="{{_id}}">
-                                    <a class="btn btn-success acceptreq">Accept</a>
-                                    <a class="btn deletereceived btn-danger">Delete</a>
+                                    <a class="btn btn-success text-white acceptreq my-2">Accept</a>
+                                    <a class="btn deletereceived text-white btn-danger">Delete</a>
                                 </div>
 
                                 <hr>
@@ -219,11 +227,10 @@
                                 </div>
                                 <div class="col-md-3">
                                     <input type="hidden" value="{{_id}}">
-                                    <a class="btn deletesent btn-danger">Delete</a>
+                                    <a class="btn deletesent text-white btn-danger">Delete</a>
                                 </div>
                                 <hr>
                             </div>
-
                             {{/each}}
                         </div>
                     </div>
@@ -234,7 +241,7 @@
                             <span class="badge badge-pill badge-danger" id="notifs">{{notifications.length}}</span>
                         </h6>
                         {{#each notifications}}
-                        <div class="alert alert-success alert-dismissable">
+                        <div class="alert alert-success alert-dismissable fade show">
                             <a class="panel-close close" data-dismiss="alert">×</a>
                             {{this}}
                         </div>
@@ -310,15 +317,12 @@
                                 </a>
                             </div>
                         </div>
-
                         <div class="col-md-2 justify-content-around d-flex">
                             <a href="#"><i class="fa fa-check text-success"></i></a>
                             <a href=""><i class="fa fa-times text-danger"></i></a>
                         </div>
                     </div>
                     {{/each}}
-
-
                 </div>
             </div>
     </section>
@@ -336,5 +340,6 @@
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
 <script src="../js/home.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
 
 </html>

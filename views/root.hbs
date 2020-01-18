@@ -277,7 +277,7 @@
                         </form>
 
                     </div>
-                  
+
                     <div class="modal-footer">
                         <p>Already have an Account?
                             <button class="btn btn-infor ml-2" type="button" id="newLogin" data-toggle="modal"
@@ -290,6 +290,7 @@
     </section>
 
     <section>
+
         <!-- Modal -->
         <div class="modal fade" id="login" role="dialog">
             <div class="modal-dialog">
@@ -297,9 +298,20 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header" style="padding:35px 50px;">
-                        <h3 class="text-center"><b>Login to Your Account</b></h3>
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1 toast" data-delay="5000">
+                                <div class="alert alert-success">
+                                    Hurry!!You are successfully Signup and Login please
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <h3 class="text-center"><b>Login to Your Account</b></h3>
+                            </div>
+
+                        </div>
 
                     </div>
+
                     <div class="modal-body" style="padding:40px 50px;">
                         <form role="form " class="needs-validation" method="POST" action="/login" novalidate>
                             <div class="form-group">
@@ -338,11 +350,14 @@
                     <div class="modal-footer">
                         <p>Not a member? <button class="btn btn-infor ml-2" id="newRegister" type="button"
                                 data-toggle="modal" data-target="#register">Register Free!</button></p>
-
                     </div>
+                    <div class="g-signin2" data-onsuccess="onSignIn"> </div>
                 </div>
 
             </div>
+        </div>
+
+        </div>
         </div>
         </div>
     </section>

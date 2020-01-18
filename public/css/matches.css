@@ -26,3 +26,12 @@ body {
   display: block;
   transition: top 0.5s ease-in-out;
 }
+input {
+  outline: none;
+  cursor: default;
+}
+.toast {
+  box-shadow: none;
+  border: none;
+  background-color: transparent;
+}

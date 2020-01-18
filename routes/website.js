@@ -2,75 +2,77 @@ const express = require("express")
 const router = express.Router()
 const User = require("../models/userSchema")
 var user
+var filteredmatches
 
 router.get("/matches", (req, res) => {
+    var { age, isEmployed, religion, height, salary } = req.query
+    if (req.query.age) {
+
+        var minage = parseInt(age.split("-")[0])
+        var maxage = parseInt(age.split("-")[1])
+        console.log(req.query)
+
+        console.log(typeof (height), height[9])
+        var minheight = parseInt(height[0]) * 12 + parseInt(height[2] + height[3])
+        var maxheight = parseInt(height[8]) * 12 + parseInt(height[10] + height[11])
+        console.log(minheight, maxheight)
+
+
+        var minsalary = parseInt(salary.split("-")[0])
+        var maxsalary = parseInt(salary.split("-")[1])
+
+    }
     User.find({})
         .then(users => {
+
             var matches = users.filter(el => {
-                if (el.Profile.Profile2) { return el.Profile.Profile2.gender != user.Profile.Profile2.gender }
+                if (el.Profile.Profile2) {
+                    if (el.Profile.Profile2.gender == user.Profile.Profile2.gender) {
+                        return
+                    }
+                    if (req.query.age) {
+                        if (el.Profile.Profile2.age < minage || el.Profile.Profile2.age > maxage) {
+                            return
+                        }
+                        if (religion) {
+
+                            if (el.Profile.Profile2.religion != religion) {
+                                return
+                            }
+                        }
+                        if (el.Profile.Profile2.salary < minsalary || el.Profile.Profile2.salary > maxsalary) {
+                            return
+                        }
+                        var heightfeet = el.Profile.Profile2.height
+                        var heightinches = parseInt(heightfeet[1]) * 12 + parseInt(heightfeet[3] + heightfeet[4])
+                        if (heightinches < minheight || heightinches > maxheight) {
+                            return
+                        }
+
+
+                    }
+                    return el
+                }
             })
-            var sent = matches.map(match => {
+            matches.map(match => {
                 if (user.Matches.sentrequests.includes(match._id)) {
                     match.sent = true
                 }
             })
+
+
+
             res.render("matches", {
                 user: user,
-                matches: matches
+                matches: matches,
+                filter: req.query
             });
         })
 
         .catch(err => console.log(err))
-});
-
-
-router.get("/dashboard", (req, res) => {
-    console.log(req.query);
-    User.findOne({ _id: req.session.user._id }).then(user => {
-
-        if (req.query.religion) {
-            if (req.query.isEmployed) {
-                User.find({ "Profile.Profile3.hobbies": { $in: user.Profile.Profile3.hobbies }, "Profile.Profile2.gender": { $ne: user.Profile.Profile2.gender }, "Profile.Profile2.age": { $lte: req.query.age }, "Profile.Profile3.education.employed": { $eq: req.query.isEmployed }, "Profile.Profile2.religion": { $eq: req.query.religion } })
-                    .then(matches => {
-                        console.log(matches)
-
-                        res.render("dashboard", {
-                            matches: matches,
-                        })
-                    }).catch(err => console.log(err))
-                return
-            }
-            User.find({ "Profile.Profile3.hobbies": { $in: user.Profile.Profile3.hobbies }, "Profile.Profile2.gender": { $ne: user.Profile.Profile2.gender }, "Profile.Profile2.age": { $lte: req.query.age }, "Profile.Profile2.religion": { $eq: req.query.religion } })
-                .then(matches => {
-                    console.log(matches)
-
-                    res.render("dashboard", {
-                        matches: matches,
-                    })
-                }).catch(err => console.log(err))
-            return
-        }
-
-        User.find({ "Profile.Profile3.hobbies": { $in: user.Profile.Profile3.hobbies }, "Profile.Profile2.gender": { $ne: user.Profile.Profile2.gender } })
-            .then(matches => {
-                console.log(matches)
-
-                res.render("dashboard", {
-                    matches: matches,
-                })
-            }).catch(err => console.log(err))
-    }).catch(err => console.log(err))
-    User.find({})
-        .then(matches => {
-
-
-            res.render("dashboard", {
-                matches: matches,
-            })
-        })
-        .catch(err => console.log(err))
-
 })
+
+
 
 router.get("/profile", (req, res) => {
     User.findOne({ _id: req.session.user._id })
@@ -119,11 +121,51 @@ router.get("/matchprofile", (req, res) => {
         User.findOne({ _id: req.query.id })
             .then(matchprofile => {
                 var isMatched = matchprofile.Matches.acceptedrequests.includes(user._id)
+                if (matchprofile.Userpref) {
+                    var matchingpref = {}
+
+                    if (user.Profile.Profile2.age > matchprofile.Userpref.minage && user.Profile.Profile2.age < matchprofile.Userpref.maxage) {
+                        matchingpref.age = matchprofile.Userpref.minage + "-" + matchprofile.Userpref.maxage
+                    }
+                    var heightfeet = user.Profile.Profile2.height
+
+                    var minheight = parseInt(matchprofile.Userpref.height[1]) * 12 + parseInt(matchprofile.Userpref.height[3] + matchprofile.Userpref.height[4])
+                    var heightinches = parseInt(heightfeet[1]) * 12 + parseInt(heightfeet[3] + heightfeet[4])
+                    if (heightinches >= minheight) {
+                        matchingpref.height = matchprofile.Userpref.height + "-" + "6'5 ft"
+                    }
+                    if (matchprofile.Userpref.maritialstatus == user.Profile.Profile2.maritialstatus) {
+                        matchingpref.maritalstatus = matchprofile.Userpref.maritialstatus
+                    }
+                    if (matchprofile.Userpref.religion == user.Profile.Profile2.religion) {
+                        matchingpref.religion = matchprofile.Userpref.religion
+                    }
+                    if (matchprofile.Userpref.mothertongue == user.Profile.Profile2.mothertongue) {
+                        matchingpref.mothertongue = matchprofile.Userpref.mothertongue
+                    }
+                    if (matchprofile.Userpref.diet == user.Profile.Profile2.diet) {
+                        matchingpref.diet = matchprofile.Userpref.diet
+                    }
+                    console.log(user.Profile.Profile1)
+                    if (matchprofile.Userpref.location.country == user.Profile.Profile1.location.country) {
+                        matchingpref.country = matchprofile.Userpref.location.country
+                    }
+                    if (matchprofile.Userpref.location.state == user.Profile.Profile1.location.state) {
+                        matchingpref.state = matchprofile.Userpref.location.state
+                    }
+                    if (matchprofile.Userpref.location.city == user.Profile.Profile1.location.city) {
+                        matchingpref.city = matchprofile.Userpref.location.city
+                    }
+
+
+                }
+
 
                 res.render("matching", {
                     user: user,
                     match: matchprofile,
-                    isMatched: isMatched
+                    isMatched: isMatched,
+                    matchingpref: matchingpref
 
                 });
             })
@@ -267,6 +309,9 @@ router.post("/acceptrequest", (req, res) => {
         })
 
 })
+router.get("/userpref", (req, res) => {
+    res.render("userpref")
+})
 
 router.post("/searchsave", (req, res) => {
     console.log(req.body)
@@ -274,12 +319,12 @@ router.post("/searchsave", (req, res) => {
     var minage = ageArray[0]
     var maxage = ageArray[1]
     var { maritialstatus, religion, mothertongue, country, state, city } = req.body
-    maritialstatus = maritialstatus? changetoArray(maritialstatus):undefined
-    religion = religion?changetoArray(religion):undefined
-    mothertongue = mothertongue?changetoArray(mothertongue):undefined
-    country = country?changetoArray(country):undefined
-    state = state?changetoArray(state):undefined
-    city = city?changetoArray(city):undefined
+    maritialstatus = maritialstatus ? changetoArray(maritialstatus) : undefined
+    religion = religion ? changetoArray(religion) : undefined
+    mothertongue = mothertongue ? changetoArray(mothertongue) : undefined
+    country = country ? changetoArray(country) : undefined
+    state = state ? changetoArray(state) : undefined
+    city = city ? changetoArray(city) : undefined
 
     var matches
     User.find({ "Profile.Profile2.gender": { $ne: user.Profile.Profile2.gender } })
@@ -336,6 +381,11 @@ router.post("/searchsave", (req, res) => {
             })
         })
 
+
+
+
+
+
     function changetoArray(x) {
         if (typeof (x) != "object") {
             var y = []
@@ -345,5 +395,6 @@ router.post("/searchsave", (req, res) => {
         else return x
     }
 })
+
 
 module.exports = router
