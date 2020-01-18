@@ -26,6 +26,9 @@ input{
 .toast{
   box-shadow: none;
   border:none;
-  background-color:transparent
+  background-color:white;
+  z-index: 999999; 
+  top: 620px;
+  left: 0px;
 }
 

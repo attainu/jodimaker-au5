@@ -1,6 +1,10 @@
 $(document).ready(function () {
   $(".fa").on("click", function () { });
-  $(".toast").toast("show")  
+
+  $(".toast1").toast("show")  
+  $(".acceptreq").click(function(){
+    $(".toast").toast("show")  
+  })
   function readURL(input) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();
@@ -78,7 +82,7 @@ $(document).ready(function () {
         acceptbtn.parents(".no-gutters").remove()
         $("#received").text(response.receivedrequests)
         $("#accepted").text(response.acceptedrequests)
-        $("#acceptedReqs").append(` <div class="row no-gutters align-items-center">
+        $("#acceptedReqs").append(`<div class='row no-gutters align-items-center'>
         <div class="col-md-2">
             <img src="${response.acceptedmatch.Profile.Profile1.photo}"
                 class="card-img-top matches-photo rounded-circle p-3" alt="Profile Page">

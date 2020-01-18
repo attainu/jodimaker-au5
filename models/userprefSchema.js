@@ -2,10 +2,12 @@ var mongoose=require("mongoose");
 
 var userprefSchema=new mongoose.Schema({
     minage:{
-        type:Number
+        type:Number,
+        default:18
     },
     maxage:{
-        type:Number
+        type:Number,
+        default:18
     },
     height:{
         type:String
