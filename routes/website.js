@@ -453,6 +453,7 @@ module.exports = function (io) {
                         if (err) console.log(err)
 
                         io.emit('message', req.body.message)
+                        res.send("done")
                     })
                 })
             })

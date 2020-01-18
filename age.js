@@ -10,10 +10,10 @@ User.find({}, function (err, users) {
         var user = el
         if (user.messages) {
             user.messages = undefined
-            // user.Notifications.all = undefined
-            // user.Matches.receivedrequests = undefined
-            // user.Matches.sentrequests = undefined
-            // user.Matches.acceptedrequests = undefined
+            user.Notifications.all = undefined
+            user.Matches.receivedrequests = undefined
+            user.Matches.sentrequests = undefined
+            user.Matches.acceptedrequests = undefined
             user.save()
         }
     })

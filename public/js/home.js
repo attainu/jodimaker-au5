@@ -150,12 +150,12 @@ $(document).ready(function () {
 
   $(".openchat").click(function () {
     var friend = $(this).text()
-     listItem = $(this)
+    listItem = $(this)
     console.log(listItem.children("input").val())
     $(".chatwindow").remove()
     $("body").append("<div id = '" + $(this).children("input").val() + "' class ='chatwindow '>")
     $(".chatwindow:last").append("<div class ='ml-2' style ='position:relative;top:0'><i class = 'text-success fa fa-circle'></i> " + friend + "</div>")
-    $(".chatwindow div:first").append("<span id='close' style='cursor:pointer' class ='float-right mr-2 mb-2'>x</span>")
+    $(".chatwindow div:first").append("<span id='close' class ='float-right mr-2 mb-2'>x</span>")
     $("#close").click(function () {
       $(".chatwindow").remove()
     })
@@ -164,7 +164,7 @@ $(document).ready(function () {
       url: "/chat/" + listItem.children("input").val(),
       success: function (response) {
         console.log(response)
-        $(".chatwindow").append("<div class='msgarea text-break w-100' style='height:82%'> ")
+        $(".chatwindow").append("<div class='msgarea text-break w-100'> ")
         if (response.messages) {
           response.messages.forEach(element => {
             if (element.from == "You") {
@@ -177,9 +177,9 @@ $(document).ready(function () {
           });
         }
         $(".msgarea:last").scrollTop($(".msgarea:last").prop("scrollHeight"))
-        $(".chatwindow").append("<form id='msgdata' style ='position:relative;bottom:0px'>")
+        $(".chatwindow").append("<form id='msgdata d-flex justify-content-between'>")
         $(".chatwindow form").append("<input type='text' name='message' id ='message' placeholder ='Send message'> ")
-        $(".chatwindow form ").append("<button type='button' id='send' class='btn btn-primary'><i class ='fa fa-paper-plane'><i></button>")
+        $(".chatwindow form ").append("<button type='button' id='send' class=' btn-sm btn-primary'><i class ='fa fa-paper-plane'><i></button>")
         $("#send").click(function () {
 
           var data = {
@@ -212,7 +212,7 @@ $(document).ready(function () {
       success: function (response) {
         console.log(response)
         $(".msgarea").remove()
-        $(".chatwindow form").before("<div class='msgarea text-break w-100' style='height:82%'> ")
+        $(".chatwindow form").before("<div class='msgarea text-break w-100'> ")
         response.messages.forEach(element => {
           if (element.from == "You") {
 
