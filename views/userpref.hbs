@@ -15,9 +15,9 @@
 <body>
     <div class="container-fluid">
         <section>
-            <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top " id="nav-bar">
                 <div class="container">
-                    <a class="navbar-brand text-white" href="#">Jodi Maker</a>
+                    <a class="navbar-brand text-white" href="/"><img src="img/jodi.png"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -25,10 +25,10 @@
                     <div class="collapse navbar-collapse" id="navbarText">
                         <ul class="navbar-nav mr-auto text-white">
                             <li class="nav-item active">
-                                <a class="nav-link text-white" href="dashboard">Dashboard</a>
+                                <a class="nav-link text-white" href="home">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="dashboard">My Matches</a>
+                                <a class="nav-link text-white" href="matches">My Matches</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="search">Search</a>
@@ -36,11 +36,27 @@
                         </ul>
                         <span class="navbar-text">
                             <ul class="navbar-nav mr-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="profile">Profile</a>
+                                <li class="nav-item active">
+                                    <a href="profile">
+                                        <div class="avatar-upload mt-0 mb-0">
+                                            <div class="avatar-preview img-small">
+                                                <div id="imagePreview"
+                                                    style="background-image: url({{user.Profile.Profile1.photo}});">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="setting">Settings</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-white" href="profile"
+                                        id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="setting">Settings</a>
+                                        <a class="dropdown-item" href="userpref">User Preferences</a>
+                                        <a class="dropdown-item text-danger" href="logout">Logout</a>
+                                    </div>
                                 </li>
                             </ul>
                         </span>
@@ -138,9 +154,7 @@
                             <h4 class="mt-2 ">Location Details
                                 <hr>
                             </h4>
-
                         </div>
-
                         <div class=" mb-3">
                             <label for="countryId"><b>Country</b></label>
                             <select name="country" class="countries custom-select" id="countryId">
@@ -257,17 +271,20 @@
 
                 for (let i = 3, l = 0, k = 0; l < 36; l++) {
                     let j = l % 12;
+                    var feet = i + "'" + j;
                     if (!j) {
                         i++;
                     }
                     k = Math.round((i + j / 12) * 30.48);
                     if (!j) {
                         //   console.log(i + "ft" + k + "cms");
-                        $(".height").append(`<option value="${k}">${i}ft - ${k}cms</option>`);
+                        $(".height").append(
+                            `<option value=" ${feet}ft">${i}ft - ${k}cms</option>`
+                        );
                     } else {
                         //   console.log(i + "ft" + j + "in" + k + "cms");
                         $(".height").append(
-                            `<option value="${k}">${i}ft ${j}in - ${k}cms</option>`
+                            `<option value=" ${feet}ft">${i}ft ${j}in - ${k}cms</option>`
                         );
                     }
                 }

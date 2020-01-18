@@ -7,6 +7,9 @@
 //         $("#form").show();
 //     });
 // });
+$(".religion").select2({
+  tags: true
+});
 $("#save6,#cancel6").hide();
 
 $("#hi").on("click", function() {

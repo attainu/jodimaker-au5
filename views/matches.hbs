@@ -22,7 +22,7 @@
 
 <body class="bg-light">
     <section>
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top" id="nav-bar">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top " id="nav-bar">
             <div class="container">
                 <a class="navbar-brand text-white" href="/"><img src="img/jodi.png"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
@@ -41,18 +41,37 @@
                             <a class="nav-link text-white" href="search">Search</a>
                         </li>
                     </ul>
-                    <div class="col-5 toast" data-delay="2000">
-                        <div class="alert alert-success text-center">
-                            <h6>Request sent &nbsp;<i class="fa fa-smile-o" aria-hidden="true"></i></h6>
+                    <div class="col-5 toast" id="popup" data-delay="2000">
+                        <div class="alert alert-success">
+                            <a class="panel-close close" data-dismiss="alert">×</a>
+                            <h6>Your Profile has been successfully registered &nbsp;
+                                <i class="fa fa-smile-o" aria-hidden="true"></i>
+                            </h6>
                         </div>
                     </div>
                     <span class="navbar-text">
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="profile">Profile</a>
+                            <li class="nav-item active">
+                                <a href="profile">
+                                    <div class="avatar-upload mt-0 mb-0">
+                                        <div class="avatar-preview img-small">
+                                            <div id="imagePreview"
+                                                style="background-image: url({{user.Profile.Profile1.photo}});">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="setting">Settings</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="profile"
+                                    id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="setting">Settings</a>
+                                    <a class="dropdown-item" href="userpref">User Preferences</a>
+                                    <a class="dropdown-item text-danger" href="logout">Logout</a>
+                                </div>
                             </li>
                         </ul>
                     </span>

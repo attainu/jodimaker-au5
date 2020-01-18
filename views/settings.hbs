@@ -16,7 +16,7 @@
 
 <body class="bg-light">
 
-    <nav class="navbar navbar-expand-lg fixed-top header-top " id="nav-bar">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top " id="nav-bar">
         <div class="container">
             <a class="navbar-brand text-white" href="/"><img src="img/jodi.png"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
@@ -29,7 +29,7 @@
                         <a class="nav-link text-white" href="home">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="home">My Matches</a>
+                        <a class="nav-link text-white" href="matches">My Matches</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-white" href="search">Search</a>
@@ -37,11 +37,26 @@
                 </ul>
                 <span class="navbar-text">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="profile">Profile</a>
+                        <li class="nav-item active">
+                            <a href="profile">
+                                <div class="avatar-upload mt-0 mb-0">
+                                    <div class="avatar-preview img-small">
+                                        <div id="imagePreview"
+                                            style="background-image: url({{result.Profile.Profile1.photo}});">
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="setting">Settings</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="profile" id="navbarDropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="setting">Settings</a>
+                                <a class="dropdown-item" href="userpref">User Preferences</a>
+                                <a class="dropdown-item text-danger" href="logout">Logout</a>
+                            </div>
                         </li>
                     </ul>
                 </span>
@@ -139,25 +154,23 @@
                                                 </div>
                                             </div>
                                             <br>
-                                            <div class="row mb-3">
-                                                <div class="col-md-2">
-                                                    <label>Religion:</label>
-                                                </div>
-                                                <div class="col">
-                                                    <select class="form-control religion" multiple="multiple"
-                                                        name="religion">
-                                                        <option value="doesnotmatter">Doesn't Matter</option>
-                                                        <option value="hindu">Hindu</option>
-                                                        <option value="muslim">Islam</option>
-                                                        <option value="buddhism">Buddhism</option>
-                                                        <option value="christian">Christian</option>
-                                                        <option value="jainism">Jainism</option>
-                                                        <option value="judaism">Judaism</option>
-                                                        <option value="sikhism">Sikhism</option>
-                                                        <option value="taoism">Taoism</option>
-                                                        <option value="zoroastrianism">Zoroastrianism</option>
-                                                    </select>
-                                                </div>
+                                            <div class="mb-3">
+
+                                                <label>Religion:</label>
+                                                <select class="form-control religion" multiple="multiple"
+                                                    name="religion">
+                                                    <option value="doesnotmatter">Doesn't Matter</option>
+                                                    <option value="hindu">Hindu</option>
+                                                    <option value="muslim">Islam</option>
+                                                    <option value="buddhism">Buddhism</option>
+                                                    <option value="christian">Christian</option>
+                                                    <option value="jainism">Jainism</option>
+                                                    <option value="judaism">Judaism</option>
+                                                    <option value="sikhism">Sikhism</option>
+                                                    <option value="taoism">Taoism</option>
+                                                    <option value="zoroastrianism">Zoroastrianism</option>
+                                                </select>
+
                                             </div>
                                             <label class="text-muted"><b>Community:</b></label>
                                             <input type="text" name="caste" id="community"
@@ -473,7 +486,7 @@
         </div>
     </section>
 
-    {{!-- <footer class="pt-4 mt-5 pb-5" style="width:100%;">
+    <footer class="pt-4 mt-5 pb-5" style="width:100%;">
         <div class="container">
             <div class="row">
                 <div class="col-2">
@@ -486,7 +499,7 @@
                     </ul>
                 </div>
                 <div class="col-2">
-                    <h4>Help & Support</h4>
+                    <h4>Help &amp; Support</h4>
                     <ul>
                         <li><i class="fa fa-check"></i><a href="#">Live Support</a></li>
                         <li><i class="fa fa-check"></i><a href="#">Online Help - FAQ</a></li>
@@ -529,7 +542,7 @@
                 <div class="col-2"></div>
             </div>
         </div>
-    </footer> --}}
+    </footer>
 
 
 
@@ -606,7 +619,7 @@
                 " - " + $("#slider-range").slider("values", 1));
         });
 /*select2 plugin code
-                                                                                                                        ends from here */
+                                                                                                                                                                                                ends from here */
 
     </script>
     <script src="./js/setting.js"></script>

@@ -15,42 +15,60 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-wine" id="nav-bar">
-        <div class="container">
-            <a class="navbar-brand text-white" href="/"><img src="img/jodi.png"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav mr-auto text-white">
-                    <li class="nav-item active">
-                        <a class="nav-link text-white" href="home">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="matches">My Matches</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="search">Search</a>
-                    </li>
-                </ul>
-                <span class="navbar-text">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="profile">Profile</a>
+    <section>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top " id="nav-bar">
+            <div class="container">
+                <a class="navbar-brand text-white" href="/"><img src="img/jodi.png"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto text-white">
+                        <li class="nav-item active">
+                            <a class="nav-link text-white" href="home">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="setting">Settings</a>
+                            <a class="nav-link text-white" href="matches">My Matches</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="search">Search</a>
                         </li>
                     </ul>
-                </span>
+                    <span class="navbar-text">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a href="profile">
+                                    <div class="avatar-upload mt-0 mb-0">
+                                        <div class="avatar-preview img-small">
+                                            <div id="imagePreview"
+                                                style="background-image: url({{user.Profile.Profile1.photo}});">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="profile"
+                                    id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="setting">Settings</a>
+                                    <a class="dropdown-item" href="userpref">User Preferences</a>
+                                    <a class="dropdown-item text-danger" href="logout">Logout</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </span>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </section>
 
-    <div class="container mt-5  ">
-        <div class="row">
-            <div class="col-md-7 offset-md-2 border rounded bg-light shadow p-3 px-5">
+    <div class="container mt-5 ">
+        <div class="row ">
+            <div class="col-md-6 offset-md-3  border rounded bg-light shadow p-3 px-5">
                 <h2 class="text-center font-weight-light">Search</h2>
                 <form action="/searchsave" method="POST" class="form-group">
                     <p>
