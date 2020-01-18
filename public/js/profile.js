@@ -4,7 +4,11 @@ $(document).ready(function() {
     $(this).hide();
     $(".disabled").addClass("shadow p-2  mb-5 bg-white rounded");
     $(this).after(
+<<<<<<< HEAD
       "<button type='button' class='btn btn-wine float-right mr-2 cancel'>Cancel</button>&nbsp;<button type='button' data-toggle='modal' data-target='#confirm-update' class=' btn btn-wine float-right mr-4 save'>Save</button>&nbsp;"
+=======
+      "<button type='button' class='btn  btn-wine float-right cancel'>Cancel</button>&nbsp;<button type='button' data-toggle='modal' data-target='#confirm-update' class='float-right btn btn-wine mr-3 save'>Save</button>&nbsp;"
+>>>>>>> 61024d930389a595695d68cfdc1b53e1d9295591
     );
     $(".disabled")
       .attr("disabled", false)

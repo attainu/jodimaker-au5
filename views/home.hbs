@@ -37,7 +37,16 @@
                             <a class="nav-link text-white" href="search">Search</a>
                         </li>
                     </ul>
-
+                    {{!-- <div class="col-5 toast1" data-delay="3000">
+                        <div class="alert alert-success text-center">
+                            <h6>Your Profile has been succesfully registered &nbsp;<i class="fa fa-smile-o" aria-hidden="true"></i></h6>
+                        </div>
+                    </div> --}}
+                    <div class="col-5 toast" data-delay="3000">
+                        <div class="alert alert-success text-center">
+                            <h6>Request has been accepted &nbsp;</h6>
+                        </div>
+                    </div>
                     <span class="navbar-text">
                         <ul class="navbar-nav mr-auto">
                             {{#with user.Profile.Profile1}}
@@ -81,7 +90,7 @@
         <div class="container mt-5 mh-100">
             <div class="row">
                 {{!-- profile column --}}
-                <div class="d-flex col-md-3">
+                <div class=" col-md-3">
                     <div class="card">
                         {{!-- <div class="img-holder px-2 p-2"> --}}
                         {{!-- <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
@@ -255,16 +264,25 @@
                     </div>
                 </div>
                 <div class="col-md-3 bg-white border rounded">
+
                     <div class="row p-3">
+                        
                         <h6 class="text-danger">Notifications
                             <span class="badge badge-pill badge-danger" id="notifs">{{notifications.length}}</span>
                         </h6>
-                        {{#each notifications}}
-                        <div class="alert alert-success alert-dismissable fade show">
-                            <a class="panel-close close" data-dismiss="alert">×</a>
-                            {{this}}
-                        </div>
-                        {{/each}}
+                    </div>
+                    <div class="row p-3">
+                       <div class="overflow-auto" style="height:400px;"> 
+                            {{#each notifications}}
+                            <div class="alert alert-success alert-dismissable">
+                                <a class="panel-close close" data-dismiss="alert">×</a>
+                                {{this}}
+                            </div>
+                            {{/each}}
+                         </div> 
+                    </div>
+                       
+
                     </div>
                 </div>
             </div>

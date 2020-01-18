@@ -7,7 +7,8 @@ $(document).ready(function () {
 
   $("#newLogin").click(function () {
     $(".modal").modal("hide");
-
+    $(".toast").toast("show")
+    
     $("#register").toggle();
   });
   $(".modal").on("hidden.bs.modal", function () {

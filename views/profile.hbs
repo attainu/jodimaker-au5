@@ -479,6 +479,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </form>
                     </div>
                     {{!-- family-details  --}}
                     <div class="col-md-12">
@@ -690,7 +691,7 @@
                                 <hr>
                             </h6>
                         </div>
-                        <div class="row ">
+                        <form class="row ">
                             <div class="col-md-6 flex-nowrap">
                                 <div class="row ">
                                     <div class="col-md-4">
@@ -795,33 +796,39 @@
                                         <div class="text-nowrap"><input class="disabled" type="text" name="favcuisines"
                                                 value="{{result.Profile.Profile3.favcuisines}}"></div>
                                         {{else}}
-                                        <div class="text-nowrap"></div><input class="disabled" type="text"
-                                            name="favcuisines" value="Not Specified"></div>
-                                    {{/if}}
+                                        <div class="text-nowrap"><input class="disabled" type="text" name="favcuisines"
+                                                value="Not Specified"></div>
+                                        {{/if}}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
                         </form>
                     </div>
+
                 </div>
                 {{!-- Partner Preference --}}
                 <div class="tab-pane" id="partnerPreference">
                     <div class="col-md-12">
-                        <a href="/userpref"> <i style="font-size:24px" class="fa float-right mr-5">&#xf044;</i></a>
-                        <div class=" row">
-                            <h6 class="mt-2 ">Basic Information
+                        <a href="userpref"><i style="font-size:24px" class="fa float-right mr-5">&#xf044;</i></a>
+
+                        <div class="row">
+                            <h6 class="mt-2 pl-3 ">Basic Information
                                 <hr>
                             </h6>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6 flex-nowrap mt-4">
+                            <div class="col-md-6 flex-nowrap">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label>Age:</label>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="text-nowrap">{{result.Userpref.minage}}-{{result.Userpref.maxage}}
+                                    <div class="col-md-8">
+                                        <div class="text-nowrap">
+                                            <input type="number" class="disabled" name="age1"
+                                                value="{{result.Userpref.minage}}" style="width: 50px;">-
+                                            <input type="number" class="disabled" name="age2"
+                                                value="{{result.Userpref.maxage}}" style="width: 50px;">
                                         </div>
                                     </div>
                                 </div>
@@ -829,58 +836,81 @@
                                     <div class="col-md-4">
                                         <label>Height:</label>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="text-nowrap">{{result.Userpref.height}}</div>
+                                    <div class="col-md-8">
+                                        <div class="text-nowrap">
+                                            <input type="text" class="disabled" name="height"
+                                                value="{{result.Userpref.height}}"></div>
+
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label class="text-nowrap">Marital Status:</label>
                                     </div>
-                                    <div class="col-md-4 ">
-                                        <div class="text-nowrap text-capitalize">{{result.Userpref.maritialstatus}}
+                                    <div class="col-md-8">
+                                        <div class="text-nowrap">
+                                            <input type="text" name="maritialstatus" class="disabled"
+                                                value="{{result.Userpref.maritialstatus}}"></div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 flex-nowrap">
+                                <div class="row ">
+                                    <div class="col-md-5">
+                                        <label>Mother tongue:</label>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="text-nowrap"><input type="text" class="disabled" name="mothertongue"
+                                                value="{{result.Userpref.mothertongue}}">
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-5">
                                         <label class="text-nowrap">Diet:</label>
                                     </div>
-                                    <div class="col-md-4 ">
-                                        <div class="text-nowrap">{{result.Userpref.diet}}</div>
+                                    <div class="col-md-7">
+                                        <div class="text-nowrap"><input type="text" class="disabled" name="diet"
+                                                value="{{result.Userpref.diet}}"></div>
                                     </div>
                                 </div>
+
                             </div>
 
                         </div>
                     </div>
                     {{!-- location details --}}
-                    <div class="col-md-12">
+                    <form class="col-md-12">
                         <div class=" row px-3">
-                            <h6 class="mt-2 ">Location details
+                            <h6 class="mt-2 pl-3">Location details
                                 <hr>
                             </h6>
                         </div>
                         <div class="row">
-                            <div class="col-md-6 flex-nowrap mt-4">
+                            <div class="col-md-6 flex-nowrap">
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label>Country living in:</label>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="text-nowrap">{{result.Userpref.location.country}}</div>
+                                    <div class="col-md-8">
+                                        <div class="text-nowrap"><input type="text" class="disabled" name="country"
+                                                value="{{result.Userpref.location.country}}"></div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
                                         <label>State living in:</label>
                                     </div>
-                                    <div class="col-md-3">
-                                        <div class="text-nowrap">{{result.Userpref.location.state}}</div>
+                                    <div class="col-md-8">
+                                        <div class="text-nowrap"><input type="text" class="disabled" name="state"
+                                                value="{{result.Userpref.location.state}}"></div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-6 flex-nowrap mt-4">
+                            <div class="col-md-6 flex-nowrap">
                                 <div class="row ">
                                     <div class="col-md-5">
                                         <label>City / District:</label>
@@ -894,13 +924,13 @@
 
                         {{!-- Education --}}
                         <div class="col-md-12">
-                            <div class=" row px-3">
-                                <h6 class="mt-2 ">Education &amp; Career
+                            <div class=" row">
+                                <h6 class="mt-2 pl-3">Education &amp; Career
                                     <hr>
                                 </h6>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 flex-nowrap mt-4">
+                                <div class="col-md-6 flex-nowrap">
                                     <div class="row">
                                         <div class="col-md-4">
                                             <label>Education:</label>
@@ -942,11 +972,13 @@
 
                             </div>
                         </div>
-                    </div>
+
                 </div>
 
             </div>
 
+
+    </div>
 </body>
 
 
