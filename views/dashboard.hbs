@@ -12,15 +12,15 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/flick/jquery-ui.css">
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="../css/matches.css">
+    <title>Jodi Maker</title>
+    {{!-- <link rel="stylesheet" href="../css/dashboard.css"> --}}
+    <link rel="stylesheet" href="css/matches.css">
 
 </head>
 
 <body class="bg-light">
-
     <section>
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top" id="nav-bar">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
             <div class="container">
                 <a class="navbar-brand text-white" href="/"><img src="img/jodi.png"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
@@ -30,10 +30,10 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto text-white">
                         <li class="nav-item active">
-                            <a class="nav-link text-white" href="home">Dashboard</a>
+                            <a class="nav-link text-white" href="dashboard">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="home">My Matches</a>
+                            <a class="nav-link text-white" href="dashboard">My Matches</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="search">Search</a>
@@ -57,103 +57,78 @@
 
     <section>
         <div class="container ">
-            <div class="row">
+            <div class="row mt-5">
                 <div class="col-md-2 mt-5 px-5 pb-2">
-                    <form action="/searchresults" method="get">
-                        <h5 class="mt-2 text-center">Filter Search</h5>
-                        {{!-- age  --}}
-                        <p>
-                            <label for="age">Age:</label>
-                            <input type="text" id="age" disabled style="border:0; color:#f6931f; font-weight:bold;"
-                                class="bg-transparent" />
-                        </p>
-                        <div id="slider-range"></div>
-                        {{!-- gender  --}}
-                        <div class="row my-3 mx-auto">
+
+                    <form action="/dashboard" method="GET">
+                        <h5 class="mt-2 text-center"><b>Filters</b></h5>
+                        <div class="row mt-3">
+                            <h6><b>Maximum Age</b></h6>
+                            <input type="range" class="custom-range" min="18" max="50" value="20" id="customRange1"
+                                name="age">
+                            <p class="text-center"><span id="sliderValue"></span></p>
+                        </div>
+                        <div class="row mt-3">
+                            <h6><b>Working Professional</b></h6>
+                        </div>
+                        <div class="row">
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="customRadioInline1" name="isEmployed"
-                                    class="custom-control-input" value="true">
-                                <label class="custom-control-label" for="customRadioInline1">Employed</label>
+                                    class="custom-control-input" value="Yes">
+                                <label class="custom-control-label" for="customRadioInline1">Yes</label>
                             </div>
 
                         </div>
-                        {{!-- religion  --}}
-                        <label for="religion">Religion</label>
-                        <select class="custom-select" name="religion" id="religion">
-                            <option>Doesn't Matter</option>
-                            <option value="hindu">Hindu</option>
-                            <option value="islam">Islam</option>
-                            <option value="buddhism">Buddhism</option>
-                            <option value="christianity">Christianity</option>
-                            <option value="jainism">Jainism</option>
-                            <option value="judaism">Judaism</option>
-                            <option value="sikhism">Sikhism</option>
-                            <option value="taoism">Taoism</option>
-                            <option value="zoroastrianism">Zoroastrianism</option>
-                        </select>
-                        {{!-- height --}}
-                        <p>
-                            <label for="height">Height:</label>
-                            <input type="text" id="height" readonly style="border:0; color:#f6931f; font-weight:bold;"
-                                class="bg-transparent" />
-                        </p>
-                        <div id="height-range"></div>
-                        {{!-- salary  --}}
-                        <p>
-                            <label for="salary">Salary:</label>
-                            <input type="text" id="salary" readonly style="border:0; color:#f6931f; font-weight:bold;"
-                                class="bg-transparent" />
-                        </p>
-                        <div id="salary-range"></div>
-
-                        <div class="row mx-auto mt-3">
-                            <button type="submit" class="btn btn-primary">Apply</button>
+                        {{!-- <div> --}}
+                        <div class="row mt-3">
+                            <h6><b>Religion</b></h6>
                         </div>
-
-
+                        <div class="row">
+                            <select class="custom-select" name="religion" id="religion">
+                                <option value="Hinduism">Hindu</option>
+                                <option value="islam">Islam</option>
+                                <option value="buddhism">Buddhism</option>
+                                <option value="Christian">christianity</option>
+                                <option value="Jainism">Jainism</option>
+                                <option value="judaism">Judaism</option>
+                                <option value="sikhism">Sikhism</option>
+                                <option value="taoism">Taoism</option>
+                                <option value="zoroastrianism">Zoroastrianism</option>
+                            </select>
+                        </div>
+                        {{!-- </div> --}}
+                        <div class="row mx-auto mt-3">
+                            <button type="submit" class="btn btn-infor">Apply</button>
+                        </div>
 
                     </form>
                 </div>
-
                 <div class="col-md-10 mt-5">
                     <div class="row">
                         {{#each matches}}
+
                         <div class="col-md-4 mt-5">
                             <div class="card">
+                                <a href="/matchprofile" class="text-center"><img style="height:150px; width:150px"
+                                        src="{{this.Profile.Profile1.photo}}"
+                                        alt="{{this.Profile.Profile1.name.firstname}} {{this.Profile.Profile1.name.middlename}} {{this.Profile.Profile1.name.lastname}}"></a>
                                 <div class="card-body text-center">
-                                    <a href="/matchprofile?id={{_id}}"><img class="avatar rounded-circle"
-                                            src="{{Profile.Profile1.photo}}" alt="Bologna"></a>
-                                    <h5 class="card-title">{{Profile.Profile1.name.firstname}}
-                                        {{Profile.Profile1.name.lastname}},
-                                        {{Profile.Profile2.age}}</h5>
-                                    <h6 class="card-subtitle mb-2 text-muted">{{Profile.Profile2.height}},
-                                        {{Profile.Profile2.maritialstatus}}</h6>
-                                    <p class="card-text">{{Profile.Profile1.location.city}}</p>
-                                    <a class="btn btn-outline-secondary">Message</a>
-                                    <input type="hidden" class="userid" value="{{_id}}">
-                                    {{#if sent}}
-                                    <a class="btn btn-success  text-white">Sent</a>
 
-                                    {{else}}
-                                    <a class="btn btn-wine connect text-white">Connect</a>
-                                    {{/if}}
+                                    <h4 class="card-title">{{this.Profile.Profile1.name.firstname}}
+                                        {{this.Profile.Profile1.name.middlename}}
+                                        {{this.Profile.Profile1.name.lastname}}</h4>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{this.Profile.Profile2.age}}years
+                                        {{this.Profile.Profile2.height}}</h6>
+                                    <p class="card-text">{{this.Profile.Profile1.location.city}} ,
+                                        {{this.Profile.Profile1.location.state}}</p>
+                                    <a href="#" class="btn btn-outline-secondary">Message</a>
+                                    <a href="#" class="btn btn-wine text-white">Connect</a>
                                 </div>
                             </div>
                         </div>
                         {{/each}}
-                        <div class="col-md-9 mt-5 offset-2">
-
-                            {{#unless matches}}
-                            <h5>No current matches for this search.</h5>
-                            <h5> We'll have new matches for you soon.</h5>
-                            {{/unless}}
-                        </div>
-
-
                     </div>
                 </div>
-            </div>
-        </div>
     </section>
 
 
@@ -192,6 +167,5 @@
     crossorigin="anonymous"></script>
 <script src="../js/matches.js"></script>
 <script src="https://code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-
 
 </html>

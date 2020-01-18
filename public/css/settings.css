@@ -4,11 +4,24 @@
 
 body {
   padding-top: 70px;
+  background-color: aliceblue !important;
 }
 
-h4 {
-  font-size: 15px;
+.btn-wine {
+  color: #fff;
+  background-color: #78244c;
+  border-color: #78244c;
 }
+
+.btn-wine:hover {
+  background-color: rgba(120, 36, 77, 0.342);
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  border-color: rgba(120, 36, 77, 0.342);
+}
+
+/* -----footer-------------- */
 
 .settingspanel {
   height: 60vh;
@@ -31,55 +44,16 @@ a {
   text-decoration: none;
   color: #8e8e8e;
 }
-
-/* a:hover{
-   text-decoration: none;
-   color: #D79922;
-   font-size: 15px;
- } */
-
-.bg-wine {
-  background-color: #78244c;
+.tab-pane {
+  background-color: white;
 }
-
-.banner {
-  background: url("/img/Lovevivah-banner.jpg") no-repeat center;
-  min-height: 620px;
-  background-size: cover;
-}
-
-.btn-wine {
-  color: #fff;
-  background-color: #78244c;
-  border-color: #78244c;
-}
-
-.btn-infor {
-  color: #fff;
-  background-color: #d79922;
-  border-color: #d79922;
-}
-
-.bg-wine {
-  color: #fff;
-  background-color: #78244c;
-}
-
-#age1 {
-  border: 0;
-  color: #f6931f;
-  font-weight: bold;
-  outline: none;
-  background: transparent;
-  cursor: default;
-}
-
 #nav-bar {
   top: 0;
   width: 100%;
   display: block;
   transition: top 0.5s ease-in-out;
 }
+/* avatar image  */
 .avatar-upload {
   position: relative;
   max-width: 205px;

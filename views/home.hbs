@@ -11,15 +11,14 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/home.css">
-
+    <link rel="stylesheet" href="/css/home.css">
     <title>Dashboard</title>
 
 </head>
 
 <body class="bg-light">
     <section>
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top " id="nav-bar">
             <div class="container">
                 <a class="navbar-brand text-white" href="#"><img src="img/jodi.png"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
@@ -38,13 +37,35 @@
                             <a class="nav-link text-white" href="search">Search</a>
                         </li>
                     </ul>
+
                     <span class="navbar-text">
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="profile">Profile</a>
+                            {{#with user.Profile.Profile1}}
+                            <li class="nav-item ">
+                                <a class="nav-link text-white" href="/profile">{{name.firstname}} {{name.lastname}}</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="setting">Settings</a>
+                            <li class="nav-item active">
+                                <a href="profile">
+                                    <div class="avatar-upload mt-0 mb-0">
+                                        <div class="avatar-preview img-small">
+                                            <div id="imagePreview" style="background-image: url({{photo}});">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+
+                            {{/with}}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="profile"
+                                    id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="setting">Settings</a>
+                                    <a class="dropdown-item" href="userpref">User Preferences</a>
+                                    <a class="dropdown-item text-danger" href="logout">Logout</a>
+                                </div>
                             </li>
                         </ul>
                     </span>
@@ -91,13 +112,12 @@
                         {{!-- </div> --}}
                         <div class="card-body">
                             <hr>
-                            <h5 class="card-title text-capitalize">{{user.Profile.Profile1.name.firstname}}
+                            <h5 class="card-title text-center text-capitalize">{{user.Profile.Profile1.name.firstname}}
                                 {{#if user.Profile.Profile1.name.middlename}}
                                 {{user.Profile.Profile1.name.middlename}}
                                 {{/if}}
                                 {{user.Profile.Profile1.name.lastname}}</h5>
-                            <p class="card-text text-center">Profile completion: <mark>80
-                                    %</mark>
+                            <p class="card-text text-center"><i class="fa  fa-map-marker"></i>{{user.Profile.Profile1.location.city}}   
                             </p>
                             <hr>
                             {{!-- <div class="row ">
@@ -230,7 +250,6 @@
                                 </div>
                                 <hr>
                             </div>
-
                             {{/each}}
                         </div>
                     </div>
@@ -241,7 +260,7 @@
                             <span class="badge badge-pill badge-danger" id="notifs">{{notifications.length}}</span>
                         </h6>
                         {{#each notifications}}
-                        <div class="alert alert-success alert-dismissable">
+                        <div class="alert alert-success alert-dismissable fade show">
                             <a class="panel-close close" data-dismiss="alert">×</a>
                             {{this}}
                         </div>
@@ -319,7 +338,6 @@
                                 </a>
                             </div>
                         </div>
-
                         <div class="col-md-2 justify-content-around d-flex">
                             <input type="hidden" value="{{_id}}">
                             <a><i class="fa fa-check text-success"></i></a>
@@ -327,8 +345,6 @@
                         </div>
                     </div>
                     {{/each}}
-
-
                 </div>
             </div>
     </section>
@@ -348,11 +364,11 @@
                     </div>
                     <h6 class="text-truncate mt-1">
 
-                    {{Profile.Profile1.name.firstname}}
-                    {{Profile.Profile1.name.lastname}} <span class="badge badge-danger"></span>
+                        {{Profile.Profile1.name.firstname}}
+                        {{Profile.Profile1.name.lastname}} <span class="badge badge-danger"></span>
                     </h6>
                 </li>
-                
+
                 {{/each}}
             </ul>
         </div>
@@ -373,5 +389,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 
 <script src="../js/home.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
 
 </html>

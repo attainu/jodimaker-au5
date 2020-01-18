@@ -75,6 +75,7 @@ $(document).ready(function () {
                       $("#otp").addClass("is-invalid");
                     } else {
                       $(".modal ,.modal-backdrop").hide();
+                      $(".toast").toast("show")
                       $("#login").modal("show");
                     }
                   }

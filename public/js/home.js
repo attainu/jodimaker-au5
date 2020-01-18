@@ -45,21 +45,21 @@ $(document).ready(function () {
   });
 
   $(".panel-close").click(function () {
-    var data = { index: $(this).index(".panel-close") }
+    var data = { index: $(this).index(".panel-close") };
     $.ajax({
       type: "post",
       url: "/deletenotification",
       data: data,
       success: function (response) {
-        console.log(response)
-        $("#notifs").text(response)
+        console.log(response);
+        $("#notifs").text(response);
       }
     });
-  })
+  });
 
   $(".deletesent").click(function () {
-    var deletebtn = $(this)
-    var data = { id: deletebtn.siblings("input").val() }
+    var deletebtn = $(this);
+    var data = { id: deletebtn.siblings("input").val() };
     $.ajax({
       type: "post",
       url: "/deletesent",
@@ -69,12 +69,11 @@ $(document).ready(function () {
         $("#sentreqs").text(response)
       }
     });
-
-  })
+  });
 
   $(".deletereceived").click(function () {
-    var deletebtn = $(this)
-    var data = { id: deletebtn.siblings("input").val() }
+    var deletebtn = $(this);
+    var data = { id: deletebtn.siblings("input").val() };
     $.ajax({
       type: "post",
       url: "/deletereceived",
@@ -84,26 +83,25 @@ $(document).ready(function () {
         $("#received").text(response)
       }
     });
-
-
-  })
+  });
 
   $(".acceptreq").click(function () {
-    console.log("clicked")
-    var acceptbtn = $(this)
-    var data = { id: acceptbtn.siblings("input").val() }
-    console.log("data")
+    console.log("clicked");
+    var acceptbtn = $(this);
+    var data = { id: acceptbtn.siblings("input").val() };
+    console.log("data");
 
     $.ajax({
       type: "post",
       url: "/acceptrequest",
       data: data,
       success: function (response) {
-        console.log(response)
-        acceptbtn.parents(".no-gutters").remove()
-        $("#received").text(response.receivedrequests)
-        $("#accepted").text(response.acceptedrequests)
-        $("#acceptedReqs").append(` <div class="row no-gutters align-items-center">
+        console.log(response);
+        acceptbtn.parents(".no-gutters").remove();
+        $("#received").text(response.receivedrequests);
+        $("#accepted").text(response.acceptedrequests);
+        $("#acceptedReqs")
+          .append(` <div class="row no-gutters align-items-center">
         <div class="col-md-2">
             <img src="${response.acceptedmatch.Profile.Profile1.photo}"
                 class="card-img-top matches-photo rounded-circle p-3" alt="Profile Page">
@@ -125,7 +123,7 @@ $(document).ready(function () {
             <a class="btn btn-outline-secondary">Message</a>
         </div>
 
-    </div>`)
+    </div>`);
       }
     });
 
@@ -259,4 +257,15 @@ $(document).ready(function () {
     $(".chatbox").css("height", "60%")
     $("#minimize").show()
   })
+
+  var prevScrollpos = window.pageYOffset;
+  window.onscroll = function () {
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+      document.getElementById("nav-bar").style.top = "0";
+    } else {
+      document.getElementById("nav-bar").style.top = "-60px";
+    }
+    prevScrollpos = currentScrollPos;
+  };
 })

@@ -18,9 +18,9 @@
 <body class="bg-light">
     <div class="container-fluid">
         <section>
-            <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top " id="nav-bar">
                 <div class="container">
-                    <a class="navbar-brand text-white" href="#"><img src="img/jodi.png"></a>
+                    <a class="navbar-brand text-white" href="/"><img src="img/jodi.png"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -31,7 +31,7 @@
                                 <a class="nav-link text-white" href="home">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="home">My Matches</a>
+                                <a class="nav-link text-white" href="matches">My Matches</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white" href="search">Search</a>
@@ -39,11 +39,27 @@
                         </ul>
                         <span class="navbar-text">
                             <ul class="navbar-nav mr-auto">
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="profile">Profile</a>
+                                <li class="nav-item active">
+                                    <a href="profile">
+                                        <div class="avatar-upload mt-0 mb-0">
+                                            <div class="avatar-preview img-small">
+                                                <div id="imagePreview"
+                                                    style="background-image: url({{result.Profile.Profile1.photo}});">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-white" href="setting">Settings</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle text-white" href="profile"
+                                        id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                        aria-expanded="false">
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                        <a class="dropdown-item" href="setting">Settings</a>
+                                        <a class="dropdown-item" href="userpref">User Preferences</a>
+                                        <a class="dropdown-item text-danger" href="logout">Logout</a>
+                                    </div>
                                 </li>
                             </ul>
                         </span>
@@ -70,11 +86,7 @@
                         <label>About me:</label>
                         <p>{{result.Profile.Profile3.AboutYourself}}</p>
                     </div>
-                    <div class="row">
-                        <a href="#" class="fa fa-facebook social"></a>
-                        <a href="#" class="fa fa-twitter social"></a>
-                        <a href="#" class="fa fa-google social"></a>
-                    </div>
+
                 </div>
                 <div class="container">
                     <div class="row">
@@ -100,14 +112,13 @@
                     <div class="modal-content">
 
                         <div class="modal-header">
+                            <h4>Confirm Update</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title" id="myModalLabel"></h4>
                         </div>
 
                         <div class="modal-body">
-                            <p>You are about to update your Account,this procedure is irreversible.
-                            </p>
-                            <p>Do you want to proceed?</p>
+                            <p>Are you sure you want to update?</p>
                         </div>
 
                         <div class="modal-footer">
@@ -796,11 +807,13 @@
                 {{!-- Partner Preference --}}
                 <div class="tab-pane" id="partnerPreference">
                     <div class="col-md-12">
+                        <a href="/userpref"> <i style="font-size:24px" class="fa float-right mr-5">&#xf044;</i></a>
                         <div class=" row">
                             <h6 class="mt-2 ">Basic Information
                                 <hr>
                             </h6>
                         </div>
+
                         <div class="row">
                             <div class="col-md-6 flex-nowrap mt-4">
                                 <div class="row">

@@ -118,6 +118,12 @@ body {
   background-position: center;
 }
 
+.avatar-preview.img-small {
+  width: 36px;
+  height: 36px;
+  border: 2px solid #f8f8f8;
+}
+/* avatar css ends  */
 .matches-photo {
   height: 7rem;
   width: 7rem;

@@ -92,8 +92,14 @@ module.exports = function (io) {
             .catch(err => console.log(err))
     })
     router.get("/search", (req, res) => {
-        res.render("search");
+        User.findOne({ _id: req.session.user._id })
+            .then(user => {
 
+                res.render("search", {
+                    user: user
+                });
+
+            })
     })
 
     router.get("/logout", (req, res) => {
@@ -322,7 +328,7 @@ module.exports = function (io) {
                 var matchname = match.Profile.Profile1.name
                 match.Matches.sentrequests = match.Matches.sentrequests.filter(el => el != req.session.user._id)
                 match.Matches.acceptedrequests.push(req.session.user._id + "")
-                match.Notifications.all.push(username.firstname + " " + username.lastname + " accepted your request.")
+                match.Notifications.all.push(username.firstname + " " + username.lastname + "  accepted your request.")
                 match.save()
                 user.Matches.receivedrequests = user.Matches.receivedrequests.filter(el => el != match._id)
                 user.Matches.acceptedrequests.push(match._id + "")

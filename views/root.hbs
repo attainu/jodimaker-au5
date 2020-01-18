@@ -16,7 +16,7 @@
     <header class="position-absolute w-100">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
-                <a class="navbar-brand flex-grow-1" href="#"><img class="logo" src="./img/jodi1.png" alt="logo"></a>
+                <a class="navbar-brand flex-grow-1" href="/"><img class="logo" src="./img/jodi1.png" alt="logo"></a>
 
                 <button class="btn btn-wine" type="button" data-toggle="modal" data-target="#register">Register
                     Free!</button>
@@ -277,7 +277,7 @@
                         </form>
 
                     </div>
-                  
+
                     <div class="modal-footer">
                         <p>Already have an Account?
                             <button class="btn btn-infor ml-2" type="button" id="newLogin" data-toggle="modal"
@@ -290,6 +290,7 @@
     </section>
 
     <section>
+
         <!-- Modal -->
         <div class="modal fade" id="login" role="dialog">
             <div class="modal-dialog">
@@ -297,9 +298,16 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header" style="padding:35px 50px;">
-                        <h3 class="text-center"><b>Login to Your Account</b></h3>
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <h3 class="text-center"><b>Login to Your Account</b></h3>
+                            </div>
+
+                        </div>
 
                     </div>
+
                     <div class="modal-body" style="padding:40px 50px;">
                         <form role="form " class="needs-validation" method="POST" action="/login" novalidate>
                             <div class="form-group">
@@ -338,14 +346,14 @@
                     <div class="modal-footer">
                         <p>Not a member? <button class="btn btn-infor ml-2" id="newRegister" type="button"
                                 data-toggle="modal" data-target="#register">Register Free!</button></p>
-                          </div>
-                    <div class="g-signin2" data-onsuccess="onSignIn"> </div>
-                </div>        
-
                     </div>
+                    <div class="g-signin2" data-onsuccess="onSignIn"> </div>
                 </div>
 
             </div>
+        </div>
+
+        </div>
         </div>
         </div>
     </section>
