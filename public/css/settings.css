@@ -1,0 +1,49 @@
+.header-top {
+  background-color: #78244c;
+}
+
+body {
+  padding-top: 70px;
+  background-color: aliceblue !important;
+}
+
+.btn-wine {
+  color: #fff;
+  background-color: #78244c;
+  border-color: #78244c;
+}
+
+.btn-wine:hover {
+  background-color: rgba(120, 36, 77, 0.342);
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  border-color: rgba(120, 36, 77, 0.342);
+}
+
+/* -----footer-------------- */
+
+.settingspanel {
+  height: 60vh;
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  background-color: #202020;
+  color: #fff;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: #8e8e8e;
+}
+.tab-pane {
+  background-color: white;
+}

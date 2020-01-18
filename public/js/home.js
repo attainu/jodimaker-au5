@@ -1,10 +1,21 @@
-$(document).ready(function () {
-  $(".fa").on("click", function () { });
-  $(".toast").toast("show")  
+$(document).ready(function() {
+  $(".fa").on("click", function() {});
+
+  if (!Cookies.get("popup")) {
+    Cookies.set("popup", "seen", { expires: 7, path: "/" });
+    $(".toast").toast("show");
+    $(".panel-close").click(function(e) {
+      $("#popup").fadeOut(); // Now the pop up is hiden.
+    });
+    $("#popup").click(function(e) {
+      $("#popup").fadeOut();
+    });
+  }
+
   function readURL(input) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();
-      reader.onload = function (e) {
+      reader.onload = function(e) {
         $("#imagePreview").css(
           "background-image",
           "url(" + e.target.result + ")"
@@ -15,70 +26,68 @@ $(document).ready(function () {
       reader.readAsDataURL(input.files[0]);
     }
   }
-  $("#imageUpload").change(function () {
+  $("#imageUpload").change(function() {
     readURL(this);
   });
 
-  $(".panel-close").click(function () {
-    var data = { index: $(this).index(".panel-close") }
+  $(".panel-close").click(function() {
+    var data = { index: $(this).index(".panel-close") };
     $.ajax({
       type: "post",
       url: "/deletenotification",
       data: data,
-      success: function (response) {
-        console.log(response)
-        $("#notifs").text(response)
+      success: function(response) {
+        console.log(response);
+        $("#notifs").text(response);
       }
     });
-  })
+  });
 
-  $(".deletesent").click(function () {
-    var deletebtn = $(this)
-    var data = { id: deletebtn.siblings("input").val() }
+  $(".deletesent").click(function() {
+    var deletebtn = $(this);
+    var data = { id: deletebtn.siblings("input").val() };
     $.ajax({
       type: "post",
       url: "/deletesent",
       data: data,
-      success: function (response) {
-        console.log(deletebtn.parents(".no-gutters").remove())
-        $("#sentreqs").text(response)
+      success: function(response) {
+        console.log(deletebtn.parents(".no-gutters").remove());
+        $("#sentreqs").text(response);
       }
     });
+  });
 
-  })
-
-  $(".deletereceived").click(function () {
-    var deletebtn = $(this)
-    var data = { id: deletebtn.siblings("input").val() }
+  $(".deletereceived").click(function() {
+    var deletebtn = $(this);
+    var data = { id: deletebtn.siblings("input").val() };
     $.ajax({
       type: "post",
       url: "/deletereceived",
       data: data,
-      success: function (response) {
-        console.log(deletebtn.parents(".no-gutters").remove())
-        $("#received").text(response)
+      success: function(response) {
+        console.log(deletebtn.parents(".no-gutters").remove());
+        $("#received").text(response);
       }
     });
+  });
 
-
-  })
-
-  $(".acceptreq").click(function () {
-    console.log("clicked")
-    var acceptbtn = $(this)
-    var data = { id: acceptbtn.siblings("input").val() }
-    console.log("data")
+  $(".acceptreq").click(function() {
+    console.log("clicked");
+    var acceptbtn = $(this);
+    var data = { id: acceptbtn.siblings("input").val() };
+    console.log("data");
 
     $.ajax({
       type: "post",
       url: "/acceptrequest",
       data: data,
-      success: function (response) {
-        console.log(response)
-        acceptbtn.parents(".no-gutters").remove()
-        $("#received").text(response.receivedrequests)
-        $("#accepted").text(response.acceptedrequests)
-        $("#acceptedReqs").append(` <div class="row no-gutters align-items-center">
+      success: function(response) {
+        console.log(response);
+        acceptbtn.parents(".no-gutters").remove();
+        $("#received").text(response.receivedrequests);
+        $("#accepted").text(response.acceptedrequests);
+        $("#acceptedReqs")
+          .append(` <div class="row no-gutters align-items-center">
         <div class="col-md-2">
             <img src="${response.acceptedmatch.Profile.Profile1.photo}"
                 class="card-img-top matches-photo rounded-circle p-3" alt="Profile Page">
@@ -100,10 +109,8 @@ $(document).ready(function () {
             <a class="btn btn-outline-secondary">Message</a>
         </div>
 
-    </div>`)
+    </div>`);
       }
     });
-
-
   });
 });

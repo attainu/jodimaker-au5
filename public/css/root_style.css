@@ -1,5 +1,6 @@
 body {
   overflow-x: hidden;
+  min-height: 100vh !important;
 }
 
 h4 {
@@ -103,11 +104,11 @@ body {
 #myModal {
   top: -100px;
 }
-#register{
-  top:-20px;
+#register {
+  top: -20px;
 }
 
-.toast{
+.toast {
   box-shadow: none;
-  border:none;
+  border: none;
 }

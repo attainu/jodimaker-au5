@@ -12,7 +12,7 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <title>My Matches</title>
-    <link rel="stylesheet" href="../css/matches.css">
+    <link rel="stylesheet" href="css/matches.css">
     {{!-- slider scripts --}}
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
     <link rel="stylesheet" href="/resources/demos/style.css" />
@@ -23,7 +23,7 @@
 
 <body class="bg-light">
     <section>
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top">
             <div class="container">
                 <a class="navbar-brand text-white" href="#"><img src="img/jodi.png"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
@@ -36,13 +36,13 @@
                             <a class="nav-link text-white" href="home">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="home">My Matches</a>
+                            <a class="nav-link text-white" href="matches">My Matches</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-white" href="search">Search</a>
                         </li>
                     </ul>
-                     <div class="col-5 toast" data-delay="5000">
+                    <div class="col-5 toast" data-delay="5000">
                         <div class="alert alert-success text-center">
                             <h6>Request sent &nbsp;<i class="fa fa-smile-o" aria-hidden="true"></i></h6>
                         </div>
@@ -64,9 +64,9 @@
 
 
     <section>
-        <div class="container-fluid">
+        <div class="container-fluid mt-5">
             <div class="row">
-                <div class="col-md-2 mt-5">
+                <div class="col-md-2">
                     <form action="/matches" method="get">
                         <h5 class="mt-2 text-center">Filter Search</h5>
                         {{!-- age  --}}
@@ -97,7 +97,7 @@
                         <select class="custom-select" name="religion" id="religion">
                             <option value="">Doesn't Matter</option>
                             <option value="hindu">Hindu</option>
-                            <option value="islam" >Islam</option>
+                            <option value="islam">Islam</option>
                             <option value="buddhism">Buddhism</option>
                             <option value="christian">Christianity</option>
                             <option value="jainism">Jainism</option>
@@ -129,11 +129,11 @@
 
                     </form>
                 </div>
-                 
+
                 <div class="col-md-10 mt-5">
-                    
+
                     <div class="row">
-                        
+
                         {{#each matches}}
                         <div class="col-md-3 mt-5">
                             <div class="card" style="width: 18rem;">
@@ -150,17 +150,13 @@
                                     <input type="hidden" class="userid" value="{{_id}}">
                                     {{#if sent}}
                                     <a class="btn btn-success  text-white">Sent</a>
-                                   {{else}}
+                                    {{else}}
                                     <a class="btn btn-wine connect text-white">Connect</a>
                                     {{/if}}
-                                      
                                 </div>
                             </div>
                         </div>
                         {{/each}}
-                        
-
-
                     </div>
                 </div>
             </div>
