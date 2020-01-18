@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
   const castes = [
     "Adaviyar",
     "Agri",
@@ -269,14 +269,16 @@ $(document).ready(function () {
   }
   for (let i = 3, l = 0, k = 0; l < 36; l++) {
     let j = l % 12;
-    var feet = i + "'" + j
+    var feet = i + "'" + j;
     if (!j) {
       i++;
     }
     k = Math.round((i + j / 12) * 30.48);
     if (!j) {
       //   console.log(i + "ft" + k + "cms");
-      $(".height").append(`<option value=" ${feet}ft">${i}ft - ${k}cms</option>`);
+      $(".height").append(
+        `<option value=" ${feet}ft">${i}ft - ${k}cms</option>`
+      );
     } else {
       //   console.log(i + "ft" + j + "in" + k + "cms");
       $(".height").append(
@@ -287,4 +289,15 @@ $(document).ready(function () {
 
   for (let i = 40; i < 151; i += 2)
     $(".weight").append(`<option value="${i}Kgs">${i} Kgs</option>`);
+
+  var prevScrollpos = window.pageYOffset;
+  window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+      document.getElementById("nav-bar").style.top = "0";
+    } else {
+      document.getElementById("nav-bar").style.top = "-60px";
+    }
+    prevScrollpos = currentScrollPos;
+  };
 });

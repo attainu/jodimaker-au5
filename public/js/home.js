@@ -1,8 +1,19 @@
 $(document).ready(function() {
+  var prevScrollpos = window.pageYOffset;
+  window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+      document.getElementById("nav-bar").style.top = "0";
+    } else {
+      document.getElementById("nav-bar").style.top = "-60px";
+    }
+    prevScrollpos = currentScrollPos;
+  };
+
   $(".fa").on("click", function() {});
 
   if (!Cookies.get("popup")) {
-    Cookies.set("popup", "seen", { expires: 7, path: "/" });
+    Cookies.set("popup", "seen", { expires: 1, path: "/" });
     $(".toast").toast("show");
     $(".panel-close").click(function(e) {
       $("#popup").fadeOut(); // Now the pop up is hiden.

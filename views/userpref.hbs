@@ -52,9 +52,9 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-2">
-                     <h3 class="mt-2 text-center">Partner Preference
-                         <hr>
-                     </h3>
+                    <h3 class="mt-2 text-center">Partner Preference
+                        <hr>
+                    </h3>
                     <form action="/userpref" method="post" class="bg-light p-3">
                         <div class=" row px-2">
                             <h4 class="mt-2 ">Basic Information
@@ -65,16 +65,16 @@
 
                         <div class="mb-3">
                             <label for="age">Age range:</label><br>
-                            <input class="ml-3 text-center" type="text" name="age" id="age1"> 
-                             <div class="form-control mt-3" id="slider-range"></div>
+                            <input class="ml-3 text-center" type="text" name="age" id="age1">
+                            <div class="form-control mt-3" id="slider-range"></div>
                         </div>
-                       
+
                         <div class="mb-3">
-                           <label for="height">Height</label>
-                                    <select class="custom-select height" name="height" id="height" required>
-                                        <option value="">Please Select</option>
-                                        {{!-- jQuery --}}
-                                    </select>
+                            <label for="height">Height</label>
+                            <select class="custom-select height" name="height" id="height" required>
+                                <option value="">Please Select</option>
+                                {{!-- jQuery --}}
+                            </select>
                         </div>
                         <div class="mb-3">
                             <label><b>Maritial Status:</b></label>
@@ -172,7 +172,7 @@
                                 <option value="doctrate">Doctrate</option>
                                 <option value="masters">Masters</option>
                                 <option value="Honoursdegree">Honours Degree</option>
-                                <option value="Bechelors">Bechelors</option>
+                                <option value="Bachelors">Bechelors</option>
                                 <option value="Undergraduate">Undergraduate</option>
                                 <option value="Highschool">High School</option>
                                 <option value="less than high school">Less Than High School</option>
@@ -207,7 +207,7 @@
                                 <button class="btn btn-outline-success mb-4 slide" type="submit">Save</button>
                             </div>
                         </div>
-                        </form>
+                    </form>
                     </form>
                 </div>
 
@@ -255,22 +255,22 @@
                         " - " + $("#slider-range").slider("values", 1));
                 });
 
-                 for (let i = 3, l = 0, k = 0; l < 36; l++) {
-    let j = l % 12;
-    if (!j) {
-      i++;
-    }
-    k = Math.round((i + j / 12) * 30.48);
-    if (!j) {
-      //   console.log(i + "ft" + k + "cms");
-      $(".height").append(`<option value="${k}">${i}ft - ${k}cms</option>`);
-    } else {
-      //   console.log(i + "ft" + j + "in" + k + "cms");
-      $(".height").append(
-        `<option value="${k}">${i}ft ${j}in - ${k}cms</option>`
-      );
-    }
-  }
+                for (let i = 3, l = 0, k = 0; l < 36; l++) {
+                    let j = l % 12;
+                    if (!j) {
+                        i++;
+                    }
+                    k = Math.round((i + j / 12) * 30.48);
+                    if (!j) {
+                        //   console.log(i + "ft" + k + "cms");
+                        $(".height").append(`<option value="${k}">${i}ft - ${k}cms</option>`);
+                    } else {
+                        //   console.log(i + "ft" + j + "in" + k + "cms");
+                        $(".height").append(
+                            `<option value="${k}">${i}ft ${j}in - ${k}cms</option>`
+                        );
+                    }
+                }
 
             </script>
 
