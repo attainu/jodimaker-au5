@@ -8,8 +8,8 @@ $(document).ready(function () {
       loadchat()
     }
     else {
-      var newmsgcount = parseInt($("input[value~='" + data + "']").siblings(".badge").text())
-      $("input[value~='" + data + "']").siblings(".badge").text(++newmsgcount || 1)
+      var newmsgcount = parseInt($(".list-group-item input[value~='" + data + "']").siblings("h6").children(".badge").text())
+      $(".list-group-item input[value~='" + data + "']").siblings("h6").children(".badge").text(++newmsgcount || 1)
     }
   })
   function readURL(input) {
