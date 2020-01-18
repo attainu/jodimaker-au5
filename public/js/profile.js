@@ -4,7 +4,7 @@ $(document).ready(function() {
     $(this).hide();
     $(".disabled").addClass("shadow p-2  mb-5 bg-white rounded");
     $(this).after(
-      "<button type='button' class='float-right cancel'>Cancel</button>&nbsp;<button type='button' data-toggle='modal' data-target='#confirm-update' class='float-right mr-3 save'>Save</button>&nbsp;"
+      "<button type='button' class='btn  btn-wine float-right cancel'>Cancel</button>&nbsp;<button type='button' data-toggle='modal' data-target='#confirm-update' class='float-right btn btn-wine mr-3 save'>Save</button>&nbsp;"
     );
     $(".disabled")
       .attr("disabled", false)
