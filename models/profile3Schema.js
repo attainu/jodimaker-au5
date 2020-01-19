@@ -7,6 +7,7 @@ var profileSchema3 = new mongoose.Schema({
         educationlevel: {
             type: String,
             required: true
+
         },
         isEmployed: {
             type: Boolean,

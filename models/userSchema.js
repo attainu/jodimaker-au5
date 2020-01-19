@@ -31,7 +31,10 @@ const userSchema = new mongoose.Schema({
         all: Array
 
     },
-    Messages: Object,
+    messages: {
+        type: Object,
+        default: {}
+    },
     Userpref: userprefSchema
 
 

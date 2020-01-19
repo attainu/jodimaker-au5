@@ -201,7 +201,7 @@ UserController.profile4 = function (req, res) {
 UserController.profile = function (req, res) {
     User.findOne({ _id: req.session.user._id })
         .then(user => {
-
+            console.log(req.body)
             user.Profile.Profile2.height = req.body.height,
                 user.Profile.Profile3.disability = req.body.disability,
                 user.Profile.Profile2.age = req.body.age,
@@ -282,9 +282,9 @@ UserController.userpref = function (req, res) {
         })
 }
 
-module.exports = UserController;
 
 module.exports = UserController;
+
 
 function getAge(DOB) {
     var today = new Date();
