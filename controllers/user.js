@@ -9,7 +9,7 @@ const Profile2 = require('../models/profile2Schema.js');
 const Profile3 = require('../models/profile3Schema.js');
 const Userpref = require('../models/userprefSchema.js')
 const User = require('../models/userSchema')
-
+const myAlbum = require('../models/albumSchema.js')
 //clodinary configruation 
 cloudinary.config({
     cloud_name: "dfu8kqztl",
@@ -275,6 +275,7 @@ UserController.userpref = function (req, res) {
                 userpref.education.salary = req.body.salary
 
             const newuserpref = new Userpref(userpref)
+            console.log(newuserpref)
             user.Userpref = newuserpref
             console.log(user)
             user.save()
@@ -282,9 +283,31 @@ UserController.userpref = function (req, res) {
         })
 }
 
-module.exports = UserController;
+UserController.album = function(req,res){
+    User.findOne({ _id: req.session.user._id }).then(user => {
+        var userAlbum = {}
+        let form = new multiparty.Form();
+        form.parse(req, function (err, fields, files) {
+            cloudinary.uploader.upload(files.album[0].path, function (err, result) {
+                if (result) {
+                    userAlbum.album = result.secure_url
+                    const newAlbum = new myAlbum(userAlbum)
+                    console.log(newAlbum)
+            user.myAlbum = newAlbum
+            //console.log(user)
+            user.save()
+                .then(() => { res.redirect('/home') })
+                }
+            })
+        })
+    
+
+    })
+   
+}
 
 module.exports = UserController;
+
 
 function getAge(DOB) {
     var today = new Date();

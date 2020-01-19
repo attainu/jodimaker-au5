@@ -105,6 +105,10 @@
                                         Partner
                                         Preference</a>
                                 </li>
+                                <li class="nav-item">
+                                    <a href="" data-target="#photoAlbum" data-toggle="tab" class="nav-link">
+                                        Album</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -974,6 +978,16 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                {{!-- partner preferences --}}
+                <div class="tab-pane fade" id="photoAlbum">
+                    {{!-- Partner Preference --}}
+                    <div class="tab-pane" id="photoAlbum">
+                        <form action="/album" class="form-group" method="POST" enctype="multipart/form-data">
+                            Select images: <input type="file" name="album" class="form-control" accept="image/png, image/jpeg">
+                            <input type="submit" class="btn btn-wine" value="Upload">
+                        </form>
                     </div>
                 </div>
             </div>
