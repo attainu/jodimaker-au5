@@ -110,5 +110,10 @@ body {
 
 .toast {
   box-shadow: none;
-  border: none;
+  border:none;
+  position: absolute;
+  bottom:100px;
+  right:50px;
+  z-index: 1050;
+  color: #78244c ;
 }
