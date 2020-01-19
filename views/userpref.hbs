@@ -56,7 +56,7 @@
                     <h3 class="mt-2 text-center">Partner Preference
                         <hr>
                     </h3>
-                    <div action="/userpref" method="post" class="bg-light p-3">
+                    <form action="/userpref" method="post" class="bg-light p-3">
                         <div class=" row px-2">
                             <h4 class="mt-2 ">Basic Information
                                 <hr>
@@ -73,14 +73,14 @@
                         <div class="mb-3">
                             <label for="height">Height</label>
                             <select class="custom-select height" name="height" id="height" required>
-                                <option value="">Please Select</option>
+                                <option value="doesnotmatter">Doesn't Matter</option>
                                 {{!-- jQuery --}}
                             </select>
                         </div>
                         <div class="mb-3">
                             <label><b>Maritial Status:</b></label>
                             <select class="form-control" name="Maritialstatus">
-                                <option>Select option</option>
+                                 <option value="doesnotmatter">Doesn't Matter</option>
                                 <option value="nevermarried">Never Married</option>
                                 <option value="divorced">Divorced</option>
                                 <option value="windowed">Widowed</option>
@@ -91,7 +91,7 @@
                         <div class="mb-3">
                             <label><b>Religion:</b></label>
                             <select class="form-control" name="religion">
-                                <option>Select option</option>
+                               
                                 <option value="doesnotmatter">Doesn't Matter</option>
                                 <option value="hindu">Hindu</option>
                                 <option value="islam">Islam</option>
@@ -107,7 +107,7 @@
                         <div class="mb-3">
                             <label><b>Mother Tongue</b></label>
                             <select class="form-control" name="mothertongue">
-                                <option>Select option</option>
+                                
                                 <option value="doesnotmatter">Doesn't Matter</option>
                                 <option value="hindi">Hindi</option>
                                 <option value="bengali">Bengali</option>
@@ -126,7 +126,7 @@
                         <div class="mb-3">
                             <label><b>Diet:</b></label>
                             <select class="form-control" name="diet">
-                                <option>Select option</option>
+                                 <option value="Doesnotmatter">Doesn't Matter</option>
                                 <option value="Veg">Veg</option>
                                 <option value="Non-veg">Non-Veg</option>
                                 <option value="Occassionally Non-veg">Occassionally Non-veg</option>
@@ -169,7 +169,7 @@
                         <div class="mb-3">
                             <label><b>Education Level:</b></label>
                             <select class="form-control" name="educationlevel">
-                                <option>Select option</option>
+                                 <option value="Doesnotmatter">Doesn't Matter</option>
                                 <option value="doctrate">Doctrate</option>
                                 <option value="masters">Masters</option>
                                 <option value="Honoursdegree">Honours Degree</option>
@@ -183,7 +183,7 @@
                         <div class="mb-3">
                             <label><b>Working with</b></label>
                             <select class="form-control" name="workingwith">
-                                <option>Select option</option>
+                                 <option value="Doesnotmatter">Doesn't Matter</option>
                                 <option value="government job">Government sector</option>
                                 <option value="Civil Services">Civil Services</option>
                                 <option value="Business">Business</option>
@@ -215,8 +215,6 @@
                             </div>
                         </div>
 
-                    </div>
-                    </form>
                     </form>
                 </div>
 

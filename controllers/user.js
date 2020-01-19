@@ -201,8 +201,7 @@ UserController.profile4 = function (req, res) {
 UserController.profile = function (req, res) {
     User.findOne({ _id: req.session.user._id })
         .then(user => {
-                 console.log(user)
-            user.Profile.Profile2.height = req.body.height,
+                user.Profile.Profile2.height = req.body.height,
                 user.Profile.Profile3.disability = req.body.disability,
                 user.Profile.Profile2.age = req.body.age,
                 user.Profile.Profile2.maritialstatus = req.body.maritialstatus,
