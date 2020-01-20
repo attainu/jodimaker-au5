@@ -69,10 +69,75 @@ module.exports = function (io) {
                         match.sent = true;
                     }
                 });
+                var userPrefMatches = []
+                matches = matches.filter(matchprofile => {
+                    if (user.Userpref) {
+                        if (
+                            matchprofile.Profile.Profile2.age < user.Userpref.minage ||
+                            matchprofile.Profile.Profile2.age > user.Userpref.maxage
+                        ) {
+
+                            return matchprofile
+                        }
+                        var heightfeet = matchprofile.Profile.Profile2.height;
+
+                        var minheight =
+                            parseInt(user.Userpref.height[1]) * 12 +
+                            parseInt(
+                                user.Userpref.height[3] + user.Userpref.height[4]
+                            );
+                        var heightinches =
+                            parseInt(heightfeet[1]) * 12 +
+                            parseInt(heightfeet[3] + heightfeet[4]);
+                        if (heightinches <= minheight) {
+                            return matchprofile
+                        }
+                        if (
+                            user.Userpref.maritialstatus !=
+                            matchprofile.Profile.Profile2.maritialstatus && user.Userpref.maritialstatus != "doesnotmatter"
+                        ) {
+                            return matchprofile
+                        }
+                        if (
+                            user.Userpref.religion != matchprofile.Profile.Profile2.religion && user.Userpref.religion != "doesnotmatter"
+                        ) {
+                            return matchprofile
+                        }
+                        if (
+                            user.Userpref.mothertongue !=
+                            matchprofile.Profile.Profile2.mothertongue && user.Userpref.mothertongue != "doesnotmatter"
+                        ) {
+                            return matchprofile
+                        }
+                        if (user.Userpref.diet != matchprofile.Profile.Profile2.diet && user.Userpref.diet != "doesnotmatter") {
+                            return matchprofile
+                        }
+                        if (
+                            user.Userpref.location.country !=
+                            matchprofile.Profile.Profile1.location.country && user.Userpref.location.country != ""
+                        ) {
+                            return matchprofile
+                        }
+                        if (
+                            user.Userpref.location.state !=
+                            matchprofile.Profile.Profile1.location.state && user.Userpref.location.state != ""
+                        ) {
+                            return matchprofile
+                        }
+                        if (
+                            user.Userpref.location.city !=
+                            matchprofile.Profile.Profile1.location.city && user.Userpref.location.city != ""
+                        ) {
+                            return matchprofile
+                        }
+                        userPrefMatches.push(matchprofile)
+                    }
+                })
 
                 res.render("matches", {
                     user: user,
                     matches: matches,
+                    userPrefMatches: userPrefMatches,
                     filter: req.query
                 });
             })
@@ -104,6 +169,9 @@ module.exports = function (io) {
 
     router.post("/sendrequest", (req, res) => {
         var matchid = req.body.id;
+        var user;
+        User.findById(req.session.user._id)
+            .then(newuser => user = newuser)
         User.findOne({ _id: matchid })
             .then(match => {
                 var username = user.Profile.Profile1.name;
@@ -372,7 +440,7 @@ module.exports = function (io) {
     // })
     router.get("/home", (req, res) => {
         var user;
-
+        console.log(req.session)
 
 
         User.find({})

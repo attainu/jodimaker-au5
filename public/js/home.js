@@ -28,7 +28,7 @@ $(document).ready(function () {
     }
   }
   $("#imageUpload").change(function (e) {
-    readURL(this);
+    var forthis = this
     var formData = new FormData();
     formData.append('imageFile', $('#imageUpload')[0].files[0]);
 
@@ -40,6 +40,8 @@ $(document).ready(function () {
       contentType: false,
       success: function (response) {
         console.log(response)
+        readURL(forthis)
+
       }
     });
   });
@@ -269,4 +271,6 @@ $(document).ready(function () {
     }
     prevScrollpos = currentScrollPos;
   };
+  $(".chatbox").css("height", "5%")
+
 })
