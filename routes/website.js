@@ -7,11 +7,11 @@ module.exports = function (io) {
     const multiparty = require("multiparty");
     var cloudinary = require("cloudinary").v2;
 
-    var user;
 
     var filteredmatches;
 
     router.get("/matches", (req, res) => {
+
         var { age, isEmployed, religion, height, salary } = req.query;
         if (req.query.age) {
             var minage = parseInt(age.split("-")[0]);
@@ -25,6 +25,9 @@ module.exports = function (io) {
             // var minsalary = parseInt(salary.split("-")[0]);
             // var maxsalary = parseInt(salary.split("-")[1]);
         }
+        var user
+        User.findOne({ _id: req.session.user._id })
+            .then(newuser => user = newuser)
         User.find({})
             .then(users => {
                 var matches = users.filter(el => {
@@ -200,7 +203,7 @@ module.exports = function (io) {
                         matchingpref.city = matchprofile.Userpref.location.city;
                     }
                 }
-               
+
 
                 res.render("matching", {
                     user: user,
@@ -215,16 +218,21 @@ module.exports = function (io) {
         }
     });
     router.post("/deletenotification", (req, res) => {
-        var index = req.body.index;
-        user.Notifications.all = user.Notifications.all.filter(
-            (el, i) => i != index
-        );
-        user.save().then(done => {
-            User.findOne({ _id: req.session.user._id }).then(newuser => {
-                user = newuser;
-                res.send(newuser.Notifications.all.length + "");
+        User.findOne({ _id: req.session.user._id })
+            .then(user => {
+
+                var index = req.body.index;
+                user.Notifications.all = user.Notifications.all.filter(
+                    (el, i) => i != index
+                );
+                user.save().then(done => {
+                    User.findOne({ _id: req.session.user._id }).then(newuser => {
+                        user = newuser;
+                        res.send(newuser.Notifications.all.length + "");
+                    });
+                })
             });
-        });
+
     });
 
 
@@ -363,6 +371,7 @@ module.exports = function (io) {
 
     // })
     router.get("/home", (req, res) => {
+        var user;
 
 
 
