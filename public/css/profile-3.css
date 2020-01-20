@@ -1,19 +1,18 @@
 .custom-control-label {
-    text-transform: capitalize;
+  text-transform: capitalize;
 }
 
 .header-top {
-    background-color: #78244C;
+  background-color: #78244c;
 }
 
 body {
-    padding-top: 70px;
+  padding-top: 70px;
 }
-
 
 /* new implentation */
 
-@import url('https://kodhus.com/kodhus-ui/kodhus-0.1.0.min.css');
+@import url("https://kodhus.com/kodhus-ui/kodhus-0.1.0.min.css");
 body {
   background: #eee;
 }
@@ -51,8 +50,17 @@ body {
   font-size: 16px;
   border: 0;
   outline: none;
-  font-family: 'Rubik';
+  font-family: "Rubik";
   color: #333;
   flex: 1;
 }
 
+#nav-bar {
+  top: 0;
+  width: 100%;
+  display: block;
+  transition: top 0.5s ease-in-out;
+}
+.card-3 {
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}

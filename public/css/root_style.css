@@ -1,94 +1,131 @@
-body{
+body {
   overflow-x: hidden;
+  min-height: 100vh !important;
 }
 
- h4{
-    font-size: 15px;
- }
- footer{
-    background-color: #202020;
-    color: #fff;
- }
+h4 {
+  font-size: 15px;
+}
 
- ul{
-   list-style-type: none;
-   margin: 0px;
-   padding: 0px;
-   
- }
- 
- a{
+footer {
+  background-color: #202020;
+  color: #fff;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
   text-decoration: none;
   color: #8e8e8e;
   font-size: 13px;
 }
 
-
-a:hover{
+a:hover {
   text-decoration: none;
-  color: #D79922;
+  color: #d79922;
   font-size: 13px;
 }
+.social{
+  display: inline;
+}
 
-.social-media a{
-  
+.social-media a {
   text-decoration: none;
   color: white;
-  
-
 }
 
-.navbar{
-   max-height: 100px;
+.navbar {
+  max-height: 100px;
 }
 
-.logo{
-  height:90px;
+.logo {
+  height: 90px;
   width: 100px;
 }
 
-
-.banner{
-   background: url("/img/Lovevivah-banner.jpg") no-repeat center ;
-   min-height:620px;
-   background-size: cover;
-   
+.banner {
+  background: url("/img/Lovevivah-banner.jpg") no-repeat center;
+  min-height: 620px;
+  background-size: cover;
 }
- .btn-wine{
-   color: #fff;
-   background-color: #78244C;
-   border-color: #78244C;
- }
 
- .btn-wine:hover {
-  background-color: #D79922;
+.btn-wine {
+  color: #fff;
+  background-color: #78244c;
+  border-color: #78244c;
+}
+
+.btn-wine:hover {
+  background-color: #d79922;
   color: white;
   font-size: 15px;
   font-weight: bold;
-  border-color: #D79922;
+  border-color: #d79922;
 }
 
- .btn-infor{
-   color: #fff;
-   background-color: #D79922;
-   border-color: #D79922;
- }
+.btn-infor {
+  color: #fff;
+  background-color: #d79922;
+  border-color: #d79922;
+}
 
- .btn-infor:hover {
-  background-color: #78244C;
-  border-color: #78244C;
+.btn-inform {
+  color: #fff;
+  background-color: #d79922;
+  border-color: #d79922;
+}
+
+.btn-inform:hover {
+  background-color: #78244c;
+  border-color: #78244c;
+  color: white;
+  font-weight: bold;
+}
+
+
+.btn-infor:hover {
+  background-color: #78244c;
+  border-color: #78244c;
   color: white;
   font-size: 15px;
   font-weight: bold;
 }
 
- .bg-wine{
-   color: #fff;
-   background-color: #78244C;
- }
+.bg-wine {
+  color: #fff;
+  background-color: #78244c;
+}
 
- .card-img-top{
-   height:280px;
- }
+.card-img-top {
+  height: 280px;
+}
 
- 
+html {
+  overflow-x: hidden;
+  height: 100%;
+}
+
+.modal-open {
+  overflow: auto;
+}
+
+#myModal {
+  top: -100px;
+}
+#register {
+  top: -20px;
+}
+
+.toast {
+  box-shadow: none;
+  border:none;
+  position: absolute;
+  bottom:100px;
+  right:50px;
+  z-index: 1050;
+  color: #78244c ;
+}

@@ -4,6 +4,8 @@ const profileSchema1 = require("./profile1Schema").schema
 const profileSchema2 = require("./profile2Schema").schema
 const profileSchema3 = require("./profile3Schema").schema
 const settingsSchema = require("./settingsSchema").schema
+const userprefSchema = require("./userprefSchema").schema
+const Album = require("./albumSchema").schema
 
 const userSchema = new mongoose.Schema({
     Signup: signupSchema,
@@ -12,7 +14,31 @@ const userSchema = new mongoose.Schema({
         Profile2: profileSchema2,
         Profile3: profileSchema3
     },
-    Settings: settingsSchema
+    Settings: settingsSchema,
+
+    Matches: {
+        sentrequests: Array,
+        receivedrequests: Array,
+        acceptedrequests: Array,
+        pendingrequests: Array
+    },
+    Notifications: {
+        sentrequests: {
+            type: Array,
+        },
+        receivedrequests: {
+            type: Array,
+        },
+        all: Array
+
+    },
+    messages: {
+        type: Object,
+        default: {}
+    },
+    Userpref: userprefSchema,
+    LastLogin: Date,
+    myAlbum: Album
 
 
 })

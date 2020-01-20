@@ -15,6 +15,7 @@ var profileSchema1 = new mongoose.Schema({
     },
     photo: {
         type: String,
+        default: "https://avpn.asia/wp-content/uploads/2015/05/empty_profile.png"
     },
     address: {
         type: String,
@@ -22,20 +23,18 @@ var profileSchema1 = new mongoose.Schema({
     },
     location: {
         country: {
-            type: String,
-            required: true
+            type: String
         },
         state: {
-            type: String,
-            required: true
+            type: String
         },
         city: {
-            type: String,
-            required: true
+            type: String
         }
 
     }
-},{ _id: false })
+
+}, { _id: false })
 
 const Profile1 = mongoose.model('profile1', profileSchema1)
 module.exports = Profile1

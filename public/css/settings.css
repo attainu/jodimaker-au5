@@ -1,101 +1,62 @@
-.profileimage {
-  position: relative;
-  width: 175px;
-  height: 375px;
-  border-radius: 50%;
-  background-image: url("../img/woman-wearing-black-long-sleeved-shirt-1832959.jpg");
-  background-position: center;
-  background-size: 100%;
-  background-repeat: no-repeat;
-  background-position-y: 20%;
-}
-
-.header-top {
-  background-color: #78244c;
-}
-
-.nav-tabs {
-  border: 0;
-}
-
-.nav-link {
-  border: none !important;
-}
-
-a.nav-link {
-  padding-bottom: 0 !important;
-}
-
-.social {
-  padding: 20px;
-  width: 70px;
-  text-align: center;
-  text-decoration: none !important;
-  margin: 5px 2px;
-  font-weight: bold;
-  font-size: 2em;
-  height: 70px;
-}
-
-.fa:hover {
-  opacity: 0.7;
-  cursor: pointer !important;
-}
-
-.fa-facebook {
-  background: #3b5998;
-  color: white;
-}
-
-.fa-twitter {
-  background: #55acee;
-  color: white;
-}
-
-.fa-google {
-  background: #dd4b39;
-  color: white;
-}
-
-hr {
-  border: 3px solid#78244C;
-  border-radius: 5px;
-}
-
 .header-top {
   background-color: #78244c;
 }
 
 body {
   padding-top: 70px;
-}
-.disabled {
-  background: transparent;
-  border: none;
-}
-.row {
-  margin-left: 0px;
-  margin-right: 0px;
+  background-color: aliceblue !important;
 }
 
+.btn-wine {
+  color: #fff;
+  background-color: #78244c;
+  border-color: #78244c;
+}
+
+.btn-wine:hover {
+  background-color: rgba(120, 36, 77, 0.342);
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  border-color: rgba(120, 36, 77, 0.342);
+}
+
+/* -----footer-------------- */
+
+.settingspanel {
+  height: 60vh;
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  background-color: #202020;
+  color: #fff;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+a {
+  text-decoration: none;
+  color: #8e8e8e;
+}
+.tab-pane {
+  background-color: white;
+}
 #nav-bar {
   top: 0;
   width: 100%;
   display: block;
   transition: top 0.5s ease-in-out;
 }
-.row {
-  margin-left: 0px;
-  margin-right: 0px;
-}
-.btn-wine {
-  background-color: #78244c;
-}
-
 /* avatar image  */
 .avatar-upload {
   position: relative;
-  max-width: 270px;
+  max-width: 205px;
   margin: 50px auto;
 }
 .avatar-upload .avatar-edit {
@@ -156,10 +117,4 @@ body {
   width: 36px;
   height: 36px;
   border: 2px solid #f8f8f8;
-}
-
-.avatar-preview.img-big {
-  width: 300px;
-  height: 300px;
-  border: 6px solid #f8f8f8;
 }
