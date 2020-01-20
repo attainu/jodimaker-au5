@@ -10,7 +10,6 @@ var cryptoRandomString = require("crypto-random-string");
 var tempsession;
 
 router.get("/", (req, res) => {
-  console.log(req.session)
 
   if (req.session.user) {
     res.redirect("/home");
