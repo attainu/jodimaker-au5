@@ -270,7 +270,7 @@
                                     <option value="relative">Relative</option>
                                 </select>
                             </div>
-                           
+
                             <button type="button" id="submit" class="btn btn-wine btn-block">Register</button>
                         </form>
 
@@ -310,9 +310,13 @@
                         <form role="form " class="needs-validation" method="POST" action="/login" novalidate>
                             <div class="form-group">
                                 <label for="email"><span></span> Enter Email</label>
+                                {{#if notRegistered}}
+                                <label class="text-danger ml-2">Not Registered!
+                                </label>
+                                {{/if}}
                                 <input type="email" id="emaillogin" name="email"
                                     pattern="[A-Za-z.0-9]{1,64}[A-Za-z0-9]{1,64}[@][A-Za-z]{3,36}[.][A-Za-z]{1,6}"
-                                    class="form-control" placeholder="Enter Email" required>    
+                                    class="form-control" placeholder="Enter Email" required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
@@ -323,6 +327,10 @@
                             <div class="form-group">
                                 <label for="password">
                                     Password</label>
+                                {{#if wrongpassword}}
+                                <label class="text-danger ml-2">Incorrect Password!
+                                </label>
+                                {{/if}}
                                 <p class="float-right"><a href="/forgotpassword" class="font-weight-bold">Forgot
                                         Password?</a></p>
                                 <input type="password" id="passwordlogin" name="password" class="form-control"
@@ -334,7 +342,7 @@
                                     Incorrect password
                                 </div>
                             </div>
-                           
+
                             <button type="submit" id="loginbtn" class="btn btn-wine btn-block mt-2"><span></span>
                                 Login</button>
                         </form>
@@ -381,7 +389,7 @@
     {{!-- modal ends --}}
     {{!-- toast --}}
     <div class="col-md-10 offset-md-1 toast py-4 px-2" data-delay="5000">
-           <h4 class="my-auto text-center">Registration Successful!</h4> 
+        <h4 class="my-auto text-center">Registration Successful!</h4>
     </div>
 
 </body>
@@ -394,6 +402,15 @@
     crossorigin="anonymous"></script>
 
 <script src="/js/root.js"></script>
-
+{{#if notRegistered}}
+<script>
+    $('#login').modal('show')
+</script>
+{{/if}}
+{{#if wrongpassword}}
+<script>
+    $('#login').modal('show')
+</script>
+{{/if}}
 
 </html>

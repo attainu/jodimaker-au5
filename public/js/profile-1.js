@@ -37,7 +37,6 @@ $(document).ready(function() {
         $(".states").change(function() {
           var state = $('select[name="state"]').val();
           var filterCities = statesAndCities.filter(item => {
-<<<<<<< HEAD
             return state == item.state;
           });
           $("#cityId").empty();
@@ -49,20 +48,6 @@ $(document).ready(function() {
           }
         });
       });
-=======
-            return state == item.state
-          })
-          $('#cityId').empty()
-          $('#cityId').append(`<option value="">Select City</option>`);
-          for (let i = 0; i < filterCities.length; i++) {
-                
-            $('#cityId').append(`<option value="${filterCities[i].name}">${filterCities[i].name}</option>`);
-          }
-        
-        })
-      })
-
->>>>>>> 61024d930389a595695d68cfdc1b53e1d9295591
     },
     error: function(err) {
       console.log("Error", err);
