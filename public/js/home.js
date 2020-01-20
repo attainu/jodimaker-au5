@@ -179,7 +179,8 @@ $(document).ready(function () {
           });
         }
         $(".msgarea:last").scrollTop($(".msgarea:last").prop("scrollHeight"))
-        $(".chatwindow").append("<form id='msgdata d-flex justify-content-between'>")
+        // $(".chatwindow").append("<form class='msgdata d-flex justify-content-between' onsubmit='return false;'>")
+        $(".chatwindow").append("<form  onsubmit='return false;'>")
         $(".chatwindow form").append("<input type='text' name='message' id ='message' placeholder ='Send message'> ")
         $(".chatwindow form ").append("<button type='button' id='send' class=' btn-sm btn-primary'><i class ='fa fa-paper-plane'><i></button>")
         $("#send").click(function () {

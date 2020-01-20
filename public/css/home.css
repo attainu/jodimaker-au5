@@ -4,9 +4,7 @@
 
 body {
   padding-top: 70px;
-  background-image: url(/img/banner.jpg);
-  background-size: 100% 45%;
-  background-repeat: no-repeat;
+ 
 }
 
 .btn-wine {
@@ -161,7 +159,7 @@ body {
   height: 60%;
   width: 15%;
   background-color: rgb(211, 211, 211);
-  overflow: auto;
+  overflow: hidden;
 }
 
 .chatbox li {

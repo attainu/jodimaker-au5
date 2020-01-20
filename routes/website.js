@@ -135,6 +135,9 @@ module.exports = function (io) {
                 var isMatched = matchprofile.Matches.acceptedrequests.includes(
                     req.session.user._id
                 );
+                var sent = matchprofile.Matches.receivedrequests.includes(
+                    req.session.user._id
+                );
                 if (matchprofile.Userpref) {
                     var matchingpref = {};
 
@@ -197,58 +200,32 @@ module.exports = function (io) {
                         matchingpref.city = matchprofile.Userpref.location.city;
                     }
                 }
-                User.find({})
-                    .then(users => {
-                        var user = users.filter(el => el._id == req.session.user._id)[0]
+               
 
-                        var matches = users.filter(el => {
-                            if (el.Profile.Profile2) {
-                                if (el.Profile.Profile2.gender == user.Profile.Profile2.gender) {
-                                    return
-                                }
-                                if (req.query.age) {
-                                    if (el.Profile.Profile2.age < minage || el.Profile.Profile2.age > maxage) {
-                                        return
-                                    }
-                                    if (religion) {
-
-                                        if (el.Profile.Profile2.religion != religion) {
-                                            return
-                                        }
-                                    }
-                                    if (el.Profile.Profile2.salary < minsalary || el.Profile.Profile2.salary > maxsalary) {
-                                        return
-                                    }
-                                    var heightfeet = el.Profile.Profile2.height
-                                    var heightinches = parseInt(heightfeet[1]) * 12 + parseInt(heightfeet[3] + heightfeet[4])
-                                    if (heightinches < minheight || heightinches > maxheight) {
-                                        return
-                                    }
-
-
-                                }
-                                return el
-                            }
-                        })
-                        matches.map(match => {
-                            if (user.Matches.sentrequests.includes(match._id)) {
-                                match.sent = true
-                            }
-                        })
-
-
-
-                        res.render("matches", {
-                            user: user,
-                            matches: matches,
-                            filter: req.query
-                        });
-                    })
-
-                    .catch(err => console.log(err))
-            })
+                res.render("matching", {
+                    user: user,
+                    match: matchprofile,
+                    isMatched: isMatched,
+                    matchingpref: matchingpref,
+                    sent: sent
+                });
+            });
+        } else {
+            res.send("Error 404");
         }
-    })
+    });
+    router.post("/deletenotification", (req, res) => {
+        var index = req.body.index;
+        user.Notifications.all = user.Notifications.all.filter(
+            (el, i) => i != index
+        );
+        user.save().then(done => {
+            User.findOne({ _id: req.session.user._id }).then(newuser => {
+                user = newuser;
+                res.send(newuser.Notifications.all.length + "");
+            });
+        });
+    });
 
 
     router.get("/profile", (req, res) => {
@@ -353,37 +330,38 @@ module.exports = function (io) {
                 })
         }
     });
-    var sentrequests = matches.filter(match => {
-        return user.Matches.sentrequests.includes(match._id)
-            ? match
-            : undefined;
-    });
-    var receivedrequests = matches.filter(match => {
-        return user.Matches.receivedrequests.includes(match._id)
-            ? match
-            : undefined;
-    });
-    var acceptedrequests = matches.filter(match => {
-        return user.Matches.acceptedrequests.includes(match._id)
-            ? match
-            : undefined;
-    });
-    var notifications = user.Notifications.all;
 
-    var agematches = [];
-    var age2matches = [];
-    matches.forEach(el => {
-        if (agematches.length < 5) {
-            if (el.Profile.Profile2.age >= user.Profile.Profile2.age) {
-                agematches.push(el);
-            }
-        } else {
-            if (age2matches.length < 5) {
-                age2matches.push(el);
-            }
-        }
+    // var sentrequests = matches.filter(match => {
+    //     return user.Matches.sentrequests.includes(match._id)
+    //         ? match
+    //         : undefined;
+    // });
+    // var receivedrequests = matches.filter(match => {
+    //     return user.Matches.receivedrequests.includes(match._id)
+    //         ? match
+    //         : undefined;
+    // });
+    // var acceptedrequests = matches.filter(match => {
+    //     return user.Matches.acceptedrequests.includes(match._id)
+    //         ? match
+    //         : undefined;
+    // });
+    // var notifications = user.Notifications.all;
 
-    })
+    // var agematches = [];
+    // var age2matches = [];
+    // matches.forEach(el => {
+    //     if (agematches.length < 5) {
+    //         if (el.Profile.Profile2.age >= user.Profile.Profile2.age) {
+    //             agematches.push(el);
+    //         }
+    //     } else {
+    //         if (age2matches.length < 5) {
+    //             age2matches.push(el);
+    //         }
+    //     }
+
+    // })
     router.get("/home", (req, res) => {
 
 
@@ -702,20 +680,24 @@ module.exports = function (io) {
 function addlastseen(array) {
 
     array.map(el => {
-        var time = new Date(Date.now() - el.LastLogin.getTime())
-        el.lastSeen = time.getMinutes() + " mins"
-        if (el.lastSeen > 60) {
+        if (el.LastLogin) {
 
-            el.lastSeen = time.getHours()
-            if (el.lastSeen > 24) {
-                el.lastSeen = time.getDate() + " hours"
 
-                if (el.lastSeen > 30) {
-                    el.lastSeen = time.getMonth() + " months"
+            var time = new Date(Date.now() - el.LastLogin.getTime())
+            el.lastSeen = time.getMinutes() + " mins"
+            if (el.lastSeen > 60) {
 
+                el.lastSeen = time.getHours()
+                if (el.lastSeen > 24) {
+                    el.lastSeen = time.getDate() + " hours"
+
+                    if (el.lastSeen > 30) {
+                        el.lastSeen = time.getMonth() + " months"
+
+                    }
                 }
             }
+            return array
         }
-        return array
     })
 }
