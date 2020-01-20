@@ -161,6 +161,7 @@ module.exports = function (io) {
             });
         });
     });
+    
 
     router.get("/logout", (req, res) => {
         req.session.destroy();

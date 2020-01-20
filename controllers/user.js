@@ -198,9 +198,10 @@ UserController.profile4 = function(req, res) {
     .catch(err => console.log(err));
 };
 UserController.profile = function(req, res) {
+  console.log(req.body);
   User.findOne({ _id: req.session.user._id })
     .then(user => {
-      console.log(req.body);
+     
       (user.Profile.Profile2.height = req.body.height),
         (user.Profile.Profile3.disability = req.body.disability),
         (user.Profile.Profile2.age = req.body.age),
@@ -297,7 +298,7 @@ UserController.album = function(req, res) {
           user.myAlbum = newAlbum;
           //console.log(user)
           user.save().then(() => {
-            res.redirect("/home");
+            res.redirect("/profile");
           });
         }
       });
