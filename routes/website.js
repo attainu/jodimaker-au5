@@ -27,7 +27,7 @@ module.exports = function (io) {
         }
         var user
         User.findOne({ _id: req.session.user._id })
-            .then(user => user = user)
+            .then(newuser => user = newuser)
         User.find({})
             .then(users => {
                 var matches = users.filter(el => {
