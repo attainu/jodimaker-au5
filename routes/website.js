@@ -76,7 +76,7 @@ module.exports = function (io) {
                             matchprofile.Profile.Profile2.age < user.Userpref.minage ||
                             matchprofile.Profile.Profile2.age > user.Userpref.maxage
                         ) {
-
+                            console.log(1)
                             return matchprofile
                         }
                         var heightfeet = matchprofile.Profile.Profile2.height;
@@ -90,44 +90,54 @@ module.exports = function (io) {
                             parseInt(heightfeet[1]) * 12 +
                             parseInt(heightfeet[3] + heightfeet[4]);
                         if (heightinches <= minheight) {
+                            console.log(2)
+
                             return matchprofile
                         }
                         if (
                             user.Userpref.maritialstatus !=
                             matchprofile.Profile.Profile2.maritialstatus && user.Userpref.maritialstatus != "doesnotmatter"
                         ) {
+                            console.log(3)
                             return matchprofile
                         }
                         if (
                             user.Userpref.religion != matchprofile.Profile.Profile2.religion && user.Userpref.religion != "doesnotmatter"
                         ) {
+                            console.log(3)
+
                             return matchprofile
                         }
                         if (
                             user.Userpref.mothertongue !=
                             matchprofile.Profile.Profile2.mothertongue && user.Userpref.mothertongue != "doesnotmatter"
                         ) {
+                            console.log(4)
                             return matchprofile
                         }
                         if (user.Userpref.diet != matchprofile.Profile.Profile2.diet && user.Userpref.diet != "doesnotmatter") {
+                            console.log(5)
                             return matchprofile
                         }
                         if (
                             user.Userpref.location.country !=
                             matchprofile.Profile.Profile1.location.country && user.Userpref.location.country != ""
                         ) {
+                            console.log(6)
                             return matchprofile
                         }
                         if (
                             user.Userpref.location.state !=
                             matchprofile.Profile.Profile1.location.state && user.Userpref.location.state != ""
                         ) {
+                            console.log(7)
                             return matchprofile
                         }
                         if (
                             user.Userpref.location.city !=
                             matchprofile.Profile.Profile1.location.city && user.Userpref.location.city != ""
                         ) {
+                            console.log(8)
                             return matchprofile
                         }
                         userPrefMatches.push(matchprofile)
@@ -161,7 +171,7 @@ module.exports = function (io) {
             });
         });
     });
-    
+
 
     router.get("/logout", (req, res) => {
         req.session.destroy();
@@ -171,8 +181,8 @@ module.exports = function (io) {
     router.post("/sendrequest", (req, res) => {
         var matchid = req.body.id;
         var user;
-        User.findById(req.session.user._id)
-            .then(newuser => user = newuser)
+        User.findOne({ _id: req.session.user._id })
+            .then(newuser => { user = newuser })
         User.findOne({ _id: matchid })
             .then(match => {
                 var username = user.Profile.Profile1.name;
@@ -202,6 +212,7 @@ module.exports = function (io) {
     });
 
     router.get("/matchprofile", (req, res) => {
+        var user
         User.findOne({ _id: req.session.user._id })
             .then(newuser => user = newuser)
         if (req.query.id) {
@@ -333,6 +344,9 @@ module.exports = function (io) {
     })
 
     router.post("/sendrequest", (req, res) => {
+        var user
+        User.findOne({ _id: req.session.user._id })
+            .then(newuser => user = newuser)
 
         var matchid = req.body.id
         User.findOne({ _id: matchid })
@@ -355,6 +369,9 @@ module.exports = function (io) {
     })
 
     router.get("/matchprofile", (req, res) => {
+        var user
+        User.findOne({ _id: req.session.user._id })
+            .then(newuser => user = newuser)
         if (req.query.id) {
             User.findOne({ _id: req.query.id })
                 .then(matchprofile => {
@@ -410,37 +427,7 @@ module.exports = function (io) {
         }
     });
 
-    // var sentrequests = matches.filter(match => {
-    //     return user.Matches.sentrequests.includes(match._id)
-    //         ? match
-    //         : undefined;
-    // });
-    // var receivedrequests = matches.filter(match => {
-    //     return user.Matches.receivedrequests.includes(match._id)
-    //         ? match
-    //         : undefined;
-    // });
-    // var acceptedrequests = matches.filter(match => {
-    //     return user.Matches.acceptedrequests.includes(match._id)
-    //         ? match
-    //         : undefined;
-    // });
-    // var notifications = user.Notifications.all;
 
-    // var agematches = [];
-    // var age2matches = [];
-    // matches.forEach(el => {
-    //     if (agematches.length < 5) {
-    //         if (el.Profile.Profile2.age >= user.Profile.Profile2.age) {
-    //             agematches.push(el);
-    //         }
-    //     } else {
-    //         if (age2matches.length < 5) {
-    //             age2matches.push(el);
-    //         }
-    //     }
-
-    // })
     router.get("/home", (req, res) => {
         var user;
         console.log(req.session)
@@ -509,7 +496,9 @@ module.exports = function (io) {
     });
     router.post("/deletesent", (req, res) => {
         var id = req.body.id;
-
+        var user
+        User.findOne({ _id: req.session.user._id })
+            .then(newuser => user = newuser)
         user.Matches.sentrequests = user.Matches.sentrequests.filter(
             el => el != id
         );
@@ -523,6 +512,9 @@ module.exports = function (io) {
     });
     router.post("/deletereceived", (req, res) => {
         var id = req.body.id;
+        var user
+        User.findOne({ _id: req.session.user._id })
+            .then(newuser => user = newuser)
 
         user.Matches.receivedrequests = user.Matches.receivedrequests.filter(
             el => el != id
@@ -538,7 +530,9 @@ module.exports = function (io) {
 
     router.delete("/acceptedrequests", (req, res) => {
         var id = req.body.id;
-
+        var user
+        User.findOne({ _id: req.session.user._id })
+            .then(newuser => user = newuser)
         user.Matches.acceptedrequests = user.Matches.acceptedrequests.filter(
             el => el != id
         );
@@ -559,6 +553,9 @@ module.exports = function (io) {
 
     router.post("/acceptrequest", (req, res) => {
         var id = req.body.id;
+        var user
+        User.findOne({ _id: req.session.user._id })
+            .then(newuser => user = newuser)
         User.findOne({ _id: id }).then(match => {
             data = { acceptedmatch: match };
             var username = user.Profile.Profile1.name;
@@ -604,6 +601,10 @@ module.exports = function (io) {
     });
 
     router.post("/searchsave", (req, res) => {
+        var user
+        User.findOne({ _id: req.session.user._id })
+            .then(newuser => user = newuser)
+
         var ageArray = req.body.age.split("-").map(age => parseInt(age));
         var minage = ageArray[0];
         var maxage = ageArray[1];
