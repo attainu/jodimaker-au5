@@ -285,12 +285,13 @@ UserController.userpref = function (req, res) {
 
 UserController.album = function(req,res){
     User.findOne({ _id: req.session.user._id }).then(user => {
-        var userAlbum = []
+        console.log(user)
+        var userAlbum = {}
         let form = new multiparty.Form();
         form.parse(req, function (err, fields, files) {
             cloudinary.uploader.upload(files.album[0].path, function (err, result) {
                 if (result) {
-                    userAlbum.album = result.secure_url
+                    userAlbum = user.myAlbum.album.push(result.secure_url)
                     console.log(userAlbum)
                     const newAlbum = new myAlbum(userAlbum)
                     console.log(newAlbum)
