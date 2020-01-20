@@ -83,6 +83,7 @@ module.exports = function (io) {
     router.get("/profile", (req, res) => {
         User.findOne({ _id: req.session.user._id })
             .then(user => {
+                console.log(user);
                 res.render("profile", {
                     result: user
                 });

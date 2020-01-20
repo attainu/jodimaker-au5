@@ -64,7 +64,7 @@ server.listen(PORT, () => {
   console.log("Server is active at port address" + PORT);
 });
 
-//Routes
+//Routes 
 //root and loginsignup
 app.use("/", require("./routes/loginsignup"));
 //profilesetup
