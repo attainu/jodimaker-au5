@@ -201,6 +201,8 @@ module.exports = function (io) {
     });
 
     router.get("/matchprofile", (req, res) => {
+        User.findOne({ _id: req.session.user._id })
+            .then(newuser => user = newuser)
         if (req.query.id) {
             User.findOne({ _id: req.query.id }).then(matchprofile => {
                 var isMatched = matchprofile.Matches.acceptedrequests.includes(
