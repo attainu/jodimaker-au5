@@ -90,6 +90,7 @@
                             <a class="btn btn-success  text-white">Sent</a>
 
                             {{else}}
+                            <input type="hidden" value="{{match._id}}">
                             <a class="btn btn-wine connect text-white">Connect</a>
                             {{/if}}
 
@@ -116,6 +117,18 @@
                                     <p>{{match.Signup.email}}</p>
                                 </div>
 
+                                {{else sent}}
+                                <div class="col md-3">
+                                    <p>98XXXXXXXX</p>
+                                </div>
+                                <div class="col-md-1">
+                                    <label for="number"><i class="fa fa-envelope"></i> :</label>
+                                </div>
+                                <div class="col md-3">
+                                    <p>XXXXXXX@gmail.com</p>
+                                </div>
+                                <div class="col"><span class="btn btn-success mb-4 text-white">Request Sent</span>
+                                </div>
                                 {{else}}
                                 <div class="col md-3">
                                     <p>98XXXXXXXX</p>
@@ -126,7 +139,9 @@
                                 <div class="col md-3">
                                     <p>XXXXXXX@gmail.com</p>
                                 </div>
-                                <div class="col"><span class="btn btn-wine mb-4 text-white">Connect for details</span>
+                                <input type="hidden" value="{{match._id}}">
+                                <div class="col"><span class="btn btn-wine connect mb-4 text-white">Connect for
+                                        details</span>
                                 </div>
                                 {{/if}}
                             </div>
@@ -384,6 +399,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
-<script src="../js/profile.js"></script>
+<script src="../js/matching.js"></script>
 
 </html>

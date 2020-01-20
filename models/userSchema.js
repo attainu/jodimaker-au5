@@ -35,7 +35,8 @@ const userSchema = new mongoose.Schema({
         type: Object,
         default: {}
     },
-    Userpref: userprefSchema
+    Userpref: userprefSchema,
+    LastLogin: Date
 
 
 })

@@ -150,7 +150,7 @@ $(document).ready(function () {
   var listItem
 
   $(".openchat").click(function () {
-    $(this).children(".badge").text("")
+    $(this).children("h6").children(".badge").text("")
     var friend = $(this).text()
     listItem = $(this)
     console.log(listItem.children("input").val())

@@ -32,6 +32,7 @@ module.exports = function (io) {
         }
         User.find({})
             .then(users => {
+                var user = users.filter(el => el._id == req.session.user._id)[0]
 
                 var matches = users.filter(el => {
                     if (el.Profile.Profile2) {
@@ -171,13 +172,14 @@ module.exports = function (io) {
 
 
                     }
-
+                    var sent = user.Matches.sentrequests.includes(matchprofile._id)
 
                     res.render("matching", {
                         user: user,
                         match: matchprofile,
                         isMatched: isMatched,
-                        matchingpref: matchingpref
+                        matchingpref: matchingpref,
+                        sent: sent
 
                     });
                 })
@@ -229,6 +231,13 @@ module.exports = function (io) {
                 matches = matches.filter(el => {
                     return agematches.includes(el) ? undefined : el
                 })
+                addlastseen(agematches)
+                addlastseen(age2matches)
+                addlastseen(sentrequests)
+                addlastseen(receivedrequests)
+                addlastseen(acceptedrequests)
+                console.log(agematches[0].lastSeen)
+
                 res.render("home", {
                     user: user,
                     agematches: agematches,
@@ -239,6 +248,9 @@ module.exports = function (io) {
                     notifications: notifications
 
                 })
+                user.LastLogin = new Date()
+                user.save()
+                    .catch(err => console.log(err))
 
             });
     });
@@ -492,4 +504,25 @@ module.exports = function (io) {
     // ...routes
 
     return router;
+}
+
+function addlastseen(array) {
+
+    array.map(el => {
+        var time = new Date(Date.now() - el.LastLogin.getTime())
+        el.lastSeen = time.getMinutes() + " mins"
+        if (el.lastSeen > 60) {
+
+            el.lastSeen = time.getHours()
+            if (el.lastSeen > 24) {
+                el.lastSeen = time.getDate() + " hours"
+
+                if (el.lastSeen > 30) {
+                    el.lastSeen = time.getMonth() + " months"
+
+                }
+            }
+        }
+        return array
+    })
 }

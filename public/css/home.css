@@ -4,6 +4,9 @@
 
 body {
   padding-top: 70px;
+  background-image: url(/img/banner.jpg);
+  background-size: 100% 45%;
+  background-repeat: no-repeat;
 }
 
 .btn-wine {
@@ -123,7 +126,9 @@ body {
   height: 36px;
   border: 2px solid #f8f8f8;
 }
+
 /* avatar css ends  */
+
 .matches-photo {
   height: 7rem;
   width: 7rem;
@@ -159,6 +164,10 @@ body {
   overflow: auto;
 }
 
+.chatbox li {
+  cursor: pointer;
+}
+
 .chatwindow {
   position: fixed;
   right: 16.3%;
@@ -190,28 +199,38 @@ body {
 .msgarea {
   height: 82%
 }
-#close{
+
+#close {
   cursor: pointer;
 }
-#msgdata{
-  position:relative;bottom:0px
+
+#msgdata {
+  position: relative;
+  bottom: 0px
 }
-#message{
+
+#message {
   padding-bottom: 2%;
   padding-left: 2%;
   border-bottom-left-radius: 10px;
 }
-.unmatch,.messageuser{
+
+.unmatch, .messageuser {
   cursor: pointer;
 }
-.fa-window-minimize{
+
+.fa-window-minimize {
   cursor: pointer;
   position: relative;
   top: -5px;
   right: -75px;
   font-size: smaller;
-
 }
-.chatheading{
+
+.chatheading {
   cursor: pointer;
+}
+
+.chatbox:-webkit-scrollbar {
+  width: 0 !important
 }
