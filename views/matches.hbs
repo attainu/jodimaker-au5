@@ -151,9 +151,15 @@
                                 <div class="card-body text-center">
                                     <a href="/matchprofile?id={{_id}}"><img class="avatar rounded-circle"
                                             src="{{Profile.Profile1.photo}}" alt="Bologna"></a>
-                                    <h4 class="card-title text-truncate">{{Profile.Profile1.name.firstname}}
+                                    <h4 class="card-title">
+                                        {{#if Settings.showname}}
+                                        {{Settings.showname}},<br>
+                                        {{else}}
+                                        {{Profile.Profile1.name.firstname}}
                                         {{Profile.Profile1.name.lastname}},<br>
-                                        {{Profile.Profile2.age}}</h4>
+                                        {{/if}}
+                                        {{Profile.Profile2.age}}
+                                    </h4>
                                     <h6 class="card-subtitle mb-2 text-muted">{{Profile.Profile2.height}},
                                         {{Profile.Profile2.maritialstatus}}</h6>
                                     <p class="card-text">{{Profile.Profile1.location.city}}</p>
