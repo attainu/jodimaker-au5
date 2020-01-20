@@ -95,7 +95,7 @@ body {
 /* avatar image  */
 .avatar-upload {
   position: relative;
-  max-width: 205px;
+  max-width: 270px;
   margin: 50px auto;
 }
 .avatar-upload .avatar-edit {
@@ -156,4 +156,10 @@ body {
   width: 36px;
   height: 36px;
   border: 2px solid #f8f8f8;
+}
+
+.avatar-preview.img-big {
+  width: 300px;
+  height: 300px;
+  border: 6px solid #f8f8f8;
 }

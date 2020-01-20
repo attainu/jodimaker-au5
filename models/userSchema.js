@@ -5,6 +5,7 @@ const profileSchema2 = require("./profile2Schema").schema
 const profileSchema3 = require("./profile3Schema").schema
 const settingsSchema = require("./settingsSchema").schema
 const userprefSchema = require("./userprefSchema").schema
+const Album = require("./albumSchema").schema
 
 const userSchema = new mongoose.Schema({
     Signup: signupSchema,
@@ -36,7 +37,8 @@ const userSchema = new mongoose.Schema({
         default: {}
     },
     Userpref: userprefSchema,
-    LastLogin: Date
+    LastLogin: Date,
+    myAlbum: Album
 
 
 })

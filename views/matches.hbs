@@ -41,43 +41,39 @@
                             <a class="nav-link text-white" href="search">Search</a>
                         </li>
                     </ul>
-                     <div class="col-5 toast" data-delay="5000" style="position: absolute;">
-                        <div class="alert alert-success text-center p-3">
-                            <h6>Request sent &nbsp;<i class="fa fa-smile-o" aria-hidden="true"></i></h6>
-                        </div>
-                    </div>
-                    <span class="navbar-text">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item active">
-                                <a href="profile">
-                                    <div class="avatar-upload mt-0 mb-0">
-                                        <div class="avatar-preview img-small">
-                                            <div id="imagePreview"
-                                                style="background-image: url({{user.Profile.Profile1.photo}});">
-                                            </div>
+                </div>
+
+
+
+                <span class="navbar-text">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a href="profile">
+                                <div class="avatar-upload mt-0 mb-0">
+                                    <div class="avatar-preview img-small">
+                                        <div id="imagePreview"
+                                            style="background-image: url({{user.Profile.Profile1.photo}});">
                                         </div>
                                     </div>
-                                </a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle text-white" href="profile"
-                                    id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-                                    aria-expanded="false">
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                    <a class="dropdown-item" href="setting">Settings</a>
-                                    <a class="dropdown-item" href="userpref">User Preferences</a>
-                                    <a class="dropdown-item text-danger" href="logout">Logout</a>
                                 </div>
-                            </li>
-                        </ul>
-                    </span>
-                </div>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="profile" id="navbarDropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="setting">Settings</a>
+                                <a class="dropdown-item" href="userpref">User Preferences</a>
+                                <a class="dropdown-item text-danger" href="logout">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </span>
+            </div>
             </div>
         </nav>
     </section>
-
-
     <section>
         <div class="container-fluid mt-5">
             <div class="row">
@@ -99,14 +95,14 @@
                         </p>
                         <div id="slider-range"></div>
                         {{!-- Employed  --}}
-                        <div class="row my-3 mx-auto">
+                        {{!-- <div class="row my-3 mx-auto" >
                             <div class="custom-control custom-radio custom-control-inline">
                                 <input type="radio" id="customRadioInline1" name="isEmployed"
                                     class="custom-control-input" value="true">
                                 <label class="custom-control-label" for="customRadioInline1">Employed</label>
                             </div>
 
-                        </div>
+                        </div> --}}
                         {{!-- religion  --}}
                         <label for="religion">Religion</label>
                         <select class="custom-select" name="religion" id="religion">
@@ -129,12 +125,12 @@
                         </p>
                         <div id="height-range"></div>
                         {{!-- salary  --}}
-                        <p>
+                        {{!-- <p>
                             <label for="salary">Salary:</label>
                             <input type="text" id="salary" name="salary" value="4-40"
                                 style="border:0; color:#f6931f; font-weight:bold;" class="bg-transparent" readonly />
                         </p>
-                        <div id="salary-range"></div>
+                        <div id="salary-range"></div> --}}
 
                         <div class="row mx-auto mt-3">
                             <button type="submit" class="btn btn-primary">Apply</button>
@@ -151,13 +147,19 @@
 
                         {{#each matches}}
                         <div class="col-md-3 mt-5">
-                            <div class="card" style="width: 18rem;">
+                            <div class="card">
                                 <div class="card-body text-center">
                                     <a href="/matchprofile?id={{_id}}"><img class="avatar rounded-circle"
                                             src="{{Profile.Profile1.photo}}" alt="Bologna"></a>
-                                    <h4 class="card-title">{{Profile.Profile1.name.firstname}}
+                                    <h4 class="card-title">
+                                        {{#if Settings.showname}}
+                                        {{Settings.showname}},<br>
+                                        {{else}}
+                                        {{Profile.Profile1.name.firstname}}
                                         {{Profile.Profile1.name.lastname}},<br>
-                                        {{Profile.Profile2.age}}</h4>
+                                        {{/if}}
+                                        {{Profile.Profile2.age}}
+                                    </h4>
                                     <h6 class="card-subtitle mb-2 text-muted">{{Profile.Profile2.height}},
                                         {{Profile.Profile2.maritialstatus}}</h6>
                                     <p class="card-text">{{Profile.Profile1.location.city}}</p>
@@ -178,7 +180,12 @@
         </div>
     </section>
 
-
+    <div class="toast " data-delay="1000">
+        <div class="toast-body bg-white p-3">
+            <h6 class="text-success text-center">Request
+                sent.</h6>
+        </div>
+    </div>
 
     <nav aria-label="Page navigation example ">
         <ul class="pagination justify-content-center mt-5">
