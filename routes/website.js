@@ -63,6 +63,7 @@ module.exports = function (io) {
                         }
                         return el;
                     }
+
                 });
                 matches.map(match => {
                     if (user.Matches.sentrequests.includes(match._id)) {
@@ -141,6 +142,9 @@ module.exports = function (io) {
                             return matchprofile
                         }
                         userPrefMatches.push(matchprofile)
+                    }
+                    else {
+                        return matchprofile
                     }
                 })
 
