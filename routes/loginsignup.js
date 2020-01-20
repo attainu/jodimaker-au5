@@ -13,7 +13,9 @@ router.get("/", (req, res) => {
   if (req.session.user) {
     res.redirect("/home");
   }
-  res.render("root");
+  res.render("root",
+  {wrongpassword:req.query.wrongpassword}
+  );
 });
 
 router.post("/generateotp", (req, res) => {

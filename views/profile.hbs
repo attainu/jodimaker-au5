@@ -493,7 +493,6 @@
                                 </div>
                             </div>
 
-                    </div>
                     {{!-- family-details  --}}
                     <div class="col-md-12">
 
@@ -705,7 +704,7 @@
                                 <hr>
                             </h6>
                         </div>
-                        <div class="row ">
+                        <di class="row ">
                             <div class="col-md-6 flex-nowrap">
                                 <div class="row ">
                                     <div class="col-md-4">
@@ -817,172 +816,178 @@
                                 </div>
                             </div>
                         </div>
-
-                    </div>
-                    </form>
+                        </form>
+                    </div>   
                 </div>
-                    {{!-- Partner Preference --}}
-                    <div class="tab-pane" id="partnerPreference">
-                        <div class="col-md-12">
-                            <a href="userpref"><i style="font-size:24px" class="fa float-right mr-5">&#xf044;</i></a>
+            
 
-                            <div class="row">
-                                <h6 class="mt-2 pl-3 ">Basic Information
-                                    <hr>
-                                </h6>
+        {{!-- Partner Preference --}}
+        <div class="tab-pane" id="partnerPreference">
+            <div class="col-md-12">
+                <a href="userpref"><i style="font-size:24px" class="fa float-right mr-5">&#xf044;</i></a>
+
+                <div class="row">
+                    <h6 class="mt-2 pl-3 ">Basic Information
+                        <hr>
+                    </h6>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 flex-nowrap">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Age:</label>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-6 flex-nowrap">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label>Age:</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="text-nowrap">
-                                                <input type="number" class="disabled" name="age1"
-                                                    value="{{result.Userpref.minage}}" style="width: 50px;">-
-                                                <input type="number" class="disabled" name="age2"
-                                                    value="{{result.Userpref.maxage}}" style="width: 50px;">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label>Height:</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="text-nowrap">
-                                                <input type="text" class="disabled" name="height"
-                                                    value="{{result.Userpref.height}}"></div>
-
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label class="text-nowrap">Marital Status:</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="text-nowrap">
-                                                <input type="text" name="maritialstatus" class="disabled"
-                                                    value="{{result.Userpref.maritialstatus}}"></div>
-
-                                        </div>
-                                    </div>
-
+                            <div class="col-md-8">
+                                <div class="text-nowrap">
+                                    <input type="number" class="disabled" name="age1" value="{{result.Userpref.minage}}"
+                                        style="width: 50px;">-
+                                    <input type="number" class="disabled" name="age2" value="{{result.Userpref.maxage}}"
+                                        style="width: 50px;">
                                 </div>
-                                <div class="col-md-6 flex-nowrap">
-                                    <div class="row ">
-                                        <div class="col-md-5">
-                                            <label>Mother tongue:</label>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="text-nowrap"><input type="text" class="disabled"
-                                                    name="mothertongue" value="{{result.Userpref.mothertongue}}">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <label class="text-nowrap">Diet:</label>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <div class="text-nowrap"><input type="text" class="disabled" name="diet"
-                                                    value="{{result.Userpref.diet}}"></div>
-                                        </div>
-                                    </div>
-
-                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Height:</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="text-nowrap">
+                                    <input type="text" class="disabled text-capitalize" name="height"
+                                        value="{{result.Userpref.height}}"></div>
 
                             </div>
                         </div>
-                        {{!-- location details --}}
-                        <div class="col-md-12">
-                            <div class=" row px-3">
-                                <h6 class="mt-2 pl-3">Location details
-                                    <hr>
-                                </h6>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="text-nowrap">Marital Status:</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="text-nowrap">
+                                    <input type="text" name="maritialstatus" class="disabled text-capitalize"
+                                        value="{{result.Userpref.maritialstatus}}"></div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6 flex-nowrap">
+                        <div class="row ">
+                            <div class="col-md-5">
+                                <label>Mother tongue:</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="text-nowrap"><input type="text" class="disabled text-capitalize" name="mothertongue"
+                                        value="{{result.Userpref.mothertongue}}">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                <label class="text-nowrap">Diet:</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="text-nowrap"><input type="text" class="disabled text-capitalize" name="diet"
+                                        value="{{result.Userpref.diet}}"></div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            {{!-- location details --}}
+            <div class="col-md-12">
+                <div class=" row px-3">
+                    <h6 class="mt-2 pl-3">Location details
+                        <hr>
+                    </h6>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 flex-nowrap">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>Country living in:</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="text-nowrap"><input type="text" class="disabled" name="country"
+                                        value="{{result.Userpref.location.country}}"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label>State living in:</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="text-nowrap"><input type="text" class="disabled" name="state"
+                                        value="{{result.Userpref.location.state}}"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 flex-nowrap">
+                        <div class="row ">
+                            <div class="col-md-5">
+                                <label>City / District:</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="text-nowrap"><input type="text" class="disabled" name="city"
+                                        value="{{result.Userpref.location.city}}"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{!-- Education --}}
+                <div class="col-md-12">
+                    <div class=" row">
+                        <h6 class="mt-2 pl-3">Education &amp; Career
+                            <hr>
+                        </h6>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 flex-nowrap">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Education:</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="text-nowrap text-capitalize">
+                                        {{result.Userpref.education.educationlevel}}
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-6 flex-nowrap">
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label>Country living in:</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="text-nowrap"><input type="text" class="disabled" name="country"
-                                                    value="{{result.Userpref.location.country}}"></div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-4">
-                                            <label>State living in:</label>
-                                        </div>
-                                        <div class="col-md-8">
-                                            <div class="text-nowrap"><input type="text" class="disabled" name="state"
-                                                    value="{{result.Userpref.location.state}}"></div>
-                                        </div>
+                                <div class="col-md-4">
+                                    <label>Working with:</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="text-nowrap text-capitalize">
+                                        {{result.Userpref.education.workingwith}}
+
                                     </div>
                                 </div>
-                                <div class="col-md-6 flex-nowrap">
-                                    <div class="row ">
-                                        <div class="col-md-5">
-                                            <label>City / District:</label>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <div class="text-nowrap">{{result.Userpref.location.city}}</div>
-                                        </div>
-                                    </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Employer:</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="text-nowrap text-capitalize">
+                                        {{result.Userpref.education.employer}}</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 flex-nowrap">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label>Salary:</label>
                                 </div>
                             </div>
 
-                            {{!-- Education --}}
-                            <div class="col-md-12">
-                                <div class=" row">
-                                    <h6 class="mt-2 pl-3">Education &amp; Career
-                                        <hr>
-                                    </h6>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 flex-nowrap">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label>Education:</label>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="text-nowrap text-capitalize">
-                                                    {{result.Userpref.education.educationlevel}}</div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label>Working with:</label>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="text-nowrap">{{result.Userpref.education.workingwith}}</div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-md-6 flex-nowrap mt-4">
-
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label>Salary:</label>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="text-nowrap">{{result.Userpref.education.salary}} LPA</div>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label>Employer</label>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <div class="text-nowrap">{{result.Userpref.education.employer}}</div>
-                                            </div>
-                                        </div>
+                                <div class="col-md-7">
+                                    <div class="text-nowrap">{{result.Userpref.education.salary}}lpa
                                     </div>
 
                                 </div>
@@ -992,6 +997,7 @@
 
                     </div>
                 </div>
+            </div>
                 {{!-- partner preferences --}}
                 <div class="tab-pane fade" id="photoAlbum">
                     {{!-- Partner Preference --}}
@@ -1003,9 +1009,12 @@
                     </div>
                 </div>
             </div>
+       
+                 </div>
+    </div>
 
 
-                </div>
+</div>
 </body>
 
 
