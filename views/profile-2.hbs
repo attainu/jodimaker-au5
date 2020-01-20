@@ -16,9 +16,9 @@
 <body class="bg-light">
     <div class="container-fluid ">
         <section>
-            <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
+            <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top " id="nav-bar">
                 <div class="container">
-                    <a class="navbar-brand text-white" href="#"><img src="img/jodi.png"></a>
+                    <a class="navbar-brand text-white" href="#"><img src="../img/jodi.png"></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                         aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -28,20 +28,11 @@
                             <li class="nav-item active">
                                 <a class="nav-link text-white" href="">Profile Setup</a>
                             </li>
-                            {{!-- <li class="nav-item">
-                                <a class="nav-link text-white" href="">Step-2</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="">Step-3</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="">Step-4</a>
-                            </li> --}}
                         </ul>
                         <span class="navbar-text">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" href="">Contact Us</a>
+                                    <a class="nav-link text-white" href="logout">Logout</a>
                                 </li>
                             </ul>
                         </span>
@@ -258,7 +249,7 @@
                                 <label for="caste">Caste</label>
                             </div>
                             <div class="col-md-8">
-                                <select class="custom-select castes" name="caste" id="caste" required>
+                                <select class="custom-select castes" name="caste" id="caste" >
                                     <option value="">Select Caste</option>
                                     {{!-- jQuery --}}
                                 </select>
@@ -271,8 +262,24 @@
                                 <label for="motherTongue">Mother Tongue</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control" placeholder="Mother Tongue" name="mothertongue"
-                                    id="mothertongue" pattern="[a-zA-Z]{3,}" required>
+                                {{!-- <input type="text" class="form-control" placeholder="Mother Tongue" name="mothertongue"
+                                    id="mothertongue" pattern="[a-zA-Z]{3,}" required> --}}
+                                <select class="form-control" name="mothertongue">
+
+                                    <option value="doesnotmatter">Doesn't Matter</option>
+                                    <option value="hindi">Hindi</option>
+                                    <option value="bengali">Bengali</option>
+                                    <option value="urdu">Urdu</option>
+                                    <option value="punjabi">Punjabi</option>
+                                    <option value="marathi">Marathi</option>
+                                    <option value="telugu">Telugu</option>
+                                    <option value="tamil">Tamil</option>
+                                    <option value="gujarati">Gujarati</option>
+                                    <option value="oriya">Oriya</option>
+                                    <option value="kannada">Kannada</option>
+                                    <option value="malayalam">Malayalam</option>
+                                    <option value="sanskrit">Sanskrit</option>
+                                </select>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>

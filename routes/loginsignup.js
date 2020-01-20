@@ -13,7 +13,10 @@ router.get("/", (req, res) => {
   if (req.session.user) {
     res.redirect("/home");
   }
-  res.render("root");
+  res.render("root", {
+    wrongpassword: req.query.wrongpassword,
+    notRegistered: req.query.notRegistered
+  });
 });
 
 router.post("/generateotp", (req, res) => {
@@ -39,12 +42,12 @@ router.get("/forgotpassword", (req, res) => {
   });
 });
 router.post("/forgotpassword", (req, res) => {
-  var email = req.body.email
+  var email = req.body.email;
 
   User.findOne({ "Signup.email": email }).then(user => {
     if (user) {
       passwordResetHash = user.Signup.password + "";
-      bcrypt.hash(passwordResetHash, 10, function (err, hash) {
+      bcrypt.hash(passwordResetHash, 10, function(err, hash) {
         if (err) console.log(err);
         else {
           console.log(hash);
@@ -66,24 +69,23 @@ router.get("/resetpassword/:resetHash/:email", checktempSession, (req, res) => {
   var resetHash = req.params.resetHash.replace("%2E", ".");
   resetHash = decodeURIComponent(resetHash);
   var email = req.params.email;
-  console.log(email)
-  User.findOne({ "Signup.email": email })
-    .then(user => {
-      var password = user.Signup.password;
-      bcrypt.compare(password, resetHash, function (err, check) {
-        if (err) console.log(err);
-        if (check) {
-          res.render("resetpassword", {
-            user: user._id
-          });
-        }
-      });
+  console.log(email);
+  User.findOne({ "Signup.email": email }).then(user => {
+    var password = user.Signup.password;
+    bcrypt.compare(password, resetHash, function(err, check) {
+      if (err) console.log(err);
+      if (check) {
+        res.render("resetpassword", {
+          user: user._id
+        });
+      }
     });
+  });
 });
 router.post("/setnewpassword", checktempSession, (req, res) => {
   console.log(req.body);
   User.findOne({ _id: req.body.id }).then(user => {
-    bcrypt.hash(req.body.password, 10, function (err, hash) {
+    bcrypt.hash(req.body.password, 10, function(err, hash) {
       if (err) console.log(err);
       else {
         user.Signup.password = hash;
@@ -158,7 +160,7 @@ async function passwordReset(email, hash) {
     subject: "Password Reset ", // Subject line
     text: "" + otp, // plain text body
     html:
-      "<b>Click on this link to reset your password http://localhost:3000/resetpassword/" +
+      "<b>Click on this link to reset your password http://jodimaker.herokuapp.com/resetpassword/" +
       hash +
       "/" +
       email +

@@ -22,7 +22,7 @@
     <section>
         <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
             <div class="container">
-                <a class="navbar-brand text-white" href="#"><img src= "img/jodi.png"></a>
+                <a class="navbar-brand text-white" href="/"><img src="img/jodi.png"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -59,7 +59,7 @@
         <div class="container ">
             <div class="row mt-5">
                 <div class="col-md-2 mt-5 px-5 pb-2">
-        
+
                     <form action="/dashboard" method="GET">
                         <h5 class="mt-2 text-center"><b>Filters</b></h5>
                         <div class="row mt-3">
@@ -77,7 +77,7 @@
                                     class="custom-control-input" value="Yes">
                                 <label class="custom-control-label" for="customRadioInline1">Yes</label>
                             </div>
-                            
+
                         </div>
                         {{!-- <div> --}}
                         <div class="row mt-3">
@@ -104,26 +104,30 @@
                     </form>
                 </div>
                 <div class="col-md-10 mt-5">
-                      <div class="row">
+                    <div class="row">
                         {{#each matches}}
-                      
-                            <div class="col-md-4 mt-5">
+
+                        <div class="col-md-4 mt-5">
                             <div class="card">
-                                 <a href="/matchprofile" class="text-center" ><img style="height:150px; width:150px"
-                                            src="{{this.Profile.Profile1.photo}}"
-                                            alt="{{this.Profile.Profile1.name.firstname}} {{this.Profile.Profile1.name.middlename}} {{this.Profile.Profile1.name.lastname}}"></a>
+                                <a href="/matchprofile" class="text-center"><img style="height:150px; width:150px"
+                                        src="{{this.Profile.Profile1.photo}}"
+                                        alt="{{this.Profile.Profile1.name.firstname}} {{this.Profile.Profile1.name.middlename}} {{this.Profile.Profile1.name.lastname}}"></a>
                                 <div class="card-body text-center">
-                                   
-                                    <h4 class="card-title">{{this.Profile.Profile1.name.firstname}} {{this.Profile.Profile1.name.middlename}} {{this.Profile.Profile1.name.lastname}}</h4>
-                                    <h6 class="card-subtitle mb-2 text-muted">{{this.Profile.Profile2.age}}years {{this.Profile.Profile2.height}}</h6>
-                                    <p class="card-text">{{this.Profile.Profile1.location.city}} , {{this.Profile.Profile1.location.state}}</p>
+
+                                    <h4 class="card-title">{{this.Profile.Profile1.name.firstname}}
+                                        {{this.Profile.Profile1.name.middlename}}
+                                        {{this.Profile.Profile1.name.lastname}}</h4>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{this.Profile.Profile2.age}}years
+                                        {{this.Profile.Profile2.height}}</h6>
+                                    <p class="card-text">{{this.Profile.Profile1.location.city}} ,
+                                        {{this.Profile.Profile1.location.state}}</p>
                                     <a href="#" class="btn btn-outline-secondary">Message</a>
                                     <a href="#" class="btn btn-wine text-white">Connect</a>
                                 </div>
                             </div>
                         </div>
                         {{/each}}
-                        </div>
+                    </div>
                 </div>
     </section>
 

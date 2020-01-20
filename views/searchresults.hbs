@@ -20,9 +20,9 @@
 <body class="bg-light">
 
     <section>
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top" id="nav-bar">
             <div class="container">
-                <a class="navbar-brand text-white" href="#"><img src="img/jodi.png"></a>
+                <a class="navbar-brand text-white" href="/"><img src="img/jodi.png"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -41,11 +41,27 @@
                     </ul>
                     <span class="navbar-text">
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="profile">Profile</a>
+                            <li class="nav-item active">
+                                <a href="profile">
+                                    <div class="avatar-upload mt-0 mb-0">
+                                        <div class="avatar-preview img-small">
+                                            <div id="imagePreview"
+                                                style="background-image: url({{user.Profile.Profile1.photo}});">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="setting">Settings</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="profile"
+                                    id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="setting">Settings</a>
+                                    <a class="dropdown-item" href="userpref">User Preferences</a>
+                                    <a class="dropdown-item text-danger" href="logout">Logout</a>
+                                </div>
                             </li>
                         </ul>
                     </span>
@@ -58,64 +74,8 @@
     <section>
         <div class="container ">
             <div class="row">
-                <div class="col-md-2 mt-5 px-5 pb-2">
-                    <form action="/searchresults" method="get">
-                        <h5 class="mt-2 text-center">Filter Search</h5>
-                        {{!-- age  --}}
-                        <p>
-                            <label for="age">Age:</label>
-                            <input type="text" id="age" disabled style="border:0; color:#f6931f; font-weight:bold;"
-                                class="bg-transparent" />
-                        </p>
-                        <div id="slider-range"></div>
-                        {{!-- gender  --}}
-                        <div class="row my-3 mx-auto">
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" id="customRadioInline1" name="isEmployed"
-                                    class="custom-control-input" value="true">
-                                <label class="custom-control-label" for="customRadioInline1">Employed</label>
-                            </div>
 
-                        </div>
-                        {{!-- religion  --}}
-                        <label for="religion">Religion</label>
-                        <select class="custom-select" name="religion" id="religion" >
-                            <option>Doesn't Matter</option>
-                            <option value="hindu">Hindu</option>
-                            <option value="islam">Islam</option>
-                            <option value="buddhism">Buddhism</option>
-                            <option value="christianity">Christianity</option>
-                            <option value="jainism">Jainism</option>
-                            <option value="judaism">Judaism</option>
-                            <option value="sikhism">Sikhism</option>
-                            <option value="taoism">Taoism</option>
-                            <option value="zoroastrianism">Zoroastrianism</option>
-                        </select>
-                        {{!-- height --}}
-                        <p>
-                            <label for="height">Height:</label>
-                            <input type="text" id="height" readonly style="border:0; color:#f6931f; font-weight:bold;"
-                                class="bg-transparent" />
-                        </p>
-                        <div id="height-range"></div>
-                        {{!-- salary  --}}
-                        <p>
-                            <label for="salary">Salary:</label>
-                            <input type="text" id="salary" readonly style="border:0; color:#f6931f; font-weight:bold;"
-                                class="bg-transparent" />
-                        </p>
-                        <div id="salary-range"></div>
-
-                        <div class="row mx-auto mt-3">
-                            <button type="submit" class="btn btn-primary">Apply</button>
-                        </div>
-
-
-
-                    </form>
-                </div>
-
-                <div class="col-md-10 mt-5">
+                <div class="col-md-12 mt-5 mx-auto">
                     <div class="row">
                         {{#each matches}}
                         <div class="col-md-4 mt-5">

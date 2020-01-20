@@ -1,66 +1,132 @@
 .profileimage {
-    position: relative;
-    width: 175px;
-    height: 375px;
-    border-radius: 50%;
-    background-image: url("../img/woman-wearing-black-long-sleeved-shirt-1832959.jpg");
-    background-position: center;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-position-y: 20%;
+  position: relative;
+  width: 175px;
+  height: 375px;
+  border-radius: 50%;
+  background-image: url("../img/woman-wearing-black-long-sleeved-shirt-1832959.jpg");
+  background-position: center;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position-y: 20%;
 }
 
 .header-top {
-    background-color: #78244C;
+  background-color: #78244c;
 }
 
 .nav-tabs {
-    border: 0;
+  border: 0;
 }
 
 .nav-link {
-    border: none !important;
-
+  border: none !important;
 }
 
 a.nav-link {
-    padding-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .social {
-    padding: 20px;
-    width: 70px;
-    text-align: center;
-    text-decoration: none !important;
-    margin: 5px 2px;
-    font-weight: bold;
-    font-size: 2em;
-    height: 70px
+  padding: 20px;
+  width: 70px;
+  text-align: center;
+  text-decoration: none !important;
+  margin: 5px 2px;
+  font-weight: bold;
+  font-size: 2em;
+  height: 70px;
 }
 
-
-
-
 hr {
-    border: 3px solid#78244C;
-    border-radius: 5px;
+  border: 3px solid#78244C;
+  border-radius: 5px;
 }
 
 .header-top {
-    background-color: #78244C;
+  background-color: #78244c;
 }
 
 body {
-    padding-top: 70px;
+  padding-top: 70px;
 }
-.disabled{
-    background: transparent;
-    border: none;
+.disabled {
+  background: transparent;
+  border: none;
 }
-.row{
-    margin-left: 0px;
-    margin-right: 0px;
+.row {
+  margin-left: 0px;
+  margin-right: 0px;
 }
-.btn-wine{
-    background-color: #78244C;
+.btn-wine {
+  background-color: #78244c;
+}
+#age1 {
+  background-color: transparent;
+  border: none;
+}
+
+/* avatar image */
+.avatar-upload {
+  position: relative;
+  max-width: 205px;
+  margin: 50px auto;
+}
+.avatar-upload .avatar-edit {
+  position: absolute;
+  right: 12px;
+  z-index: 1;
+  top: 10px;
+}
+.avatar-upload .avatar-edit input {
+  display: none;
+}
+.avatar-upload .avatar-edit input + label {
+  display: inline-block;
+  width: 34px;
+  height: 34px;
+  margin-bottom: 0;
+  border-radius: 100%;
+  background: #ffffff;
+  border: 1px solid transparent;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  font-weight: normal;
+  transition: all 0.2s ease-in-out;
+}
+.avatar-upload .avatar-edit input + label:hover {
+  background: #f1f1f1;
+  border-color: #d6d6d6;
+}
+.avatar-upload .avatar-edit input + label:after {
+  content: "\f040";
+  font-family: "FontAwesome";
+  color: #757575;
+  position: absolute;
+  top: 5px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin: auto;
+}
+.avatar-upload .avatar-preview {
+  width: 192px;
+  height: 192px;
+  position: relative;
+  border-radius: 100%;
+  border: 6px solid #f8f8f8;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+}
+.avatar-upload .avatar-preview > div {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.avatar-preview.img-small {
+  width: 36px;
+  height: 36px;
+  border: 2px solid #f8f8f8;
 }

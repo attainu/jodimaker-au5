@@ -16,7 +16,7 @@
     <header class="position-absolute w-100">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
-                <a class="navbar-brand flex-grow-1" href="#"><img class="logo" src="./img/jodi1.png" alt="logo"></a>
+                <a class="navbar-brand flex-grow-1" href="/"><img class="logo" src="./img/jodi1.png" alt="logo"></a>
 
                 <button class="btn btn-wine" type="button" data-toggle="modal" data-target="#register">Register
                     Free!</button>
@@ -270,14 +270,12 @@
                                     <option value="relative">Relative</option>
                                 </select>
                             </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="" checked>Remember me</label>
-                            </div>
+
                             <button type="button" id="submit" class="btn btn-wine btn-block">Register</button>
                         </form>
 
                     </div>
-                  
+
                     <div class="modal-footer">
                         <p>Already have an Account?
                             <button class="btn btn-infor ml-2" type="button" id="newLogin" data-toggle="modal"
@@ -290,6 +288,7 @@
     </section>
 
     <section>
+
         <!-- Modal -->
         <div class="modal fade" id="login" role="dialog">
             <div class="modal-dialog">
@@ -297,13 +296,24 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-header" style="padding:35px 50px;">
-                        <h3 class="text-center"><b>Login to Your Account</b></h3>
+                        <div class="row">
+
+                            <div class="col-md-12">
+                                <h3 class="text-center"><b>Login to Your Account</b></h3>
+                            </div>
+
+                        </div>
 
                     </div>
+
                     <div class="modal-body" style="padding:40px 50px;">
                         <form role="form " class="needs-validation" method="POST" action="/login" novalidate>
                             <div class="form-group">
                                 <label for="email"><span></span> Enter Email</label>
+                                {{#if notRegistered}}
+                                <label class="text-danger ml-2">Not Registered!
+                                </label>
+                                {{/if}}
                                 <input type="email" id="emaillogin" name="email"
                                     pattern="[A-Za-z.0-9]{1,64}[A-Za-z0-9]{1,64}[@][A-Za-z]{3,36}[.][A-Za-z]{1,6}"
                                     class="form-control" placeholder="Enter Email" required>
@@ -317,6 +327,10 @@
                             <div class="form-group">
                                 <label for="password">
                                     Password</label>
+                                {{#if wrongpassword}}
+                                <label class="text-danger ml-2">Incorrect Password!
+                                </label>
+                                {{/if}}
                                 <p class="float-right"><a href="/forgotpassword" class="font-weight-bold">Forgot
                                         Password?</a></p>
                                 <input type="password" id="passwordlogin" name="password" class="form-control"
@@ -328,24 +342,22 @@
                                     Incorrect password
                                 </div>
                             </div>
-                            <div class="checkbox">
-                                <label><input type="checkbox" value="" checked>Remember me</label>
-                            </div>
-                            <button type="submit" id="loginbtn" class="btn btn-wine btn-block"><span></span>
+
+                            <button type="submit" id="loginbtn" class="btn btn-wine btn-block mt-2"><span></span>
                                 Login</button>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <p>Not a member? <button class="btn btn-infor ml-2" id="newRegister" type="button"
                                 data-toggle="modal" data-target="#register">Register Free!</button></p>
-                          </div>
-                    <div class="g-signin2" data-onsuccess="onSignIn"> </div>
-                </div>        
-
                     </div>
+                    <div class="g-signin2" data-onsuccess="onSignIn"> </div>
                 </div>
 
             </div>
+        </div>
+
+        </div>
         </div>
         </div>
     </section>
@@ -375,6 +387,10 @@
         </div>
     </div>
     {{!-- modal ends --}}
+    {{!-- toast --}}
+    <div class="col-md-10 offset-md-1 toast py-4 px-2" data-delay="5000">
+        <h4 class="my-auto text-center">Registration Successful!</h4>
+    </div>
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -386,6 +402,15 @@
     crossorigin="anonymous"></script>
 
 <script src="/js/root.js"></script>
-
+{{#if notRegistered}}
+<script>
+    $('#login').modal('show')
+</script>
+{{/if}}
+{{#if wrongpassword}}
+<script>
+    $('#login').modal('show')
+</script>
+{{/if}}
 
 </html>

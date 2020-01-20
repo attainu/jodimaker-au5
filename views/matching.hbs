@@ -12,15 +12,15 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/matching.css">
-    <title>Dashboard</title>
+    <title>Matching </title>
 
 </head>
 
 <body class="bg-light">
     <section>
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top " id="nav-bar">
             <div class="container">
-                <a class="navbar-brand text-white" href="#"><img src="img/jodi.png"></a>
+                <a class="navbar-brand text-white" href="/"><img src="img/jodi.png"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -39,8 +39,27 @@
                     </ul>
                     <span class="navbar-text">
                         <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="../profile">Profile</a>
+                            <li class="nav-item active">
+                                <a href="profile">
+                                    <div class="avatar-upload mt-0 mb-0">
+                                        <div class="avatar-preview img-small">
+                                            <div id="imagePreview"
+                                                style="background-image: url({{user.Profile.Profile1.photo}});">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="profile"
+                                    id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="setting">Settings</a>
+                                    <a class="dropdown-item" href="userpref">User Preferences</a>
+                                    <a class="dropdown-item text-danger" href="logout">Logout</a>
+                                </div>
                             </li>
                         </ul>
                     </span>
@@ -71,6 +90,7 @@
                             <a class="btn btn-success  text-white">Sent</a>
 
                             {{else}}
+                            <input type="hidden" value="{{match._id}}">
                             <a class="btn btn-wine connect text-white">Connect</a>
                             {{/if}}
 
@@ -97,6 +117,18 @@
                                     <p>{{match.Signup.email}}</p>
                                 </div>
 
+                                {{else sent}}
+                                <div class="col md-3">
+                                    <p>98XXXXXXXX</p>
+                                </div>
+                                <div class="col-md-1">
+                                    <label for="number"><i class="fa fa-envelope"></i> :</label>
+                                </div>
+                                <div class="col md-3">
+                                    <p>XXXXXXX@gmail.com</p>
+                                </div>
+                                <div class="col"><span class="btn btn-success mb-4 text-white">Request Sent</span>
+                                </div>
                                 {{else}}
                                 <div class="col md-3">
                                     <p>98XXXXXXXX</p>
@@ -107,7 +139,9 @@
                                 <div class="col md-3">
                                     <p>XXXXXXX@gmail.com</p>
                                 </div>
-                                <div class="col"><span class="btn btn-wine mb-4 text-white">Connect for details</span>
+                                <input type="hidden" value="{{match._id}}">
+                                <div class="col"><span class="btn btn-wine connect mb-4 text-white">Connect for
+                                        details</span>
                                 </div>
                                 {{/if}}
                             </div>
@@ -229,7 +263,8 @@
 
                         <div class="col-md-12">
                             <div class="row mx-3 justify-content-around mt-4">
-                                <p class="font-weight-bold mr-4">{{match.Profile.Profile1.name.firstname}}'s Preferences</p>
+                                <p class="font-weight-bold mr-4">{{match.Profile.Profile1.name.firstname}}'s Preferences
+                                </p>
                                 <p class="font-weight-bold mr-4">You Match</p>
                             </div>
                         </div>
@@ -242,7 +277,7 @@
                             <div class="row mx-3 ">
                                 <div class="col-md-9">
                                     <label class="text-capitalize" for="age">{{@key}}: {{this}}</label>
-                                    
+
                                 </div>
                                 <div class="col">
                                     <p><i class="fa fa-check-circle" style="color: green;"></i></p>
@@ -364,6 +399,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
-<script src="../js/profile.js"></script>
+<script src="../js/matching.js"></script>
 
 </html>

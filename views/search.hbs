@@ -15,44 +15,62 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light  bg-wine  ">
-        <div class="container">
-            <a class="navbar-brand text-white" href="#"><img src="img/jodi.png"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav mr-auto text-white">
-                    <li class="nav-item active">
-                        <a class="nav-link text-white" href="home">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="matches">My Matches</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="search">Search</a>
-                    </li>
-                </ul>
-                <span class="navbar-text">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link text-white" href="profile">Profile</a>
+    <section>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top " id="nav-bar">
+            <div class="container">
+                <a class="navbar-brand text-white" href="/"><img src="img/jodi.png"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarText">
+                    <ul class="navbar-nav mr-auto text-white">
+                        <li class="nav-item active">
+                            <a class="nav-link text-white" href="home">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="setting">Settings</a>
+                            <a class="nav-link text-white" href="matches">My Matches</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="search">Search</a>
                         </li>
                     </ul>
-                </span>
+                    <span class="navbar-text">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a href="profile">
+                                    <div class="avatar-upload mt-0 mb-0">
+                                        <div class="avatar-preview img-small">
+                                            <div id="imagePreview"
+                                                style="background-image: url({{user.Profile.Profile1.photo}});">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="profile"
+                                    id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false">
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="setting">Settings</a>
+                                    <a class="dropdown-item" href="userpref">User Preferences</a>
+                                    <a class="dropdown-item text-danger" href="logout">Logout</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </span>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </section>
 
-    <div class="container mt-5  ">
-        <div class="row">
-            <div class="col-md-7 offset-md-2 border rounded bg-light shadow p-3 px-5">
+    <div class="container mt-5 ">
+        <div class="row ">
+            <div class="col-md-6 mx-auto  border rounded bg-light shadow p-3 px-5">
                 <h2 class="text-center font-weight-light">Search</h2>
-                <form action="/searchsave" method="POST" class="form-group">
+                <form action="/searchsave" method="POST" class="form-group mt-3">
 
                     <p>
                         <label for="age">Age range:</label>
@@ -60,7 +78,7 @@
                     </p>
                     <div id="slider-range"></div>
                     <div class="mb-3">
-                        <label>Marital Status:</b></label>
+                        <label>Marital Status:</label>
                         <select placeholder="Marital Status" class="form-control ms" multiple="multiple"
                             name="maritialstatus">
                             <option value="nevermarried">Never Married</option>
@@ -70,9 +88,8 @@
                             <option value="anulled">Annulled</option>
                         </select>
                     </div>
-
                     <div class="mb-3">
-                        <label>Religion:</b></label>
+                        <label>Religion:</label>
                         <select class="form-control religion" multiple="multiple" name="religion">
                             <option value="doesnotmatter">Doesn't Matter</option>
                             <option value="hindu">Hindu</option>
@@ -87,7 +104,7 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label>Mother Tongue</b></label>
+                        <label>Mother Tongue:</label>
                         <select class="form-control mt" multiple="multiple" name="mothertongue">
                             <option value="doesnotmatter">Doesn't Matter</option>
                             <option value="Hindi">Hindi</option>
@@ -124,22 +141,7 @@
                         </select>
                     </div>
                     <div>
-                        <label>Photo Settings</b></label>
-                        <div class="custom-control custom-checkbox mb-3">
-                            <input type="checkbox" class="custom-control-input" id="customCheck" name="show" value="0">
-                            <label class="custom-control-label" for="customCheck">Visible to All</label>
-                        </div>
-                        <div class="custom-control custom-checkbox mb-3">
-                            <input type="checkbox" class="custom-control-input" id="customCheck_1" name="show"
-                                value="1">
-                            <label class="custom-control-label" for="customCheck_1">Protected Photo</label>
-                        </div>
-
-
-
-                    </div>
-                    <div>
-                        <button type="submit" class="btn btn-wine mt-3">Search</button>
+                        <button type="submit" class="btn btn-wine mt-3 text-white">Search</button>
                     </div>
                 </form>
 
@@ -248,6 +250,7 @@
         $("#age1").val($("#slider-range").slider("values", 0) +
             " - " + $("#slider-range").slider("values", 1));
     });
+
 </script>
 
 

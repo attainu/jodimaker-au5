@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
   const hobbies = [
     "3D printing",
     "amateur radio",
@@ -194,13 +194,13 @@ $(document).ready(function () {
   }
   $(".hobbies").select2({
     tags: true
-  })
+  });
   // add hobbies button
   var max_fields = 10;
   var wrapper = $(".input_fields_wrap");
   var add_button = $(".add_field_button");
   var x = 1;
-  $(add_button).click(function (e) {
+  $(add_button).click(function(e) {
     e.preventDefault();
     if (x < max_fields) {
       x++;
@@ -211,7 +211,7 @@ $(document).ready(function () {
       $(wrapper).append(`<h1 class="text-center">Stop lying Dude!!!</h1>`);
     }
   });
-  $(wrapper).on("click", ".remove_field", function (e) {
+  $(wrapper).on("click", ".remove_field", function(e) {
     e.preventDefault();
     $(this)
       .parent("div")
@@ -222,76 +222,85 @@ $(document).ready(function () {
   var slider = document.getElementById("customRange1");
   var output = document.getElementById("sliderValue");
   output.innerHTML = slider.value;
-  slider.oninput = function () {
+  slider.oninput = function() {
     output.innerHTML = this.value;
   };
 
-  $("#yes").on("click", function () {
-    $(".isEmployed").show()
+  $("#yes").on("click", function() {
+    $(".isEmployed").show();
     $('input[name="employer"]').attr("required");
   });
-  $("#no").on("click", function () {
-    $(".isEmployed").hide()
-    $('input[name="employer"]').removeAttr("required")
+  $("#no").on("click", function() {
+    $(".isEmployed").hide();
+    $('input[name="employer"]').removeAttr("required");
   });
-
-
-
 
   // new implementation
 
-  const tagContainer = document.querySelector('.tag-container');
-  const input = document.querySelector('.tag-container input');
+  const tagContainer = document.querySelector(".tag-container");
+  const input = document.querySelector(".tag-container input");
 
   let tags = [];
 
   function createTag(label) {
-    const div = document.createElement('div');
-    div.setAttribute('class', 'tag');
-    const span = document.createElement('span');
+    const div = document.createElement("div");
+    div.setAttribute("class", "tag");
+    const span = document.createElement("span");
     span.innerHTML = label;
-    const closeIcon = document.createElement('i');
-    closeIcon.innerHTML = 'close';
-    closeIcon.setAttribute('class', 'material-icons');
-    closeIcon.setAttribute('data-item', label);
+    const closeIcon = document.createElement("i");
+    closeIcon.innerHTML = "close";
+    closeIcon.setAttribute("class", "material-icons");
+    closeIcon.setAttribute("data-item", label);
     div.appendChild(span);
     div.appendChild(closeIcon);
     return div;
   }
 
   function clearTags() {
-    document.querySelectorAll('.tag').forEach(tag => {
+    document.querySelectorAll(".tag").forEach(tag => {
       tag.parentElement.removeChild(tag);
     });
   }
 
   function addTags() {
     clearTags();
-    tags.slice().reverse().forEach(tag => {
-      tagContainer.prepend(createTag(tag));
-    });
+    tags
+      .slice()
+      .reverse()
+      .forEach(tag => {
+        tagContainer.prepend(createTag(tag));
+      });
   }
 
-  input.addEventListener('keyup', (e) => {
-    if (e.key === 'Enter') {
-      e.target.value.split(',').forEach(tag => {
+  input.addEventListener("keyup", e => {
+    if (e.key === "Enter") {
+      e.target.value.split(",").forEach(tag => {
         tags.push(tag);
       });
 
       addTags();
-      input.value = '';
+      input.value = "";
     }
   });
-  document.addEventListener('click', (e) => {
-    if (e.target.tagName === 'I') {
-      const tagLabel = e.target.getAttribute('data-item');
+  document.addEventListener("click", e => {
+    if (e.target.tagName === "I") {
+      const tagLabel = e.target.getAttribute("data-item");
       const index = tags.indexOf(tagLabel);
       tags = [...tags.slice(0, index), ...tags.slice(index + 1)];
       addTags();
     }
-  })
+  });
 
   input.focus();
 
-
+  var prevScrollpos = window.pageYOffset;
+  window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+      document.getElementById("nav-bar").style.top = "0";
+    } else {
+      document.getElementById("nav-bar").style.top = "-60px";
+    }
+    prevScrollpos = currentScrollPos;
+  };
 });

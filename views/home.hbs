@@ -11,16 +11,19 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="/css/home.css">
     <title>Dashboard</title>
 
 </head>
 
-<body class="bg-light">
-    <section>
-        <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top ">
+<body class="bg-light" >
+    <div class="w-100" >
+
+    </div>
+    <section >
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top " id="nav-bar">
             <div class="container">
-                <a class="navbar-brand text-white" href="#"><img src= "img/jodi.png"></a>
+                <a class="navbar-brand text-white" href="/"><img src="img/jodi.png"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -37,17 +40,39 @@
                             <a class="nav-link text-white" href="search">Search</a>
                         </li>
                     </ul>
-                    <span class="navbar-text">
-                        <ul class="navbar-nav mr-auto">
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="profile">Profile</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white" href="setting">Settings</a>
-                            </li>
-                        </ul>
-                    </span>
+
                 </div>
+                <span class="navbar-text">
+                    <ul class="navbar-nav mr-auto">
+                        {{#with user.Profile.Profile1}}
+                        <li class="nav-item ">
+                            <a class="nav-link text-white" href="/profile">{{name.firstname}} {{name.lastname}}</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a href="profile">
+                                <div class="avatar-upload mt-0 mb-0">
+                                    <div class="avatar-preview img-small">
+                                        <div id="imagePreview" style="background-image: url({{photo}});">
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+
+                        {{/with}}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-white" href="profile" id="navbarDropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="setting">Settings</a>
+                                <a class="dropdown-item" href="userpref">User Preferences</a>
+                                <a class="dropdown-item text-danger" href="logout">Logout</a>
+                            </div>
+                        </li>
+                    </ul>
+                </span>
+            </div>
             </div>
         </nav>
     </section>
@@ -56,25 +81,18 @@
 
 
     <section>
-        <div class="container mt-5 mh-100">
-            <div class="row">
+
+        <div class="container mt-5 mh-100" >
+            <div class="row ">
                 {{!-- profile column --}}
-                <div class="d-flex col-md-3">
-                    <div class="card">
-                        {{!-- <div class="img-holder px-2 p-2"> --}}
-                        {{!-- <img src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/robert.jpg"
-                                class="card-img-top rounded-circle image" alt="Profile Page">
-                            <div class="middle">
-                                <input type="file" name="" id="">
-                                <button><i class="fa fa-camera"></i></button>
-                                <div>Upload image</div>
-                            </div> --}}
-
+                <div class=" col-md-3">
+                    <div class="card " style="height: 100%;">
                         <form id="uploadForm" enctype="multipart/form-data" action="/photoupload" method="post">
-
                             <div class="avatar-upload">
                                 <div class="avatar-edit">
-                                    <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                    <form id="profilepic" enctype="multipart/form-data" action="">
+                                        <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" />
+                                    </form>
                                     <label for="imageUpload"></label>
                                 </div>
                                 <div class="avatar-preview">
@@ -87,19 +105,15 @@
                         {{!-- </div> --}}
                         <div class="card-body">
                             <hr>
-                            <h5 class="card-title text-capitalize">{{user.Profile.Profile1.name.firstname}}
+                            <h5 class="card-title text-center text-capitalize">{{user.Profile.Profile1.name.firstname}}
                                 {{#if user.Profile.Profile1.name.middlename}}
                                 {{user.Profile.Profile1.name.middlename}}
                                 {{/if}}
                                 {{user.Profile.Profile1.name.lastname}}</h5>
-                            <p class="card-text text-center">Profile completion: <mark>80
-                                    %</mark>
+                            <p class="card-text text-center"><i
+                                    class="fa  fa-map-marker"></i>{{user.Profile.Profile1.location.city}}
                             </p>
                             <hr>
-                            {{!-- <div class="row ">
-                                <a href="#" class="btn btn-info mx-auto">Upload More Photos</a>
-                            </div> --}}
-
                         </div>
                     </div>
                 </div>
@@ -123,15 +137,29 @@
                                     class="badge badge-pill badge-danger">{{user.Matches.sentrequests.length}}</span></a>
                         </li>
                     </ul>
-                    <div class="tab-content ">
-                        <div class="tab-pane active border bg-white" id="acceptedReqs">
+                    <div class="tab-content overflow-auto">
+                        <div class="tab-pane active border bg-white overflow-auto" style="height:400px;"
+                            id="acceptedReqs">
+                            {{#unless acceptedrequests}}
+                            <div class="emptyAlert text-center">
+                                <span><i class="fa fa-envelope-open"></i></span>
+                                <p class="text-muted textSize text-center font-weight-bold emptyAlert text-nowrap"
+                                    style="font-size: 1rem;">You
+                                    are not
+                                    connected with
+                                    anyone.</p>
+                            </div>
+                            {{/unless}}
                             {{#each acceptedrequests}}
                             <div class="row no-gutters align-items-center">
                                 <div class="col-md-2">
-                                    <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
-                                        <img src="{{Profile.Profile1.photo}}"
-                                            class="card-img-top matches-photo rounded-circle p-3" alt="Profile Page">
-                                    </a>
+                                    <div class="avatar-upload">
+                                        <div class="avatar-preview img-big">
+                                            <div id="imagePreview"
+                                                style="background-image: url({{Profile.Profile1.photo}});">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-8">
                                     <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
@@ -143,41 +171,58 @@
                                                 {{Profile.Profile1.location.city}}
                                             </p>
                                             <p class="card-text">
-                                                <small class="text-muted">Last online 3 mins ago</small>
+                                                <small class="text-muted">Last online {{lastSeen}} ago</small>
                                             </p>
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col ">
-                                    <a class="btn btn-secondary text-white ">Message</a>
+                                <div class="col-md-2 ">
+                                    <div class="d-inline-flex flex-column">
+                                        <input type="hidden" value="{{_id}}">
+                                        <a class="btn-sm btn-danger text-white unmatch ">Unmatch</a>
+                                        <a class="btn-sm my-2 btn-secondary text-white messageuser ">Message</a></div>
                                 </div>
-
-                            <hr>
+                                <hr>
                             </div>
                             {{/each}}
 
                             <!--/row-->
                         </div>
-                        <div class="tab-pane border bg-white" id="recievedReqs">
+                        <div class="tab-pane border bg-white overflow-auto" style="height:400px;" id="recievedReqs">
+                            {{#unless receivedrequests}}
+                            <div class="emptyAlert text-center">
+                                <span><i class="fa fa-envelope-open"></i></span>
+                                <span class="text-muted textSize text-center emptyAlert text-nowrap font-weight-bold"
+                                    style="font-size: 1rem;">There
+                                    is no
+                                    pending
+                                    Interests
+                                    in
+                                    your
+                                    list.</span>
+                            </div>
+                            {{/unless}}
                             {{#each receivedrequests}}
                             <div class="row no-gutters align-items-center">
                                 <div class="col-md-2">
-                                    <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
-                                        <img src="{{Profile.Profile1.photo}}" class="card-img-top rounded-circle p-3"
-                                            alt="Profile Page">
-                                    </a>
+                                    <div class="avatar-upload">
+                                        <div class="avatar-preview img-big">
+                                            <div id="imagePreview"
+                                                style="background-image: url({{Profile.Profile1.photo}});">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
-
                                             <h6 class="card-title">{{Profile.Profile1.name.firstname}}
                                                 {{Profile.Profile1.name.lastname}}</h6>
                                             <p class="card-text">{{Profile.Profile2.age}},
                                                 {{Profile.Profile2.height}},{{Profile.Profile2.mothertongue}},
                                                 {{Profile.Profile1.location.city}}</p>
                                             <p class="card-text">
-                                                <small class="text-muted">Last online 3 mins ago</small>
+                                                <small class="text-muted">Last online {{lastSeen}}  ago</small>
                                             </p>
                                         </a>
                                     </div>
@@ -187,21 +232,32 @@
                                     <a class="btn btn-success text-white acceptreq my-2">Accept</a>
                                     <a class="btn deletereceived text-white btn-danger">Delete</a>
                                 </div>
-
-                            <hr>
+                                <hr>
                             </div>
-
                             {{/each}}
                         </div>
-                        <div class="tab-pane border bg-white" id="rejectedReqs">
+                        <div class="tab-pane border bg-white overflow-auto" style="height:400px;" id="rejectedReqs">
+                            {{#unless sentrequests}}
+                            <div class="emptyAlert text-center">
+                                <span><i class="fa fa-envelope-open"></i></span>
+                                <p class="text-muted  emptyAlert text-center text-nowrap font-weight-bold"
+                                    style="font-size: 1rem;">There
+                                    is
+                                    no Interest
+                                    sent by
+                                    you.</p>
+                            </div>
+                            {{/unless}}
                             {{#each sentrequests}}
                             <div class="row no-gutters align-items-center">
-
                                 <div class="col-md-2 matchpage">
-                                    <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
-                                        <img src="{{Profile.Profile1.photo}}" class="card-img-top rounded-circle p-3"
-                                            alt="Profile Page">
-                                    </a>
+                                    <div class="avatar-upload">
+                                        <div class="avatar-preview img-big">
+                                            <div id="imagePreview"
+                                                style="background-image: url({{Profile.Profile1.photo}});">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-7 matchpage">
                                     <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
@@ -212,7 +268,7 @@
                                                 {{Profile.Profile2.height}},{{Profile.Profile2.mothertongue}},
                                                 {{Profile.Profile1.location.city}}</p>
                                             <p class="card-text">
-                                                <small class="text-muted">Last online 3 mins ago</small>
+                                                <small class="text-muted">Last online {{lastSeen}}  ago</small>
                                             </p>
                                         </div>
                                     </a>
@@ -221,9 +277,8 @@
                                     <input type="hidden" value="{{_id}}">
                                     <a class="btn deletesent text-white btn-danger">Delete</a>
                                 </div>
-                            <hr>
+                                <hr>
                             </div>
-
                             {{/each}}
                         </div>
                     </div>
@@ -233,15 +288,29 @@
                         <h6 class="text-danger">Notifications
                             <span class="badge badge-pill badge-danger" id="notifs">{{notifications.length}}</span>
                         </h6>
-                        {{#each notifications}}
-                        <div class="alert alert-success alert-dismissable">
-                            <a class="panel-close close" data-dismiss="alert">×</a>
-                            {{this}}
-                        </div>
-                        {{/each}}
                     </div>
+                    <div class="row pl-3 pr-2">
+                        <div class="overflow-auto" style="height:400px;">
+                            {{#unless notifications}}
+                            <div class="emptyAlert text-center">
+                                <span><i class="fa fa-bell" style="font-size: 5rem;"></i></span>
+                                <span class="text-muted  emptyAlert text-center text-nowrap font-weight-bold"
+                                    style="font-size: 1rem;">All caught up.</span>
+                            </div>
+                            {{/unless}}
+                            {{#each notifications}}
+                            <div class="alert alert-warning alert-dismissable fade show">
+                                <a class="panel-close close" data-dismiss="alert">×</a>
+                                {{this}}
+                            </div>
+                            {{/each}}
+                        </div>
+                    </div>
+
+
                 </div>
             </div>
+        </div>
         </div>
     </section>
 
@@ -249,20 +318,22 @@
 
 
     <section>
-        <div class="container my-5 ">
+        <div class="container my-5">
             <div class="row mx-auto">
                 {{!-- premium matches --}}
                 <div class="col-md-6">
                     <h6>New Matches for you<span class="badge badge-pill badge-danger">{{agematches.length}}</span></h6>
                     {{#each agematches}}
                     <div class="row no-gutters align-items-center bg-white border">
-                        <div class="col-md-2">
-                            <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
-                                <img src="{{Profile.Profile1.photo}}" class="card-img-top rounded-circle p-3"
-                                    alt="Profile Page">
-                            </a>
+                        <div class="col-md-2 px-3">
+                            <div class="avatar-upload">
+                                <div class="avatar-preview img-big">
+                                    <div id="imagePreview" style="background-image: url({{Profile.Profile1.photo}});">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-6 ml-5">
                             <div class="card-body">
                                 <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
                                     <h6 class="card-title">{{Profile.Profile1.name.firstname}}
@@ -271,15 +342,17 @@
                                         {{Profile.Profile2.height}},{{Profile.Profile2.mothertongue}},
                                         {{Profile.Profile1.location.city}}</p>
                                     <p class="card-text">
-                                        <small class="text-muted">Last online 3 mins ago</small>
+                                        <small class="text-muted">Last online {{lastSeen}}  ago</small>
                                     </p>
                                 </a>
                             </div>
                         </div>
 
-                        <div class="col-md-2 justify-content-around d-flex">
-                            <a href="#"><i class="fa fa-check text-success"></i></a>
-                            <a href=""><i class="fa fa-times text-danger"></i></a>
+                        <div class="col justify-content-around d-flex">
+                            <input type="hidden" value="{{_id}}">
+
+                            <i class="fa fa-check text-success"></i>
+                            <i class="fa fa-times text-danger"></i>
                         </div>
                     </div>
                     {{/each}}
@@ -290,13 +363,15 @@
                     <h6>Recently Created<span class="badge badge-pill badge-danger">{{age2matches.length}}</span></h6>
                     {{#each age2matches}}
                     <div class="row no-gutters align-items-center bg-white border">
-                        <div class="col-md-2">
-                            <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
-                                <img src="{{Profile.Profile1.photo}}" class="card-img-top rounded-circle p-3"
-                                    alt="Profile Page">
-                            </a>
+                        <div class="col-md-2 px-3">
+                            <div class="avatar-upload">
+                                <div class="avatar-preview img-big">
+                                    <div id="imagePreview" style="background-image: url({{Profile.Profile1.photo}});">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-8">
+                        <div class="col-md-6 ml-5">
                             <div class="card-body">
                                 <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
                                     <h6 class="card-title">{{Profile.Profile1.name.firstname}}
@@ -305,22 +380,45 @@
                                         {{Profile.Profile2.height}},{{Profile.Profile2.mothertongue}},
                                         {{Profile.Profile1.location.city}}</p>
                                     <p class="card-text">
-                                        <small class="text-muted">Last online 3 mins ago</small>
+                                        <small class="text-muted">Last online {{lastSeen}}  ago</small>
                                     </p>
                                 </a>
                             </div>
                         </div>
-
-                        <div class="col-md-2 justify-content-around d-flex">
-                            <a href="#"><i class="fa fa-check text-success"></i></a>
-                            <a href=""><i class="fa fa-times text-danger"></i></a>
+                        <div class="col justify-content-around d-flex">
+                            <input type="hidden" value="{{_id}}">
+                            <a><i class="fa fa-check text-success"></i></a>
+                            <a><i class="fa fa-times text-danger"></i></a>
                         </div>
                     </div>
                     {{/each}}
-
-
                 </div>
             </div>
+    </section>
+
+    <section>
+        {{!-- chat --}}
+        <div class="shadow mr-3  rounded chatbox">
+
+            <h6 class="text-center chatheading">
+                Chat <i class="fa fa-window-minimize " id="minimize"></i>
+            </h6>
+            <ul class="list-group">
+                {{#each acceptedrequests}}
+
+                <li class="list-group-item list-group-item-action openchat"><input type="hidden" value="{{_id}}">
+                    <div class="chatpic float-left mr-2 " style="background-image: url({{Profile.Profile1.photo}});">
+                    </div>
+                    <h6 class="text-truncate mt-1">
+
+                        {{Profile.Profile1.name.firstname}}
+                        {{Profile.Profile1.name.lastname}} <span class="badge badge-danger"></span>
+                    </h6>
+                </li>
+
+                {{/each}}
+            </ul>
+        </div>
     </section>
 </body>
 
@@ -335,6 +433,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
     integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
     crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+
 <script src="../js/home.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js"></script>
 
 </html>

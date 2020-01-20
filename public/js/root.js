@@ -7,6 +7,7 @@ $(document).ready(function() {
 
   $("#newLogin").click(function() {
     $(".modal").modal("hide");
+    $(".toast").toast("show");
 
     $("#register").toggle();
   });
@@ -75,6 +76,7 @@ $(document).ready(function() {
                       $("#otp").addClass("is-invalid");
                     } else {
                       $(".modal ,.modal-backdrop").hide();
+                      $(".toast").toast("show");
                       $("#login").modal("show");
                     }
                   }
@@ -98,28 +100,11 @@ $(document).ready(function() {
       success: function(response) {}
     });
   });
-})(function() {
-  "use strict";
-  window.addEventListener(
-    "load",
-    function() {
-      // Fetch all the forms we want to apply custom Bootstrap validation styles to
-      var forms = document.getElementsByClassName("needs-validation");
-      // Loop over them and prevent submission
-      var validation = Array.prototype.filter.call(forms, function(form) {
-        form.addEventListener(
-          "submit",
-          function(event) {
-            if (form.checkValidity() === false) {
-              event.preventDefault();
-              event.stopPropagation();
-            }
-            form.classList.add("was-validated");
-          },
-          false
-        );
-      });
-    },
-    false
-  );
-})();
+  $("#loginbtn").click(function() {
+    if ($(".needs-validation:last")[0].checkValidity()) {
+      $(".needs-validation:last").submit();
+    } else {
+      $(".needs-validation:last").addClass("was-validated");
+    }
+  });
+});

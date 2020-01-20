@@ -1,5 +1,6 @@
 body {
   overflow-x: hidden;
+  min-height: 100vh !important;
 }
 
 h4 {
@@ -103,6 +104,16 @@ body {
 #myModal {
   top: -100px;
 }
-#register{
-  top:-20px;
+#register {
+  top: -20px;
+}
+
+.toast {
+  box-shadow: none;
+  border:none;
+  position: absolute;
+  bottom:100px;
+  right:50px;
+  z-index: 1050;
+  color: #78244c ;
 }
