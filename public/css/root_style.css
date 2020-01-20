@@ -46,7 +46,7 @@ a:hover {
 
 .banner {
   background: url("/img/Lovevivah-banner.jpg") no-repeat center;
-  min-height: 620px;
+  min-height: 650px;
   background-size: cover;
 }
 
@@ -74,7 +74,7 @@ a:hover {
   background-color: #78244c;
   border-color: #78244c;
   color: white;
-  font-size: 15px;
+  font-size: 1rem;
   font-weight: bold;
 }
 
@@ -88,7 +88,6 @@ a:hover {
 }
 
 html {
-  overflow: hidden;
   height: 100%;
 }
 
@@ -111,4 +110,19 @@ html {
   right:50px;
   z-index: 1050;
   color: #78244c ;
+}
+
+.stat-box{
+  text-align: center;
+}
+
+.stat-box p{
+  margin: 0px;
+  margin-bottom: 7px;
+ 
+}
+
+.stat-box h4{
+  margin-top: 23px;
+  margin-bottom: 0px;
 }
