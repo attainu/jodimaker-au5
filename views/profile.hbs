@@ -70,12 +70,16 @@
 
 
         <div class="container">
-            <div class="row my-4 rounded border bg-white">
-                <div class="col-md-5  m-4">
-                    <img class="avatar rounded-circle" src="{{result.Profile.Profile1.photo}}"
-                        style="width:300px; height:400px">
+            <div class="row my-5 rounded border bg-white">
+                <div class="col-md-4 mx-auto">
+                    <div class="avatar-upload">
+                        <div class="avatar-preview img-big">
+                            <div id="imagePreview" style="background-image: url({{result.Profile.Profile1.photo}});">
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-4 ml-5">
+                <div class="col ml-5">
                     <div class="row">
                         <h5 class="mt-5">
                             {{result.Profile.Profile1.name.firstname}}&nbsp;{{result.Profile.Profile1.name.middlename}}&nbsp;{{result.Profile.Profile1.name.lastname}}
@@ -86,7 +90,6 @@
                         <label>About me:</label>
                         <p>{{result.Profile.Profile3.AboutYourself}}</p>
                     </div>
-
                 </div>
                 <div class="container">
                     <div class="row">

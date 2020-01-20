@@ -31,12 +31,10 @@ input {
   cursor: default;
 }
 .toast {
-  box-shadow: none;
-  border: none;
-  background-color: transparent;
-  position: absolute;
-  top: 50px;
-  left: 45%;
+  position: fixed;
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%, -50%);
   z-index: 999999;
 }
 /* avatar iamge  */
