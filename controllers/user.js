@@ -20,7 +20,6 @@ cloudinary.config({
 const UserController = {};
 
 UserController.signup = function(req, res) {
-  console.log(req.body);
   const { mobile, email, createdBy } = req.body;
   var password = req.body.password;
 
@@ -198,7 +197,6 @@ UserController.profile4 = function(req, res) {
     .catch(err => console.log(err));
 };
 UserController.profile = function(req, res) {
-  console.log(req.body);
   User.findOne({ _id: req.session.user._id })
     .then(user => {
      
