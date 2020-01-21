@@ -485,7 +485,6 @@ module.exports = function (io) {
                 addlastseen(sentrequests)
                 addlastseen(receivedrequests)
                 addlastseen(acceptedrequests)
-                console.log(agematches[0].lastSeen)
 
                 res.render("home", {
                     user: user,

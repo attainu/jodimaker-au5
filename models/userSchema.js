@@ -37,7 +37,10 @@ const userSchema = new mongoose.Schema({
         default: {}
     },
     Userpref: userprefSchema,
-    LastLogin: Date,
+    LastLogin: {
+        type: Date,
+        default: new Date()
+    },
     myAlbum: Array
 
 

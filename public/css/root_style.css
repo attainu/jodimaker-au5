@@ -1,7 +1,8 @@
 body {
+  overflow-x: hidden;
   overflow-y: auto;
   height: 100%;
-  overflow-x: hidden;
+  padding: 0rem!important;
 }
 
 h4 {
@@ -71,12 +72,14 @@ a:hover {
   border-color: #d79922;
 }
 
-.btn-infor:hover {
+.btn-infor:hover,.btn-infor:focus {
   background-color: #78244c;
   border-color: #78244c;
   color: white;
-  font-size: 15px;
-  font-weight: bold;
+  font-size: 1rem;
+  box-shadow: 0 0.5em 0.7em -0.4em rgb(81, 81, 81);
+  -webkit-transform: translateY(-0.25em);
+  transform: translateY(-0.25em);
 }
 
 .bg-wine {
@@ -89,12 +92,12 @@ a:hover {
 }
 
 html {
-  overflow: hidden;
   height: 100%;
 }
 
 .modal-open {
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #myModal {
