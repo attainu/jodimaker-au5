@@ -4,10 +4,19 @@
 
 body {
   padding-top: 70px;
+  /* background-image: linear-gradient(
+    to right top,
+    #78244c,
+    #9c3950,
+    #bd5251,
+    #d77150,
+    #eb9350
+  ); */
 }
 
 .avatar {
-  border: 0.3rem solid rgba(#fff, 0.3);
+  border: 0.3rem solid #774485;
+  padding: 0 !important;
   margin-top: -6rem;
   margin-bottom: 1rem;
   width: 11rem;
@@ -41,8 +50,9 @@ input {
 
 .avatar-upload {
   position: relative;
-  max-width: 205px;
+  max-width: 312px;
   margin: 50px auto;
+  background-color: #78244c;
 }
 .avatar-upload .avatar-edit {
   position: absolute;
@@ -101,4 +111,8 @@ input {
   width: 36px;
   height: 36px;
   border: 2px solid #f8f8f8;
+}
+
+.card {
+  border: 0.2rem solid #f8f8f8;
 }

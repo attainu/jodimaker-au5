@@ -141,18 +141,18 @@
                     </form>
                 </div>
 
-                <div class="col-md-10 mt-5">
+                <div class="col-md-10 mt-3">
 
-                        <h3>Your Premium Matches</h3>
+                    <h3 class="pb-3">Your Premium Matches</h3>
                     <div class="row">
 
                         {{#each userPrefMatches}}
-                        <div class="col-md-3 mt-5">
-                            <div class="card">
+                        <div class="col-md-4 mt-5">
+                            <div class="card" style="max-width: 18rem;">
                                 <div class="card-body text-center">
                                     <a href="/matchprofile?id={{_id}}"><img class="avatar rounded-circle"
                                             src="{{Profile.Profile1.photo}}" alt="Bologna"></a>
-                                    <h4 class="card-title">
+                                    <h4 class="card-title text-truncate">
                                         {{#if Settings.showname}}
                                         {{Settings.showname}},<br>
                                         {{else}}
@@ -176,14 +176,14 @@
                         </div>
                         {{/each}}
                     </div>
-                        <h3>Other Matches</h3>
+                    <h3 class="mb-5">Other Matches</h3>
 
 
                     <div class="row">
 
                         {{#each matches}}
-                        <div class="col-md-3 mt-5">
-                            <div class="card">
+                        <div class="col-md-4 mt-5">
+                            <div class="card" style="max-width: 18rem;">
                                 <div class="card-body text-center">
                                     <a href="/matchprofile?id={{_id}}"><img class="avatar rounded-circle"
                                             src="{{Profile.Profile1.photo}}" alt="Bologna"></a>

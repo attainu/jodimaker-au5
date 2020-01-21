@@ -15,12 +15,10 @@
     <title>Dashboard</title>
 
 </head>
+{{!-- "background-color: #fdf0f6;" --}}
 
-<body class="bg-light" >
-    <div class="w-100" >
-
-    </div>
-    <section >
+<body>
+    <section>
         <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top " id="nav-bar">
             <div class="container">
                 <a class="navbar-brand text-white" href="/"><img src="img/jodi.png"></a>
@@ -40,7 +38,6 @@
                             <a class="nav-link text-white" href="search">Search</a>
                         </li>
                     </ul>
-
                 </div>
                 <span class="navbar-text">
                     <ul class="navbar-nav mr-auto">
@@ -58,7 +55,6 @@
                                 </div>
                             </a>
                         </li>
-
                         {{/with}}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-white" href="profile" id="navbarDropdownMenuLink"
@@ -73,21 +69,15 @@
                     </ul>
                 </span>
             </div>
-            </div>
         </nav>
     </section>
-
-
-
-
     <section>
-
-        <div class="container mt-5 mh-100" >
+        <div class="container mt-5 mh-100">
             <div class="row ">
                 {{!-- profile column --}}
-                <div class=" col-md-3">
-                    <div class="card " style="height: 100%;">
-                        <form id="uploadForm" enctype="multipart/form-data" action="/photoupload" method="post">
+                <div class=" col-md-3 rounded">
+                    <div class="card  shadow-lg " style="height: 100%;background-color: #fdf0f6;">
+                        <form id=" uploadForm" enctype="multipart/form-data" action="/photoupload" method="post">
                             <div class="avatar-upload">
                                 <div class="avatar-edit">
                                     <form id="profilepic" enctype="multipart/form-data" action="">
@@ -105,40 +95,51 @@
                         {{!-- </div> --}}
                         <div class="card-body">
                             <hr>
-                            <h5 class="card-title text-center text-capitalize">{{user.Profile.Profile1.name.firstname}}
-                                {{#if user.Profile.Profile1.name.middlename}}
-                                {{user.Profile.Profile1.name.middlename}}
-                                {{/if}}
-                                {{user.Profile.Profile1.name.lastname}}</h5>
-                            <p class="card-text text-center"><i
-                                    class="fa  fa-map-marker"></i>{{user.Profile.Profile1.location.city}}
-                            </p>
+                            <div id="cardName">
+                                <h5 class="card-title text-center text-capitalize">
+                                    {{user.Profile.Profile1.name.firstname}}
+                                    {{#if user.Profile.Profile1.name.middlename}}
+                                    {{user.Profile.Profile1.name.middlename}}
+                                    {{/if}}
+                                    {{user.Profile.Profile1.name.lastname}}</h5>
+                                <p class="card-text text-center"><i
+                                        class="fa  fa-map-marker"></i>{{user.Profile.Profile1.location.city}}
+                                </p>
+                            </div>
                             <hr>
                         </div>
                     </div>
                 </div>
                 {{!-- requests row --}}
                 <div class="col-md-6">
-                    <h6>Your Activity</h6>
+                    <h6><span><i class="fa fa-users mx-2"></i></span>Your Requests</h6>
                     <ul class="d-flex nav justify-content-between pb-3 flex-nowrap">
-                        <li class="nav-item text-nowrap">
+                        <li class="nav-item">
                             <a href="" data-target="#acceptedReqs" data-toggle="tab"
-                                class="btn btn-success active">Accepted Requests<span id="accepted"
+                                class="btn btn-success active badge-pill"> <span><i
+                                        class="fa fa-user-plus"></i></span><br>
+                                Accepted Requests<span id="accepted"
                                     class="badge badge-pill badge-danger">{{user.Matches.acceptedrequests.length}}</span></a>
                         </li>
-                        <li class="nav-item text-nowrap">
-                            <a href="" data-target="#recievedReqs" data-toggle="tab" class="btn btn-primary">Recieved
+                        <li class="nav-item">
+                            <a href="" data-target="#recievedReqs" data-toggle="tab"
+                                class="btn btn-primary badge-pill"><span><i class="fa fa-envelope mr-1"></i></span> <br>
+                                Recieved
                                 Requests<span id="received"
                                     class="badge badge-pill  badge-danger">{{user.Matches.receivedrequests.length}}</span></a>
                         </li>
-                        <li class="nav-item text-nowrap">
-                            <a href="" data-target="#rejectedReqs" data-toggle="tab" class="btn btn-secondary">Sent
+                        <li class="nav-item">
+                            <a href="" data-target="#rejectedReqs" data-toggle="tab"
+                                class="btn btn-secondary badge-pill"><span><i class="fa fa-paper-plane"></i></span>
+                                <br>
+                                Sent
                                 Requests<span id="sentreqs"
-                                    class="badge badge-pill badge-danger">{{user.Matches.sentrequests.length}}</span></a>
+                                    class="badge badge-pill badge-danger">{{user.Matches.sentrequests.length}}</span>
+                            </a>
                         </li>
                     </ul>
-                    <div class="tab-content overflow-auto">
-                        <div class="tab-pane active border bg-white overflow-auto" style="height:400px;"
+                    <div class="tab-content overflow-auto shadow-lg " style="background-color: #fdf0f6;">
+                        <div class="tab-pane rounded active border overflow-auto " style="height:400px;"
                             id="acceptedReqs">
                             {{#unless acceptedrequests}}
                             <div class="emptyAlert text-center">
@@ -151,8 +152,9 @@
                             </div>
                             {{/unless}}
                             {{#each acceptedrequests}}
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-md-2">
+                            <div
+                                class="row no-gutters align-items-center justify-content-between bg-light border m-3 rounded">
+                                <div class="col-md-2 mx-3">
                                     <div class="avatar-upload">
                                         <div class="avatar-preview img-big">
                                             <div id="imagePreview"
@@ -161,9 +163,9 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col mx-3">
                                     <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
-                                        <div class="card-body">
+                                        <div class="card-body border-right border-left">
                                             <h6 class="card-title">{{Profile.Profile1.name.firstname}}
                                                 {{Profile.Profile1.name.lastname}}</h6>
                                             <p class="card-text">{{Profile.Profile2.age}},
@@ -176,19 +178,18 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col-md-2 ">
+                                <div class="col-md-2">
                                     <div class="d-inline-flex flex-column">
                                         <input type="hidden" value="{{_id}}">
                                         <a class="btn-sm btn-danger text-white unmatch ">Unmatch</a>
                                         <a class="btn-sm my-2 btn-secondary text-white messageuser ">Message</a></div>
                                 </div>
-                                <hr>
+
                             </div>
                             {{/each}}
-
                             <!--/row-->
                         </div>
-                        <div class="tab-pane border bg-white overflow-auto" style="height:400px;" id="recievedReqs">
+                        <div class="tab-pane border overflow-auto rounded" style="height:400px;" id="recievedReqs">
                             {{#unless receivedrequests}}
                             <div class="emptyAlert text-center">
                                 <span><i class="fa fa-envelope-open"></i></span>
@@ -203,8 +204,9 @@
                             </div>
                             {{/unless}}
                             {{#each receivedrequests}}
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-md-2">
+                            <div
+                                class="row no-gutters align-items-center justify-content-between border m-3 rounded shadow">
+                                <div class="col-md-2 mx-3">
                                     <div class="avatar-upload">
                                         <div class="avatar-preview img-big">
                                             <div id="imagePreview"
@@ -213,7 +215,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col mx-3">
                                     <div class="card-body">
                                         <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
                                             <h6 class="card-title">{{Profile.Profile1.name.firstname}}
@@ -222,7 +224,7 @@
                                                 {{Profile.Profile2.height}},{{Profile.Profile2.mothertongue}},
                                                 {{Profile.Profile1.location.city}}</p>
                                             <p class="card-text">
-                                                <small class="text-muted">Last online {{lastSeen}}  ago</small>
+                                                <small class="text-muted">Last online {{lastSeen}} ago</small>
                                             </p>
                                         </a>
                                     </div>
@@ -236,7 +238,7 @@
                             </div>
                             {{/each}}
                         </div>
-                        <div class="tab-pane border bg-white overflow-auto" style="height:400px;" id="rejectedReqs">
+                        <div class="tab-pane border overflow-auto rounded" style="height:400px;" id="rejectedReqs">
                             {{#unless sentrequests}}
                             <div class="emptyAlert text-center">
                                 <span><i class="fa fa-envelope-open"></i></span>
@@ -249,8 +251,9 @@
                             </div>
                             {{/unless}}
                             {{#each sentrequests}}
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-md-2 matchpage">
+                            <div
+                                class="row no-gutters align-items-center justify-content-between bg-light border m-3 rounded">
+                                <div class="col-md-2 matchpage mx-3">
                                     <div class="avatar-upload">
                                         <div class="avatar-preview img-big">
                                             <div id="imagePreview"
@@ -259,55 +262,52 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-7 matchpage">
+                                <div class="col matchpage mx-3">
                                     <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
-                                        <div class="card-body">
+                                        <div class="card-body border-right border-left">
                                             <h6 class="card-title">{{Profile.Profile1.name.firstname}}
                                                 {{Profile.Profile1.name.lastname}}</h6>
                                             <p class="card-text">{{Profile.Profile2.age}},
                                                 {{Profile.Profile2.height}},{{Profile.Profile2.mothertongue}},
                                                 {{Profile.Profile1.location.city}}</p>
                                             <p class="card-text">
-                                                <small class="text-muted">Last online {{lastSeen}}  ago</small>
+                                                <small class="text-muted">Last online {{lastSeen}} ago</small>
                                             </p>
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <input type="hidden" value="{{_id}}">
                                     <a class="btn deletesent text-white btn-danger">Delete</a>
                                 </div>
-                                <hr>
                             </div>
                             {{/each}}
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 bg-white border rounded">
+                <div class="col-md-3 border rounded  shadow-lg" style="background-color: #fdf0f6;">
                     <div class="row p-3">
                         <h6 class="text-danger">Notifications
                             <span class="badge badge-pill badge-danger" id="notifs">{{notifications.length}}</span>
                         </h6>
-                    </div>
-                    <div class="row pl-3 pr-2">
-                        <div class="overflow-auto" style="height:400px;">
-                            {{#unless notifications}}
-                            <div class="emptyAlert text-center">
-                                <span><i class="fa fa-bell" style="font-size: 5rem;"></i></span>
-                                <span class="text-muted  emptyAlert text-center text-nowrap font-weight-bold"
-                                    style="font-size: 1rem;">All caught up.</span>
+                        <div class="row pl-3 pr-2">
+                            <div class="overflow-auto" style="height:400px;">
+                                {{#unless notifications}}
+                                <div class="emptyAlert text-center">
+                                    <span><i class="fa fa-bell" style="font-size: 5rem;"></i></span>
+                                    <span class="text-muted  emptyAlert text-center text-nowrap font-weight-bold"
+                                        style="font-size: 1rem;">All caught up.</span>
+                                </div>
+                                {{/unless}}
+                                {{#each notifications}}
+                                <div class="alert alert-warning alert-dismissable fade show">
+                                    <a class="panel-close close" data-dismiss="alert">×</a>
+                                    {{this}}
+                                </div>
+                                {{/each}}
                             </div>
-                            {{/unless}}
-                            {{#each notifications}}
-                            <div class="alert alert-warning alert-dismissable fade show">
-                                <a class="panel-close close" data-dismiss="alert">×</a>
-                                {{this}}
-                            </div>
-                            {{/each}}
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -322,9 +322,10 @@
             <div class="row mx-auto">
                 {{!-- premium matches --}}
                 <div class="col-md-6">
-                    <h6>New Matches for you<span class="badge badge-pill badge-danger">{{agematches.length}}</span></h6>
+                    <h6 class="">New Matches for you<span
+                            class="badge badge-pill badge-danger">{{agematches.length}}</span></h6>
                     {{#each agematches}}
-                    <div class="row no-gutters align-items-center bg-white border">
+                    <div class="row no-gutters align-items-center bg-light border rounded shadow-lg my-3">
                         <div class="col-md-2 px-3">
                             <div class="avatar-upload">
                                 <div class="avatar-preview img-big">
@@ -342,7 +343,7 @@
                                         {{Profile.Profile2.height}},{{Profile.Profile2.mothertongue}},
                                         {{Profile.Profile1.location.city}}</p>
                                     <p class="card-text">
-                                        <small class="text-muted">Last online {{lastSeen}}  ago</small>
+                                        <small class="text-muted">Last online {{lastSeen}} ago</small>
                                     </p>
                                 </a>
                             </div>
@@ -360,9 +361,10 @@
                 </div>
                 {{!-- new matches --}}
                 <div class="col-md-6">
-                    <h6>Recently Created<span class="badge badge-pill badge-danger">{{age2matches.length}}</span></h6>
+                    <h6 class="">Recently Created<span
+                            class="badge badge-pill badge-danger">{{age2matches.length}}</span></h6>
                     {{#each age2matches}}
-                    <div class="row no-gutters align-items-center bg-white border">
+                    <div class="row no-gutters align-items-center bg-light border rounded shadow-lg my-3">
                         <div class="col-md-2 px-3">
                             <div class="avatar-upload">
                                 <div class="avatar-preview img-big">
@@ -380,7 +382,7 @@
                                         {{Profile.Profile2.height}},{{Profile.Profile2.mothertongue}},
                                         {{Profile.Profile1.location.city}}</p>
                                     <p class="card-text">
-                                        <small class="text-muted">Last online {{lastSeen}}  ago</small>
+                                        <small class="text-muted">Last online {{lastSeen}} ago</small>
                                     </p>
                                 </a>
                             </div>

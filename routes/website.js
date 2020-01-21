@@ -172,6 +172,7 @@ module.exports = function (io) {
         var user;
         User.findById(req.session.user._id)
             .then(newuser => user = newuser)
+            console.log(user)
         User.findOne({ _id: matchid })
             .then(match => {
                 var username = user.Profile.Profile1.name;
