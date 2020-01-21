@@ -8,8 +8,6 @@ $(document).ready(function () {
 
   $("#newLogin").click(function () {
     $(".modal").modal("hide");
-    $(".toast").toast("show");
-
     $("#register").toggle();
   });
   $(".modal").on("hidden.bs.modal", function () {
@@ -77,8 +75,8 @@ $(document).ready(function () {
                       $("#otp").addClass("is-invalid");
                     } else {
                       $(".modal ,.modal-backdrop").hide();
-                      $(".toast").toast("show");
                       $("#login").modal("show");
+                      $(".toast:first").toast("show")
                     }
                   }
                 });
