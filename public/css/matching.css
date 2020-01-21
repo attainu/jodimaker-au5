@@ -96,3 +96,20 @@ hr.main {
   height: 36px;
   border: 2px solid #f8f8f8;
 }
+
+
+.album{
+  text-align: center;
+}
+.imgAlbum{
+  
+  width: 510px;
+  /* border: solid 5px #78244c; */
+ 
+}
+
+.slideImg{
+  border: solid 3px #757575;
+  cursor: pointer;
+  margin:2px;
+}

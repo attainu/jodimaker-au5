@@ -90,11 +90,6 @@
                         <label>About me:</label>
                         <p>{{result.Profile.Profile3.AboutYourself}}</p>
                     </div>
-                    <div class="row">
-                        {{#each result.myAlbum}}
-                        <div class="col-3"><img src="{{this}}" alt="album" style="height:150px; width:150px"></div>
-                        {{/each}}
-                    </div>
                 </div>
                 <div class="container">
                     <div class="row">
@@ -631,6 +626,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                             {{!-- Education-details  --}}
                             <div class="col-md-12">
@@ -887,7 +883,6 @@
 
                                     </div>
                                 </div>
-
                             </div>
                             <div class="col-md-6 flex-nowrap">
                                 <div class="row ">
@@ -918,7 +913,7 @@
                     {{!-- location details --}}
                     <div class="col-md-12">
                         <div class=" row px-3">
-                            <h6 class="mt-2">Location details
+                            <h6 class="mt-2 pl-3">Location details
                                 <hr>
                             </h6>
                         </div>
@@ -955,74 +950,103 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    {{!-- Education --}}
-                    <div class="col-md-12">
-                        <div class=" row">
-                            <h6 class="mt-2 ">Education &amp; Career
-                                <hr>
-                            </h6>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6 flex-nowrap">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label>Education:</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="text-nowrap text-capitalize">
-                                            {{result.Userpref.education.educationlevel}}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label>Working with:</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="text-nowrap text-capitalize">
-                                            {{result.Userpref.education.workingwith}}
 
-                                        </div>
-                                    </div>
-
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label>Employer:</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="text-nowrap text-capitalize">
-                                            {{result.Userpref.education.employer}}</div>
-                                    </div>
-                                </div>
+                        {{!-- Education --}}
+                        <div class="col-md-12">
+                            <div class=" row">
+                                <h6 class="mt-2 pl-3">Education &amp; Career
+                                    <hr>
+                                </h6>
                             </div>
-
-                            <div class="col-md-6 flex-nowrap">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <label>Salary:</label>
+                            <div class="row">
+                                <div class="col-md-6 flex-nowrap">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Education:</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="text-nowrap text-capitalize">
+                                                {{result.Userpref.education.educationlevel}}
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-md-8">
-                                        <div class="text-nowrap">{{result.Userpref.education.salary}}lpa</div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Working with:</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="text-nowrap text-capitalize">
+                                                {{result.Userpref.education.workingwith}}
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label>Employer:</label>
+                                        </div>
+                                        <div class="col-md-8">
+                                            <div class="text-nowrap text-capitalize">
+                                                {{result.Userpref.education.employer}}</div>
+                                        </div>
                                     </div>
                                 </div>
+
+                                <div class="col-md-6 flex-nowrap">
+                                    <div class="row">
+                                        <div class="col-md-5">
+                                            <label>Salary:</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-7">
+                                        <div class="text-nowrap">{{result.Userpref.education.salary}}lpa
+                                        </div>
+
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
                 {{!-- partner preferences --}}
                 <div class="tab-pane fade" id="photoAlbum">
-                    <div class="tab-pane" id="photoAlbum">
+                    {{!-- Partner Preference --}}
+                    <div class="tab-pane text-center" id="photoAlbum">
                         <form action="/album" class="form-group" method="POST" enctype="multipart/form-data">
-                            Select images: <input type="file" name="album" class="form-control" accept="image/png, image/jpeg" required>
-                            <input type="submit" class="btn btn-wine" value="Upload">
+                            <b>Select Image:</b> <input type="file" name="album" class="form-control"
+                                accept="image/png, image/jpeg" required>
+                            <input type="submit" class="btn btn-wine mt-3" value="Upload">
                         </form>
+                        
+                        <div class="container text-center">
+                            
+                        <div class="mt-5 imgAlbum">
+                            
+                            <div class="mainimg d-inline">
+                                <img src="{{result.myAlbum.[0]}}" id="mainimg" alt="album"
+                                        style="height:300px; width:500px">
+                            </div>
+                            
+                                
+                                {{#each result.myAlbum}}
+                                    <a class="d-inline"><img src="{{this}}" class="slideImg" alt="album" style="height:95px; width:95px"></a>
+                                {{/each}}
+                            
+                        </div>
+                        
+                        </div>
+                        
                     </div>
                 </div>
             </div>
 
         </div>
+    </div>
+
+
     </div>
 </body>
 

@@ -76,7 +76,29 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body text-center">
+                            {{#if isMatched}}
+                            {{#if match.myAlbum}}
+                            <div class="row">
+                                <div class="col-6 offset-3">
+                                    <div class="mt-1 imgAlbum">
+                                        <div class="mainimg">
+                                            <img class="avatar rounded-circle" src="{{match.myAlbum.[0]}}" id="mainimg"
+                                                alt="album" style="height:400px; width:300px">
+                                        </div>
+                                        {{#each match.myAlbum}}
+                                        <a class="d-inline"><img src="{{this}}" class="slideImg" alt="album"
+                                                style="height:95px; width:95px"></a>
+                                        {{/each}}
+                                    </div>
+                                </div>
+                            </div>
+                            {{else}}
                             <img class="avatar rounded-circle" src="{{match.Profile.Profile1.photo}}" alt="Bologna">
+
+                            {{/if}}
+                            {{else}}
+                            <img class="avatar rounded-circle" src="{{match.Profile.Profile1.photo}}" alt="Bologna">
+                            {{/if}}
                             <h4 class="card-title mt-4">{{match.Profile.Profile1.name.firstname}}
                                 {{match.Profile.Profile1.name.lastname}},{{match.Profile.Profile2.age}}</h4>
                             <h6 class="card-subtitle mb-2 text-muted">
