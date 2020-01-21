@@ -5,6 +5,7 @@
 body {
   padding-top: 70px;
   overflow-x: hidden;
+  background: linear-gradient(to left, #f5f7fa , #c3cfe2);
 }
 
 .btn-wine {
