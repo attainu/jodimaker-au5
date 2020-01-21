@@ -54,7 +54,7 @@
     <section class="mt-5">
         <div class="container mt-3">
             <div class="row">
-                <div class="col-12">
+                <div class="headingfont col-12">
                     <h2 class="text-center">
                         Be inspired by Real Weddings
                     </h2>
@@ -65,8 +65,8 @@
             <div class="row mt-3">
                 <div class="col-4">
                     <p class="text-center">
-                        <div class="card" style="width: 18rem;">
-                            <img class="card-img-top" src="/img/ws-1.jpg" alt="Card image cap">
+                        <div class="card " style="width: 18rem;">
+                            <img class="card-img-top" src="/img/ws-1.png" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">Deeksha & Nakul</h5>
                                 <p class="card-text">Thanks a ton Anil Jha for finding perfect match for my daughter.
@@ -78,7 +78,7 @@
                 </div>
                 <div class="col-4">
                     <p class="text-center">
-                        <div class="card" style="width: 18rem;">
+                        <div class="card " style="width: 18rem;">
                             <img class="card-img-top" src="/img/ws-2.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">Jyoti and Rahul</h5>
@@ -91,7 +91,7 @@
                 </div>
                 <div class="col-4">
                     <p class="text-center">
-                        <div class="card" style="width: 18rem;">
+                        <div class="card " style="width: 18rem;">
                             <img class="card-img-top" src="/img/ws-3.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">Kanika and Siddharth</h5>
@@ -218,9 +218,9 @@
                                     placeholder="Enter Email"
                                     pattern="[A-Za-z.0-9]{1,64}[A-Za-z0-9]{1,64}[@][A-Za-z]{3,36}[.][A-Za-z]{1,6}"
                                     required>
-                                <div class="valid-feedback">
+                                <small class="valid-feedback">
                                     Looks good!
-                                </div>
+                                </small>
                                 <div class="invalid-feedback">
                                     Enter a valid email
                                 </div>
@@ -393,7 +393,7 @@
     </div>
     {{!-- modal ends --}}
     {{!-- toast --}}
-    <div class="col-md-10 offset-md-1 toast py-4 px-2" data-delay="5000">
+    <div class="col-md-10 toast1 offset-md-1 toast py-4 px-2" data-delay="5000">
         <h4 class="my-auto text-center">Registration Successful!</h4>
     </div>
     {{#if deleted }}
@@ -411,8 +411,8 @@
     crossorigin="anonymous"></script>
 
 <script src="/js/root.js"></script>
-{{#if notRegistered}}
 <script>
+{{#if notRegistered}}
     $('#login').modal('show')
 
 {{/if}}
@@ -421,6 +421,8 @@
     $('#login').modal('show')
 
 {{/if}}
-$(".toast").toast("show")
+{{#if deleted}}
+$(".toast:last").toast("show")
+{{/if}}
 </script>
 </html>
