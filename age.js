@@ -8,8 +8,8 @@ mongoose
 User.find({}, function (err, users) {
     users.map(el => {
         var user = el
-        if (user.messages) {
-            // user.messages = undefined
+        if (user.myAlbum) {
+            user.myAlbum = undefined
             // user.Notifications.all = undefined
             // user.Matches.receivedrequests = undefined
             // user.Matches.sentrequests = undefined
