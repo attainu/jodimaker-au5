@@ -27,135 +27,144 @@ module.exports = function (io) {
         }
         var user
         User.findOne({ _id: req.session.user._id })
-            .then(newuser => user = newuser)
-        User.find({})
-            .then(users => {
-                var matches = users.filter(el => {
-                    if (el.Profile.Profile2) {
-                        if (el.Profile.Profile2.gender == user.Profile.Profile2.gender) {
-                            return;
-                        }
-                        if (req.query.age) {
-                            if (
-                                el.Profile.Profile2.age < minage ||
-                                el.Profile.Profile2.age > maxage
-                            ) {
-                                return;
-                            }
-                            if (religion) {
-                                if (el.Profile.Profile2.religion != religion) {
+            .then(newuser => {
+                user = newuser
+                User.find({})
+                    .then(users => {
+                        var matches = users.filter(el => {
+                            if (el.Profile.Profile2) {
+                                if (el.Profile.Profile2.gender == user.Profile.Profile2.gender) {
                                     return;
                                 }
+                                if (el.Matches.acceptedrequests.includes(user._id)) {
+                                    return
+                                }
+
+
+                                if (req.query.age) {
+                                    if (
+                                        el.Profile.Profile2.age < minage ||
+                                        el.Profile.Profile2.age > maxage
+                                    ) {
+                                        return;
+                                    }
+                                    if (religion) {
+                                        if (el.Profile.Profile2.religion != religion) {
+                                            return;
+                                        }
+                                    }
+                                    // if (
+                                    //   el.Profile.Profile2.salary < minsalary ||
+                                    //   el.Profile.Profile2.salary > maxsalary
+                                    // ) {
+                                    //   return;
+                                    // }
+                                    var heightfeet = el.Profile.Profile2.height;
+                                    var heightinches =
+                                        parseInt(heightfeet[1]) * 12 +
+                                        parseInt(heightfeet[3] + heightfeet[4]);
+                                    if (heightinches < minheight || heightinches > maxheight) {
+                                        return;
+                                    }
+                                }
+                                return el;
                             }
-                            // if (
-                            //   el.Profile.Profile2.salary < minsalary ||
-                            //   el.Profile.Profile2.salary > maxsalary
-                            // ) {
-                            //   return;
-                            // }
-                            var heightfeet = el.Profile.Profile2.height;
-                            var heightinches =
-                                parseInt(heightfeet[1]) * 12 +
-                                parseInt(heightfeet[3] + heightfeet[4]);
-                            if (heightinches < minheight || heightinches > maxheight) {
-                                return;
+
+                        });
+                        matches.map(match => {
+                            if (user.Matches.sentrequests.includes(match._id)) {
+                                match.sent = true;
                             }
-                        }
-                        return el;
-                    }
+                            if (user.Matches.acceptedrequests.includes(match._id)) {
+                                match.isMatched = true
+                            }
+                        });
+                        var userPrefMatches = []
+                        matches = matches.filter(matchprofile => {
+                            if (user.Userpref) {
+                                if (
+                                    matchprofile.Profile.Profile2.age < user.Userpref.minage ||
+                                    matchprofile.Profile.Profile2.age > user.Userpref.maxage
+                                ) {
+                                    console.log(1)
+                                    return matchprofile
+                                }
+                                var heightfeet = matchprofile.Profile.Profile2.height;
 
-                });
-                matches.map(match => {
-                    if (user.Matches.sentrequests.includes(match._id)) {
-                        match.sent = true;
-                    }
-                });
-                var userPrefMatches = []
-                matches = matches.filter(matchprofile => {
-                    if (user.Userpref) {
-                        if (
-                            matchprofile.Profile.Profile2.age < user.Userpref.minage ||
-                            matchprofile.Profile.Profile2.age > user.Userpref.maxage
-                        ) {
-                            console.log(1)
-                            return matchprofile
-                        }
-                        var heightfeet = matchprofile.Profile.Profile2.height;
+                                var minheight =
+                                    parseInt(user.Userpref.height[1]) * 12 +
+                                    parseInt(
+                                        user.Userpref.height[3] + user.Userpref.height[4]
+                                    );
+                                var heightinches =
+                                    parseInt(heightfeet[1]) * 12 +
+                                    parseInt(heightfeet[3] + heightfeet[4]);
+                                if (heightinches <= minheight) {
+                                    console.log(2)
 
-                        var minheight =
-                            parseInt(user.Userpref.height[1]) * 12 +
-                            parseInt(
-                                user.Userpref.height[3] + user.Userpref.height[4]
-                            );
-                        var heightinches =
-                            parseInt(heightfeet[1]) * 12 +
-                            parseInt(heightfeet[3] + heightfeet[4]);
-                        if (heightinches <= minheight) {
-                            console.log(2)
+                                    return matchprofile
+                                }
+                                if (
+                                    user.Userpref.maritialstatus !=
+                                    matchprofile.Profile.Profile2.maritialstatus && user.Userpref.maritialstatus != "doesnotmatter"
+                                ) {
+                                    console.log(3)
+                                    return matchprofile
+                                }
+                                if (
+                                    user.Userpref.religion != matchprofile.Profile.Profile2.religion && user.Userpref.religion != "doesnotmatter"
+                                ) {
+                                    console.log(3)
 
-                            return matchprofile
-                        }
-                        if (
-                            user.Userpref.maritialstatus !=
-                            matchprofile.Profile.Profile2.maritialstatus && user.Userpref.maritialstatus != "doesnotmatter"
-                        ) {
-                            console.log(3)
-                            return matchprofile
-                        }
-                        if (
-                            user.Userpref.religion != matchprofile.Profile.Profile2.religion && user.Userpref.religion != "doesnotmatter"
-                        ) {
-                            console.log(3)
+                                    return matchprofile
+                                }
+                                if (
+                                    user.Userpref.mothertongue !=
+                                    matchprofile.Profile.Profile2.mothertongue && user.Userpref.mothertongue != "doesnotmatter"
+                                ) {
+                                    console.log(4)
+                                    return matchprofile
+                                }
+                                if (user.Userpref.diet != matchprofile.Profile.Profile2.diet && user.Userpref.diet != "doesnotmatter") {
+                                    console.log(5)
+                                    return matchprofile
+                                }
+                                if (
+                                    user.Userpref.location.country !=
+                                    matchprofile.Profile.Profile1.location.country && user.Userpref.location.country != ""
+                                ) {
+                                    console.log(6)
+                                    return matchprofile
+                                }
+                                if (
+                                    user.Userpref.location.state !=
+                                    matchprofile.Profile.Profile1.location.state && user.Userpref.location.state != ""
+                                ) {
+                                    console.log(7)
+                                    return matchprofile
+                                }
+                                if (
+                                    user.Userpref.location.city !=
+                                    matchprofile.Profile.Profile1.location.city && user.Userpref.location.city != ""
+                                ) {
+                                    console.log(8)
+                                    return matchprofile
+                                }
+                                userPrefMatches.push(matchprofile)
+                            }
+                            else {
+                                return matchprofile
+                            }
+                        })
 
-                            return matchprofile
-                        }
-                        if (
-                            user.Userpref.mothertongue !=
-                            matchprofile.Profile.Profile2.mothertongue && user.Userpref.mothertongue != "doesnotmatter"
-                        ) {
-                            console.log(4)
-                            return matchprofile
-                        }
-                        if (user.Userpref.diet != matchprofile.Profile.Profile2.diet && user.Userpref.diet != "doesnotmatter") {
-                            console.log(5)
-                            return matchprofile
-                        }
-                        if (
-                            user.Userpref.location.country !=
-                            matchprofile.Profile.Profile1.location.country && user.Userpref.location.country != ""
-                        ) {
-                            console.log(6)
-                            return matchprofile
-                        }
-                        if (
-                            user.Userpref.location.state !=
-                            matchprofile.Profile.Profile1.location.state && user.Userpref.location.state != ""
-                        ) {
-                            console.log(7)
-                            return matchprofile
-                        }
-                        if (
-                            user.Userpref.location.city !=
-                            matchprofile.Profile.Profile1.location.city && user.Userpref.location.city != ""
-                        ) {
-                            console.log(8)
-                            return matchprofile
-                        }
-                        userPrefMatches.push(matchprofile)
-                    }
-                    else {
-                        return matchprofile
-                    }
-                })
-
-                res.render("matches", {
-                    user: user,
-                    matches: matches,
-                    userPrefMatches: userPrefMatches,
-                    filter: req.query
-                });
+                        res.render("matches", {
+                            user: user,
+                            matches: matches,
+                            userPrefMatches: userPrefMatches,
+                            filter: req.query
+                        });
+                    })
             })
-
             .catch(err => console.log(err));
     });
 
@@ -231,6 +240,7 @@ module.exports = function (io) {
                         var sent = matchprofile.Matches.receivedrequests.includes(
                             req.session.user._id
                         );
+
                         if (matchprofile.Userpref) {
                             var matchingpref = {};
 
@@ -300,7 +310,7 @@ module.exports = function (io) {
                             match: matchprofile,
                             isMatched: isMatched,
                             matchingpref: matchingpref,
-                            sent: sent
+                            sent: sent,
                         });
                     });
                 } else {
@@ -449,6 +459,7 @@ module.exports = function (io) {
                 var matches = users.filter(el => {
                     if (el.Profile.Profile2) { return el.Profile.Profile2.gender != user.Profile.Profile2.gender }
                 })
+
                 var sentrequests = matches.filter(match => {
                     return user.Matches.sentrequests.includes(match._id) ? match : undefined
                 })
@@ -459,6 +470,13 @@ module.exports = function (io) {
                     return user.Matches.acceptedrequests.includes(match._id) ? match : undefined
                 })
                 var notifications = user.Notifications.all
+                matches = matches.filter(el => {
+                    if (user.Matches.sentrequests.includes(el._id + '')) { return }
+
+                    if (user.Matches.acceptedrequests.includes(el._id + '')) { return }
+                    return el
+                })
+
 
                 var agematches = []
                 var age2matches = []
@@ -477,6 +495,7 @@ module.exports = function (io) {
                     }
 
                 })
+
                 matches = matches.filter(el => {
                     return agematches.includes(el) ? undefined : el
                 })
@@ -783,17 +802,18 @@ function addlastseen(array) {
 
 
             var time = new Date(Date.now() - el.LastLogin.getTime())
-            el.lastSeen = time.getMinutes() + " mins"
-            if (el.lastSeen > 60) {
+            console.log(time)
+            el.lastSeen = time.getMonth() + " months"
 
-                el.lastSeen = time.getHours()
-                if (el.lastSeen > 24) {
-                    el.lastSeen = time.getDate() + " hours"
+            if (el.lastSeen == 0 + " months") {
+                el.lastSeen = time.getDate() + " days"
+                if (el.lastSeen == 1 + " days") {
+                    el.lastSeen = time.getHours() + " hours"
+                    if (el.lastSeen == 0 + " hours") {
 
-                    if (el.lastSeen > 30) {
-                        el.lastSeen = time.getMonth() + " months"
-
+                        el.lastSeen = time.getMinutes() + " mins"
                     }
+
                 }
             }
             return array

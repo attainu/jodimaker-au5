@@ -7,6 +7,10 @@
 //         $("#form").show();
 //     });
 // });
+$('.select2').css({
+  'min-width': '10rem' 
+})
+
 $("#save6,#cancel6").hide();
 
 $("#hi").on("click", function() {
@@ -203,7 +207,7 @@ $("body").on("click", ".del", function() {
       url: "/delete",
       data: "data",
       success: function(response) {
-        if (response == "deleted") window.location.href = "/logout";
+        if (response == "deleted") window.location.href = "/?deleted=true";
       }
     });
   });

@@ -56,6 +56,7 @@
                             <hr>
                         </div>
                     </div>
+                    {{#with user.Profile}}
                     <form class="needs-validation" novalidate method="POST" enctype="multipart/form-data"
                         action="/profile/1">
                         <div class="form-row mx-5">
@@ -64,7 +65,7 @@
                             </div>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="firstName" placeholder="First Name"
-                                    name="firstname" pattern="[a-zA-Z]{3,}" required>
+                                    name="firstname" pattern="[a-zA-Z]{3,}" value="{{Profile1.name.firstname}}" required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
@@ -76,7 +77,7 @@
                             </div>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="middleName" placeholder="Middle Name"
-                                    pattern="[a-zA-Z]{3,}" name="middlename">
+                                    pattern="[a-zA-Z]{3,}" value="{{Profile1.name.middlename}}" name="middlename">
                                 <small class="text-muted">Optional</small>
                                 {{!-- <div class="valid-feedback">
                                     Looks good!
@@ -89,7 +90,7 @@
                             </div>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" id="lastName" placeholder="Last Name"
-                                    name="lastname" pattern="[a-zA-Z]{3,}" required>
+                                    name="lastname" pattern="[a-zA-Z]{3,}" value="{{Profile1.name.lastname}}" required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
@@ -100,7 +101,7 @@
                                 <label for="image">Image</label>
                                 <div class="custom-file">
                                     <input type="file" class="custom-file-input" id="image" name="image"
-                                        accept="image/png, image/jpeg">
+                                        accept="image/png, image/jpeg" value="value="{{Profile1.photo}}"">
                                     <label class="custom-file-label" for="customFile">Choose file</label>
                                 </div>
                             </div>
@@ -111,7 +112,7 @@
                             </div>
                             <div class="col-md-8">
                                 <input type="text" class="form-control" placeholder="Address" id="address"
-                                    name="address" required>
+                                    name="address" value="{{Profile1.address}}" required>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
@@ -123,21 +124,21 @@
                         <div class="form-row mx-5">
                             <div class="col-md-4 mb-3">
                                 <label for="countryId">Country</label>
+                                    
                                 <select name="country" class="countries custom-select" id="countryId" required>
-                                    <option value="">Select Country</option>
-                                    <option class="country" value="India">India</option>
+                                    <option value="{{Profile1.location.country}}">Select Country</option>
                                 </select>
                             </div>
                             <div class="col-md-4 mb-3 location">
                                 <label for="stateId">State</label>
                                 <select name="state" class="states custom-select" id="stateId" required>
-                                    <option value="">Select State</option>
+                                    <option value="{{Profile1.location.state}}">Select State</option>
                                 </select>
                             </div>
                             <div class="col-md-4 mb-3">
                                 <label for="cityId">City</label>
                                 <select name="city" class="cities custom-select" id="cityId" required>
-                                    <option value="">Select City</option>
+                                    <option value="{{Profile1.location.city}}">Select City</option>
                                 </select>
                             </div>
                         </div>
@@ -147,6 +148,7 @@
                             </div>
                         </div>
                     </form>
+                    {{/with}}
                 </div>
             </div>
         </section>

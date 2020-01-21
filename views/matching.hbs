@@ -43,8 +43,7 @@
                                 <a href="profile">
                                     <div class="avatar-upload mt-0 mb-0">
                                         <div class="avatar-preview img-small">
-                                            <div id="imagePreview"
-                                                style="background-image: url({{user.Profile.Profile1.photo}});">
+                                            <div style="background-image: url({{user.Profile.Profile1.photo}});">
                                             </div>
                                         </div>
                                     </div>
@@ -82,8 +81,14 @@
                                 <div class="col-6 offset-3">
                                     <div class="mt-1 imgAlbum">
                                         <div class="mainimg">
-                                            <img class="avatar rounded-circle" src="{{match.myAlbum.[0]}}" id="mainimg"
-                                                alt="album" style="height:400px; width:300px">
+
+                                            <div class="avatar-upload">
+                                                <div class="avatar-preview">
+                                                    <div id="imagePreview"
+                                                        style="background-image: url({{match.myAlbum.[0]}});">
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                         {{#each match.myAlbum}}
                                         <a class="d-inline"><img src="{{this}}" class="slideImg" alt="album"
@@ -93,11 +98,23 @@
                                 </div>
                             </div>
                             {{else}}
-                            <img class="avatar rounded-circle" src="{{match.Profile.Profile1.photo}}" alt="Bologna">
+                            <div class="avatar-upload">
+                                <div class="avatar-preview">
+                                    <div id="imagePreview"
+                                        style="background-image: url({{match.Profile.Profile1.photo}});">
+                                    </div>
+                                </div>
+                            </div>
 
                             {{/if}}
                             {{else}}
-                            <img class="avatar rounded-circle" src="{{match.Profile.Profile1.photo}}" alt="Bologna">
+                            <div class="avatar-upload">
+                                <div class="avatar-preview">
+                                    <div id="imagePreview"
+                                        style="background-image: url({{match.Profile.Profile1.photo}});">
+                                    </div>
+                                </div>
+                            </div>
                             {{/if}}
                             <h4 class="card-title mt-4">{{match.Profile.Profile1.name.firstname}}
                                 {{match.Profile.Profile1.name.lastname}},{{match.Profile.Profile2.age}}</h4>

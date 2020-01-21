@@ -8,12 +8,12 @@ mongoose
 User.find({}, function (err, users) {
     users.map(el => {
         var user = el
-        if (user.myAlbum) {
-            user.myAlbum = undefined
-            // user.Notifications.all = undefined
-            // user.Matches.receivedrequests = undefined
-            // user.Matches.sentrequests = undefined
-            // user.Matches.acceptedrequests = undefined
+        if (user.Matches) {
+            user.Messages = undefined
+            user.Notifications.all = undefined
+            user.Matches.receivedrequests = undefined
+            user.Matches.sentrequests = undefined
+            user.Matches.acceptedrequests = undefined
             user.save()
         }
     })

@@ -10,14 +10,20 @@ var cryptoRandomString = require("crypto-random-string");
 var tempsession;
 
 router.get("/", (req, res) => {
-
+  if (req.query.deleted) {
+    req.session.user = undefined
+  }
   if (req.session.user) {
     res.redirect("/home");
   }
-  res.render("root", {
-    wrongpassword: req.query.wrongpassword,
-    notRegistered: req.query.notRegistered
-  });
+  else {
+
+    res.render("root", {
+      wrongpassword: req.query.wrongpassword,
+      notRegistered: req.query.notRegistered,
+      deleted: req.query.deleted
+    });
+  }
 });
 
 router.post("/generateotp", (req, res) => {
@@ -48,7 +54,7 @@ router.post("/forgotpassword", (req, res) => {
   User.findOne({ "Signup.email": email }).then(user => {
     if (user) {
       passwordResetHash = user.Signup.password + "";
-      bcrypt.hash(passwordResetHash, 10, function(err, hash) {
+      bcrypt.hash(passwordResetHash, 10, function (err, hash) {
         if (err) console.log(err);
         else {
           console.log(hash);
@@ -73,7 +79,7 @@ router.get("/resetpassword/:resetHash/:email", checktempSession, (req, res) => {
   console.log(email);
   User.findOne({ "Signup.email": email }).then(user => {
     var password = user.Signup.password;
-    bcrypt.compare(password, resetHash, function(err, check) {
+    bcrypt.compare(password, resetHash, function (err, check) {
       if (err) console.log(err);
       if (check) {
         res.render("resetpassword", {
@@ -86,7 +92,7 @@ router.get("/resetpassword/:resetHash/:email", checktempSession, (req, res) => {
 router.post("/setnewpassword", checktempSession, (req, res) => {
   console.log(req.body);
   User.findOne({ _id: req.body.id }).then(user => {
-    bcrypt.hash(req.body.password, 10, function(err, hash) {
+    bcrypt.hash(req.body.password, 10, function (err, hash) {
       if (err) console.log(err);
       else {
         user.Signup.password = hash;
