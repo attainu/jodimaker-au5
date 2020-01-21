@@ -11,7 +11,7 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    <title>My Matches</title>
+    <title>Jodimaker | My Matches</title>
     <link rel="stylesheet" href="css/matches.css">
     {{!-- slider scripts --}}
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
@@ -32,13 +32,13 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto text-white">
                         <li class="nav-item active">
-                            <a class="nav-link text-white" href="home">Dashboard</a>
+                            <a class="nav-link text-white" href="/home">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="matches">My Matches</a>
+                            <a class="nav-link text-white" href="/matches">My Matches</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="search">Search</a>
+                            <a class="nav-link text-white" href="/search">Search</a>
                         </li>
                     </ul>
                 </div>
@@ -142,17 +142,17 @@
                 </div>
 
                 <div class="col-md-10 mt-5">
-                        {{#if userPrefMatches}} 
-                        <h1 class="pb-4 ml-4 font-weight-light">Top Matches</h1>
+                    {{#if userPrefMatches}}
+                    <h1 class="pb-4 ml-4 font-weight-light">Top Matches</h1>
                     <div class="row">
 
                         {{#each userPrefMatches}}
-                        <div class="col-md-3 mt-5">
-                            <div class="card">
+                        <div class="col-md-4 mt-5">
+                            <div class="card" style="max-width: 18rem;">
                                 <div class="card-body text-center">
                                     <a href="/matchprofile?id={{_id}}"><img class="avatar rounded-circle"
                                             src="{{Profile.Profile1.photo}}" alt="Bologna"></a>
-                                    <h4 class="card-title">
+                                    <h4 class="card-title text-truncate">
                                         {{#if Settings.showname}}
                                         {{Settings.showname}},<br>
                                         {{else}}
@@ -176,15 +176,15 @@
                         </div>
                         {{/each}}
                     </div>
-                        <h3 class="py-4 font-weight-light h3">More Matches for you</h3>
+                    <h3 class="py-4 font-weight-light h3">More Matches for you</h3>
                     {{/if}}
 
 
                     <div class="row">
 
                         {{#each matches}}
-                        <div class="col-md-3 mt-5">
-                            <div class="card">
+                        <div class="col-md-4 mt-5">
+                            <div class="card" style="max-width: 18rem;">
                                 <div class="card-body text-center">
                                     <a href="/matchprofile?id={{_id}}"><img class="avatar rounded-circle"
                                             src="{{Profile.Profile1.photo}}" alt="Bologna"></a>

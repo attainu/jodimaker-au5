@@ -10,10 +10,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/profile-2.css">
-    <title>Setup Profile</title>
+    <title>Jodimaker | Setup Profile</title>
 </head>
 
-<body class="bg-light">
+<body>
     <div class="container-fluid ">
         <section>
             <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top " id="nav-bar">
@@ -26,13 +26,13 @@
                     <div class="collapse navbar-collapse" id="navbarText">
                         <ul class="navbar-nav mr-auto text-white">
                             <li class="nav-item active">
-                                <a class="nav-link text-white" href="">Profile Setup</a>
+                                <a class="nav-link text-white" href="/profile/1">Profile Setup</a>
                             </li>
                         </ul>
                         <span class="navbar-text">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link text-white" href="logout">Logout</a>
+                                    <a class="nav-link text-white" href="/logout">Logout</a>
                                 </li>
                             </ul>
                         </span>
@@ -249,7 +249,7 @@
                                 <label for="caste">Caste</label>
                             </div>
                             <div class="col-md-8">
-                                <select class="custom-select castes" name="caste" id="caste" >
+                                <select class="custom-select castes" name="caste" id="caste">
                                     <option value="">Select Caste</option>
                                     {{!-- jQuery --}}
                                 </select>
@@ -337,7 +337,7 @@
 
                         <div class="form-row mx-5">
                             <div class="col-12  text-center">
-                                <button class="btn btn-outline-danger mb-4" type="submit">Proceed</button>
+                                <button class="btn btn-outline-success mb-4" type="submit">Proceed</button>
                             </div>
                         </div>
                     </form>

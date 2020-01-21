@@ -12,10 +12,10 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/profile.css">
-    <title>Profile</title>
+    <title>Jodimaker | My Profile</title>
 </head>
 
-<body class="bg-light">
+<body>
     <div class="container-fluid">
         <section>
             <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top " id="nav-bar">
@@ -28,19 +28,19 @@
                     <div class="collapse navbar-collapse" id="navbarText">
                         <ul class="navbar-nav mr-auto text-white">
                             <li class="nav-item active">
-                                <a class="nav-link text-white" href="home">Dashboard</a>
+                                <a class="nav-link text-white" href="/home">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="matches">My Matches</a>
+                                <a class="nav-link text-white" href="/matches">My Matches</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="search">Search</a>
+                                <a class="nav-link text-white" href="/search">Search</a>
                             </li>
                         </ul>
                         <span class="navbar-text">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item active">
-                                    <a href="profile">
+                                    <a href="/profile">
                                         <div class="avatar-upload mt-0 mb-0">
                                             <div class="avatar-preview img-small">
                                                 <div id="imagePreview"
@@ -51,13 +51,13 @@
                                     </a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white" href="profile"
+                                    <a class="nav-link dropdown-toggle text-white" href="/profile"
                                         id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="setting">Settings</a>
-                                        <a class="dropdown-item" href="userpref">Partner Preferences</a>
+                                        <a class="dropdown-item" href="/setting">Settings</a>
+                                        <a class="dropdown-item" href="/userpref">Partner Preferences</a>
                                         <a class="dropdown-item text-danger" href="logout">Logout</a>
                                     </div>
                                 </li>
@@ -135,7 +135,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-content py-4 bg-white border">
+            <div class="tab-content py-4 bg-white border mb-5">
                 {{!-- profile --}}
                 <div class="tab-pane active" id="profile">
                     <div class="col-md-12">
@@ -837,7 +837,7 @@
 
 
                 {{!-- Partner Preference --}}
-                <div class="tab-pane" id="partnerPreference">
+                <div class="tab-pane " id="partnerPreference">
                     <div class="col-md-12">
                         <a href="userpref"><i style="font-size:24px" class="fa float-right mr-5">&#xf044;</i></a>
 
@@ -1042,7 +1042,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 

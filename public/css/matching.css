@@ -5,6 +5,7 @@
 body {
   min-height: 2000px;
   padding-top: 70px;
+  background: linear-gradient(to left, #f5f7fa, #c3cfe2);
 }
 
 hr.main {
@@ -75,8 +76,8 @@ hr.main {
   margin: auto;
 }
 .avatar-upload .avatar-preview {
-  width: 192px;
-  height: 192px;
+  width: 250px;
+  height: 250px;
   position: relative;
   border-radius: 100%;
   border: 6px solid #f8f8f8;

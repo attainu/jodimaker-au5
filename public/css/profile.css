@@ -68,6 +68,7 @@ hr {
 
 body {
   padding-top: 70px;
+  background: linear-gradient(to left, #f5f7fa, #c3cfe2);
 }
 .disabled {
   background: transparent;
