@@ -89,7 +89,17 @@ body {
   margin-right: 0px;
 }
 .btn-wine {
+  color: #fff;
   background-color: #78244c;
+  border-color: #78244c;
+}
+
+.btn-wine:hover {
+  background-color: #d79922;
+  color: white;
+  font-size: 15px;
+  font-weight: bold;
+  border-color: #d79922;
 }
 
 /* avatar image  */
@@ -162,4 +172,20 @@ body {
   width: 300px;
   height: 300px;
   border: 6px solid #f8f8f8;
+}
+
+.album{
+  text-align: center;
+}
+.imgAlbum{
+  
+  width: 510px;
+  border: solid 5px #78244c;
+  margin-left: 280px;
+}
+
+.slideImg{
+  border: solid 3px #757575;
+  cursor: pointer;
+  margin:2px;
 }
