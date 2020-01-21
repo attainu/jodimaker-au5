@@ -12,10 +12,10 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/profile.css">
-    <title>Profile</title>
+    <title>Jodimaker | My Profile</title>
 </head>
 
-<body class="bg-light">
+<body>
     <div class="container-fluid">
         <section>
             <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top " id="nav-bar">
@@ -140,7 +140,7 @@
                     </div>
                 </div>
             </div>
-            <div class="tab-content py-4 bg-white border">
+            <div class="tab-content py-4 bg-white border mb-5">
                 {{!-- profile --}}
                 <div class="tab-pane active" id="profile">
                     <div class="col-md-12">
@@ -841,7 +841,7 @@
 
 
                 {{!-- Partner Preference --}}
-                <div class="tab-pane" id="partnerPreference">
+                <div class="tab-pane " id="partnerPreference">
                     <div class="col-md-12">
                         <a href="userpref"><i style="font-size:24px" class="fa float-right mr-5">&#xf044;</i></a>
 
@@ -982,10 +982,8 @@
                                     <div class="col-md-8">
                                         <div class="text-nowrap text-capitalize">
                                             {{result.Userpref.education.workingwith}}
-
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
@@ -997,7 +995,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="col-md-6 flex-nowrap">
                                 <div class="row">
                                     <div class="col-md-4">
@@ -1014,14 +1011,16 @@
                 {{!-- partner preferences --}}
                 <div class="tab-pane fade" id="photoAlbum">
                     <div class="tab-pane" id="photoAlbum">
-                        <form action="/album" class="form-group" method="POST" enctype="multipart/form-data">
-                            Select images: <input type="file" name="album" class="form-control" accept="image/png, image/jpeg" required>
-                            <input type="submit" class="btn btn-wine" value="Upload">
-                        </form>
+                        <div class="col">
+                            <form action="/album" class="form-group" method="POST" enctype="multipart/form-data">
+                                Select images: <input type="file" name="album" class="form-control"
+                                    accept="image/png, image/jpeg" required>
+                                <input type="submit" class="btn btn-wine" value="Upload">
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </body>

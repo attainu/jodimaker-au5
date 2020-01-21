@@ -12,7 +12,7 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/home.css">
-    <title>Jodimaker</title>
+    <title>Jodimaker | Dashboard</title>
 
 </head>
 {{!-- "background-color: #fdf0f6;" --}}
@@ -21,7 +21,8 @@
     <section>
         <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top " id="nav-bar">
             <div class="container">
-                <a class="navbar-brand text-white" href="/"><img src="img/jodi.png"></a>
+                <a class="navbar-brand text-white" href="/">
+                    <img src="img/jodi.png"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -106,7 +107,7 @@
                                     {{user.Profile.Profile1.location.city}}
                                 </p>
                                 <p class="card-text text-center">
-                                    <span><i class="fa fa-at"></i></span> {{user.Signup.email}}
+                                    <span><i class="fa fa-envelope "></i></span> {{user.Signup.email}}
                                 </p>
                                 <p class="card-text text-center">
                                     <span><i class="fa fa-phone"></i></span> {{user.Signup.mobile}}
@@ -415,12 +416,11 @@
                         </div>
                         <div class="col justify-content-around d-flex">
                             <input type="hidden" value="{{_id}}">
-                            <a>
-                                <i class="fa fa-check text-success"></i>
-                            </a>
-                            <a>
-                                <i class="fa fa-times text-danger"></i>
-                            </a>
+
+                            <i class="fa fa-check text-success"></i>
+
+                            <i class="fa fa-times text-danger"></i>
+
                         </div>
                     </div>
                     {{/each}}
