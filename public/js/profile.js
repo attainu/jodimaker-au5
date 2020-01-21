@@ -25,17 +25,17 @@ $(document).ready(function() {
   });
   $(".disabled").addClass("text-capitalize");
   $(".btn-ok").click(function() {
-    $("form").submit();
+    $("#update").submit();
   });
 
-  // var prevScrollpos = window.pageYOffset;
-  // window.onscroll = function() {
-  //   var currentScrollPos = window.pageYOffset;
-  //   if (prevScrollpos > currentScrollPos) {
-  //     document.getElementById("nav-bar").style.top = "0";
-  //   } else {
-  //     document.getElementById("nav-bar").style.top = "-60px";
-  //   }
-  //   prevScrollpos = currentScrollPos;
-  // };
+  var prevScrollpos = window.pageYOffset;
+  window.onscroll = function() {
+    var currentScrollPos = window.pageYOffset;
+    if (prevScrollpos > currentScrollPos) {
+      document.getElementById("nav-bar").style.top = "0";
+    } else {
+      document.getElementById("nav-bar").style.top = "-60px";
+    }
+    prevScrollpos = currentScrollPos;
+  };
 });

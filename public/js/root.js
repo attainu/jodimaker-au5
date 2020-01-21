@@ -1,17 +1,18 @@
-$(document).ready(function() {
-  $("#newRegister").click(function() {
+$(document).ready(function () {
+
+  $("#newRegister").click(function () {
     $(".modal").modal("hide");
 
     $("#login").toggle();
   });
 
-  $("#newLogin").click(function() {
+  $("#newLogin").click(function () {
     $(".modal").modal("hide");
     $(".toast").toast("show");
 
     $("#register").toggle();
   });
-  $(".modal").on("hidden.bs.modal", function() {
+  $(".modal").on("hidden.bs.modal", function () {
     if (!$("#myModal").hasClass("show")) {
       $("input").val("");
       $("form").removeClass("was-validated");
@@ -20,10 +21,10 @@ $(document).ready(function() {
     }
   });
 
-  $("#password").keyup(function() {
+  $("#password").keyup(function () {
     $("#cfpassword").attr("pattern", $("#password").val());
   });
-  $("#cfpassword").on("keyup", function() {
+  $("#cfpassword").on("keyup", function () {
     var password = $("#password").val();
     var confirm = $("#cfpassword").val();
 
@@ -44,7 +45,7 @@ $(document).ready(function() {
 
   $("#submit")
     .off("click")
-    .click(function() {
+    .click(function () {
       console.log("clicked");
       if ($("#signupform")[0].checkValidity()) {
         console.log("checked");
@@ -53,7 +54,7 @@ $(document).ready(function() {
           type: "post",
           url: "/generateotp",
           data: { email: $("#email").val() },
-          success: function(response) {
+          success: function (response) {
             if (response != "user exists") {
               $("#email")
                 .removeClass("is-invalid")
@@ -65,12 +66,12 @@ $(document).ready(function() {
             }
             $("#submitwithotp")
               .off("click")
-              .click(function() {
+              .click(function () {
                 $.ajax({
                   type: "post",
                   url: "/signup",
                   data: $("#signupform,#otpform").serialize(),
-                  success: function(response) {
+                  success: function (response) {
                     console.log(response);
                     if (response == "false") {
                       $("#otp").addClass("is-invalid");
@@ -88,23 +89,32 @@ $(document).ready(function() {
         $("#signupform").addClass("was-validated");
       }
     });
-  $(".close").click(function() {
+  $(".close").click(function () {
     $("#register").modal("show");
   });
 
-  $("#resendotp").click(function() {
+  $("#resendotp").click(function () {
     $.ajax({
       type: "post",
       url: "/generateotp",
       data: { email: $("#email").val() },
-      success: function(response) {}
+      success: function (response) { }
     });
   });
-  $("#loginbtn").click(function() {
+  $("#loginbtn").click(function () {
     if ($(".needs-validation:last")[0].checkValidity()) {
       $(".needs-validation:last").submit();
     } else {
       $(".needs-validation:last").addClass("was-validated");
     }
   });
+  $(".fa-eye").click(function () {
+    $("#passwordlogin").attr("type", "text")
+    $(this).toggleClass("fa-eye-slash fa-eye")
+  })
+  $(".fa-eye-slash").click(function () {
+    document.getElementById("passwordlogin").type = 'password'
+    $(this).toggleClass("fa-eye-slash fa-eye")
+  })
+
 });

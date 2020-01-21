@@ -64,7 +64,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="setting">Settings</a>
-                                <a class="dropdown-item" href="userpref">User Preferences</a>
+                                <a class="dropdown-item" href="userpref">Partner Preferences</a>
                                 <a class="dropdown-item text-danger" href="logout">Logout</a>
                             </div>
                         </li>
@@ -141,9 +141,9 @@
                     </form>
                 </div>
 
-                <div class="col-md-10 mt-3">
-
-                    <h3 class="pb-3">Your Premium Matches</h3>
+                <div class="col-md-10 mt-5">
+                    {{#if userPrefMatches}}
+                    <h1 class="pb-4 ml-4 font-weight-light">Top Matches</h1>
                     <div class="row">
 
                         {{#each userPrefMatches}}
@@ -176,7 +176,8 @@
                         </div>
                         {{/each}}
                     </div>
-                    <h3 class="mb-5">Other Matches</h3>
+                    <h3 class="py-4 font-weight-light h3">More Matches for you</h3>
+                    {{/if}}
 
 
                     <div class="row">

@@ -29,15 +29,15 @@ $(document).ready(function () {
   var statesCities
   $(".countries").change(function () {
     var country = $('select[name="country"]').val();
-
-    var states = Object.keys(countriesStatesCities.filter(el => el.name == country)[0].states)
-     statesCities = countriesStatesCities.filter(el => el.name == country)[0].states
-    console.log(states)
     $("#cityId").empty();
-    $("#cityId").append(`<option value="">Select City</option>`);
-
     $("#stateId").empty();
+
     $("#stateId").append(`<option value="">Select State</option>`);
+    $("#cityId").append(`<option value="">Select City</option>`);
+    var states = Object.keys(countriesStatesCities.filter(el => el.name == country)[0].states)
+    statesCities = countriesStatesCities.filter(el => el.name == country)[0].states
+    console.log(states)
+
 
 
     for (let i = 0; i < states.length; i++) {
@@ -49,11 +49,11 @@ $(document).ready(function () {
 
   $(".states").change(function () {
     var state = $('select[name="state"]').val();
+    $("#cityId").empty();
+    $("#cityId").append(`<option value="">Select City</option>`);
     console.log(statesCities)
     var filterCities = statesCities[state]
     console.log(filterCities)
-    $("#cityId").empty();
-    $("#cityId").append(`<option value="">Select City</option>`);
 
     for (let i = 0; i < filterCities.length; i++) {
       $("#cityId").append(

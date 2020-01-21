@@ -9,7 +9,7 @@ const Profile2 = require("../models/profile2Schema.js");
 const Profile3 = require("../models/profile3Schema.js");
 const Userpref = require("../models/userprefSchema.js");
 const User = require("../models/userSchema");
-const myAlbum = require("../models/albumSchema.js");
+
 //clodinary configruation
 cloudinary.config({
   cloud_name: "dfu8kqztl",
@@ -20,7 +20,6 @@ cloudinary.config({
 const UserController = {};
 
 UserController.signup = function(req, res) {
-  console.log(req.body);
   const { mobile, email, createdBy } = req.body;
   var password = req.body.password;
 
@@ -200,7 +199,7 @@ UserController.profile4 = function(req, res) {
 UserController.profile = function(req, res) {
   User.findOne({ _id: req.session.user._id })
     .then(user => {
-      console.log(req.body);
+     
       (user.Profile.Profile2.height = req.body.height),
         (user.Profile.Profile3.disability = req.body.disability),
         (user.Profile.Profile2.age = req.body.age),
@@ -285,19 +284,14 @@ UserController.userpref = function(req, res) {
 
 UserController.album = function(req, res) {
   User.findOne({ _id: req.session.user._id }).then(user => {
-    var userAlbum = [];
     let form = new multiparty.Form();
     form.parse(req, function(err, fields, files) {
       cloudinary.uploader.upload(files.album[0].path, function(err, result) {
         if (result) {
-          userAlbum.album = result.secure_url;
-          console.log(userAlbum);
-          const newAlbum = new myAlbum(userAlbum);
-          console.log(newAlbum);
-          user.myAlbum = newAlbum;
+          user.myAlbum.push(result.secure_url);
           //console.log(user)
           user.save().then(() => {
-            res.redirect("/home");
+            res.redirect("/profile");
           });
         }
       });

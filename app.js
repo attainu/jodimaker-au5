@@ -40,7 +40,7 @@ app.use(
   session({
     secret: cryptoRandomString({ length: 10 }),
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
       maxAge: 1000 * 60 * 60,
       path: "/",
@@ -64,7 +64,7 @@ server.listen(PORT, () => {
   console.log("Server is active at port address" + PORT);
 });
 
-//Routes
+//Routes 
 //root and loginsignup
 app.use("/", require("./routes/loginsignup"));
 //profilesetup
