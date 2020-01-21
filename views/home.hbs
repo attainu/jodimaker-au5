@@ -102,9 +102,16 @@
                                     {{user.Profile.Profile1.name.middlename}}
                                     {{/if}}
                                     {{user.Profile.Profile1.name.lastname}}</h5>
-                                <p class="card-text text-center"><i
-                                        class="fa  fa-map-marker"></i>{{user.Profile.Profile1.location.city}}
+                                <p class="card-text text-center"><i class="fa  fa-map-marker"></i>
+                                    {{user.Profile.Profile1.location.city}}
                                 </p>
+                                <p class="card-text text-center">
+                                    <span><i class="fa fa-at"></i></span> {{user.Signup.email}}
+                                </p>
+                                <p class="card-text text-center">
+                                    <span><i class="fa fa-phone"></i></span> {{user.Signup.mobile}}
+                                </p>
+
                             </div>
                             <hr>
                         </div>
@@ -116,25 +123,37 @@
                     <ul class="d-flex nav justify-content-between pb-3 flex-nowrap">
                         <li class="nav-item">
                             <a href="" data-target="#acceptedReqs" data-toggle="tab"
-                                class="btn btn-success active badge-pill"> <span><i
-                                        class="fa fa-user-plus"></i></span><br>
-                                Accepted Requests<span id="accepted"
-                                    class="badge badge-pill badge-danger">{{user.Matches.acceptedrequests.length}}</span></a>
+                                class="btn btn-success active badge-pill">
+                                <span><i class="fa fa-user"></i></span>
+                                <br>
+                                Accepted Requests
+                                {{#if user.Matches.acceptedrequests.length}}
+                                <span id="accepted"
+                                    class="badge accepted badge-pill badge-danger">{{user.Matches.acceptedrequests.length}}</span>
+                                {{/if}}
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" data-target="#recievedReqs" data-toggle="tab"
-                                class="btn btn-primary badge-pill"><span><i class="fa fa-envelope mr-1"></i></span> <br>
+                            <a href="" data-target="#recievedReqs" data-toggle="tab" class="btn btn-primary badge-pill">
+                                <span><i class="fa fa-user-plus"></i></span><br>
                                 Recieved
-                                Requests<span id="received"
-                                    class="badge badge-pill  badge-danger">{{user.Matches.receivedrequests.length}}</span></a>
+                                Requests
+                                {{#if user.Matches.receivedrequests.length}}
+                                <span id="received"
+                                    class="badge badge-pill  badge-danger">{{user.Matches.receivedrequests.length}}</span>
+                                {{/if}}
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a href="" data-target="#rejectedReqs" data-toggle="tab"
-                                class="btn btn-secondary badge-pill"><span><i class="fa fa-paper-plane"></i></span>
+                                class="btn btn-secondary badge-pill pl-3"><span><i class="fa fa-paper-plane"></i></span>
                                 <br>
                                 Sent
-                                Requests<span id="sentreqs"
-                                    class="badge badge-pill badge-danger">{{user.Matches.sentrequests.length}}</span>
+                                Requests
+                                {{#if user.Matches.sentrequests.length}}
+                                <span id="sentreqs"
+                                    class="badge sent badge-pill badge-danger">{{user.Matches.sentrequests.length}}</span>
+                                {{/if}}
                             </a>
                         </li>
                     </ul>
@@ -154,7 +173,7 @@
                             {{#each acceptedrequests}}
                             <div
                                 class="row no-gutters align-items-center justify-content-between bg-light border m-3 rounded">
-                                <div class="col-md-2 mx-3">
+                                <div class="col ml-2">
                                     <div class="avatar-upload">
                                         <div class="avatar-preview img-big">
                                             <div id="imagePreview"
@@ -163,7 +182,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col mx-3">
+                                <div class="col-md-6 ">
                                     <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
                                         <div class="card-body border-right border-left">
                                             <h6 class="card-title">{{Profile.Profile1.name.firstname}}
@@ -178,13 +197,17 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col px-3">
                                     <div class="d-inline-flex flex-column">
                                         <input type="hidden" value="{{_id}}">
-                                        <a class="btn-sm btn-danger text-white unmatch ">Unmatch</a>
-                                        <a class="btn-sm my-2 btn-secondary text-white messageuser ">Message</a></div>
+                                        <a class="btn-sm btn-danger text-white unmatch ">
+                                            <span><i class="fa fa-user-times"></i></span> Unmatch
+                                        </a>
+                                        <a class="btn-sm my-2 btn-success text-white messageuser ">
+                                            <span><i class="fa fa-comments"></i></span> Message
+                                        </a>
+                                    </div>
                                 </div>
-
                             </div>
                             {{/each}}
                             <!--/row-->
@@ -204,8 +227,7 @@
                             </div>
                             {{/unless}}
                             {{#each receivedrequests}}
-                            <div
-                                class="row no-gutters align-items-center justify-content-between border m-3 rounded shadow">
+                            <div class="row no-gutters align-items-center justify-content-between border m-3 rounded">
                                 <div class="col-md-2 mx-3">
                                     <div class="avatar-upload">
                                         <div class="avatar-preview img-big">
@@ -215,8 +237,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col mx-3">
-                                    <div class="card-body">
+                                <div class="col-md-6 mx-3">
+                                    <div class="card-body border-left border-right">
                                         <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
                                             <h6 class="card-title">{{Profile.Profile1.name.firstname}}
                                                 {{Profile.Profile1.name.lastname}}</h6>
@@ -229,10 +251,13 @@
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col d-flex flex-column mr-2">
                                     <input type="hidden" value="{{_id}}">
-                                    <a class="btn btn-success text-white acceptreq my-2">Accept</a>
-                                    <a class="btn deletereceived text-white btn-danger">Delete</a>
+                                    <a class="btn btn-success text-white acceptreq my-2">Accept <span><i
+                                                class="fa fa-check-circle"></i></span></a>
+                                    <a class="btn deletereceived text-white btn-danger">Delete
+                                        <span><i class="fa fa-trash"></i></span>
+                                    </a>
                                 </div>
                                 <hr>
                             </div>
@@ -262,7 +287,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col matchpage mx-3">
+                                <div class="col-md-6 matchpage mx-3">
                                     <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
                                         <div class="card-body border-right border-left">
                                             <h6 class="card-title">{{Profile.Profile1.name.firstname}}
@@ -276,9 +301,10 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col">
                                     <input type="hidden" value="{{_id}}">
-                                    <a class="btn deletesent text-white btn-danger">Delete</a>
+                                    <a class="btn deletesent text-white btn-danger">Delete
+                                        <span><i class="fa fa-trash"></i></span></a>
                                 </div>
                             </div>
                             {{/each}}
@@ -287,8 +313,16 @@
                 </div>
                 <div class="col-md-3 border rounded  shadow-lg" style="background-color: #fdf0f6;">
                     <div class="row p-3">
-                        <h6 class="text-danger">Notifications
+                        <h6 class="text-danger">
+                            {{#if notifications.length}}
+                            <span><i class="fa fa-bell"></i></span>
+                            {{else}}
+                            <span><i class="fa fa-bell text-secondary"></i></span>
+                            {{/if}}
+                            Notifications
+                            {{#if notifications.length}}
                             <span class="badge badge-pill badge-danger" id="notifs">{{notifications.length}}</span>
+                            {{/if}}
                         </h6>
                         <div class="row pl-3 pr-2">
                             <div class="overflow-auto" style="height:400px;">
@@ -311,12 +345,7 @@
                 </div>
             </div>
         </div>
-        </div>
     </section>
-
-
-
-
     <section>
         <div class="container my-5">
             <div class="row mx-auto">
@@ -348,16 +377,13 @@
                                 </a>
                             </div>
                         </div>
-
                         <div class="col justify-content-around d-flex">
                             <input type="hidden" value="{{_id}}">
-
                             <i class="fa fa-check text-success"></i>
                             <i class="fa fa-times text-danger"></i>
                         </div>
                     </div>
                     {{/each}}
-
                 </div>
                 {{!-- new matches --}}
                 <div class="col-md-6">
@@ -397,27 +423,22 @@
                 </div>
             </div>
     </section>
-
     <section>
         {{!-- chat --}}
         <div class="shadow mr-3  rounded chatbox">
-
             <h6 class="text-center chatheading">
                 Chat <i class="fa fa-window-minimize " id="minimize"></i>
             </h6>
             <ul class="list-group">
                 {{#each acceptedrequests}}
-
                 <li class="list-group-item list-group-item-action openchat"><input type="hidden" value="{{_id}}">
                     <div class="chatpic float-left mr-2 " style="background-image: url({{Profile.Profile1.photo}});">
                     </div>
                     <h6 class="text-truncate mt-1">
-
                         {{Profile.Profile1.name.firstname}}
                         {{Profile.Profile1.name.lastname}} <span class="badge badge-danger"></span>
                     </h6>
                 </li>
-
                 {{/each}}
             </ul>
         </div>

@@ -75,8 +75,8 @@ hr.main {
   margin: auto;
 }
 .avatar-upload .avatar-preview {
-  width: 192px;
-  height: 192px;
+  width: 250px;
+  height: 250px;
   position: relative;
   border-radius: 100%;
   border: 6px solid #f8f8f8;

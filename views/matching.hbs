@@ -76,7 +76,13 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body text-center">
-                            <img class="avatar rounded-circle" src="{{match.Profile.Profile1.photo}}" alt="Bologna">
+                            <div class="avatar-upload">
+                                <div class="avatar-preview">
+                                    <div id="imagePreview"
+                                        style="background-image: url({{match.Profile.Profile1.photo}});">
+                                    </div>
+                                </div>
+                            </div>
                             <h4 class="card-title mt-4">{{match.Profile.Profile1.name.firstname}}
                                 {{match.Profile.Profile1.name.lastname}},{{match.Profile.Profile2.age}}</h4>
                             <h6 class="card-subtitle mb-2 text-muted">
@@ -251,12 +257,22 @@
                         <div class="col-md-12">
                             <div class="row mx-4 justify-content-around">
                                 <div class="col-md-3">
-                                    <img src="{{match.Profile.Profile1.photo}}"
-                                        class="card-img-top rounded-circle image" alt="Profile Page">
+                                    <div class="avatar-upload">
+                                        <div class="avatar-preview">
+                                            <div id="imagePreview"
+                                                style="background-image: url({{match.Profile.Profile1.photo}});">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <img src="{{user.Profile.Profile1.photo}}" class="card-img-top rounded-circle image"
-                                        alt="Profile Page">
+                                    <div class="avatar-upload">
+                                        <div class="avatar-preview">
+                                            <div id="imagePreview"
+                                                style="background-image: url({{user.Profile.Profile1.photo}});">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
