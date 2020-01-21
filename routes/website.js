@@ -530,7 +530,6 @@ module.exports = function (io) {
                 user.Matches.receivedrequests = user.Matches.receivedrequests.filter(
                     el => el != id
                 );
-
                 user.save().then(done => {
                     User.findOne({ _id: req.session.user._id }).then(newuser => {
                         user = newuser;

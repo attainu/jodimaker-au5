@@ -4,7 +4,7 @@
 
 body {
   padding-top: 70px;
-  background-color: aliceblue !important;
+  background: linear-gradient(to left, #f5f7fa, #c3cfe2);
 }
 
 .btn-wine {

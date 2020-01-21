@@ -12,11 +12,11 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/matching.css">
-    <title>Matching </title>
+    <title>Jodimaker | Matching </title>
 
 </head>
 
-<body class="bg-light">
+<body>
     <section>
         <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top " id="nav-bar">
             <div class="container">
@@ -28,13 +28,13 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto text-white">
                         <li class="nav-item active">
-                            <a class="nav-link text-white" href="home">Dashboard</a>
+                            <a class="nav-link text-white" href="/home">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="matches">My Matches</a>
+                            <a class="nav-link text-white" href="/matches">My Matches</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="search">Search</a>
+                            <a class="nav-link text-white" href="/search">Search</a>
                         </li>
                     </ul>
                     <span class="navbar-text">
@@ -76,7 +76,29 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body text-center">
+                            {{#if isMatched}}
+                            {{#if match.myAlbum}}
+                            <div class="row">
+                                <div class="col-6 offset-3">
+                                    <div class="mt-1 imgAlbum">
+                                        <div class="mainimg">
+                                            <img class="avatar rounded-circle" src="{{match.myAlbum.[0]}}" id="mainimg"
+                                                alt="album" style="height:400px; width:300px">
+                                        </div>
+                                        {{#each match.myAlbum}}
+                                        <a class="d-inline"><img src="{{this}}" class="slideImg" alt="album"
+                                                style="height:95px; width:95px"></a>
+                                        {{/each}}
+                                    </div>
+                                </div>
+                            </div>
+                            {{else}}
                             <img class="avatar rounded-circle" src="{{match.Profile.Profile1.photo}}" alt="Bologna">
+
+                            {{/if}}
+                            {{else}}
+                            <img class="avatar rounded-circle" src="{{match.Profile.Profile1.photo}}" alt="Bologna">
+                            {{/if}}
                             <h4 class="card-title mt-4">{{match.Profile.Profile1.name.firstname}}
                                 {{match.Profile.Profile1.name.lastname}},{{match.Profile.Profile2.age}}</h4>
                             <h6 class="card-subtitle mb-2 text-muted">
@@ -251,12 +273,22 @@
                         <div class="col-md-12">
                             <div class="row mx-4 justify-content-around">
                                 <div class="col-md-3">
-                                    <img src="{{match.Profile.Profile1.photo}}"
-                                        class="card-img-top rounded-circle image" alt="Profile Page">
+                                    <div class="avatar-upload">
+                                        <div class="avatar-preview">
+                                            <div id="imagePreview"
+                                                style="background-image: url({{match.Profile.Profile1.photo}});">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <img src="{{user.Profile.Profile1.photo}}" class="card-img-top rounded-circle image"
-                                        alt="Profile Page">
+                                    <div class="avatar-upload">
+                                        <div class="avatar-preview">
+                                            <div id="imagePreview"
+                                                style="background-image: url({{user.Profile.Profile1.photo}});">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

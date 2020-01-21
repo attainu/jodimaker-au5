@@ -12,18 +12,17 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/home.css">
-    <title>Jodimaker</title>
+    <title>Jodimaker | Dashboard</title>
 
 </head>
+{{!-- "background-color: #fdf0f6;" --}}
 
-<body class="bg-light" >
-    <div class="w-100" >
-
-    </div>
-    <section >
+<body>
+    <section>
         <nav class="navbar navbar-expand-lg navbar-light fixed-top header-top " id="nav-bar">
             <div class="container">
-                <a class="navbar-brand text-white" href="/"><img src="img/jodi.png"></a>
+                <a class="navbar-brand text-white" href="/">
+                    <img src="img/jodi.png"></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
                     aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -31,16 +30,15 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav mr-auto text-white">
                         <li class="nav-item active">
-                            <a class="nav-link text-white" href="home">Dashboard</a>
+                            <a class="nav-link text-white" href="/home">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="matches">My Matches</a>
+                            <a class="nav-link text-white" href="/matches">My Matches</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white" href="search">Search</a>
+                            <a class="nav-link text-white" href="/search">Search</a>
                         </li>
                     </ul>
-
                 </div>
                 <span class="navbar-text">
                     <ul class="navbar-nav mr-auto">
@@ -58,7 +56,6 @@
                                 </div>
                             </a>
                         </li>
-
                         {{/with}}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-white" href="profile" id="navbarDropdownMenuLink"
@@ -73,21 +70,15 @@
                     </ul>
                 </span>
             </div>
-            </div>
         </nav>
     </section>
-
-
-
-
     <section>
-
-        <div class="container mt-5 mh-100" >
+        <div class="container mt-5 mh-100">
             <div class="row ">
                 {{!-- profile column --}}
-                <div class=" col-md-3">
-                    <div class="card " style="height: 100%;">
-                        <form id="uploadForm" enctype="multipart/form-data" action="/photoupload" method="post">
+                <div class=" col-md-3 rounded">
+                    <div class="card  shadow-lg " style="height: 100%;background-color: #fdf0f6;">
+                        <form id=" uploadForm" enctype="multipart/form-data" action="/photoupload" method="post">
                             <div class="avatar-upload">
                                 <div class="avatar-edit">
                                     <form id="profilepic" enctype="multipart/form-data" action="">
@@ -105,40 +96,70 @@
                         {{!-- </div> --}}
                         <div class="card-body">
                             <hr>
-                            <h5 class="card-title text-center text-capitalize">{{user.Profile.Profile1.name.firstname}}
-                                {{#if user.Profile.Profile1.name.middlename}}
-                                {{user.Profile.Profile1.name.middlename}}
-                                {{/if}}
-                                {{user.Profile.Profile1.name.lastname}}</h5>
-                            <p class="card-text text-center"><i
-                                    class="fa  fa-map-marker"></i>{{user.Profile.Profile1.location.city}}
-                            </p>
+                            <div id="cardName">
+                                <h5 class="card-title text-center text-capitalize  font-weight-bold">
+                                    {{user.Profile.Profile1.name.firstname}}
+                                    {{#if user.Profile.Profile1.name.middlename}}
+                                    {{user.Profile.Profile1.name.middlename}}
+                                    {{/if}}
+                                    {{user.Profile.Profile1.name.lastname}}</h5>
+                                <p class="card-text text-center"><i class="fa  fa-map-marker"></i>
+                                    {{user.Profile.Profile1.location.city}}
+                                </p>
+                                <p class="card-text text-center">
+                                    <span><i class="fa fa-envelope "></i></span> {{user.Signup.email}}
+                                </p>
+                                <p class="card-text text-center">
+                                    <span><i class="fa fa-phone"></i></span> {{user.Signup.mobile}}
+                                </p>
+
+                            </div>
                             <hr>
                         </div>
                     </div>
                 </div>
                 {{!-- requests row --}}
                 <div class="col-md-6">
-                    <h6>Your Activity</h6>
+                    <h6><span><i class="fa fa-users mx-2"></i></span>Your Requests</h6>
                     <ul class="d-flex nav justify-content-between pb-3 flex-nowrap">
-                        <li class="nav-item text-nowrap">
+                        <li class="nav-item">
                             <a href="" data-target="#acceptedReqs" data-toggle="tab"
-                                class="btn btn-success active">Accepted Requests<span id="accepted"
-                                    class="badge badge-pill badge-danger">{{user.Matches.acceptedrequests.length}}</span></a>
+                                class="btn btn-success active badge-pill">
+                                <span><i class="fa fa-user"></i></span>
+                                <br>
+                                Accepted Requests
+                                {{#if user.Matches.acceptedrequests.length}}
+                                <span id="accepted"
+                                    class="badge accepted badge-pill badge-danger">{{user.Matches.acceptedrequests.length}}</span>
+                                {{/if}}
+                            </a>
                         </li>
-                        <li class="nav-item text-nowrap">
-                            <a href="" data-target="#recievedReqs" data-toggle="tab" class="btn btn-primary">Recieved
-                                Requests<span id="received"
-                                    class="badge badge-pill  badge-danger">{{user.Matches.receivedrequests.length}}</span></a>
+                        <li class="nav-item">
+                            <a href="" data-target="#recievedReqs" data-toggle="tab" class="btn btn-primary badge-pill">
+                                <span><i class="fa fa-user-plus"></i></span><br>
+                                Recieved
+                                Requests
+                                {{#if user.Matches.receivedrequests.length}}
+                                <span id="received"
+                                    class="badge badge-pill  badge-danger">{{user.Matches.receivedrequests.length}}</span>
+                                {{/if}}
+                            </a>
                         </li>
-                        <li class="nav-item text-nowrap">
-                            <a href="" data-target="#rejectedReqs" data-toggle="tab" class="btn btn-secondary">Sent
-                                Requests<span id="sentreqs"
-                                    class="badge badge-pill badge-danger">{{user.Matches.sentrequests.length}}</span></a>
+                        <li class="nav-item">
+                            <a href="" data-target="#rejectedReqs" data-toggle="tab"
+                                class="btn btn-secondary badge-pill pl-3"><span><i class="fa fa-paper-plane"></i></span>
+                                <br>
+                                Sent
+                                Requests
+                                {{#if user.Matches.sentrequests.length}}
+                                <span id="sentreqs"
+                                    class="badge sent badge-pill badge-danger">{{user.Matches.sentrequests.length}}</span>
+                                {{/if}}
+                            </a>
                         </li>
                     </ul>
-                    <div class="tab-content overflow-auto">
-                        <div class="tab-pane active border bg-white overflow-auto" style="height:400px;"
+                    <div class="tab-content overflow-auto shadow-lg " style="background-color: #fdf0f6;">
+                        <div class="tab-pane rounded active border overflow-auto " style="height:400px;"
                             id="acceptedReqs">
                             {{#unless acceptedrequests}}
                             <div class="emptyAlert text-center">
@@ -151,8 +172,9 @@
                             </div>
                             {{/unless}}
                             {{#each acceptedrequests}}
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-md-2">
+                            <div
+                                class="row no-gutters align-items-center justify-content-between bg-light border m-3 rounded">
+                                <div class="col ml-2">
                                     <div class="avatar-upload">
                                         <div class="avatar-preview img-big">
                                             <div id="imagePreview"
@@ -161,10 +183,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-6 ">
                                     <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
-                                        <div class="card-body">
-                                            <h6 class="card-title">{{Profile.Profile1.name.firstname}}
+                                        <div class="card-body border-right border-left">
+                                            <h6 class="card-title  font-weight-bold">{{Profile.Profile1.name.firstname}}
                                                 {{Profile.Profile1.name.lastname}}</h6>
                                             <p class="card-text">{{Profile.Profile2.age}},
                                                 {{Profile.Profile2.height}},{{Profile.Profile2.mothertongue}},
@@ -176,19 +198,22 @@
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col-md-2 ">
+                                <div class="col px-3">
                                     <div class="d-inline-flex flex-column">
                                         <input type="hidden" value="{{_id}}">
-                                        <a class="btn-sm btn-danger text-white unmatch ">Unmatch</a>
-                                        <a class="btn-sm my-2 btn-secondary text-white messageuser ">Message</a></div>
+                                        <a class="btn-sm btn-danger text-white unmatch ">
+                                            <span><i class="fa fa-user-times"></i></span> Unmatch
+                                        </a>
+                                        <a class="btn-sm my-2 btn-success text-white messageuser ">
+                                            <span><i class="fa fa-comments"></i></span> Message
+                                        </a>
+                                    </div>
                                 </div>
-                                <hr>
                             </div>
                             {{/each}}
-
                             <!--/row-->
                         </div>
-                        <div class="tab-pane border bg-white overflow-auto" style="height:400px;" id="recievedReqs">
+                        <div class="tab-pane border overflow-auto rounded" style="height:400px;" id="recievedReqs">
                             {{#unless receivedrequests}}
                             <div class="emptyAlert text-center">
                                 <span><i class="fa fa-envelope-open"></i></span>
@@ -203,8 +228,8 @@
                             </div>
                             {{/unless}}
                             {{#each receivedrequests}}
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-md-2">
+                            <div class="row no-gutters align-items-center justify-content-between border m-3 rounded">
+                                <div class="col-md-2 mx-3">
                                     <div class="avatar-upload">
                                         <div class="avatar-preview img-big">
                                             <div id="imagePreview"
@@ -213,30 +238,33 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
+                                <div class="col-md-6 mx-3">
+                                    <div class="card-body border-left border-right">
                                         <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
-                                            <h6 class="card-title">{{Profile.Profile1.name.firstname}}
+                                            <h6 class="card-title  font-weight-bold">{{Profile.Profile1.name.firstname}}
                                                 {{Profile.Profile1.name.lastname}}</h6>
                                             <p class="card-text">{{Profile.Profile2.age}},
                                                 {{Profile.Profile2.height}},{{Profile.Profile2.mothertongue}},
                                                 {{Profile.Profile1.location.city}}</p>
                                             <p class="card-text">
-                                                <small class="text-muted">Last online {{lastSeen}}  ago</small>
+                                                <small class="text-muted">Last online {{lastSeen}} ago</small>
                                             </p>
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col d-flex flex-column mr-2">
                                     <input type="hidden" value="{{_id}}">
-                                    <a class="btn btn-success text-white acceptreq my-2">Accept</a>
-                                    <a class="btn deletereceived text-white btn-danger">Delete</a>
+                                    <a class="btn btn-success text-white acceptreq my-2">Accept <span><i
+                                                class="fa fa-check-circle"></i></span></a>
+                                    <a class="btn deletereceived text-white btn-danger">Delete
+                                        <span><i class="fa fa-trash"></i></span>
+                                    </a>
                                 </div>
                                 <hr>
                             </div>
                             {{/each}}
                         </div>
-                        <div class="tab-pane border bg-white overflow-auto" style="height:400px;" id="rejectedReqs">
+                        <div class="tab-pane border overflow-auto rounded" style="height:400px;" id="rejectedReqs">
                             {{#unless sentrequests}}
                             <div class="emptyAlert text-center">
                                 <span><i class="fa fa-envelope-open"></i></span>
@@ -249,8 +277,9 @@
                             </div>
                             {{/unless}}
                             {{#each sentrequests}}
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-md-2 matchpage">
+                            <div
+                                class="row no-gutters align-items-center justify-content-between bg-light border m-3 rounded">
+                                <div class="col-md-2 matchpage mx-3">
                                     <div class="avatar-upload">
                                         <div class="avatar-preview img-big">
                                             <div id="imagePreview"
@@ -259,72 +288,74 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-7 matchpage">
+                                <div class="col-md-6 matchpage mx-3">
                                     <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
-                                        <div class="card-body">
-                                            <h6 class="card-title">{{Profile.Profile1.name.firstname}}
+                                        <div class="card-body border-right border-left">
+                                            <h6 class="card-title  font-weight-bold">{{Profile.Profile1.name.firstname}}
                                                 {{Profile.Profile1.name.lastname}}</h6>
                                             <p class="card-text">{{Profile.Profile2.age}},
                                                 {{Profile.Profile2.height}},{{Profile.Profile2.mothertongue}},
                                                 {{Profile.Profile1.location.city}}</p>
                                             <p class="card-text">
-                                                <small class="text-muted">Last online {{lastSeen}}  ago</small>
+                                                <small class="text-muted">Last online {{lastSeen}} ago</small>
                                             </p>
                                         </div>
                                     </a>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col">
                                     <input type="hidden" value="{{_id}}">
-                                    <a class="btn deletesent text-white btn-danger">Delete</a>
+                                    <a class="btn deletesent text-white btn-danger">Delete
+                                        <span><i class="fa fa-trash"></i></span></a>
                                 </div>
-                                <hr>
                             </div>
                             {{/each}}
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3 bg-white border rounded">
+                <div class="col-md-3 border rounded  shadow-lg" style="background-color: #fdf0f6;">
                     <div class="row p-3">
-                        <h6 class="text-danger">Notifications
+                        <h6 class="text-danger">
+                            {{#if notifications.length}}
+                            <span><i class="fa fa-bell"></i></span>
+                            {{else}}
+                            <span><i class="fa fa-bell text-secondary"></i></span>
+                            {{/if}}
+                            Notifications
+                            {{#if notifications.length}}
                             <span class="badge badge-pill badge-danger" id="notifs">{{notifications.length}}</span>
+                            {{/if}}
                         </h6>
-                    </div>
-                    <div class="row pl-3 pr-2">
-                        <div class="overflow-auto" style="height:400px;">
-                            {{#unless notifications}}
-                            <div class="emptyAlert text-center">
-                                <span><i class="fa fa-bell" style="font-size: 5rem;"></i></span>
-                                <span class="text-muted  emptyAlert text-center text-nowrap font-weight-bold"
-                                    style="font-size: 1rem;">All caught up.</span>
+                        <div class="row pl-3 pr-2">
+                            <div class="overflow-auto" style="height:400px;">
+                                {{#unless notifications}}
+                                <div class="emptyAlert text-center">
+                                    <span><i class="fa fa-bell" style="font-size: 5rem;"></i></span>
+                                    <span class="text-muted  emptyAlert text-center text-nowrap font-weight-bold"
+                                        style="font-size: 1rem;">All caught up.</span>
+                                </div>
+                                {{/unless}}
+                                {{#each notifications}}
+                                <div class="alert alert-warning alert-dismissable fade show">
+                                    <a class="panel-close close" data-dismiss="alert">×</a>
+                                    {{this}}
+                                </div>
+                                {{/each}}
                             </div>
-                            {{/unless}}
-                            {{#each notifications}}
-                            <div class="alert alert-warning alert-dismissable fade show">
-                                <a class="panel-close close" data-dismiss="alert">×</a>
-                                {{this}}
-                            </div>
-                            {{/each}}
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
-        </div>
     </section>
-
-
-
-
     <section>
         <div class="container my-5">
             <div class="row mx-auto">
                 {{!-- premium matches --}}
                 <div class="col-md-6">
-                    <h6>New Matches for you<span class="badge badge-pill badge-danger">{{agematches.length}}</span></h6>
+                    <h6 class="">New Matches for you<span
+                            class="badge badge-pill badge-danger">{{agematches.length}}</span></h6>
                     {{#each agematches}}
-                    <div class="row no-gutters align-items-center bg-white border">
+                    <div class="row no-gutters align-items-center bg-light border rounded shadow-lg my-3">
                         <div class="col-md-2 px-3">
                             <div class="avatar-upload">
                                 <div class="avatar-preview img-big">
@@ -336,33 +367,31 @@
                         <div class="col-md-6 ml-5">
                             <div class="card-body">
                                 <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
-                                    <h6 class="card-title">{{Profile.Profile1.name.firstname}}
+                                    <h6 class="card-title font-weight-bold">{{Profile.Profile1.name.firstname}}
                                         {{Profile.Profile1.name.lastname}}</h6>
                                     <p class="card-text">{{Profile.Profile2.age}},
                                         {{Profile.Profile2.height}},{{Profile.Profile2.mothertongue}},
                                         {{Profile.Profile1.location.city}}</p>
                                     <p class="card-text">
-                                        <small class="text-muted">Last online {{lastSeen}}  ago</small>
+                                        <small class="text-muted">Last online {{lastSeen}} ago</small>
                                     </p>
                                 </a>
                             </div>
                         </div>
-
                         <div class="col justify-content-around d-flex">
                             <input type="hidden" value="{{_id}}">
-
                             <i class="fa fa-check text-success"></i>
                             <i class="fa fa-times text-danger"></i>
                         </div>
                     </div>
                     {{/each}}
-
                 </div>
                 {{!-- new matches --}}
                 <div class="col-md-6">
-                    <h6>Recently Created<span class="badge badge-pill badge-danger">{{age2matches.length}}</span></h6>
+                    <h6 class="">Recently Created<span
+                            class="badge badge-pill badge-danger">{{age2matches.length}}</span></h6>
                     {{#each age2matches}}
-                    <div class="row no-gutters align-items-center bg-white border">
+                    <div class="row no-gutters align-items-center bg-light border rounded shadow-lg my-3">
                         <div class="col-md-2 px-3">
                             <div class="avatar-upload">
                                 <div class="avatar-preview img-big">
@@ -374,48 +403,46 @@
                         <div class="col-md-6 ml-5">
                             <div class="card-body">
                                 <a class="text-decoration-none text-dark" href="matchprofile?id={{_id}}">
-                                    <h6 class="card-title">{{Profile.Profile1.name.firstname}}
+                                    <h6 class="card-title  font-weight-bold">{{Profile.Profile1.name.firstname}}
                                         {{Profile.Profile1.name.lastname}}</h6>
-                                    <p class="card-text">{{Profile.Profile2.age}},
+                                    <p class="card-text ">{{Profile.Profile2.age}},
                                         {{Profile.Profile2.height}},{{Profile.Profile2.mothertongue}},
                                         {{Profile.Profile1.location.city}}</p>
                                     <p class="card-text">
-                                        <small class="text-muted">Last online {{lastSeen}}  ago</small>
+                                        <small class="text-muted">Last online {{lastSeen}} ago</small>
                                     </p>
                                 </a>
                             </div>
                         </div>
                         <div class="col justify-content-around d-flex">
                             <input type="hidden" value="{{_id}}">
-                            <a><i class="fa fa-check text-success"></i></a>
-                            <a><i class="fa fa-times text-danger"></i></a>
+
+                            <i class="fa fa-check text-success"></i>
+
+                            <i class="fa fa-times text-danger"></i>
+
                         </div>
                     </div>
                     {{/each}}
                 </div>
             </div>
     </section>
-
     <section>
         {{!-- chat --}}
         <div class="shadow mr-3  rounded chatbox">
-
             <h6 class="text-center chatheading">
                 Chat <i class="fa fa-window-minimize " id="minimize"></i>
             </h6>
             <ul class="list-group">
                 {{#each acceptedrequests}}
-
                 <li class="list-group-item list-group-item-action openchat"><input type="hidden" value="{{_id}}">
                     <div class="chatpic float-left mr-2 " style="background-image: url({{Profile.Profile1.photo}});">
                     </div>
                     <h6 class="text-truncate mt-1">
-
                         {{Profile.Profile1.name.firstname}}
                         {{Profile.Profile1.name.lastname}} <span class="badge badge-danger"></span>
                     </h6>
                 </li>
-
                 {{/each}}
             </ul>
         </div>

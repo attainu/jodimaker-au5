@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/userpref.css">
-    <title>Partner Preference</title>
+    <title>Jodimaker | Partner Preference</title>
 </head>
 
 <body>
@@ -26,19 +26,19 @@
                     <div class="collapse navbar-collapse" id="navbarText">
                         <ul class="navbar-nav mr-auto text-white">
                             <li class="nav-item active">
-                                <a class="nav-link text-white" href="home">Dashboard</a>
+                                <a class="nav-link text-white" href="/home">Dashboard</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="matches">My Matches</a>
+                                <a class="nav-link text-white" href="/matches">My Matches</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-white" href="search">Search</a>
+                                <a class="nav-link text-white" href="/search">Search</a>
                             </li>
                         </ul>
                         <span class="navbar-text">
                             <ul class="navbar-nav mr-auto">
                                 <li class="nav-item active">
-                                    <a href="profile">
+                                    <a href="/profile">
                                         <div class="avatar-upload mt-0 mb-0">
                                             <div class="avatar-preview img-small">
                                                 <div id="imagePreview"
@@ -49,7 +49,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle text-white" href="profile"
+                                    <a class="nav-link dropdown-toggle text-white" href="/profile"
                                         id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                         aria-expanded="false">
                                     </a>
@@ -162,7 +162,6 @@
                             <label for="countryId"><b>Country</b></label>
                             <select name="country" class="countries custom-select" id="countryId">
                                 <option value="">Select Country</option>
-                                <option class="country" value="India">India</option>
                             </select>
                         </div>
                         <div class="mb-3 location">
@@ -253,6 +252,8 @@
         crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
         integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <script src="//geodata.solutions/includes/countrystatecity.js"></script>
+
     <script src="../js/profile-1.js"></script>
     <script>
         var slider = document.getElementById("customRange1");

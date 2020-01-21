@@ -28,6 +28,13 @@ $(document).ready(function() {
     $("#update").submit();
   });
 
+  $('.slideImg').on({
+    click: function(){
+      var imgUrl = $(this).attr('src')
+      $('#mainimg').attr('src',imgUrl)
+    } 
+  });
+
   var prevScrollpos = window.pageYOffset;
   window.onscroll = function() {
     var currentScrollPos = window.pageYOffset;
