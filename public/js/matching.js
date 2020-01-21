@@ -16,7 +16,7 @@ $(document).ready(function () {
     $('.slideImg').on({
         click: function(){
           var imgUrl = $(this).attr('src')
-          $('#mainimg').attr('src',imgUrl)
+          $('#imagePreview').css('background-image',"url("+imgUrl+")")
         } 
       });
 

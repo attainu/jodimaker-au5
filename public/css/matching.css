@@ -19,20 +19,6 @@ hr.main {
   border-color: #78244c;
 }
 
-.avatar {
-  height: 28rem;
-}
-.image {
-  height: 18rem;
-}
-
-#nav-bar {
-  top: 0;
-  width: 100%;
-  display: block;
-  transition: top 0.5s ease-in-out;
-}
-
 .avatar-upload {
   position: relative;
   max-width: 205px;
@@ -59,6 +45,7 @@ hr.main {
   cursor: pointer;
   font-weight: normal;
   transition: all 0.2s ease-in-out;
+  b
 }
 .avatar-upload .avatar-edit input + label:hover {
   background: #f1f1f1;
@@ -97,7 +84,6 @@ hr.main {
   height: 36px;
   border: 2px solid #f8f8f8;
 }
-
 
 .album{
   text-align: center;

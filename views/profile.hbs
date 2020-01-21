@@ -73,7 +73,7 @@
             <div class="row my-5 rounded border bg-white">
                 <div class="col-md-4 mx-auto">
                     <div class="avatar-upload">
-                        <div class="avatar-preview img-big">
+                        <div class="avatar-preview">
                             <div id="imagePreview" style="background-image: url({{result.Profile.Profile1.photo}});">
                             </div>
                         </div>
@@ -1020,25 +1020,28 @@
                                 accept="image/png, image/jpeg" required>
                             <input type="submit" class="btn btn-wine mt-3" value="Upload">
                         </form>
-                        
+
                         <div class="container text-center">
-                            
-                        <div class="mt-5 imgAlbum">
-                            
-                            <div class="mainimg d-inline">
-                                <img src="{{result.myAlbum.[0]}}" id="mainimg" alt="album"
+
+                            <div class="mt-5 imgAlbum">
+
+                                {{#if result.myAlbum.[0]}}
+                                <div class="mainimg d-inline">
+                                    <img src="{{result.myAlbum.[0]}}" id="mainimg" alt="album"
                                         style="height:300px; width:500px">
-                            </div>
-                            
-                                
+                                </div>
+
                                 {{#each result.myAlbum}}
-                                    <a class="d-inline"><img src="{{this}}" class="slideImg" alt="album" style="height:95px; width:95px"></a>
+                                <a class="d-inline"><img src="{{this}}" class="slideImg" alt="album"
+                                        style="height:95px; width:95px"></a>
                                 {{/each}}
-                            
+                                {{else}}
+                                <p>Added photos will show up here!!</p>
+                                {{/if}}
+                            </div>
+
                         </div>
-                        
-                        </div>
-                        
+
                     </div>
                 </div>
             </div>
