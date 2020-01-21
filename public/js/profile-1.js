@@ -1,6 +1,6 @@
-$(document).ready(function() {
+$(document).ready(function () {
   var prevScrollpos = window.pageYOffset;
-  window.onscroll = function() {
+  window.onscroll = function () {
     var currentScrollPos = window.pageYOffset;
     if (prevScrollpos > currentScrollPos) {
       document.getElementById("nav-bar").style.top = "0";
@@ -11,46 +11,54 @@ $(document).ready(function() {
   };
 
   $(".form-row").addClass("my-3");
+  var countriesStatesCities
   $.ajax({
-    url: "../json/states-cities.json",
-    method: "GET",
+    type: "get",
+    url: "../json/countries+states+cities.json",
     dataType: "json",
-    success: function(response) {
-      var statesAndCities = response;
-      $(".countries").change(function() {
-        var country = $('select[name="country"]').val();
-        var states = [
-          ...new Set(
-            statesAndCities.map(item => {
-              return item.state;
-            })
-          )
-        ];
+    success: function (response) {
+      countriesStatesCities = response
 
-        if (country == "India") {
-          for (let i = 0; i < states.length; i++) {
-            $("#stateId").append(
-              `<option value="${states[i]}">${states[i]}</option>`
-            );
-          }
-        }
-        $(".states").change(function() {
-          var state = $('select[name="state"]').val();
-          var filterCities = statesAndCities.filter(item => {
-            return state == item.state;
-          });
-          $("#cityId").empty();
-          $("#cityId").append(`<option value="">Select City</option>`);
-          for (let i = 0; i < filterCities.length; i++) {
-            $("#cityId").append(
-              `<option value="${filterCities[i].name}">${filterCities[i].name}</option>`
-            );
-          }
-        });
+      countriesStatesCities.forEach(element => {
+
+        $(".countries").append(`<option value="${element.name}">${element.name}</option>`)
       });
-    },
-    error: function(err) {
-      console.log("Error", err);
     }
   });
-});
+
+  var statesCities
+  $(".countries").change(function () {
+    var country = $('select[name="country"]').val();
+    $("#cityId").empty();
+    $("#stateId").empty();
+
+    $("#stateId").append(`<option value="">Select State</option>`);
+    $("#cityId").append(`<option value="">Select City</option>`);
+    var states = Object.keys(countriesStatesCities.filter(el => el.name == country)[0].states)
+    statesCities = countriesStatesCities.filter(el => el.name == country)[0].states
+    console.log(states)
+
+
+
+    for (let i = 0; i < states.length; i++) {
+      $("#stateId").append(
+        `<option value="${states[i]}">${states[i]}</option>`
+      );
+    }
+  });
+
+  $(".states").change(function () {
+    var state = $('select[name="state"]').val();
+    $("#cityId").empty();
+    $("#cityId").append(`<option value="">Select City</option>`);
+    console.log(statesCities)
+    var filterCities = statesCities[state]
+    console.log(filterCities)
+
+    for (let i = 0; i < filterCities.length; i++) {
+      $("#cityId").append(
+        `<option value="${filterCities[i]}">${filterCities[i]}</option>`
+      );
+    }
+  });
+})

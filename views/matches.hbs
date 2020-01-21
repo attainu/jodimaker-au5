@@ -64,7 +64,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="setting">Settings</a>
-                                <a class="dropdown-item" href="userpref">User Preferences</a>
+                                <a class="dropdown-item" href="userpref">Partner Preferences</a>
                                 <a class="dropdown-item text-danger" href="logout">Logout</a>
                             </div>
                         </li>
@@ -142,6 +142,43 @@
                 </div>
 
                 <div class="col-md-10 mt-5">
+                        {{#if userPrefMatches}} 
+                        <h1 class="pb-4 ml-4 font-weight-light">Top Matches</h1>
+                    <div class="row">
+
+                        {{#each userPrefMatches}}
+                        <div class="col-md-3 mt-5">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <a href="/matchprofile?id={{_id}}"><img class="avatar rounded-circle"
+                                            src="{{Profile.Profile1.photo}}" alt="Bologna"></a>
+                                    <h4 class="card-title">
+                                        {{#if Settings.showname}}
+                                        {{Settings.showname}},<br>
+                                        {{else}}
+                                        {{Profile.Profile1.name.firstname}}
+                                        {{Profile.Profile1.name.lastname}},<br>
+                                        {{/if}}
+                                        {{Profile.Profile2.age}}
+                                    </h4>
+                                    <h6 class="card-subtitle mb-2 text-muted">{{Profile.Profile2.height}},
+                                        {{Profile.Profile2.maritialstatus}}</h6>
+                                    <p class="card-text">{{Profile.Profile1.location.city}}</p>
+                                    <a class="btn btn-outline-secondary">Message</a>
+                                    <input type="hidden" class="userid" value="{{_id}}">
+                                    {{#if sent}}
+                                    <a class="btn btn-success  text-white">Sent</a>
+                                    {{else}}
+                                    <a class="btn btn-wine connect text-white">Connect</a>
+                                    {{/if}}
+                                </div>
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                        <h3 class="py-4 font-weight-light h3">More Matches for you</h3>
+                    {{/if}}
+
 
                     <div class="row">
 

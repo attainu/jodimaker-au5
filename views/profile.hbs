@@ -57,7 +57,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item" href="setting">Settings</a>
-                                        <a class="dropdown-item" href="userpref">User Preferences</a>
+                                        <a class="dropdown-item" href="userpref">Partner Preferences</a>
                                         <a class="dropdown-item text-danger" href="logout">Logout</a>
                                     </div>
                                 </li>
@@ -139,7 +139,7 @@
                 {{!-- profile --}}
                 <div class="tab-pane active" id="profile">
                     <div class="col-md-12">
-                        <form action="/updatePi" method="POST">
+                        <form action="/updatePi" method="POST" id="update">
                             <i style="font-size:24px" class="fa edit float-right mr-5">&#xf044;</i>
 
                             <div class="row">
@@ -626,6 +626,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                             </div>
                             {{!-- Education-details  --}}
                             <div class="col-md-12">
@@ -882,7 +883,6 @@
 
                                     </div>
                                 </div>
-
                             </div>
                             <div class="col-md-6 flex-nowrap">
                                 <div class="row ">
@@ -1008,7 +1008,6 @@
                                 </div>
 
                             </div>
-
                         </div>
                     </div>
                 </div>

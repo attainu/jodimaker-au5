@@ -5,6 +5,7 @@
 body {
   padding-top: 70px;
   overflow-x: hidden;
+  background: linear-gradient(to left, #f5f7fa , #c3cfe2);
 }
 
 .btn-wine {
@@ -160,6 +161,7 @@ body {
   width: 15%;
   background-color: rgb(211, 211, 211);
   overflow: hidden;
+  transition: height 1.5s;
 }
 
 .chatbox li {

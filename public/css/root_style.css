@@ -1,6 +1,8 @@
 body {
   overflow-x: hidden;
-  min-height: 100vh !important;
+  overflow-y: auto;
+  height: 100%;
+  padding: 0rem!important;
 }
 
 h4 {
@@ -70,12 +72,14 @@ a:hover {
   border-color: #d79922;
 }
 
-.btn-infor:hover {
+.btn-infor:hover,.btn-infor:focus {
   background-color: #78244c;
   border-color: #78244c;
   color: white;
   font-size: 1rem;
-  font-weight: bold;
+  box-shadow: 0 0.5em 0.7em -0.4em rgb(81, 81, 81);
+  -webkit-transform: translateY(-0.25em);
+  transform: translateY(-0.25em);
 }
 
 .bg-wine {
@@ -92,37 +96,38 @@ html {
 }
 
 .modal-open {
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #myModal {
   top: -100px;
 }
+
 #register {
   top: -20px;
 }
 
 .toast {
   box-shadow: none;
-  border:none;
+  border: none;
   position: absolute;
-  bottom:100px;
-  right:50px;
+  bottom: 100px;
+  right: 50px;
   z-index: 1050;
-  color: #78244c ;
+  color: #78244c;
 }
 
-.stat-box{
+.stat-box {
   text-align: center;
 }
 
-.stat-box p{
+.stat-box p {
   margin: 0px;
   margin-bottom: 7px;
- 
 }
 
-.stat-box h4{
+.stat-box h4 {
   margin-top: 23px;
   margin-bottom: 0px;
 }
