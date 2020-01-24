@@ -106,13 +106,18 @@ $(document).ready(function () {
       $(".needs-validation:last").addClass("was-validated");
     }
   });
-  $(".fa-eye").click(function () {
-    $("#passwordlogin").attr("type", "text")
-    $(this).toggleClass("fa-eye-slash fa-eye")
-  })
-  $(".fa-eye-slash").click(function () {
-    document.getElementById("passwordlogin").type = 'password'
-    $(this).toggleClass("fa-eye-slash fa-eye")
-  })
+
+  $("#passwordshow").click(showHidePassword)
+
+  function showHidePassword() {
+    var x = document.getElementById("passwordlogin");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
+    $("#passwordshow").toggleClass("fa-eye-slash fa-eye")
+  }
+
 
 });

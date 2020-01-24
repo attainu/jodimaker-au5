@@ -19,11 +19,11 @@ cloudinary.config({
 
 const UserController = {};
 
-UserController.signup = function(req, res) {
+UserController.signup = function (req, res) {
   const { mobile, email, createdBy } = req.body;
   var password = req.body.password;
 
-  bcrypt.hash(password, 10, function(err, hash) {
+  bcrypt.hash(password, 10, function (err, hash) {
     if (err) console.log(err);
     else {
       password = hash;
@@ -33,7 +33,8 @@ UserController.signup = function(req, res) {
       const newSignup = new Signup({
         email,
         password,
-        mobile
+        mobile,
+        createdBy
       });
       newUser.Signup = newSignup;
       newUser
@@ -46,7 +47,7 @@ UserController.signup = function(req, res) {
   });
 };
 
-UserController.login = function(req, res) {
+UserController.login = function (req, res) {
   var email = req.body.email;
   var password = req.body.password;
   User.findOne({ "Signup.email": email })
@@ -54,7 +55,7 @@ UserController.login = function(req, res) {
       if (!user) {
         res.redirect("/?notRegistered=true");
       }
-      bcrypt.compare(password, user.Signup.password, function(err, check) {
+      bcrypt.compare(password, user.Signup.password, function (err, check) {
         if (err) console.log(err);
         if (check) {
           req.session.user = { _id: user._id };
@@ -71,11 +72,11 @@ UserController.login = function(req, res) {
     .catch(err => console.log(err));
 };
 
-UserController.profile1 = function(req, res) {
+UserController.profile1 = function (req, res) {
   var userId = req.session.user._id;
   let form = new multiparty.Form();
-  form.parse(req, function(err, fields, files) {
-    cloudinary.uploader.upload(files.image[0].path, function(err, result) {
+  form.parse(req, function (err, fields, files) {
+    cloudinary.uploader.upload(files.image[0].path, function (err, result) {
       var userData = {
         name: {
           firstname: fields.firstname[0],
@@ -113,7 +114,7 @@ UserController.profile1 = function(req, res) {
     });
   });
 };
-UserController.profile2 = function(req, res) {
+UserController.profile2 = function (req, res) {
   data = {
     dob: {
       day: parseFloat(req.body.day),
@@ -122,12 +123,12 @@ UserController.profile2 = function(req, res) {
     },
     age: getAge(
       "" +
-        parseFloat(req.body.month) +
-        "/" +
-        parseFloat(req.body.day) +
-        "/" +
-        parseFloat(req.body.year) +
-        ""
+      parseFloat(req.body.month) +
+      "/" +
+      parseFloat(req.body.day) +
+      "/" +
+      parseFloat(req.body.year) +
+      ""
     ),
     gender: req.body.gender,
     maritialstatus: req.body.maritialstatus,
@@ -154,7 +155,7 @@ UserController.profile2 = function(req, res) {
       .catch(err => console.log(err));
   });
 };
-UserController.profile3 = function(req, res) {
+UserController.profile3 = function (req, res) {
   data = {
     hobbies: req.body.hobbies,
     education: {
@@ -184,7 +185,7 @@ UserController.profile3 = function(req, res) {
   });
 };
 
-UserController.profile4 = function(req, res) {
+UserController.profile4 = function (req, res) {
   const AboutYourself = req.body.AboutYourself;
   User.update(
     { _id: req.session.user._id },
@@ -196,10 +197,10 @@ UserController.profile4 = function(req, res) {
     })
     .catch(err => console.log(err));
 };
-UserController.profile = function(req, res) {
+UserController.profile = function (req, res) {
   User.findOne({ _id: req.session.user._id })
     .then(user => {
-     
+
       (user.Profile.Profile2.height = req.body.height),
         (user.Profile.Profile3.disability = req.body.disability),
         (user.Profile.Profile2.age = req.body.age),
@@ -250,7 +251,7 @@ UserController.profile = function(req, res) {
     .catch(err => console.log(err));
 };
 
-UserController.userpref = function(req, res) {
+UserController.userpref = function (req, res) {
   User.findOne({ _id: req.session.user._id }).then(user => {
     var userpref = {};
 
@@ -282,11 +283,11 @@ UserController.userpref = function(req, res) {
   });
 };
 
-UserController.album = function(req, res) {
+UserController.album = function (req, res) {
   User.findOne({ _id: req.session.user._id }).then(user => {
     let form = new multiparty.Form();
-    form.parse(req, function(err, fields, files) {
-      cloudinary.uploader.upload(files.album[0].path, function(err, result) {
+    form.parse(req, function (err, fields, files) {
+      cloudinary.uploader.upload(files.album[0].path, function (err, result) {
         if (result) {
           user.myAlbum.push(result.secure_url);
           //console.log(user)

@@ -9,7 +9,7 @@ User.find({}, function (err, users) {
     users.map(el => {
         var user = el
         if (user.Matches) {
-            user.Messages = undefined
+            user.messages = undefined
             user.Notifications.all = undefined
             user.Matches.receivedrequests = undefined
             user.Matches.sentrequests = undefined
