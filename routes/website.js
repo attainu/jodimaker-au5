@@ -6,6 +6,9 @@ module.exports = function (io) {
     const User = require("../models/userSchema");
     const multiparty = require("multiparty");
     var cloudinary = require("cloudinary").v2;
+    const Cryptr = require('cryptr');
+    const cryptr = new Cryptr('asdJndsakjnvlkDmasdmqwdDFnflkqw');
+
 
 
     var filteredmatches;
@@ -746,6 +749,11 @@ module.exports = function (io) {
     router.post("/chat/:user_id", (req, res) => {
         var userid = req.params.user_id + "";
         User.findOne({ _id: req.session.user._id }, function (err, result) {
+            if (result.messages[userid])
+                var decryptedMsgs = result.messages[userid].map(el => {
+                    el.message = cryptr.decrypt(el.message)
+                })
+                console.log(decryptedMsgs)
             res.send({
                 user: req.session.user,
                 friend_id: userid,
@@ -758,12 +766,15 @@ module.exports = function (io) {
         User.findOne({ _id: friendid }).then(friend => {
             var property = "messages." + friendid;
             var obj = {};
+
+            const encryptedString = cryptr.encrypt(req.body.message);
+
             obj[property] = {
                 from: "You",
                 to:
                     friend.Profile.Profile1.name.firstname +
                     friend.Profile.Profile1.name.lastname,
-                message: req.body.message
+                message: encryptedString
             };
 
             User.updateOne(
@@ -778,7 +789,7 @@ module.exports = function (io) {
                             friend.Profile.Profile1.name.firstname +
                             friend.Profile.Profile1.name.lastname,
                         to: "You",
-                        message: req.body.message
+                        message: encryptedString
                     };
                     User.updateOne({ _id: friendid }, { $push: obj }, (err, result) => {
                         if (err) console.log(err);
