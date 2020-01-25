@@ -200,7 +200,7 @@
     <section>
         <!-- Modal -->
         <div class="modal fade" id="register" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-dialog-scrollable">
 
                 <!-- Modal content-->
                 <div class="modal-content px-4">
@@ -295,7 +295,7 @@
 
         <!-- Modal -->
         <div class="modal fade" id="login" role="dialog">
-            <div class="modal-dialog">
+            <div class="modal-dialog ">
 
                 <!-- Modal content-->
                 <div class="modal-content">
@@ -311,7 +311,9 @@
                     </div>
 
                     <div class="modal-body" style="padding:40px 50px;">
-                        <form role="form " class="needs-validation"  method="POST" action="/login" novalidate>
+
+                        <form role="form " class="needs-validation" method="POST" action="/login" novalidate>
+
                             <div class="form-group">
                                 <label for="email"><span></span> Enter Email</label>
                                 {{#if notRegistered}}
@@ -339,7 +341,8 @@
                                         Password?</a></p>
                                 <input type="password" id="passwordlogin" name="password" class="form-control"
                                     placeholder="Password" required>
-                                <i class="fa fa-eye  position-relative" id="passwordshow" style="right: -23rem;top:-2.1rem;cursor:pointer "></i>
+                                <i class="fa fa-eye  position-relative" id="passwordshow"
+                                    style="right: -23rem;top:-2.1rem;cursor:pointer "></i>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
@@ -350,6 +353,15 @@
 
                             <button type="button" id="loginbtn" class="btn btn-wine btn-block mt-2"><span></span>
                                 Login</button>
+                            <div class="row mt-3">
+                                <hr class="col-4"><span><i>Or</i></span>
+                                <hr class="col-4">
+                            </div>
+                            <div class="row mt-4 justify-content-around">
+                                <span>Login in with :</span>
+                                <a href=""><i class="fa-facebook-square fa  text-primary fa-2x"></i></a>
+                                <a href=""><i class="fa-google-plus-square text-danger  rounded px-2 fa-2x fa "></i></a>
+                            </div>
                         </form>
                     </div>
                     <div class="modal-footer">
@@ -368,7 +380,7 @@
     </section>
     {{!-- verification code modal --}}
     <div id="myModal" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered ">
 
 
             <!-- Modal content-->
@@ -412,17 +424,22 @@
 
 <script src="/js/root.js"></script>
 <script>
-{{#if notRegistered}}
+    { { #if notRegistered} }
     $('#login').modal('show')
 
-{{/if}}
-{{#if wrongpassword}}
+    {
+        {
+            /if}}
+            { { #if wrongpassword} }
 
-    $('#login').modal('show')
+            $('#login').modal('show')
 
-{{/if}}
-{{#if deleted}}
-$(".toast:last").toast("show")
-{{/if}}
+            {
+                {
+                    /if}}
+                    { { #if deleted} }
+                    $(".toast:last").toast("show")
+                    { { /if}}
 </script>
+
 </html>

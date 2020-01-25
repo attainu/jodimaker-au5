@@ -11,8 +11,6 @@ module.exports = function (io) {
 
     const matchController = require("../controllers/matchController")
 
-    var filteredmatches;
-
     router.get("/matches", matchController.discoverMatches);
 
     router.get("/profile", (req, res) => {

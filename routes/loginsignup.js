@@ -7,7 +7,7 @@ var bcrypt = require("bcrypt");
 var passwordResetHash;
 var otp;
 var cryptoRandomString = require("crypto-random-string");
-var tempsession;
+var tempsession = {};
 
 router.get("/", (req, res) => {
   if (req.query.deleted) {
@@ -61,8 +61,8 @@ router.post("/forgotpassword", (req, res) => {
           hash = encodeURIComponent(hash);
           hash = hash.replace(".", "%2E");
           passwordReset(email, hash);
-          tempsession = cryptoRandomString({ length: 10 });
-          req.session.password = tempsession;
+          tempsession.user._id = cryptoRandomString({ length: 10 });
+          req.session.password = tempsession.user._id;
           console.log("session set", tempsession);
           res.redirect("forgotpassword?sentEmail=true");
         }
@@ -183,7 +183,7 @@ async function passwordReset(email, hash) {
 }
 
 function checktempSession(req, res, next) {
-  if (req.session.password != tempsession || tempsession == undefined) {
+  if (req.session.password != tempsession.user._id || tempsession.user._id == undefined) {
     res.redirect("/");
   } else {
     console.log(req.session.password);
