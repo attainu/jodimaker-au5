@@ -311,7 +311,7 @@
                     </div>
 
                     <div class="modal-body" style="padding:40px 50px;">
-                        <form role="form " class="needs-validation" method="POST" action="/login" novalidate>
+                        <form role="form " class="needs-validation"  method="POST" action="/login" novalidate>
                             <div class="form-group">
                                 <label for="email"><span></span> Enter Email</label>
                                 {{#if notRegistered}}
@@ -339,7 +339,7 @@
                                         Password?</a></p>
                                 <input type="password" id="passwordlogin" name="password" class="form-control"
                                     placeholder="Password" required>
-                                {{!-- <i class="fa fa-eye  position-relative" style="right: -23rem;top:-2.1rem;cursor:pointer "></i> --}}
+                                <i class="fa fa-eye  position-relative" id="passwordshow" style="right: -23rem;top:-2.1rem;cursor:pointer "></i>
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
@@ -348,7 +348,7 @@
                                 </div>
                             </div>
 
-                            <button type="submit" id="loginbtn" class="btn btn-wine btn-block mt-2"><span></span>
+                            <button type="button" id="loginbtn" class="btn btn-wine btn-block mt-2"><span></span>
                                 Login</button>
                         </form>
                     </div>
