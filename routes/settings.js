@@ -5,7 +5,7 @@ const Settings = require("../models/settingsSchema")
 
 router.get('/setting', function (req, res) {
     //render saved settings
-    User.findOne({ _id: req.session.user._id })
+    User.findOne({ _id: req.session.passport.user })
         .then(user => {
             res.render("settings", {
                 result: user
@@ -22,7 +22,7 @@ router.post("/setting2", (req, res) => {
 
             emailsubscribe: req.body.emailsubscribe
         }
-        User.updateOne({ _id: req.session.user._id }, obj)
+        User.updateOne({ _id: req.session.passport.user }, obj)
             .then(user => {
                 console.log(user)
                 res.redirect("/setting")
@@ -32,7 +32,6 @@ router.post("/setting2", (req, res) => {
     }
 })
 router.post("/setting3", (req, res) => {
-    console.log(req.body)
 
     var obj = { Settings: {} }
 
@@ -55,16 +54,15 @@ router.post("/setting3", (req, res) => {
         obj.Settings.subscribe = req.body.subscribe
     }
     console.log(obj)
-    User.updateOne({ _id: req.session.user._id }, obj)
+    User.updateOne({ _id: req.session.passport.user }, obj)
         .then(user => {
-            User.findOne({ _id: req.session.user._id })
+            User.findOne({ _id: req.session.passport.user })
                 .then(user => res.send(user.Settings))
                 .catch(err => console.log(err))
             console.log("User settings updated")
         })
         .catch(err => {
             console.log(err)
-            // res.send("done")
         })
 
 
@@ -84,19 +82,18 @@ router.post('/update', function (req, res) {
             }
         }
     }
-    User.updateOne({ _id: req.session.user._id }, data)
+    User.updateOne({ _id: req.session.passport.user }, data)
     res.redirect("/setting")
 
 })
 
 router.delete('/delete', (req, res) => {
     console.log(req.body)
-    User.deleteOne({ _id: req.session.user._id })
+    User.deleteOne({ _id: req.session.passport.user })
         .then(result =>
             res.send("deleted"))
         .catch(err => {
             console.log(err)
-            // res.send(err)
         })
 
 

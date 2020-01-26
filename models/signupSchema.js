@@ -14,10 +14,12 @@ var signupSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    createdBy:{
-        type:String,
-        
-    }
+    createdBy: {
+        type: String,
+
+    },
+    facebookid: String,
+    googleid: String
 
 }, { _id: false })
 const Signup = mongoose.model('signup', signupSchema)
