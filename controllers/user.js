@@ -1,6 +1,7 @@
 var multiparty = require("multiparty");
 var cloudinary = require("cloudinary").v2;
 var bcrypt = require("bcrypt");
+const passport = require("passport")
 //User model
 const Settings = require("../models/settingsSchema.js");
 const Signup = require("../models/signupSchema");
@@ -9,6 +10,7 @@ const Profile2 = require("../models/profile2Schema.js");
 const Profile3 = require("../models/profile3Schema.js");
 const Userpref = require("../models/userprefSchema.js");
 const User = require("../models/userSchema");
+const cryptoRandomString = require("crypto-random-string");
 
 //clodinary configruation
 cloudinary.config({
@@ -47,33 +49,16 @@ UserController.signup = function (req, res) {
   });
 };
 
-UserController.login = function (req, res) {
-  var email = req.body.email;
-  var password = req.body.password;
-  User.findOne({ "Signup.email": email })
-    .then(user => {
-      if (!user) {
-        res.redirect("/?notRegistered=true");
-      }
-      bcrypt.compare(password, user.Signup.password, function (err, check) {
-        if (err) console.log(err);
-        if (check) {
-          req.session.user = { _id: user._id };
-          if (user.Profile.Profile3) {
-            res.redirect("/home");
-          } else {
-            res.redirect("/profile/1");
-          }
-        } else {
-          res.redirect("/?wrongpassword=true");
-        }
-      });
-    })
-    .catch(err => console.log(err));
-};
+UserController.login = (req, res, next) => {
+  passport.authenticate('local', {
+    successRedirect: '/profile/1',
+    failureRedirect: '/',
+    failureFlash: true
+  })(req, res, next);
+}
 
 UserController.profile1 = function (req, res) {
-  var userId = req.session.user._id;
+  var userId = req.session.passport.user;
   let form = new multiparty.Form();
   form.parse(req, function (err, fields, files) {
     cloudinary.uploader.upload(files.image[0].path, function (err, result) {
@@ -143,7 +128,7 @@ UserController.profile2 = function (req, res) {
       type: req.body.type
     }
   };
-  User.findOne({ _id: req.session.user._id }).then(user => {
+  User.findOne({ _id: req.session.passport.user }).then(user => {
     const newProfile2 = new Profile2(data);
     user.Profile.Profile2 = newProfile2;
     user
@@ -169,7 +154,7 @@ UserController.profile3 = function (req, res) {
     (data.education.employer = req.body.employer),
       (data.education.salary = parseFloat(req.body.salary));
   }
-  User.findOne({ _id: req.session.user._id }).then(user => {
+  User.findOne({ _id: req.session.passport.user }).then(user => {
     const newProfile3 = new Profile3(data);
     user.Profile.Profile3 = newProfile3;
     user
@@ -187,8 +172,8 @@ UserController.profile3 = function (req, res) {
 
 UserController.profile4 = function (req, res) {
   const AboutYourself = req.body.AboutYourself;
-  User.update(
-    { _id: req.session.user._id },
+  User.updateOne(
+    { _id: req.session.passport.user },
     { "Profile.Profile3.AboutYourself": AboutYourself }
   )
     .then(user => {
@@ -198,7 +183,7 @@ UserController.profile4 = function (req, res) {
     .catch(err => console.log(err));
 };
 UserController.profile = function (req, res) {
-  User.findOne({ _id: req.session.user._id })
+  User.findOne({ _id: req.session.passport.user })
     .then(user => {
 
       (user.Profile.Profile2.height = req.body.height),
@@ -252,7 +237,7 @@ UserController.profile = function (req, res) {
 };
 
 UserController.userpref = function (req, res) {
-  User.findOne({ _id: req.session.user._id }).then(user => {
+  User.findOne({ _id: req.session.passport.user }).then(user => {
     var userpref = {};
 
     (userpref.minage = parseInt(req.body.age.split("-")[0])),
@@ -284,7 +269,7 @@ UserController.userpref = function (req, res) {
 };
 
 UserController.album = function (req, res) {
-  User.findOne({ _id: req.session.user._id }).then(user => {
+  User.findOne({ _id: req.session.passport.user }).then(user => {
     let form = new multiparty.Form();
     form.parse(req, function (err, fields, files) {
       cloudinary.uploader.upload(files.album[0].path, function (err, result) {
@@ -299,6 +284,41 @@ UserController.album = function (req, res) {
     });
   });
 };
+
+UserController.social = (req, res) => {
+  const { mobile, createdBy } = req.body;
+  User.findById(req.session.passport.user)
+    .then(user => {
+      console.log(user)
+      const email = user.Signup.email
+      var password = cryptoRandomString({ length: 20 })
+      bcrypt.hash(password, 10, function (err, hash) {
+        if (err) console.log(err);
+        else {
+          password = hash;
+
+          var facebookid = user.Signup.facebookid
+          var googleid = user.Signup.googleid
+          const newSignup = new Signup({
+            email,
+            password,
+            mobile,
+            createdBy,
+            facebookid,
+            googleid
+          });
+          user.Signup = newSignup;
+          user
+            .save()
+            .then(user => {
+              res.redirect("/profile/1");
+            })
+            .catch(err => console.log(err));
+        }
+
+      })
+    })
+}
 
 module.exports = UserController;
 

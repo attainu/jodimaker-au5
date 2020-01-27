@@ -9,7 +9,8 @@ var express = require("express");
 var exphbs = require("hbs");
 var session = require("express-session");
 var mongoose = require("mongoose");
-
+const passport = require("passport")
+require('./config/passport')(passport)
 
 //Ameet modules
 var cryptoRandomString = require("crypto-random-string");
@@ -17,7 +18,7 @@ var cryptoRandomString = require("crypto-random-string");
 //setting  express object
 var app = express();
 var server = require('http').createServer(app)
-
+const flash = require("connect-flash")
 //setting handlebars
 // app.engine('hbs', exphbs({ extname: 'hbs', defaultLayout: 'layouts', layoutsDir: __dirname + "/views" }))
 app.set("view engine", "hbs");
@@ -49,6 +50,11 @@ app.use(
     rolling: true
   })
 );
+app.use(passport.initialize())
+app.use(passport.session())
+app.use(flash())
+
+
 var server = require('http').Server(app)
 var io = require('socket.io')(server)
 var website = require("./routes/website")(io)
