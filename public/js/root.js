@@ -16,6 +16,8 @@ $(document).ready(function () {
       $("form").removeClass("was-validated");
       $("#emailsignupfeed").text("");
       $("input").removeClass("is-valid is-invalid");
+      $(".error-msg").addClass("d-none")
+    
     }
   });
 
@@ -44,9 +46,7 @@ $(document).ready(function () {
   $("#submit")
     .off("click")
     .click(function () {
-      console.log("clicked");
       if ($("#signupform")[0].checkValidity()) {
-        console.log("checked");
 
         $.ajax({
           type: "post",

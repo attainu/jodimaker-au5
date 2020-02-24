@@ -316,8 +316,8 @@
 
                             <div class="form-group">
                                 <label for="email"><span></span> Enter Email</label>
-                                {{#if notRegistered}}
-                                <label class="text-danger ml-2">Not Registered!
+                                {{#if incorrectEmail}}
+                                <label class="text-danger error-msg ml-2">Not Registered!
                                 </label>
                                 {{/if}}
                                 <input type="email" id="emaillogin" name="email"
@@ -333,10 +333,11 @@
                             <div class="form-group">
                                 <label for="password">
                                     Password</label>
-                                {{#if wrongpassword}}
-                                <label class="text-danger ml-2">Incorrect Password!
+                                      {{#if incorrectPassword}}
+                                <label class="text-danger error-msg ml-2">{{incorrectPassword}}
                                 </label>
                                 {{/if}}
+
                                 <p class="float-right"><a href="/forgotpassword" class="font-weight-bold">Forgot
                                         Password?</a></p>
                                 <input type="password" id="passwordlogin" name="password" class="form-control"
@@ -350,7 +351,10 @@
                                     Incorrect password
                                 </div>
                             </div>
-
+                            <!--{{#if error}}
+                            <label class="text-danger ml-2">{{error}}
+                            </label>
+                            {{/if}}-->
                             <button type="button" id="loginbtn" class="btn btn-wine btn-block mt-2"><span></span>
                                 Login</button>
                             <div class="row mt-3">
@@ -360,7 +364,8 @@
                             <div class="row mt-4 justify-content-around">
                                 <span>Login in with :</span>
                                 <a href="/facebook"><i class="fa-facebook-square fa  text-primary fa-3x"></i></a>
-                                <a href="/google"><i class="fa-google-plus-square text-danger  rounded px-2 fa-3x fa "></i></a>
+                                <a href="/google"><i
+                                        class="fa-google-plus-square text-danger  rounded px-2 fa-3x fa "></i></a>
                             </div>
                         </form>
                     </div>
@@ -423,23 +428,17 @@
     crossorigin="anonymous"></script>
 
 <script src="/js/root.js"></script>
+{{#if error}}
 <script>
-    { { #if notRegistered} }
     $('#login').modal('show')
 
-    {
-        {
-            /if}}
-            { { #if wrongpassword} }
-
-            $('#login').modal('show')
-
-            {
-                {
-                    /if}}
-                    { { #if deleted} }
-                    $(".toast:last").toast("show")
-                    { { /if}}
 </script>
+{{/if}}
+{{#if deleted}}
+<script>
+
+    $(".toast:last").toast("show")
+</script>
+{{/if}}
 
 </html>

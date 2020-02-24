@@ -13,7 +13,6 @@ $(document).ready(function() {
       url: "/sendrequest",
       data: data,
       success: function(response) {
-        console.log(response);
         connectbtn
           .off("click")
           .removeClass("bg-wine")

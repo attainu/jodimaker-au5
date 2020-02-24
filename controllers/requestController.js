@@ -1,5 +1,5 @@
 var RequestController = {}
-
+const User = require("../models/userSchema")
 RequestController.sendrequest = (req, res) => {
     var matchid = req.body.id;
     var user;

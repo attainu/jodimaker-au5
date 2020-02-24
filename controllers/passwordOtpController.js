@@ -90,7 +90,6 @@ PasswordOtpController.checktempSession = (req, res, next) => {
     if (req.session.password != tempsession[email] || tempsession[email] == undefined) {
         res.redirect("/");
     } else {
-        console.log(req.session.password);
         next();
     }
 }
@@ -151,7 +150,6 @@ async function sendVerificationEmail(email) {
             otp +
             "</b>" // html body
     });
-    console.log("sent")
 }
 
 

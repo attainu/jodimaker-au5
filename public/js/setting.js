@@ -128,7 +128,6 @@ function ajax(url, cancel) {
     method: "POST",
     data: $("#set3").serialize(),
     success: function(response) {
-      console.log(response);
       if (response.showname) {
         $("#display-name p").text(response.showname);
         $("#display-name input").val(response.showname);

@@ -1,7 +1,7 @@
 var multiparty = require("multiparty");
 var cloudinary = require("cloudinary").v2;
 var bcrypt = require("bcrypt");
-const passport = require("passport")
+const passport = require("passport");
 //User model
 const Settings = require("../models/settingsSchema.js");
 const Signup = require("../models/signupSchema");
@@ -13,19 +13,15 @@ const User = require("../models/userSchema");
 const cryptoRandomString = require("crypto-random-string");
 
 //clodinary configruation
-cloudinary.config({
-  cloud_name: "dfu8kqztl",
-  api_key: "412134237221151",
-  api_secret: "jP6DMTkrr37WsJBL36Do7WDRa9s"
-});
+cloudinary.config(require("../config/keys").CloudinaryURI);
 
 const UserController = {};
 
-UserController.signup = function (req, res) {
+UserController.signup = function(req, res) {
   const { mobile, email, createdBy } = req.body;
   var password = req.body.password;
 
-  bcrypt.hash(password, 10, function (err, hash) {
+  bcrypt.hash(password, 10, function(err, hash) {
     if (err) console.log(err);
     else {
       password = hash;
@@ -50,18 +46,18 @@ UserController.signup = function (req, res) {
 };
 
 UserController.login = (req, res, next) => {
-  passport.authenticate('local', {
-    successRedirect: '/profile/1',
-    failureRedirect: '/',
+  passport.authenticate("local", {
+    successRedirect: "/profile/1",
+    failureRedirect: "/",
     failureFlash: true
   })(req, res, next);
-}
+};
 
-UserController.profile1 = function (req, res) {
+UserController.profile1 = function(req, res) {
   var userId = req.session.passport.user;
   let form = new multiparty.Form();
-  form.parse(req, function (err, fields, files) {
-    cloudinary.uploader.upload(files.image[0].path, function (err, result) {
+  form.parse(req, function(err, fields, files) {
+    cloudinary.uploader.upload(files.image[0].path, function(err, result) {
       var userData = {
         name: {
           firstname: fields.firstname[0],
@@ -99,7 +95,7 @@ UserController.profile1 = function (req, res) {
     });
   });
 };
-UserController.profile2 = function (req, res) {
+UserController.profile2 = function(req, res) {
   data = {
     dob: {
       day: parseFloat(req.body.day),
@@ -108,12 +104,12 @@ UserController.profile2 = function (req, res) {
     },
     age: getAge(
       "" +
-      parseFloat(req.body.month) +
-      "/" +
-      parseFloat(req.body.day) +
-      "/" +
-      parseFloat(req.body.year) +
-      ""
+        parseFloat(req.body.month) +
+        "/" +
+        parseFloat(req.body.day) +
+        "/" +
+        parseFloat(req.body.year) +
+        ""
     ),
     gender: req.body.gender,
     maritialstatus: req.body.maritialstatus,
@@ -140,7 +136,7 @@ UserController.profile2 = function (req, res) {
       .catch(err => console.log(err));
   });
 };
-UserController.profile3 = function (req, res) {
+UserController.profile3 = function(req, res) {
   data = {
     hobbies: req.body.hobbies,
     education: {
@@ -170,7 +166,7 @@ UserController.profile3 = function (req, res) {
   });
 };
 
-UserController.profile4 = function (req, res) {
+UserController.profile4 = function(req, res) {
   const AboutYourself = req.body.AboutYourself;
   User.updateOne(
     { _id: req.session.passport.user },
@@ -182,10 +178,9 @@ UserController.profile4 = function (req, res) {
     })
     .catch(err => console.log(err));
 };
-UserController.profile = function (req, res) {
+UserController.profile = function(req, res) {
   User.findOne({ _id: req.session.passport.user })
     .then(user => {
-
       (user.Profile.Profile2.height = req.body.height),
         (user.Profile.Profile3.disability = req.body.disability),
         (user.Profile.Profile2.age = req.body.age),
@@ -236,7 +231,7 @@ UserController.profile = function (req, res) {
     .catch(err => console.log(err));
 };
 
-UserController.userpref = function (req, res) {
+UserController.userpref = function(req, res) {
   User.findOne({ _id: req.session.passport.user }).then(user => {
     var userpref = {};
 
@@ -261,18 +256,17 @@ UserController.userpref = function (req, res) {
     const newuserpref = new Userpref(userpref);
     console.log(newuserpref);
     user.Userpref = newuserpref;
-    console.log(user);
     user.save().then(() => {
       res.redirect("/home");
     });
   });
 };
 
-UserController.album = function (req, res) {
+UserController.album = function(req, res) {
   User.findOne({ _id: req.session.passport.user }).then(user => {
     let form = new multiparty.Form();
-    form.parse(req, function (err, fields, files) {
-      cloudinary.uploader.upload(files.album[0].path, function (err, result) {
+    form.parse(req, function(err, fields, files) {
+      cloudinary.uploader.upload(files.album[0].path, function(err, result) {
         if (result) {
           user.myAlbum.push(result.secure_url);
           //console.log(user)
@@ -287,38 +281,36 @@ UserController.album = function (req, res) {
 
 UserController.social = (req, res) => {
   const { mobile, createdBy } = req.body;
-  User.findById(req.session.passport.user)
-    .then(user => {
-      console.log(user)
-      const email = user.Signup.email
-      var password = cryptoRandomString({ length: 20 })
-      bcrypt.hash(password, 10, function (err, hash) {
-        if (err) console.log(err);
-        else {
-          password = hash;
+  User.findById(req.session.passport.user).then(user => {
+    // console.log(user);
+    const email = user.Signup.email;
+    var password = cryptoRandomString({ length: 20 });
+    bcrypt.hash(password, 10, function(err, hash) {
+      if (err) console.log(err);
+      else {
+        password = hash;
 
-          var facebookid = user.Signup.facebookid
-          var googleid = user.Signup.googleid
-          const newSignup = new Signup({
-            email,
-            password,
-            mobile,
-            createdBy,
-            facebookid,
-            googleid
-          });
-          user.Signup = newSignup;
-          user
-            .save()
-            .then(user => {
-              res.redirect("/profile/1");
-            })
-            .catch(err => console.log(err));
-        }
-
-      })
-    })
-}
+        var facebookid = user.Signup.facebookid;
+        var googleid = user.Signup.googleid;
+        const newSignup = new Signup({
+          email,
+          password,
+          mobile,
+          createdBy,
+          facebookid,
+          googleid
+        });
+        user.Signup = newSignup;
+        user
+          .save()
+          .then(user => {
+            res.redirect("/profile/1");
+          })
+          .catch(err => console.log(err));
+      }
+    });
+  });
+};
 
 module.exports = UserController;
 

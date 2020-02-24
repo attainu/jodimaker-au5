@@ -71,66 +71,7 @@ module.exports = function (io) {
     })
 
 
-    router.get("/matchprofile", (req, res) => {
-        var user
-        User.findOne({ _id: req.session.passport.user })
-            .then(newuser => {
-                user = newuser
-                if (req.query.id) {
-                    User.findOne({ _id: req.query.id })
-                        .then(matchprofile => {
-                            var isMatched = matchprofile.Matches.acceptedrequests.includes(req.session.passport.user)
-                            if (matchprofile.Userpref) {
-                                var matchingpref = {}
-
-                                if (user.Profile.Profile2.age > matchprofile.Userpref.minage && user.Profile.Profile2.age < matchprofile.Userpref.maxage) {
-                                    matchingpref.age = matchprofile.Userpref.minage + "-" + matchprofile.Userpref.maxage
-                                }
-                                var heightfeet = user.Profile.Profile2.height
-
-                                var minheight = parseInt(matchprofile.Userpref.height[1]) * 12 + parseInt(matchprofile.Userpref.height[3] + matchprofile.Userpref.height[4])
-                                var heightinches = parseInt(heightfeet[1]) * 12 + parseInt(heightfeet[3] + heightfeet[4])
-                                if (heightinches >= minheight) {
-                                    matchingpref.height = matchprofile.Userpref.height + "-" + "6'5 ft"
-                                }
-                                if (matchprofile.Userpref.maritialstatus == user.Profile.Profile2.maritialstatus) {
-                                    matchingpref.maritalstatus = matchprofile.Userpref.maritialstatus
-                                }
-                                if (matchprofile.Userpref.religion == user.Profile.Profile2.religion) {
-                                    matchingpref.religion = matchprofile.Userpref.religion
-                                }
-                                if (matchprofile.Userpref.mothertongue == user.Profile.Profile2.mothertongue) {
-                                    matchingpref.mothertongue = matchprofile.Userpref.mothertongue
-                                }
-                                if (matchprofile.Userpref.diet == user.Profile.Profile2.diet) {
-                                    matchingpref.diet = matchprofile.Userpref.diet
-                                }
-                                if (matchprofile.Userpref.location.country == user.Profile.Profile1.location.country) {
-                                    matchingpref.country = matchprofile.Userpref.location.country
-                                }
-                                if (matchprofile.Userpref.location.state == user.Profile.Profile1.location.state) {
-                                    matchingpref.state = matchprofile.Userpref.location.state
-                                }
-                                if (matchprofile.Userpref.location.city == user.Profile.Profile1.location.city) {
-                                    matchingpref.city = matchprofile.Userpref.location.city
-                                }
-
-
-                            }
-                            var sent = user.Matches.sentrequests.includes(matchprofile._id)
-
-                            res.render("matching", {
-                                user: user,
-                                match: matchprofile,
-                                isMatched: isMatched,
-                                matchingpref: matchingpref,
-                                sent: sent
-
-                            });
-                        })
-                }
-            })
-    });
+   
 
 
     router.get("/home", require("../controllers/homeController"));
@@ -141,6 +82,7 @@ module.exports = function (io) {
     router.delete("/acceptedrequests", RequestController.deleteAcceptedrequests);
 
     router.post("/acceptrequest", RequestController.acceptrequest);
+
     router.get("/userpref", (req, res) => {
         User.findOne({ _id: req.session.passport.user }).then(user => {
             res.render("userpref", {

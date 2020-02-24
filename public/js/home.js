@@ -3,7 +3,6 @@
 $(document).ready(function () {
   const socket = io();
   socket.on("message", data => {
-    console.log("hello")
     if ($(".chatwindow").attr("id")) {
       loadchat()
     }
@@ -15,7 +14,6 @@ $(document).ready(function () {
   function readURL(input) {
     if (input.files && input.files[0]) {
       var reader = new FileReader();
-      console.log(reader)
       reader.onload = function (e) {
         $("#imagePreview").css(
           "background-image",

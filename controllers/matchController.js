@@ -81,7 +81,7 @@ matchController.discoverMatches = (req, res) => {
                                 matchprofile.Profile.Profile2.age < user.Userpref.minage ||
                                 matchprofile.Profile.Profile2.age > user.Userpref.maxage
                             ) {
-                                console.log(1)
+                                // console.log(1)
                                 return matchprofile
                             }
                             var heightfeet = matchprofile.Profile.Profile2.height;
@@ -95,7 +95,7 @@ matchController.discoverMatches = (req, res) => {
                                 parseInt(heightfeet[1]) * 12 +
                                 parseInt(heightfeet[3] + heightfeet[4]);
                             if (heightinches <= minheight) {
-                                console.log(2)
+                                // console.log(2)
 
                                 return matchprofile
                             }
@@ -103,13 +103,13 @@ matchController.discoverMatches = (req, res) => {
                                 user.Userpref.maritialstatus !=
                                 matchprofile.Profile.Profile2.maritialstatus && user.Userpref.maritialstatus != "doesnotmatter"
                             ) {
-                                console.log(3)
+                                // console.log(3)
                                 return matchprofile
                             }
                             if (
                                 user.Userpref.religion != matchprofile.Profile.Profile2.religion && user.Userpref.religion != "doesnotmatter"
                             ) {
-                                console.log(3)
+                                // console.log(3)
 
                                 return matchprofile
                             }
@@ -117,32 +117,32 @@ matchController.discoverMatches = (req, res) => {
                                 user.Userpref.mothertongue !=
                                 matchprofile.Profile.Profile2.mothertongue && user.Userpref.mothertongue != "doesnotmatter"
                             ) {
-                                console.log(4)
+                                // console.log(4)
                                 return matchprofile
                             }
                             if (user.Userpref.diet != matchprofile.Profile.Profile2.diet && user.Userpref.diet != "doesnotmatter") {
-                                console.log(5)
+                                // console.log(5)
                                 return matchprofile
                             }
                             if (
                                 user.Userpref.location.country !=
                                 matchprofile.Profile.Profile1.location.country && user.Userpref.location.country != ""
                             ) {
-                                console.log(6)
+                                // console.log(6)
                                 return matchprofile
                             }
                             if (
                                 user.Userpref.location.state !=
                                 matchprofile.Profile.Profile1.location.state && user.Userpref.location.state != ""
                             ) {
-                                console.log(7)
+                                // console.log(7)
                                 return matchprofile
                             }
                             if (
                                 user.Userpref.location.city !=
                                 matchprofile.Profile.Profile1.location.city && user.Userpref.location.city != ""
                             ) {
-                                console.log(8)
+                                // console.log(8)
                                 return matchprofile
                             }
                             userPrefMatches.push(matchprofile)
