@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +12,7 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
         integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <link rel="stylesheet" href="http://localhost:3000/css/forgotpassword.css">
-    <title>Jodimaker | Reset Password</title>
+    <title>Jodimaker | Create</title>
 </head>
 
 <body>
@@ -37,43 +38,27 @@
                 </div>
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title mt-3"> Set New Password</h4>
+                        <h4 class="card-title mt-3"> Create Account</h4>
                         <hr>
-                        <div class="recoverPassword">
-                            <form class="needs-validation" method="POST" action="/setnewpassword" novalidate
-                                enctype="application/x-www-form-urlencoded"
-                                oninput='cfpassword.setCustomValidity(cfpassword.value != password.value ? "Passwords do not match." : "")'>
-                                <input type="hidden" name="email" value="{{user}}">
-                                <div class="form-row my-1">
-                                    <label for="password">
-                                        Password</label>
-                                    <input type="password" name="password"
-                                        pattern="(?=^.{6,20}$)(?=.*\d)(?=.*[a-zA-Z])(?!.*\s).*$" class="form-control"
-                                        id="password" placeholder="Password" required>
-                                    <div class="valid-feedback">
-                                        Looks good!
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        At least 6 characters including a number an alphabet.
-                                    </div>
-                                </div>
-                                <div class="form-row my-1">
-                                    <label for="cfpassword">
-                                        Confirm Password</label>
-                                    <input type="password" name="cfpassword" class="form-control" id="cfpassword"
-                                        placeholder="Confirm Password" required>
-                                    <div class="valid-feedback">
-                                        Passwords match!!
-                                    </div>
-                                    <div class="invalid-feedback">
-                                        Passwords don't match!!
-                                    </div>
-                                </div>
-                                <div class="form-row my-2">
-                                    <button type="submit" class="btn btn-outline-success">Submit</button>
-                                </div>
-                            </form>
-                        </div>
+                        <form action="/social" method="post">
+
+                            <input type="text" id="mobile" name="mobile" class="form-control"
+                                placeholder="Enter Mobile No" pattern="0?[6-9][0-9]{9}">
+
+                            <div class="form-group">
+                                <label for="createdBy"><span> </span> Created Profile for:</label>
+                                <select class="form-control" name="createdBy">
+                                    <option value="self">Self</option>
+                                    <option value="son">Son</option>
+                                    <option value="daughter">Daughter</option>
+                                    <option value="brother">Brother</option>
+                                    <option value="sister">Sister</option>
+                                    <option value="friend">Friend</option>
+                                    <option value="relative">Relative</option>
+                                </select>
+                            </div>
+                            <button class="btn-secondary btn text-white">Submit</button>
+                        </form>
                     </div>
                 </div>
             </div>

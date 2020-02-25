@@ -45,7 +45,6 @@ hr.main {
   cursor: pointer;
   font-weight: normal;
   transition: all 0.2s ease-in-out;
-  b
 }
 .avatar-upload .avatar-edit input + label:hover {
   background: #f1f1f1;
@@ -85,18 +84,16 @@ hr.main {
   border: 2px solid #f8f8f8;
 }
 
-.album{
+.album {
   text-align: center;
 }
-.imgAlbum{
-  
+.imgAlbum {
   width: 510px;
   /* border: solid 5px #78244c; */
- 
 }
 
-.slideImg{
+.slideImg {
   border: solid 3px #757575;
   cursor: pointer;
-  margin:2px;
+  margin: 2px;
 }
