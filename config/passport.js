@@ -28,9 +28,9 @@ module.exports = function(passport) {
   passport.use(
     new FacebookStrategy(
       {
-        clientID: "1066146250384367",
-        clientSecret: "23246edc2fb5dc780ed6ef0aa82913e9",
-        callbackURL: "http://localhost:3000/facebook/callback",
+        clientID: process.env.FacebookURI_clientID,
+        clientSecret: process.env.FacebookURI_clientSecret,
+        callbackURL: "https://jodimaker.herokuapp.com/facebook/callback",
         profileFields: ["email"] // email should be in the scope.
       },
       function(accessToken, refreshToken, profile, cb) {
@@ -57,13 +57,11 @@ module.exports = function(passport) {
   passport.use(
     new GoogleStrategy(
       {
-        clientID:
-          "383765522062-7lquhb0npan20iv0iscv2qqcgp51hrp5.apps.googleusercontent.com",
-        clientSecret: "cyoB9Q0bih30mJUFWBnmsKAp",
-        callbackURL: "http://localhost:3000/google/callback"
+        clientID:process.env.GoogleURI_clientID,
+        clientSecret: process.env.GoogleURI_clientSecret,
+        callbackURL: "https://jodimaker.herokuapp.com/google/callback"
       },
       (accessToken, refreshToken, profile, cb) => {
-        console.log(profile);
         User.findOne({ "Signup.email": profile.emails[0].value }).then(user => {
           //if user is not registered
           if (!user) {

@@ -7,6 +7,7 @@ body {
 
 h4 {
   font-size: 15px;
+  margin-bottom: 0;
 }
 
 footer {
@@ -53,6 +54,11 @@ a:hover {
 }
 
 .btn-wine {
+  color: #fff;
+  background-color: #78244c;
+  border-color: #78244c;
+}
+.hamburger{
   color: #fff;
   background-color: #78244c;
   border-color: #78244c;
@@ -138,10 +144,6 @@ html {
   margin-bottom: 7px;
 }
 
-.stat-box h4 {
-  margin-top: 23px;
-  margin-bottom: 0px;
-}
 
 .card{
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
@@ -155,3 +157,10 @@ html {
 *{
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
+
+.banner p{
+  margin-bottom: 0;
+}
+.navbar-toggler-icon{
+  filter: invert();
+} 
