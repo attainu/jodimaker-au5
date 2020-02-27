@@ -113,7 +113,7 @@ async function passwordReset(email, hash) {
         subject: "Password Reset ", // Subject line
         text: "" + otp, // plain text body
         html:
-            "<b>Click on this link to reset your password http://localhost:3000/resetpassword/" +
+            "<b>Click on this link to reset your password https://jodimaker.herokuapp.com/resetpassword/" +
             hash +
             "/" +
             email +

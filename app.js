@@ -1,8 +1,8 @@
 //global variables
 var PORT = process.env.PORT || 3000;
 //DB config
+require("dotenv").config()
 const db = require("./config/keys").MongoURI;
-
 var user_dataId;
 //Using npm packages
 var express = require("express");
