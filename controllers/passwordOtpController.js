@@ -71,7 +71,7 @@ PasswordOtpController.generateotp = (req, res) => {
                 req.session.otpid = cryptoRandomString({ length: 10 })
                 otp[req.session.otpid] = userOtp
                 console.log(userOtp);
-                sendVerificationEmail(req.body.email).catch(console.error);
+                sendVerificationEmail(req.body.email,req.session.otpid).catch(console.error);
                 res.send("otp sent");
             }
         })
@@ -128,7 +128,7 @@ async function passwordReset(email, hash) {
     // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 }
 
-async function sendVerificationEmail(email) {
+async function sendVerificationEmail(email,id) {
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 465,
@@ -144,10 +144,10 @@ async function sendVerificationEmail(email) {
         from: "jodimaker.official@gmail.com", // sender address
         to: email, // list of receivers
         subject: "Verification ✔", // Subject line
-        text: "" + otp, // plain text body
+        text: "" + otp[id], // plain text body
         html:
             "<b>Welcome to Jodimaker.Your Jodimaker verification code is " +
-            otp +
+            otp[id] +
             "</b>" // html body
     });
 }
