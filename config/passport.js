@@ -30,7 +30,7 @@ module.exports = function(passport) {
       {
         clientID: process.env.FacebookURI_clientID,
         clientSecret: process.env.FacebookURI_clientSecret,
-        callbackURL: "https://jodimaker.herokuapp.com/facebook/callback",
+        callbackURL: "http://localhost:3000/facebook/callback",
         profileFields: ["email"] // email should be in the scope.
       },
       function(accessToken, refreshToken, profile, cb) {
@@ -59,7 +59,7 @@ module.exports = function(passport) {
       {
         clientID:process.env.GoogleURI_clientID,
         clientSecret: process.env.GoogleURI_clientSecret,
-        callbackURL: "https://jodimaker.herokuapp.com/google/callback"
+        callbackURL: "http://localhost:3000/google/callback"
       },
       (accessToken, refreshToken, profile, cb) => {
         User.findOne({ "Signup.email": profile.emails[0].value }).then(user => {
