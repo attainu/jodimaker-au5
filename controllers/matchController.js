@@ -24,17 +24,15 @@ matchController.discoverMatches = (req, res) => {
     User.findOne({ _id: req.session.passport.user })
         .then(newuser => {
             user = newuser
-            User.find({})
+            User.find({
+                "Profile.Profile2.gender": { $ne: user.Profile.Profile2.gender },
+                $and: [{ _id: { $nin: user.Matches.acceptedrequests } }, { _id: { $nin: user.Matches.receivedrequests } }],
+                // "Profile.Profile2.religion": religion
+
+            })
                 .then(users => {
                     var matches = users.filter(el => {
                         if (el.Profile.Profile2) {
-                            if (el.Profile.Profile2.gender == user.Profile.Profile2.gender) {
-                                return;
-                            }
-                            if (el.Matches.acceptedrequests.includes(user._id)) {
-                                return
-                            }
-
 
                             if (req.query.age) {
                                 if (

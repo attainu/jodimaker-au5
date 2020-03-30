@@ -228,6 +228,19 @@
                         <form role="form" class="needs-validation" method="POST" id="signupform" action="/signup"
                             novalidate>
                             <div class="form-group">
+                                <div class="row m-0 p-0 ">
+                                    <label>Register with :</label>
+                                    <div class="d-flex flex-column col align-items-center ">
+
+                                        <a href="/facebook"><i
+                                                class="fa-facebook-square fa  text-primary fa-3x"></i></a>
+                                    </div>
+                                    <div class="col">
+
+                                        <a href="/google"><i
+                                                class="fa-google-plus-square text-danger  rounded px-2 fa-3x fa "></i></a>
+                                    </div>
+                                </div>
                                 <label for="email"><span></span> Enter Email</label><span
                                     class="text-danger float-right" id="emailsignupfeed"></span>
                                 <input type="text" id="email" name="email" class="form-control"
@@ -374,7 +387,6 @@
                             <button type="button" id="loginbtn" class="btn btn-wine btn-block mt-2"><span></span>
                                 Login</button>
                             <div class="row mt-3">
-                                <hr class="col-xl-4"><span><i>Or</i></span>
                                 <hr class="col-xl-4">
                             </div>
                             <div class="row mt-4 justify-content-around">
@@ -426,9 +438,9 @@
     </div>
     {{!-- modal ends --}}
     {{!-- toast --}}
-    {{!-- <div class="col-md-10 toast1 offset-md-1 toast py-4 px-2" data-delay="5000">
+    <div class="col-md-10 toast1 offset-md-1 toast py-4 px-2" data-delay="5000">
         <h4 class="my-auto text-center">Registration Successful!</h4>
-    </div> --}}
+    </div>
     {{#if deleted }}
     <div id="deletemsg " class="col-md-10 offset-md-1 toast py-4 px-2" data-delay="5000">
         <h4 class="my-auto text-center">Account deleted successfully!</h4>
